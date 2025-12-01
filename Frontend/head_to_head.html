@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Batter vs Bowler Stats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="icon" href="../Backend/favicon.ico" type="image/x-icon">
+  <style>
+    /* Enhanced Root Variables with more color options */
+    :root {
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --secondary: #3a0ca3;
+      --secondary-dark: #240046;
+      --accent: #f72585;
+      --accent-light: #7209b7;
+      --light: #4cc9f0;
+      --dark: #0b132b;
+      --card-bg: #ffffff;
+      --text-primary: #0b132b;
+      --text-secondary: #4d5b7c;
+
+      /* Team Colors */
+      --csk: #FFCC00;
+      --mi: #004BA0;
+      --rcb: #EC1C24;
+      --srh: #FF822A;
+      --kkr: #7300AB;
+      --dc: #0078BC;
+      --gt: #87CEEB;
+      --lsg: #0057B8;
+      --pk: #ED1B24;
+      --rr: #FF69B4;
+    }
+
+    /* Enhanced Body Background with Particles */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle at 25% 25%, rgba(76, 201, 240, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(114, 9, 183, 0.1) 0%, transparent 50%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Enhanced Card Design */
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.15);
+      padding: 2.5em 2em;
+      max-width: 480px;
+      width: 100%;
+      margin: 1em 0 2em 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeInUp 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Enhanced Player Cards */
+    .player-card {
+      flex: 0 0 260px; /* Reduced from 300px */
+      background: rgba(35, 36, 74, 0.7);
+      color: #fff;
+      border-radius: 20px;
+      width: 260px; /* Reduced from 300px */
+      padding: 1.8em 1.2em; /* Reduced padding */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .player-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Enhanced Player Card Header */
+    .player-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--light));
+      z-index: 1;
+    }
+
+    /* Team Color Indicators */
+    .team-csk::before { background: linear-gradient(90deg, var(--csk), #FFF2CC); }
+    .team-mi::before { background: linear-gradient(90deg, var(--mi), #99C2FF); }
+    .team-rcb::before { background: linear-gradient(90deg, var(--rcb), #FF9999); }
+    .team-srh::before { background: linear-gradient(90deg, var(--srh), #FFCC99); }
+    .team-kkr::before { background: linear-gradient(90deg, var(--kkr), #D699FF); }
+    .team-dc::before { background: linear-gradient(90deg, var(--dc), #99DDFF); }
+    .team-gt::before { background: linear-gradient(90deg, var(--gt), #C4E8FF); }
+    .team-lsg::before { background: linear-gradient(90deg, var(--lsg), #99CCFF); }
+    .team-pk::before { background: linear-gradient(90deg, var(--pk), #FF9999); }
+    .team-rr::before { background: linear-gradient(90deg, var(--rr), #FFCCEB); }
+
+    /* Enhanced Player Name */
+    .player-name {
+      font-size: 1.6em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 1em;
+      text-align: center;
+      background: linear-gradient(90deg, var(--light), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Enhanced Team Flag */
+    .team-flag {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1em;
+      border: 4px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .player-card:hover .team-flag {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Enhanced Team Name */
+    .team-name {
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #ffd700;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      margin-bottom: 1em;
+    }
+
+    /* Enhanced Stats Table */
+    #h2h-stats-table {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      font-size: 0.9em; /* Reduced font size */
+      min-width: 200px;
+      max-width: 100%; /* Changed from 500px to 100% */
+      margin-bottom: 1em;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      display: table;
+      width: 100%;
+      table-layout: fixed; /* Added for consistent column widths */
+    }
+
+    #h2h-stats-table th, #h2h-stats-table td {
+      padding: 8px 3px; /* Further reduced padding */
+      text-align: center;
+      font-size: 0.8em; /* Smaller font size */
+      overflow: visible; /* Changed from hidden to visible */
+      white-space: normal; /* Changed from nowrap to normal */
+      word-break: keep-all; /* Prevent breaking words */
+    }
+
+    /* Make column widths more appropriate */
+    #h2h-stats-table th:nth-child(1), #h2h-stats-table td:nth-child(1),
+    #h2h-stats-table th:nth-child(2), #h2h-stats-table td:nth-child(2),
+    #h2h-stats-table th:nth-child(3), #h2h-stats-table td:nth-child(3),
+    #h2h-stats-table th:nth-child(9), #h2h-stats-table td:nth-child(9) {
+      width: 10%; /* Wider columns for important data */
+    }
+
+    #h2h-stats-table th:nth-child(4), #h2h-stats-table td:nth-child(4),
+    #h2h-stats-table th:nth-child(5), #h2h-stats-table td:nth-child(5),
+    #h2h-stats-table th:nth-child(6), #h2h-stats-table td:nth-child(6),
+    #h2h-stats-table th:nth-child(7), #h2h-stats-table td:nth-child(7),
+    #h2h-stats-table th:nth-child(8), #h2h-stats-table td:nth-child(8) {
+      width: 7%; /* Narrower columns for less important data */
+    }
+
+    #h2h-stats-table th:nth-child(10), #h2h-stats-table td:nth-child(10),
+    #h2h-stats-table th:nth-child(11), #h2h-stats-table td:nth-child(11),
+    #h2h-stats-table th:nth-child(12), #h2h-stats-table td:nth-child(12) {
+      width: 9%; /* Medium width for calculated stats */
+    }
+
+    #h2h-stats-table th {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75em; /* Smaller font for headers */
+      letter-spacing: 0px; /* Reduced letter spacing */
+      padding: 8px 2px; /* Even smaller padding for headers */
+    }
+
+    /* Enhanced Stats Label */
+    .stats-label {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.5em;
+      margin-bottom: 1.2em;
+      text-align: center;
+      position: relative;
+      padding-bottom: 15px;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .stats-label::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--light));
+      border-radius: 3px;
+    }
+
+    /* Enhanced Modal Container */
+    .h2h-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: rgba(35, 36, 74, 0.8);
+      border-radius: 24px;
+      padding: 2.5em 1.5em; /* Reduced horizontal padding */
+      gap: 1.5em; /* Reduced gap between elements */
+      max-width: 1200px;
+      width: 95%;
+      margin: 0 auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      animation: zoomIn 0.5s ease-out;
+    }
+
+    /* Enhanced Close Button */
+    .close-modal-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      font-size: 1.5em;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close-modal-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Enhanced Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: url('../Backend/Ipl.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 2rem 1rem;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(11, 19, 43, 0.92), rgba(58, 12, 163, 0.85));
+      z-index: -1;
+    }
+
+    .page-title {
+      color: #fff;
+      font-size: 2.8rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--light), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      padding: 2.5em 2em;
+      max-width: 480px;
+      width: 100%;
+      margin: 1em 0 2em 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeInUp 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--light));
+    }
+
+    h2 {
+      color: var(--secondary);
+      font-size: 2.2em;
+      font-weight: 800;
+      margin-bottom: 1.5em;
+      letter-spacing: 1px;
+      text-align: center;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--light));
+      border-radius: 2px;
+    }
+
+    .input-row {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2em;
+      margin-bottom: 2em;
+    }
+
+    .input-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-light);
+      font-size: 1.2rem;
+    }
+
+    input[type="text"] {
+      padding: 1em 1em 1em 2.8em;
+      border-radius: 16px;
+      border: 2px solid rgba(76, 201, 240, 0.3);
+      font-size: 1.1em;
+      background: rgba(247, 248, 255, 0.9);
+      color: var(--dark);
+      font-weight: 500;
+      outline: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    input[type="text"]:focus {
+      border: 2px solid var(--accent-light);
+      box-shadow: 0 5px 15px rgba(114, 9, 183, 0.15);
+      transform: translateY(-2px);
+    }
+
+    input[type="text"]::placeholder {
+      color: #7a7bbd;
+      font-weight: 400;
+    }
+
+    button {
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      color: #fff;
+      border: none;
+      border-radius: 16px;
+      padding: 1.1em 0;
+      font-size: 1.15em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 0.8em;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 20px rgba(114, 9, 183, 0.25);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-light), var(--accent));
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(114, 9, 183, 0.3);
+    }
+
+    button:hover::before {
+      left: 0;
+    }
+
+    #output {
+      width: 100%;
+      margin-top: 2em;
+      display: flex;
+      justify-content: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #f7f8ff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      font-size: 1.05em;
+    }
+
+    th, td {
+      border: none;
+      padding: 14px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      color: white;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-size: 0.9em;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(240, 242, 255, 0.7);
+    }
+
+    tr:last-child td:first-child {
+      border-bottom-left-radius: 12px;
+    }
+
+    tr:last-child td:last-child {
+      border-bottom-right-radius: 12px;
+    }
+
+    th:first-child {
+      border-top-left-radius: 12px;
+    }
+
+    th:last-child {
+      border-top-right-radius: 12px;
+    }
+
+    /* Modal Styles */
+    #h2h-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(11, 19, 43, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .h2h-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: rgba(35, 36, 74, 0.8);
+      border-radius: 24px;
+      padding: 2.5em 2em;
+      gap: 2em;
+      max-width: 1200px;
+      width: 90%;
+      margin: 0 auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      animation: zoomIn 0.5s ease-out;
+    }
+
+    .stats-center {
+      flex: 0 1 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px; /* Reduced from 320px */
+      max-width: 400px; /* Reduced from 420px */
+      margin: 0 0.5em; /* Reduced margin */
+    }
+
+    #h2h-stats-table {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      font-size: 0.9em; /* Reduced font size */
+      min-width: 200px;
+      max-width: 100%; /* Changed from 500px to 100% */
+      margin-bottom: 1em;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      display: table;
+      width: 100%;
+      table-layout: fixed; /* Added for consistent column widths */
+    }
+
+    .player-card {
+      flex: 0 0 260px; /* Reduced from 280px */
+      background: rgba(35, 36, 74, 0.5);
+      color: #fff;
+      border-radius: 20px;
+      width: 260px; /* Reduced from 280px */
+      padding: 1.8em 1.2em; /* Reduced padding */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    #left-player {
+      animation: fadeInLeft 0.6s ease-out;
+    }
+
+    #right-player {
+      animation: fadeInRight 0.6s ease-out;
+    }
+
+    .player-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--light));
+    }
+
+    .player-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5em;
+      width: 100%;
+    }
+
+    .player-name {
+      font-size: 1.5em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 1em;
+      text-align: center;
+      background: linear-gradient(90deg, var(--light), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .team-flag {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1em;
+      border: 4px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .player-card:hover .team-flag {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-name {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #ffd700;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .stats-label {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.3em;
+      margin-bottom: 1em;
+      text-align: center;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .stats-label::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--light));
+      border-radius: 3px;
+    }
+
+    #h2h-stats-table th, #h2h-stats-table td {
+      padding: 8px 3px; /* Further reduced padding */
+      text-align: center;
+      font-size: 0.8em; /* Smaller font size */
+      overflow: visible; /* Changed from hidden to visible */
+      white-space: normal; /* Changed from nowrap to normal */
+      word-break: keep-all; /* Prevent breaking words */
+    }
+
+    /* Make column widths more appropriate */
+    #h2h-stats-table th:nth-child(1), #h2h-stats-table td:nth-child(1),
+    #h2h-stats-table th:nth-child(2), #h2h-stats-table td:nth-child(2),
+    #h2h-stats-table th:nth-child(3), #h2h-stats-table td:nth-child(3),
+    #h2h-stats-table th:nth-child(9), #h2h-stats-table td:nth-child(9) {
+      width: 10%; /* Wider columns for important data */
+    }
+
+    #h2h-stats-table th:nth-child(4), #h2h-stats-table td:nth-child(4),
+    #h2h-stats-table th:nth-child(5), #h2h-stats-table td:nth-child(5),
+    #h2h-stats-table th:nth-child(6), #h2h-stats-table td:nth-child(6),
+    #h2h-stats-table th:nth-child(7), #h2h-stats-table td:nth-child(7),
+    #h2h-stats-table th:nth-child(8), #h2h-stats-table td:nth-child(8) {
+      width: 7%; /* Narrower columns for less important data */
+    }
+
+    #h2h-stats-table th:nth-child(10), #h2h-stats-table td:nth-child(10),
+    #h2h-stats-table th:nth-child(11), #h2h-stats-table td:nth-child(11),
+    #h2h-stats-table th:nth-child(12), #h2h-stats-table td:nth-child(12) {
+      width: 9%; /* Medium width for calculated stats */
+    }
+
+    #h2h-stats-table th {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8em;
+      letter-spacing: 0.5px;
+
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: #fff;
+      font-size: 1.5em;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close-modal-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1100px) {
+      .h2h-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 2em 1.5em;
+      }
+
+      .player-card {
+        margin-bottom: 1.5em;
+
+      }
+
+      .stats-center {
+        order: 3;
+        margin-top: 1.5em;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        max-width: 100%;
+        padding: 2em 1.5em;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+
+      .page-title {
+        font-size: 2.2rem;
+      }
+
+      .player-card {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      #h2h-stats-table th, #h2h-stats-table td {
+        padding: 8px 6px;
+        font-size: 0.8em;
+      }
+
+      .close-modal-btn {
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+</style>
+</head>
+<body>
+<h1 class="page-title">IPL Head-to-Head Analysis</h1>
+<div class="subtitle">Explore the statistical battle between batters and bowlers</div>
+
+<div class="card">
+  <h2>Player Matchup</h2>
+  <form id="h2h-form">
+    <div class="input-row">
+      <div class="input-container">
+        <span class="input-icon">🏏</span>
+        <input type="text" id="batter" placeholder="Enter Batter Name (e.g., V Kohli)" required>
+      </div>
+      <div class="input-container">
+        <span class="input-icon">🎯</span>
+        <input type="text" id="bowler" placeholder="Enter Bowler Name (e.g., JJ Bumrah)" required>
+      </div>
+    </div>
+    <button type="submit">Analyze Matchup</button>
+  </form>
+</div>
+
+<div id="h2h-modal">
+  <div class="h2h-container">
+    <div class="player-card" id="left-player">
+      <div class="player-header">
+        <span class="player-name" id="left-name"></span>
+        <img class="team-flag pulse-animation" id="left-flag" src="" alt="Player Image">
+        <div class="team-name" id="left-team"></div>
+      </div>
+    </div>
+    <div class="stats-center">
+      <div class="stats-label">Head-to-Head IPL Stats</div>
+      <table id="h2h-stats-table"></table>
+    </div>
+    <div class="player-card" id="right-player">
+      <div class="player-header">
+        <span class="player-name" id="right-name"></span>
+        <img class="team-flag pulse-animation" id="right-flag" src="" alt="Player Image">
+        <div class="team-name" id="right-team"></div>
+      </div>
+    </div>
+  </div>
+  <button class="close-modal-btn" onclick="document.getElementById('h2h-modal').style.display='none'">&times;</button>
+</div>
+
+<script type="module">
+  import config from './config.js';
+
+  // Add this mapping at the top of your JS
+  const PLAYER_NAME_MAP = {'Sanju Samson': 'SV Samson', 'Shubham Dubey': 'SB Dubey', 'Vaibhav Suryavanshi': 'V Suryavanshi', 'Kunal Rathore': 'KS Rathore', 'Shimron Hetmyer': 'SO Hetmyer', 'Yashasvi Jaiswal': 'YBK Jaiswal', 'Dhruv Jurel': 'Dhruv Jurel', 'Riyan Parag': 'R Parag', 'Nitish Rana': 'N Rana', 'Yudhvir Singh Charak': 'Yudhvir Singh', 'Jofra Archer': 'JC Archer', 'Maheesh Theekshana': 'M Theekshana', 'Wanindu Hasaranga': 'PWH de Silva', 'Akash Madhwal': 'A Madhwal', 'Kumar Kartikeya Singh': 'K Kartikeya', 'Tushar Deshpande': 'TU Deshpande', 'Fazalhaq Farooqi': 'Fazalhaq Farooqi', 'Kwena Maphaka': 'K Maphaka', 'Ashok Sharma': 'A Sharma', 'Sandeep Sharma': 'Sandeep Sharma', 'Ishan Kishan': 'Ishan Kishan', 'Atharva Taide': 'Atharva Taide', 'Abhinav Manohar': 'A Manohar', 'Aniket Verma': 'Aniket Verma', 'Heinrich Klaasen': 'H Klaasen', 'Travis Head': 'TM Head', 'Harshal Patel': 'HV Patel', 'Kamindu Mendis': 'PHKD Mendis', 'Wiaan Mulder': 'PWA Mulder', 'Abhishek Sharma': 'Abhishek Sharma', 'Nitish Kumar Reddy': 'Nithish Kumar Reddy', 'Pat Cummins': 'Pat Cummins', 'Mohammad Shami': 'Mohammad Shami', 'Rahul Chahar': 'RD Chahar', 'Simarjeet Singh': 'Simarjeet Singh', 'Zeeshan Ansari': 'Zeeshan Ansari', 'Jaydev Unadkat': 'JD Unadkat', 'Eshan Malinga': 'E Malinga', 'Ajinkya Rahane': 'AM Rahane', 'Rinku Singh': 'RK Singh', 'Quinton de Kock': 'Q de Kock', 'Rahmanullah Gurbaz': 'Rahmanullah Gurbaz', 'Angkrish Raghuvanshi': 'A Raghuvanshi', 'Rovman Powell': 'R Powell', 'Manish Pandey': 'MK Pandey', 'Venkatesh Iyer': 'VR Iyer', 'Anukul Roy': 'AS Roy', 'Moeen Ali': 'MM Ali', 'Ramandeep Singh': 'Ramandeep Singh', 'Andre Russell': 'AD Russell', 'Anrich Nortje': 'A Nortje', 'Vaibhav Arora': 'VG Arora', 'Mayank Markande': 'M Markande', 'Spencer Johnson': 'SH Johnson', 'Harshit Rana': 'Harshit Rana', 'Sunil Narine': 'SP Narine', 'Varun Chakaravarthy': 'CV Varun', 'Chetan Sakariya': 'C Sakariya', 'MS Dhoni': 'MS Dhoni', 'Dewald Brevis': 'D Brevis', 'Devon Conway': 'DP Conway', 'Rahul Tripathi': 'R Tripathi', 'Shaik Rasheed': 'SK Rasheed', 'Ayush Mhatre': 'A Mhatre ', 'Rachin Ravindra': 'R Ravindra', 'Ravichandran Ashwin': 'R Ashwin', 'Vijay Shankar': 'V Shankar', 'Sam Curran': 'SM Curran', 'Anshul Kamboj': 'A Kamboj', 'Deepak Hooda': 'DJ Hooda', 'Jamie Overton': 'J Overton', 'Ravindra Jadeja': 'RA Jadeja', 'Shivam Dube': 'S Dube', 'Khaleel Ahmed': 'KK Ahmed', 'Noor Ahmad': 'Noor Ahmad', 'Mukesh Choudhary': 'Mukesh Choudhary', 'Nathan Ellis': 'NT Ellis', 'Shreyas Gopal': 'S Gopal', 'Matheesha Pathirana': 'M Pathirana', 'Shubman Gill': 'Shubman Gill', 'Jos Buttler': 'JC Buttler', 'Kumar Kushagra': 'Kumar Kushagra', 'Anuj Rawat': 'Anuj Rawat', 'Sherfane Rutherford': 'SE Rutherford', 'Mahipal Lomror': 'MK Lomror', 'Washington Sundar': 'Washington Sunder', 'Mohd. Arshad Khan': 'Arshad Khan', 'Sai Kishore': 'R Sai Kishore', 'Jayant Yadav': 'J Yadav', 'Sai Sudharsan': 'B Sai Sudharsan', 'Dasun shanaka': 'MD Shanaka', 'Shahrukh Khan': 'M Shahrukh Khan', 'Kagiso Rabada': 'K Rabada', 'Mohammed Siraj': 'Mohammed Siraj', 'Prasidh Krishna': 'M Prasidh Krishna', 'Gerald Coetzee': 'G Coetzee', 'Ishant Sharma': 'I Sharma', 'Kulwant Khejroliya': 'K Khejroliya', 'Rahul Tewatia': 'R Tewatia', 'Rashid Khan': 'Rashid Khan', 'Rajat Patidar': ' RM Patidar', 'Virat Kohli': 'V Kohli', 'Phil Salt': 'PD Salt', 'Jitesh Sharma': 'JM Sharma', 'Devdutt Padikkal': 'D Padikkal', 'Swastik Chhikara': 'SS Chhikara', 'Liam Livingstone': 'LS Livingstone', 'Krunal Pandya': 'KH Pandya', 'Swapnil Singh': 'S Singh', 'Tim David': 'TH David', 'Romario Shepherd': 'R Shepherd', 'Manoj Bhandage': 'MS Bhandage', 'Jacob Bethell': 'JG Bethell', 'Josh Hazlewood': 'JR Hazlewood', 'Rasikh Dar': 'Rasikh Salam', 'Suyash Sharma': 'Suyash Sharma', 'Bhuvneshwar Kumar': 'B Kumar', 'Nuwan Thushara': 'N Thushara', 'Lungisani Ngidi': 'L Ngidi', 'Abhinandan Singh': 'A Singh', 'Mohit Rathee': 'M Rathee', 'Yash Dayal': 'Y Dayal', 'Rishabh Pant': 'RR Pant', 'David Miller': 'DA Miller', 'Aiden Markram': 'AK Markram', 'Nicholas Pooran': 'N Pooran', 'Mitchell Marsh': 'MR Marsh', 'Abdul Samad': 'Abdul Samad ', 'Shahbaz Ahamad': 'Shahbaz Ahmed', 'Rajvardhan Hangargekar': 'RS Hangargekar', 'Ayush Badoni': 'A Badoni', 'Shardul Thakur': 'SN Thakur', 'Avesh Khan': 'Avesh Khan', 'Akash Deep': 'Akash Deep', 'M. Siddharth': 'M Siddharth', 'Digvesh Singh': 'DS Rathi', 'Akash Singh': 'Akash Singh', 'Prince Yadav': 'Prince Yadav', 'Mayank Yadav': 'MP Yadav', 'Ravi Bishnoi': 'Ravi Bishnoi', 'Shreyas Iyer': 'SS Iyer', 'Nehal Wadhera': 'N Wadhera', 'Vishnu Vinod': 'Vishnu Vinod', 'Josh Inglis': 'JP Inglis', 'Prabhsimran Singh': 'P Simran Singh', 'Shashank Singh': 'Shashank Singh', 'Marcus Stoinis': 'MP Stoinis', 'Glenn Maxwell': 'GJ Maxwell', 'Harpreet Brar': 'Harpreet Brar', 'Marco Jansen': 'M Jansen', 'Azmatullah Omarzai': 'Azmatullah Omarzai', 'Priyansh Arya': 'Priyansh Arya', 'Suryansh Shedge': 'Suryansh Shedge', 'Arshdeep Singh': 'Arshdeep Singh', 'Yuzvendra Chahal': 'YS Chahal', 'Vyshak Vijaykumar': 'Vijaykumar Vyshak', 'Yash Thakur': 'Yash Thakur', 'Lockie Ferguson': 'LH Ferguson', 'Kuldeep Sen': 'KR Sen', 'Xavier Bartlett': 'XC Bartlett', 'Pravin Dubey': 'P Dubey', 'KL Rahul': 'KL Rahul', 'Jake Fraser-McGurk': 'J Fraser-McGurk', 'Karun Nair': 'KK Nair', 'Faf du Plessis': 'F du Plessis', 'Donovan Ferreira': 'D Ferreira', 'Abishek Porel': 'Abhishek Porel', 'Tristan Stubbs': 'T Stubbs', 'Axar Patel': 'AR Patel', 'Sameer Rizvi': 'Sameer Rizvi', 'Ashutosh Sharma': 'Ashutosh Sharma', 'Vipraj Nigam': 'V Nigam', 'Mitchell Starc': 'MA Starc', 'T. Natarajan': 'T Natarajan', 'Mohit Sharma': 'MM Sharma', 'Mukesh Kumar': 'Mukesh Kumar', 'Dushmantha Chameera': 'PVD Chameera', 'Kuldeep Yadav': 'Kuldeep Yadav', 'Rohit Sharma': 'RG Sharma', 'Surya Kumar Yadav': 'SA Yadav', 'Robin Minz': 'R Minz', 'Ryan Rickelton': 'RD Rickelton', 'Shrijith Krishnan': 'K Shrijith', 'Bevon Jacobs': 'B Jacobs', 'N. Tilak Varma': 'Tilak Varma', 'Hardik Pandya': 'HH Pandya', 'Naman Dhir': 'Naman Dhir', 'Will Jacks': 'WG Jacks', 'Mitchell Santner': 'MJ Santner', 'Raj Angad Bawa': 'RA Bawa', 'Vignesh Puthur': 'V Puthur', 'Trent Boult': 'TA Boult', 'Karn Sharma': 'KV Sharma', 'Deepak Chahar': 'DL Chahar', 'Ashwani Kumar': 'Ashwani Kumar', 'Reece Topley': 'R Topley', 'V.Satyanarayana Penmetsa': 'PVSN Raju', 'Arjun Tendulkar': 'A Tendulkar', 'Mujeeb-ur-Rahman': 'Mujeeb ur Rahman', 'Jasprit Bumrah': 'JJ Bumrah'};
+
+  // Function to get the mapped name or fallback to original
+  function getMappedPlayerName(name) {
+    return PLAYER_NAME_MAP[name] || name;
+  }
+
+  let deliveries = [];
+  let csvLoaded = false;
+  let playerImages = {};
+  let teamData = {};
+  const form = document.getElementById('h2h-form');
+  form.querySelector('button[type="submit"]').disabled = true;
+
+  // Show loading state
+  form.querySelector('button[type="submit"]').textContent = "Loading Data...";
+
+  // Load player images from player_images.json
+  fetch(`${config.staticBaseUrl}/player_images.json`)
+    .then(response => response.json())
+    .then(data => {
+      playerImages = data;
+      console.log("Player images loaded");
+      checkAllDataLoaded();
+    })
+    .catch(error => {
+      console.error("Error loading player images:", error);
+      // Continue with empty playerImages object
+      checkAllDataLoaded();
+    });
+
+  // Load team data from Teams folder
+  const teams = [
+    'chennai-super-kings',
+    'delhi-capitals',
+    'gujarat-titans',
+    'kolkata-knight-riders',
+    'lucknow-super-giants',
+    'mumbai-indians',
+    'punjab-kings',
+    'rajasthan-royals',
+    'royal-challengers-bengaluru',
+    'sunrisers-hyderabad'
+  ];
+
+  // Team short names mapping
+  const teamShortNames = {
+    'chennai-super-kings': 'CSK',
+    'delhi-capitals': 'DC',
+    'gujarat-titans': 'GT',
+    'kolkata-knight-riders': 'KKR',
+    'lucknow-super-giants': 'LSG',
+    'mumbai-indians': 'MI',
+    'punjab-kings': 'PK',
+    'rajasthan-royals': 'RR',
+    'royal-challengers-bengaluru': 'RCB',
+    'sunrisers-hyderabad': 'SRH'
+  };
+
+  // Load team data from squads.json instead of CSV files
+  let loadedTeams = 0;
+
+  // Use the squads.json file which already has all team data
+  fetch(`${config.staticBaseUrl}/squads.json`)
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.squads && Array.isArray(data.squads)) {
+        // Process all teams at once
+        data.squads.forEach(squad => {
+          const teamName = squad.team_name.toLowerCase().replace(/ /g, '-');
+          const teamCode = teamShortNames[teamName] || '';
+
+          // Process players in this team
+          if (squad.players && Array.isArray(squad.players)) {
+            squad.players.forEach(player => {
+              if (player.name) {
+                // Use player name as key
+                const fullName = player.name.trim();
+                if (!teamData[fullName]) {
+                  teamData[fullName] = {
+                    name: player.name,
+                    team: teamCode,
+                    role: player.role,
+                    nationality: player.nationality
+                  };
+                }
+              }
+            });
+          }
+        });
+
+        console.log("Team data loaded from squads.json");
+        loadedTeams = teams.length; // Mark all teams as loaded
+        checkAllDataLoaded();
+      }
+    })
+    .catch(error => {
+      console.error("Error loading team data from squads.json:", error);
+
+      // Fallback to CSV files if squads.json fails
+      teams.forEach(team => {
+        fetch(`${config.staticBaseUrl}/Teams/${team}_squad.csv`)
+          .then(response => response.text())
+          .then(data => {
+            Papa.parse(data, {
+              header: true,
+              skipEmptyLines: true,
+              complete: function(results) {
+                // Process team data
+                results.data.forEach(player => {
+                  if (player['Full Name']) {
+                    // Use Full Name as key
+                    const fullName = player['Full Name'].trim();
+                    if (!teamData[fullName]) {
+                      teamData[fullName] = {
+                        name: player.Name,
+                        team: teamShortNames[team],
+                        role: player.Role,
+                        nationality: player.Foreign ? 'Foreign' : 'Indian'
+                      };
+                    }
+                  }
+                });
+
+                loadedTeams++;
+                if (loadedTeams === teams.length) {
+                  console.log("Team data loaded from CSV files");
+                  checkAllDataLoaded();
+                }
+              }
+            });
+          })
+          .catch(error => {
+            console.error(`Error loading ${team} data:`, error);
+            loadedTeams++;
+            if (loadedTeams === teams.length) {
+              checkAllDataLoaded();
+            }
+          });
+      });
+    });
+
+  // Load deliveries data
+  fetch(`${config.staticBaseUrl}/deliveries.csv`)
+    .then(response => response.text())
+    .then(data => {
+      Papa.parse(data, {
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+          deliveries = results.data;
+          csvLoaded = true;
+          console.log("Deliveries data loaded");
+          checkAllDataLoaded();
+        }
+      });
+    })
+    .catch(error => {
+      console.error("Error loading deliveries data:", error);
+      form.querySelector('button[type="submit"]').textContent = "Error Loading Data";
+    });
+
+  // Check if all data is loaded
+  function checkAllDataLoaded() {
+    if (csvLoaded && Object.keys(playerImages).length > 0 && loadedTeams === teams.length) {
+      form.querySelector('button[type="submit"]').disabled = false;
+      form.querySelector('button[type="submit"]').textContent = "Analyze Matchup";
+    }
+  }
+
+  // Function to get team-specific class
+  function getTeamClass(teamCode) {
+    const teamClasses = {
+      'CSK': 'team-csk',
+      'MI': 'team-mi',
+      'RCB': 'team-rcb',
+      'SRH': 'team-srh',
+      'KKR': 'team-kkr',
+      'DC': 'team-dc',
+      'GT': 'team-gt',
+      'LSG': 'team-lsg',
+      'PK': 'team-pk',
+      'RR': 'team-rr'
+    };
+    return teamClasses[teamCode] || '';
+  }
+
+  document.getElementById('h2h-form').onsubmit = function(e) {
+    e.preventDefault();
+    // Use mapped names for batter and bowler
+    const batterInputRaw = document.getElementById('batter').value.trim();
+    const bowlerInputRaw = document.getElementById('bowler').value.trim();
+    const batterInput = getMappedPlayerName(batterInputRaw);
+    const bowlerInput = getMappedPlayerName(bowlerInputRaw);
+
+    // Find player data
+    const batterData = findPlayerData(batterInput);
+    const bowlerData = findPlayerData(bowlerInput);
+
+    // Fill left card (batter) and right card (bowler) using the exact user input for display and image lookup
+    document.getElementById('left-name').textContent = batterInputRaw;
+    document.getElementById('left-team').textContent = batterData.team || '';
+    document.getElementById('left-flag').src = playerImages[batterInputRaw] || `${config.staticBaseUrl}/player_default.png`;
+    document.getElementById('left-flag').alt = `${batterInputRaw} Image`;
+
+    document.getElementById('right-name').textContent = bowlerInputRaw;
+    document.getElementById('right-team').textContent = bowlerData.team || '';
+    document.getElementById('right-flag').src = playerImages[bowlerInputRaw] || `${config.staticBaseUrl}/player_default.png`;
+    document.getElementById('right-flag').alt = `${bowlerInputRaw} Image`;
+
+    // Apply team-specific styling to player cards
+    const leftTeamClass = getTeamClass(batterData.team);
+    const rightTeamClass = getTeamClass(bowlerData.team);
+
+    // Remove any existing team classes
+    document.getElementById('left-player').className = 'player-card';
+    document.getElementById('right-player').className = 'player-card';
+
+    // Add animation classes
+    document.getElementById('left-player').classList.add('fadeInLeft');
+    document.getElementById('right-player').classList.add('fadeInRight');
+
+    // Add team-specific classes
+    if (leftTeamClass) document.getElementById('left-player').classList.add(leftTeamClass);
+    if (rightTeamClass) document.getElementById('right-player').classList.add(rightTeamClass);
+
+    // Calculate stats dynamically
+    const headToHead = deliveries.filter(row =>
+      row.batter === batterData.dataName && row.bowler === bowlerData.dataName &&
+      (!['wides', 'legbyes', 'byes'].includes(row.extras_type) || row.extras_type === "")
+    );
+
+    if (headToHead.length === 0) {
+      document.getElementById('h2h-stats-table').innerHTML = `<tr><td colspan='12' style='color:#d32f2f;text-align:center;padding:20px;'>No data found for ${batterInput} vs ${bowlerInput}.</td></tr>`;
+    } else {
+      const totalBalls = headToHead.length;
+      const dotBalls = headToHead.filter(row => row.batsman_runs === "0").length;
+      const runs = headToHead.reduce((sum, row) => sum + parseInt(row.batsman_runs), 0);
+      const dismissals = headToHead.filter(row => row.player_dismissed === batterData.dataName).length;
+      const runCounts = { 1: 0, 2: 0, 3: 0, 4: 0, 6: 0 };
+
+      headToHead.forEach(row => {
+        const r = parseInt(row.batsman_runs);
+        if (runCounts.hasOwnProperty(r)) runCounts[r]++;
+      });
+
+      const strikeRate = ((runs / totalBalls) * 100).toFixed(2);
+      const average = dismissals > 0 ? (runs / dismissals).toFixed(2) : runs;
+      const boundaryPct = (((runCounts[4] + runCounts[6]) / totalBalls) * 100).toFixed(2);
+
+      document.getElementById('h2h-stats-table').innerHTML = `
+        <tr>
+          <th>Balls</th><th>Dots</th><th>Runs</th><th>1s</th><th>2s</th><th>3s</th><th>4s</th><th>6s</th><th>Out</th><th>SR</th><th>Avg</th><th>B%</th>
+        </tr>
+        <tr>
+          <td>${totalBalls}</td><td>${dotBalls}</td><td>${runs}</td><td>${runCounts[1]}</td><td>${runCounts[2]}</td><td>${runCounts[3]}</td><td>${runCounts[4]}</td><td>${runCounts[6]}</td><td>${dismissals}</td><td>${strikeRate}</td><td>${average}</td><td>${boundaryPct}%</td>
+        </tr>
+      `;
+    }
+
+    document.getElementById('h2h-modal').style.display = 'flex';
+  };
+
+  // Helper function to find player data
+  function findPlayerData(playerName) {
+    // Try to find the player in teamData
+    let result = {
+      displayName: playerName,
+      dataName: playerName,
+      team: '',
+      img: ''
+    };
+
+    // Check if player exists in teamData
+    for (const [fullName, data] of Object.entries(teamData)) {
+      // Check if input matches full name or display name
+      if (fullName.toLowerCase() === playerName.toLowerCase() ||
+          data.name.toLowerCase() === playerName.toLowerCase()) {
+        result.displayName = data.name.toUpperCase();
+        result.dataName = fullName;
+        result.team = data.team;
+
+        // Find team logo
+        if (data.team) {
+          const teamName = Object.keys(teamShortNames).find(key => teamShortNames[key] === data.team);
+          if (teamName) {
+            result.teamLogo = `team_logos/${teamName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('_')}.png`;
+          }
+        }
+        break;
+      }
+    }
+
+    // This section is intentionally left empty as we already have the player image lookup logic above
+
+    // If no image found from player_images.json, try to use the image from squads.json
+    if (!result.img && result.team) {
+      // Try to find the player in squads.json
+      fetch(`${config.staticBaseUrl}/squads.json`)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.squads && Array.isArray(data.squads)) {
+            // Find the team
+            const team = data.squads.find(squad =>
+              squad.team_name.toLowerCase().replace(/ /g, '-') ===
+              Object.keys(teamShortNames).find(key => teamShortNames[key] === result.team)
+            );
+
+            if (team && team.players) {
+              // Find the player
+              const player = team.players.find(p =>
+                p.name.toLowerCase() === result.displayName.toLowerCase() ||
+                p.name.toLowerCase() === playerName.toLowerCase()
+              );
+
+              if (player && player.image) {
+                result.img = player.image;
+                // Update the image element
+                const imgElement = document.getElementById(result.team === batterData.team ? 'left-flag' : 'right-flag');
+                if (imgElement) {
+                  imgElement.src = player.image;
+                }
+              }
+            }
+          }
+        })
+        .catch(error => {
+          console.error("Error loading player image from squads.json:", error);
+        });
+
+      // Set a default image path based on team
+      if (result.team) {
+        result.img = `${config.staticBaseUrl}/flags/${result.team}.png`;
+      }
+    }
+
+    return result;
+  }
+</script>
+</body>
+</html>
