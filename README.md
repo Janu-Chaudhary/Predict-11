@@ -1,12 +1,12 @@
 # Predict-11 🏏
 
-An IPL fantasy cricket assistant that helps you build the best Dream11 team. Predict-11 combines live match data, historical ball-by-ball stats, and an ML-based scoring engine to suggest optimal fantasy squads — all through a clean, browser-based interface.
+An IPL fantasy cricket assistant that helps you build the best Dream11 team. Predict-11 combines live match data and historical ball-by-ball stats to suggest optimal fantasy squads — all through a clean, browser-based interface.
 
 ---
 
 ## Features
 
-- **AI Fantasy Team Predictor** — Generates a recommended Dream11 squad for any IPL matchup using historical batting and bowling performance data
+- **Fantasy Team Predictor** — Generates a recommended Dream11 squad for any IPL matchup using historical batting and bowling performance data
 - **Live Match Scores** — Fetches real-time match data from an external cricket API with a local JSON fallback
 - **Head-to-Head Stats** — Analyse any batter vs. bowler matchup with ball-by-ball breakdowns, strike rate, average, boundary %, and dot ball %
 - **Points Table** — Live IPL standings with smart caching that refreshes only when a new match result comes in
@@ -121,12 +121,54 @@ curl -X POST http://localhost:5000/analyze \
 
 ## How the Fantasy Predictor Works
 
-The `Dream11Predictor` class in `team.py` scores each player using historical IPL ball-by-ball data:
+The `Dream11Predictor` class in `team.py` builds a score for every player in the playing XI using three data signals, then picks the best valid 11 under Dream11's squad rules.
 
-1. Loads batting and bowling JSON datasets and squad CSVs for all 10 IPL teams
-2. Calculates a composite performance score per player based on recent form metrics
-3. Applies Dream11 squad constraints — role limits (WK, BAT, AR, BOWL), a 100-credit cap, and a max 7 players per team rule
-4. Returns an optimal 11-player squad with a suggested captain and vice-captain
+### Step 1 — Head-to-head scoring
+
+For each batter, the predictor looks up that batter's historical record against every bowler in the opposing team:
+
+```
+batting_score = (strike_rate / 100) × 2 + (average / 10) + (boundary% / 10) − (dismissals × 2)
+```
+
+For each bowler, it does the reverse — how well they've dismissed the opposing batters:
+
+```
+bowling_score = (dismissals × 5) + (10 − min(economy, 10))
+```
+
+Both directions are analysed (Team A batters vs Team B bowlers, and Team B batters vs Team A bowlers).
+
+### Step 2 — Venue performance
+
+The predictor checks each player's historical stats at the match venue from the cached batter/bowler JSON data:
+
+- **Batters**: `score += (venue_average / 20) + (venue_strike_rate / 100)`
+- **Bowlers**: `score += (venue_wickets × 3) + (10 − min(venue_economy, 10))`
+
+### Step 3 — Recent form (last 5 matches)
+
+Match-wise batting and bowling data from each player's `recent_form` field is averaged:
+
+- **Batters**: `score += (avg_runs / 10) + (avg_strike_rate / 100)`
+- **Bowlers**: `score += (avg_wickets × 5) + (10 − min(avg_economy, 10))`
+
+### Step 4 — Squad selection with Dream11 constraints
+
+Players are sorted by their total score (highest first) and selected greedily while enforcing these hard constraints:
+
+| Constraint | Limit |
+|---|---|
+| Total squad size | 11 players |
+| Max players from one IPL team | 6 |
+| Max foreign players | 4 |
+| Total credits | ≤ 100 |
+| Max WK per team | 2 |
+| Max BAT per team | 3 |
+| Max ALL per team | 3 |
+| Max BOWL per team | 3 |
+
+The top-scoring player becomes **captain** (2× points multiplier) and the second becomes **vice-captain** (1.5×).
 
 ---
 
