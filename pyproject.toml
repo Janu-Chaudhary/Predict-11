@@ -1,0 +1,36 @@
+[project]
+name = "predict11"
+version = "0.1.0"
+description = "IPL Dream11 fantasy-XI predictor: Cricsheet -> DuckDB -> LightGBM -> optimizer -> FastAPI"
+requires-python = ">=3.10"
+dependencies = [
+    "duckdb>=1.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "lightgbm>=4.0",
+    "scikit-learn>=1.3",
+    "pulp>=2.7",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "pydantic>=2.0",
+    "pyarrow>=14.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+predict11 = "predict11.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
