@@ -17,6 +17,8 @@ dependencies = [
     "pandas>=2.2",
     "pyarrow>=17",
     "structlog>=24.4",
+    "pulp>=4.0.0",
+    "pillow>=12.3.0",
 ]
 
 [dependency-groups]

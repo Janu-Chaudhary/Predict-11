@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .. import __version__
 from ..core import db
 from ..core.logging import configure
-from .routers import home, players, seasons
+from .routers import conditions, fantasy, home, players, seasons
 
 configure()
 
@@ -29,3 +29,5 @@ def health() -> dict:
 app.include_router(seasons.router, prefix="/api/v1")
 app.include_router(players.router, prefix="/api/v1")
 app.include_router(home.router, prefix="/api/v1")
+app.include_router(fantasy.router, prefix="/api/v1")
+app.include_router(conditions.router, prefix="/api/v1")
