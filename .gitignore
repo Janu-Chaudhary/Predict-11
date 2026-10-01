@@ -12,6 +12,7 @@ models/*.pkl
 
 # raw bulk data is large; keep out of git, document how to fetch in README/DATA.md
 data/raw/cricsheet_ipl/
+data/raw/cricsheet/
 data/raw/*.csv
 
 # os
@@ -27,3 +28,4 @@ data/lake/
 backend/.venv/
 web/node_modules/
 web/.next/
+data/backups/
