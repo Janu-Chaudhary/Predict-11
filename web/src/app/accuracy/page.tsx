@@ -1,4 +1,4 @@
-import { BarChart3 } from "lucide-react";
+import { Target } from "lucide-react";
 import type { Metadata } from "next";
 
 import { EmptyState } from "@/components/shell/empty-state";
@@ -9,11 +9,13 @@ export const metadata: Metadata = { title: "Accuracy" };
 export default function AccuracyPage() {
   return (
     <>
-      <PageHeader title="Accuracy" subtitle="Public backtest — the trust signal behind every projection." />
+      <PageHeader overline="Trust" title="Accuracy" subtitle="The public backtest behind every projection, warts and all." />
       <EmptyState
-        icon={BarChart3}
-        title="Backtest results coming soon"
-        description="Once the model is trained, every season is replayed and scored here, warts and all."
+        icon={Target}
+        title="Backtest results not published yet"
+        why="The projection model hasn’t been backtested, so there is nothing honest to show."
+        when="After the model is trained, every season is replayed and scored here."
+        action={{ href: "/matches", label: "Browse matches" }}
         bullets={[
           "Per-season results vs simple baselines",
           "Captain hit-rate (top-2 captain picks)",

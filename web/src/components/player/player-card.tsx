@@ -9,7 +9,9 @@ import { cn } from "@/lib/utils";
 
 import { RangeBar } from "./range-bar";
 import { RoleChip } from "./role-chip";
-import { TeamBadge } from "./team-badge";
+import { CaptainRoundel } from "./captain-roundel";
+import { PlayerAvatar } from "./player-avatar";
+import { TeamBadge, TeamStripe } from "./team-badge";
 
 export type PlayerStatus = "locked" | "excluded" | null;
 
@@ -35,60 +37,86 @@ export function PlayerCard({
       aria-labelledby={headingId}
       data-status={status ?? "none"}
       className={cn(
-        "rounded-xl bg-card p-3 text-card-foreground ring-1 ring-foreground/10 transition-[opacity,box-shadow]",
-        locked && "ring-2 ring-pitch",
+        "relative flex gap-3 overflow-hidden rounded-xl border border-border bg-card p-3 text-card-foreground shadow-e1 transition-[opacity,box-shadow] duration-200",
+        locked && "ring-2 ring-primary",
         excluded && "opacity-60",
         className,
       )}
     >
-      <div className="flex items-start justify-between gap-2">
-        <div className="min-w-0">
-          <h3 id={headingId} className={cn("truncate text-sm font-semibold", excluded && "line-through")}>
-            {player.name}
-            {player.captain && <span className="ml-1.5 rounded bg-foreground px-1 text-[10px] text-background" aria-label="Captain">C</span>}
-            {player.viceCaptain && <span className="ml-1.5 rounded border px-1 text-[10px]" aria-label="Vice-captain">VC</span>}
-          </h3>
-          <div className="mt-1 flex items-center gap-1.5">
-            <TeamBadge team={player.team} />
-            <RoleChip role={player.role} />
+      <TeamStripe team={player.team} className="-my-3 -ml-3 rounded-none" />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-2">
+          <PlayerAvatar
+            name={player.name}
+            src={player.photoUrl}
+            team={player.team}
+            size="md"
+          />
+          <div className="min-w-0 flex-1">
+            <h3
+              id={headingId}
+              className={cn(
+                "truncate text-sm font-semibold",
+                excluded && "line-through",
+              )}
+            >
+              {player.name}
+              {player.captain && (
+                <CaptainRoundel kind="C" className="ml-1.5 align-[-3px]" />
+              )}
+              {player.viceCaptain && (
+                <CaptainRoundel kind="VC" className="ml-1.5 align-[-3px]" />
+              )}
+            </h3>
+            <div className="mt-1 flex items-center gap-1.5">
+              <TeamBadge team={player.team} />
+              <RoleChip role={player.role} />
+            </div>
+          </div>
+          <div className="shrink-0 text-right">
+            <div className="num text-sm font-semibold">
+              {player.credits.toFixed(1)}
+            </div>
+            <div className="text-[11px] text-muted-foreground">credits</div>
           </div>
         </div>
-        <div className="shrink-0 text-right">
-          <div className="text-sm font-semibold tabular-nums">{player.credits.toFixed(1)}</div>
-          <div className="text-[10px] text-muted-foreground">credits</div>
+
+        <div className="mt-3">
+          <div className="text-overline mb-1.5 text-muted-foreground">
+            Projected pts
+          </div>
+          <RangeBar range={player.projection} />
         </div>
-      </div>
 
-      <div className="mt-3">
-        <div className="mb-1 text-[10px] font-medium tracking-wide text-muted-foreground uppercase">Projected pts</div>
-        <RangeBar range={player.projection} />
-      </div>
-
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        <Button
-          type="button"
-          size="sm"
-          variant={locked ? "default" : "outline"}
-          aria-pressed={locked}
-          aria-label={`${locked ? "Unlock" : "Lock"} ${player.name}`}
-          onClick={() => onToggleLock?.(player.id)}
-          className={cn("h-9", locked && "bg-pitch text-white hover:bg-pitch/90")}
-        >
-          {locked ? <Lock aria-hidden /> : <LockOpen aria-hidden />}
-          {locked ? "Locked" : "Lock"}
-        </Button>
-        <Button
-          type="button"
-          size="sm"
-          variant={excluded ? "destructive" : "outline"}
-          aria-pressed={excluded}
-          aria-label={`${excluded ? "Include" : "Exclude"} ${player.name}`}
-          onClick={() => onToggleExclude?.(player.id)}
-          className="h-9"
-        >
-          <Ban aria-hidden />
-          {excluded ? "Excluded" : "Exclude"}
-        </Button>
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            aria-pressed={locked}
+            aria-label={`${locked ? "Unlock" : "Lock"} ${player.name}`}
+            onClick={() => onToggleLock?.(player.id)}
+            className={cn(
+              "h-10 rounded-[10px]",
+              locked && "border-primary text-gold-text",
+            )}
+          >
+            {locked ? <Lock aria-hidden /> : <LockOpen aria-hidden />}
+            {locked ? "Locked" : "Lock"}
+          </Button>
+          <Button
+            type="button"
+            size="sm"
+            variant={excluded ? "destructive" : "outline"}
+            aria-pressed={excluded}
+            aria-label={`${excluded ? "Include" : "Exclude"} ${player.name}`}
+            onClick={() => onToggleExclude?.(player.id)}
+            className="h-10 rounded-[10px]"
+          >
+            <Ban aria-hidden />
+            {excluded ? "Excluded" : "Exclude"}
+          </Button>
+        </div>
       </div>
     </article>
   );

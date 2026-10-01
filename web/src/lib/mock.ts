@@ -11,6 +11,8 @@ export type Player = {
   projection: PointsRange;
   captain?: boolean;
   viceCaptain?: boolean;
+  /** Headshot URL (official IPL hosts). Missing → initials. */
+  photoUrl?: string | null;
 };
 
 /** Mock XI for CSK vs MI — placeholder data only, not a prediction. */
