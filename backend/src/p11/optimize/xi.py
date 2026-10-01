@@ -21,8 +21,8 @@ Team rules (``DREAM11``): 11 players; 1-8 from each of WK / BAT / AR / BOWL; at 
 real team; a 100-credit budget. These are Dream11's current cricket rules (the 2023 change that
 replaced the old 1-4 WK / 3-6 BAT / 1-4 AR / 3-6 BOWL / max-7-per-team limits used by the v1
 system). The official pages were unreachable (HTTP 502) when this was written on 2026-10-02,
-so the values are from Dream11's in-app team-creation rules as last known; every limit is a
-field of ``Rules`` so it can be changed in one place.
+so the values are from Dream11's in-app team-creation rules as last known, and were confirmed by
+the owner on 2026-10-02. Every limit is a field of ``Rules`` so it can be changed in one place.
 """
 
 from __future__ import annotations
