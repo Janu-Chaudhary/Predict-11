@@ -29,7 +29,9 @@ TEAM_REFS = [
 
 
 def upgrade() -> None:
-    op.execute("INSERT INTO team (name) VALUES ('Sunrisers Hyderabad') ON CONFLICT (name) DO NOTHING")
+    op.execute(
+        "INSERT INTO team (name) VALUES ('Sunrisers Hyderabad') ON CONFLICT (name) DO NOTHING"
+    )
     for table, col in TEAM_REFS:
         op.execute(
             f"""
