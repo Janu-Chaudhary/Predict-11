@@ -1,24 +1,12 @@
-import { CalendarDays } from "lucide-react";
+import { HomeView } from "@/features/home/home-view";
+import { parsePreview } from "@/features/home/lib/rotation";
+import { loadHome } from "@/features/home/server";
 
-import { EmptyState } from "@/components/shell/empty-state";
-import { PageHeader } from "@/components/shell/page-header";
+// Hero rotation depends on "now" (match state), so render per request.
+export const dynamic = "force-dynamic";
 
-export default function FixturesPage() {
-  return (
-    <>
-      <PageHeader title="Fixtures" subtitle="Upcoming IPL matches and how fresh each projection is." />
-      <EmptyState
-        icon={CalendarDays}
-        title="No fixtures yet"
-        description="Fixtures appear here once the ingestion pipeline is scheduling matches."
-        bullets={[
-          "Fixture list with a data-freshness badge: “Pre-toss projection” vs “Lineups confirmed ✓ 19:02”",
-          "Auto re-projection at toss / XI announcement, with a notification",
-          "Pitch & conditions card: par score, pace/spin split, chase bias, dew/weather",
-          "Impact-player intelligence: likely 12th man / likely subbed-out",
-          "Short match preview generated only from structured features",
-        ]}
-      />
-    </>
-  );
+export default async function HomePage({ searchParams }: PageProps<"/">) {
+  const sp = await searchParams;
+  const data = await loadHome(parsePreview(sp.hero));
+  return <HomeView data={data} />;
 }

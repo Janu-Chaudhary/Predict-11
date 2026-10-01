@@ -1,0 +1,289 @@
+/* Home hero motion + SVG styling (§7.1). Durations/easing per §2.8; reduced motion → final frames. */
+
+/* ---------- countdown flip (320 ms) ---------- */
+.flip {
+  animation: flip 0.32s cubic-bezier(0.2, 0, 0, 1);
+}
+@keyframes flip {
+  from {
+    transform: translateY(-40%);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ---------- C: worm labels ---------- */
+.wormLabel {
+  position: absolute;
+  transform: translate(-100%, -50%);
+  text-align: right;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.2, 0, 0, 1);
+  pointer-events: none;
+}
+.wormLabel[data-show="true"] {
+  opacity: 1;
+}
+.wormLabel b::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 0;
+  border-top: 2px solid var(--c);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.wormLabel[data-dashed="true"] b::before {
+  border-top-style: dashed;
+}
+
+/* ---------- A: wagon wheel ---------- */
+.field {
+  fill: color-mix(in oklch, var(--pitch) 22%, transparent);
+  stroke: color-mix(in oklch, var(--pitch) 60%, transparent);
+  stroke-width: 1.5;
+}
+.ring {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+.strip {
+  fill: color-mix(in oklch, #c9b27a 35%, transparent);
+}
+.side {
+  font: 600 11px var(--font-geist-sans), sans-serif;
+  letter-spacing: 0.06em;
+  fill: var(--faint);
+}
+.ray {
+  fill: none;
+  stroke-linecap: round;
+}
+.ray:hover,
+.ray:focus-visible {
+  stroke-width: 3;
+  opacity: 1;
+  outline: none;
+}
+.r1 {
+  stroke: var(--faint);
+  stroke-width: 1;
+  opacity: 0.55;
+}
+.r4 {
+  stroke: var(--brand);
+  stroke-width: 1.75;
+}
+.r6 {
+  stroke: var(--primary);
+  stroke-width: 2.25;
+}
+.tip {
+  transition: opacity 0.2s;
+}
+.tip4 {
+  fill: var(--brand);
+}
+.tip6 {
+  fill: var(--primary);
+}
+/* Before the client arms the draw-in, keep rays hidden (motion allowed only) to avoid a flash. */
+@media (prefers-reduced-motion: no-preference) {
+  .wheel[data-armed="false"] .ray,
+  .wheel[data-armed="false"] .tip {
+    opacity: 0;
+  }
+}
+
+/* ---------- B: XI assembles ---------- */
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 358 / 500;
+  overflow-x: clip;
+}
+@media (min-width: 560px) {
+  .stage {
+    aspect-ratio: 720 / 540;
+  }
+}
+.pitchField {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    90deg,
+    color-mix(in oklch, var(--pitch) 30%, transparent) 0 10%,
+    color-mix(in oklch, var(--pitch-stripe) 26%, transparent) 10% 20%
+  );
+  border: 1.5px solid color-mix(in oklch, var(--pitch) 65%, transparent);
+}
+.pitchField::before {
+  content: "";
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  border: 1px dashed var(--border);
+}
+.pitchField::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7%;
+  height: 26%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+  background: color-mix(in oklch, #c9b27a 30%, transparent);
+}
+.rowLabel {
+  position: absolute;
+  transform: translateY(-50%);
+  font: 600 11px/14px var(--font-geist-sans), sans-serif;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: var(--c);
+  background: color-mix(in oklch, var(--c) 14%, transparent);
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+.rowLabel[data-show="true"] {
+  opacity: 1;
+}
+.benchLabel {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.tok {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  will-change: transform;
+}
+.tokIn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -22px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 84px;
+}
+.av {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 3px var(--c);
+  font: 700 14px/1 var(--font-saira), sans-serif;
+  font-stretch: 87.5%;
+  color: var(--foreground);
+  transition: transform 0.45s cubic-bezier(0.2, 0, 0, 1);
+}
+.tok[data-bench="true"] .av {
+  transform: scale(0.6);
+}
+.tok[data-dim="true"] {
+  opacity: 0.35;
+}
+.nm,
+.pt {
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+.tok[data-on="true"] .nm,
+.tok[data-on="true"] .pt {
+  opacity: 1;
+}
+.nm {
+  margin-top: 4px;
+  font: 600 12px/16px var(--font-geist-sans), sans-serif;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  max-width: 84px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pt {
+  margin-top: 2px;
+  font: 700 12px/16px var(--font-saira), sans-serif;
+  font-stretch: 87.5%;
+  font-variant-numeric: tabular-nums;
+  padding: 0 7px;
+  border-radius: 999px;
+}
+@media (max-width: 559px) {
+  .nm {
+    font-size: 11px;
+    max-width: 74px;
+  }
+  .tokIn {
+    width: 76px;
+  }
+}
+.cv {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 700 10px/1 var(--font-geist-sans), sans-serif;
+  transform: scale(0);
+  opacity: 0;
+}
+.cv[data-show="true"] {
+  transform: scale(1);
+  opacity: 1;
+}
+.cvC {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.cvVC {
+  background: var(--surface-1);
+  color: var(--foreground);
+}
+.cvVC::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  padding: 2px;
+  background: var(--brand-gradient);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip {
+    animation: none;
+  }
+  .wormLabel,
+  .rowLabel,
+  .av,
+  .nm,
+  .pt,
+  .tip {
+    transition: none;
+  }
+}
