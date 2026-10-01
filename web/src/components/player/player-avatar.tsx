@@ -17,10 +17,24 @@ export function initials(name: string) {
   return (first + last).toUpperCase();
 }
 
+/** Locally cached photo written by `p11 media cache`: /players/<id>-{256,96}.webp. */
+const LOCAL_PHOTO = /^\/players\/([^/]+)-(256|96)\.webp$/;
+
 /**
- * Circular player photo with a team-colour ring. Remote photos (official IPL hosts) go through
- * next/image, so Next resizes/caches the ~1 MB originals; lazy-loaded with a floodlight-sweep
- * skeleton until loaded. No URL or a load error → initials on surface-3.
+ * Pick the photo to load. Local cached WebPs are already small and square, so they skip the
+ * Next optimizer and use the 96 px variant when that still covers 2x DPR; remote URLs (official
+ * IPL hosts, ~1 MB PNG, slow) go through next/image.
+ */
+export function photoSource(src: string, px: number): { src: string; local: boolean } {
+  const m = LOCAL_PHOTO.exec(src);
+  if (!m) return { src, local: false };
+  return { src: `/players/${m[1]}-${px * 2 <= 96 ? 96 : 256}.webp`, local: true };
+}
+
+/**
+ * Circular player photo with a team-colour ring. Prefers the API's `image_url`, which is the
+ * locally cached WebP when available; lazy-loaded with a floodlight-sweep skeleton until loaded.
+ * No URL or a load error → initials on surface-3.
  * Decorative by default (`alt=""`) because the name is always printed next to it.
  */
 export function PlayerAvatar({
@@ -51,6 +65,7 @@ export function PlayerAvatar({
   }
   const ring = team ? getTeam(team).primary : "var(--border)";
   const showImage = Boolean(src) && state !== "error";
+  const photo = src ? photoSource(src, px) : null;
 
   return (
     <span
@@ -65,7 +80,8 @@ export function PlayerAvatar({
         <>
           {state === "loading" && <span className="sk absolute inset-0 rounded-full" />}
           <Image
-            src={src!}
+            src={photo!.src}
+            unoptimized={photo!.local}
             alt=""
             width={px}
             height={px}

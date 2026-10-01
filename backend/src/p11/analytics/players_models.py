@@ -4,12 +4,30 @@ from __future__ import annotations
 
 import datetime as dt
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from .players_stats import BattingLine, BowlingLine, Fielding, PhaseBat, PhaseBowl
 
 
-class PlayerRef(BaseModel):
+class _Shown(BaseModel):
+    """Mixin for player objects: ``name`` stays the Cricsheet scorecard name ("V Kohli");
+    ``display_name`` is the full name for the UI ("Virat Kohli", falls back to ``name``);
+    ``image_url`` is the cached local photo (/players/<id>-256.webp), else the remote
+    headshot URL, else None. Filled by ``players_identity``."""
+
+    display_name: str | None = Field(default=None, description="full name; falls back to name")
+    image_url: str | None = Field(
+        default=None, description="local /players/<id>-256.webp when cached, else remote URL"
+    )
+
+    @model_validator(mode="after")
+    def _default_display_name(self):  # type: ignore[no-untyped-def]
+        if not self.display_name:
+            self.display_name = getattr(self, "name", None)
+        return self
+
+
+class PlayerRef(_Shown):
     id: str
     name: str
 
@@ -193,7 +211,7 @@ class Filters(BaseModel):
     since: dt.date | None = None
 
 
-class PlayerProfile(BaseModel):
+class PlayerProfile(_Shown):
     id: str
     name: str
     unique_name: str
@@ -217,7 +235,7 @@ class PlayerProfile(BaseModel):
     form_bowling: list[FormBowl] = Field(description="last 10 bowling innings, newest first")
 
 
-class CompareEntry(BaseModel):
+class CompareEntry(_Shown):
     id: str
     name: str
     matches: int
@@ -234,7 +252,7 @@ class CompareResponse(BaseModel):
     players: list[CompareEntry]
 
 
-class SearchHit(BaseModel):
+class SearchHit(_Shown):
     id: str
     name: str
     matched: str = Field(description="name or alias that matched the query")

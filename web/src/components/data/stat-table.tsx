@@ -104,8 +104,12 @@ export function StatTable<T>({
   const rowH = dense ? "h-8" : "h-9 md:h-9";
 
   return (
-    <div className={cn("overflow-hidden rounded-xl border border-border bg-card shadow-e1", className)}>
-      <div className="overflow-auto overscroll-x-contain" style={{ maxHeight }} tabIndex={0} role="region" aria-label={caption}>
+    // grid + minmax(0,1fr): the card's min-content width is 0, so a wide table scrolls inside its
+    // region instead of stretching a grid/flex parent (and the page) to the table's width.
+    <div className={cn("grid grid-cols-[minmax(0,1fr)] overflow-hidden rounded-xl border border-border bg-card shadow-e1", className)}>
+      {/* `relative`: the sr-only caption is absolutely positioned; without a positioned scroll
+          region its containing block was <body>, so it escaped the card and widened the page. */}
+      <div className="relative overflow-auto overscroll-x-contain" style={{ maxHeight }} tabIndex={0} role="region" aria-label={caption}>
         <table className="num w-full border-separate border-spacing-0 text-[13px] leading-[18px] md:text-sm md:leading-5">
           <caption className="sr-only">{caption}</caption>
           <thead>

@@ -55,7 +55,7 @@ const TEAM_BASE: Record<TeamCode, Omit<TeamTheme, "logo">> = {
 };
 
 export const TEAMS: Record<TeamCode, TeamTheme> = Object.fromEntries(
-  TEAM_CODES.map((c) => [c, { ...TEAM_BASE[c], logo: `/teams/${c.toLowerCase()}.png` }]),
+  TEAM_CODES.map((c) => [c, { ...TEAM_BASE[c], logo: `/teams/${c.toLowerCase()}.webp` }]),
 ) as Record<TeamCode, TeamTheme>;
 
 const neutral = (name: string, short: string): TeamTheme => ({

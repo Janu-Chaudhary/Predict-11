@@ -8,14 +8,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from .. import __version__
 from ..core import db
 from ..core.logging import configure
+from ..core.settings import get_settings
 from .routers import conditions, fantasy, home, players, seasons
 
 configure()
 
 app = FastAPI(title="Predict-11", version=__version__)
+_settings = get_settings()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=_settings.cors_origins,
+    allow_origin_regex=_settings.effective_cors_origin_regex,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )

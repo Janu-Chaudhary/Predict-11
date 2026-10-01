@@ -9,7 +9,8 @@ from typing import Any
 
 from sqlalchemy import Connection
 
-from .players_data import Bulk, Reference, bulk, player_names, reference
+from .players_data import Bulk, Reference, bulk, reference
+from .players_identity import player_refs, ref_or_id
 from .players_models import (
     Milestone,
     MilestonesResponse,
@@ -79,7 +80,7 @@ def milestones(conn: Connection, season: int | None = None) -> MilestonesRespons
     }
     as_of = max((m.date for m in ref.matches.values() if m.season <= s), default=None)
     found: list[tuple[float, Milestone]] = []
-    names = player_names(conn, set(active))
+    refs = player_refs(conn, set(active))
     for pid, apps in active.items():
         apps_upto = [(m, t) for m, t in apps if upto(m)]
         totals = {
@@ -90,7 +91,8 @@ def milestones(conn: Connection, season: int | None = None) -> MilestonesRespons
             "matches": len(apps_upto),
         }
         team = ref.teams.get(apps_upto[-1][1]) if apps_upto else None
-        name = names.get(pid, pid)
+        player = ref_or_id(refs, pid)
+        name = player.display_name or player.name
         for rule in MILESTONE_RULES:
             hit = milestone_for(rule, totals[rule.stat])
             if hit is None:
@@ -100,7 +102,7 @@ def milestones(conn: Connection, season: int | None = None) -> MilestonesRespons
                 (
                     needed / rule.window(totals[rule.stat]),
                     Milestone(
-                        player=PlayerRef(id=pid, name=name),
+                        player=player,
                         team=team,
                         stat=rule.stat,
                         current=totals[rule.stat],
@@ -169,7 +171,7 @@ def _board(
     rule: StreakRule,
     in_scope: Callable[[int], bool],
     active: set[str],
-    names: dict[str, str],
+    refs: dict[str, PlayerRef],
     limit: int,
 ) -> StreakBoard:
     cards_by_player: Mapping[str, Sequence[Any]] = (
@@ -187,7 +189,7 @@ def _board(
         if apps:
             team = ref.teams.get(apps[-1][1])
 
-        ref_p = PlayerRef(id=pid, name=names.get(pid, pid))
+        ref_p = ref_or_id(refs, pid)
         n = len(cards)
         if st.current >= 2 and pid in active:
             current.append(_entry(ref, ref_p, team, cards, n - st.current, n - 1, st.current, True))
@@ -228,12 +230,12 @@ def streaks(
     }
     rules = [r for r in STREAK_RULES if type is None or r.type == type]
     pids = set(bk.batting) | set(bk.bowling)
-    names = player_names(conn, pids)
+    refs = player_refs(conn, pids)
     as_of: dt.date | None = max(
         (m.date for m in ref.matches.values() if m.season <= last_season), default=None
     )
     return StreaksResponse(
         season=season,
         as_of=as_of,
-        boards=[_board(ref, bk, r, in_scope, active, names, limit) for r in rules],
+        boards=[_board(ref, bk, r, in_scope, active, refs, limit) for r in rules],
     )

@@ -31,7 +31,9 @@ export function ChartFrame({
 }) {
   const [view, setView] = useState<"chart" | "table">("chart");
   return (
-    <section className={cn("rounded-xl border border-border bg-card p-3 shadow-e1 md:p-4", className)}>
+    // w-full + min-w-0: never sized by its content. Recharts' ResponsiveContainer measures its
+    // parent, so a content-sized frame (flex row / items-start column) collapsed to zero width.
+    <section className={cn("w-full min-w-0 rounded-xl border border-border bg-card p-3 shadow-e1 md:p-4", className)}>
       <header className="mb-2 flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-overline text-muted-foreground">{title}</h3>
         <div className="flex items-center gap-1">

@@ -81,7 +81,46 @@ def test_search_prioritises_ipl_players(live: Connection) -> None:  # noqa: F811
     hits = players.search(live, "kohli").results
     assert hits[0].id == KOHLI and hits[0].matches > 250
     assert players.search(live, "Virat").results[0].id == KOHLI  # via alias
-    assert all(h.matches == 0 for h in hits[hits.index(next(h for h in hits if h.matches == 0)) :])
+    # 0-IPL-match register players never flood results when an IPL player matches ...
+    assert all(h.matches > 0 for h in hits)
+    # ... but are returned when nothing else matches (Alastair Cook & co.)
+    cook = players.search(live, "cook").results
+    assert cook and all(h.matches == 0 for h in cook)
+
+
+SURYA = "271f83cd"
+ROHIT = "740742ef"
+
+
+@pytest.mark.parametrize(
+    ("q", "pid", "display"),
+    [
+        ("suryakumar", SURYA, "Suryakumar Yadav"),  # Cricsheet: "SA Yadav"
+        ("virat", KOHLI, "Virat Kohli"),
+        ("bumrah", BUMRAH, "Jasprit Bumrah"),
+        ("rohit", ROHIT, "Rohit Sharma"),
+        ("rohit sharma", ROHIT, "Rohit Sharma"),
+        ("sharma", ROHIT, "Rohit Sharma"),  # most IPL matches among the Sharmas
+        ("Surya Kumar", SURYA, "Suryakumar Yadav"),  # token + compact matching
+    ],
+)
+def test_search_full_display_names(live: Connection, q: str, pid: str, display: str) -> None:  # noqa: F811
+    top = players.search(live, q).results[0]
+    assert (top.id, top.display_name) == (pid, display)
+    assert top.name != "" and top.matches > 100
+
+
+def test_player_objects_carry_display_name_and_photo(live: Connection) -> None:  # noqa: F811
+    client = TestClient(app)
+    prof = client.get(f"/api/v1/players/{KOHLI}").json()
+    assert (prof["name"], prof["display_name"]) == ("V Kohli", "Virat Kohli")
+    assert prof["image_url"]
+    cmp_ = client.get(f"/api/v1/players/compare?ids={KOHLI},{BUMRAH}").json()["players"]
+    assert [p["display_name"] for p in cmp_] == ["Virat Kohli", "Jasprit Bumrah"]
+    h2h = client.get(f"/api/v1/h2h?batter={KOHLI}&bowler={BUMRAH}").json()
+    assert h2h["batter"]["display_name"] == "Virat Kohli"
+    assert h2h["bowler"]["display_name"] == "Jasprit Bumrah"
+    assert all(r["player"]["display_name"] for r in h2h["top_bowlers_vs_batter"])
 
 
 def test_milestones_catalog_examples(live: Connection) -> None:  # noqa: F811
@@ -90,7 +129,7 @@ def test_milestones_catalog_examples(live: Connection) -> None:  # noqa: F811
     assert texts[(RABADA, "wickets")].current == 148
     assert texts[(RABADA, "wickets")].needed == 2
     assert texts[(PANDYA, "runs")].current == 2955
-    assert texts[(PANDYA, "runs")].text == "HH Pandya needs 45 for 3,000 IPL runs"
+    assert texts[(PANDYA, "runs")].text == "Hardik Pandya needs 45 for 3,000 IPL runs"
 
 
 def test_streaks_shape(live: Connection) -> None:  # noqa: F811

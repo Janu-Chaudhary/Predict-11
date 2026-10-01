@@ -12,14 +12,14 @@ from collections import defaultdict
 
 from sqlalchemy import Connection
 
-from .players_data import Reference, fetch_balls, player_names, reference
+from .players_data import Reference, fetch_balls, reference
+from .players_identity import player_refs, ref_or_id
 from .players_models import (
     Encounter,
     EncounterSeason,
     H2HResponse,
     MatchupRow,
     PairStats,
-    PlayerRef,
 )
 from .players_stats import H2H, Ball, confidence, h2h
 
@@ -85,7 +85,7 @@ def _rows(
     conn: Connection, groups: dict[str, H2H], min_balls: int, sort: str, limit: int
 ) -> list[MatchupRow]:
     eligible = {k: v for k, v in groups.items() if v.balls >= min_balls}
-    names = player_names(conn, set(eligible))
+    refs = player_refs(conn, set(eligible))
 
     def key(item: tuple[str, H2H]) -> tuple[float, ...]:
         v = item[1]
@@ -104,7 +104,7 @@ def _rows(
     for pid, v in sorted(eligible.items(), key=key)[:limit]:
         out.append(
             MatchupRow(
-                player=PlayerRef(id=pid, name=names.get(pid, pid)),
+                player=ref_or_id(refs, pid),
                 balls=v.balls,
                 runs=v.runs,
                 dismissals=v.dismissals,
@@ -128,7 +128,7 @@ def head_to_head(
     sort: str | None = None,
 ) -> H2HResponse:
     ref = reference(conn)
-    names = player_names(conn, {p for p in (batter, bowler) if p})
+    names = player_refs(conn, {p for p in (batter, bowler) if p})
 
     def keep(b: Ball) -> bool:
         return since is None or ref.matches[b.match_id].date >= since
@@ -165,8 +165,8 @@ def head_to_head(
             notes.append(f"Unknown {role} id {pid!r}.")
 
     return H2HResponse(
-        batter=PlayerRef(id=batter, name=names[batter]) if batter in names and batter else None,
-        bowler=PlayerRef(id=bowler, name=names[bowler]) if bowler in names and bowler else None,
+        batter=names[batter] if batter in names and batter else None,
+        bowler=names[bowler] if bowler in names and bowler else None,
         since=since,
         min_balls=min_balls,
         pair=pair,

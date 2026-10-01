@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local UI screenshots
 /screenshots/
+
+# cached player photos (p11 media cache)
+/public/players/

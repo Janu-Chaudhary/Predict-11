@@ -88,13 +88,13 @@ function SeasonCard({ s }: { s: SeasonSummary }) {
   return (
     <section className="min-w-0 rounded-xl border border-border bg-card p-3 shadow-e1 md:p-4">
       <SectionHeader title={s.label} />
-      <dl className="grid gap-2 text-sm">
+      <dl className="grid grid-cols-[minmax(0,1fr)] gap-2 text-sm">
         {s.champion && (
           <div className="flex items-center justify-between gap-2">
             <dt className="flex shrink-0 items-center gap-1.5 text-muted-foreground">
               <Trophy aria-hidden className="size-4 text-gold-text" /> Champion
             </dt>
-            <dd className="min-w-0">
+            <dd className="flex min-w-0 justify-end">
               <TeamName team={s.champion} short="never" />
             </dd>
           </div>
@@ -102,7 +102,7 @@ function SeasonCard({ s }: { s: SeasonSummary }) {
         {s.runner_up && (
           <div className="flex items-center justify-between gap-2">
             <dt className="shrink-0 text-muted-foreground">Runner-up</dt>
-            <dd className="min-w-0">
+            <dd className="flex min-w-0 justify-end">
               <TeamName team={s.runner_up} short="never" />
             </dd>
           </div>

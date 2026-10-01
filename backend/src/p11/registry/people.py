@@ -60,5 +60,12 @@ def load_registry(conn: Connection, people_csv: Path, names_csv: Path | None) ->
     if names_csv is not None and names_csv.exists():
         known = {r[0] for r in conn.execute(text("SELECT id FROM player"))}
         aliases = parse_names(names_csv, known)
-        log.add("player_alias", upsert(conn, "player_alias", aliases, ["player_id", "name"]))
+        # never relabel display names (registry.display_names) back to cricsheet_names
+        log.add(
+            "player_alias",
+            upsert(
+                conn, "player_alias", aliases, ["player_id", "name"],
+                update_where="t.source NOT IN ('display', 'display_alt')",
+            ),
+        )
     return log

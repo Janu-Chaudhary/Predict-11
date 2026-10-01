@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { PlayerAvatar, initials } from "./player-avatar";
+import { PlayerAvatar, initials, photoSource } from "./player-avatar";
 import { TeamBadge } from "./team-badge";
 
 describe("PlayerAvatar", () => {
@@ -19,6 +19,16 @@ describe("PlayerAvatar", () => {
     expect(container).toHaveTextContent("MD");
   });
 
+  it("serves cached local WebPs directly, picking the size for the avatar", () => {
+    expect(photoSource("/players/ba607b88-256.webp", 32)).toEqual({ src: "/players/ba607b88-96.webp", local: true });
+    expect(photoSource("/players/ba607b88-256.webp", 80)).toEqual({ src: "/players/ba607b88-256.webp", local: true });
+    const remote = "https://www.iplt20.com/api/team-assets?pathname=x.png";
+    expect(photoSource(remote, 32)).toEqual({ src: remote, local: false });
+    const { container } = render(<PlayerAvatar name="Virat Kohli" src="/players/ba607b88-256.webp" size="sm" />);
+    // unoptimized: the file itself, not a /_next/image re-encode
+    expect(container.querySelector("img")!.getAttribute("src")).toMatch(/^(http:\/\/localhost:3000)?\/players\/ba607b88-96\.webp$/);
+  });
+
   it("computes initials from first and last names", () => {
     expect(initials("Jasprit Jasbirsingh Bumrah")).toBe("JB");
     expect(initials("  ")).toBe("?");
@@ -29,7 +39,7 @@ describe("TeamBadge", () => {
   it("renders the crest for a current franchise with an accessible name", () => {
     const { container } = render(<TeamBadge team="RCB" />);
     expect(screen.getByRole("img", { name: "Royal Challengers Bengaluru" })).toHaveTextContent("RCB");
-    expect(container.querySelector("img")?.getAttribute("src")).toContain("rcb.png");
+    expect(container.querySelector("img")?.getAttribute("src")).toContain("rcb.webp");
   });
 
   it("uses the monogram for historical teams and after a logo error", () => {

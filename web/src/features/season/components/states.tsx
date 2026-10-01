@@ -85,11 +85,14 @@ export function TeamName({
     <>
       <TeamBadge team={team.short_code} size={size} />
       {short !== "always" && (
-        <span className={cn("truncate font-medium", short === "responsive" && "max-sm:sr-only")}>{team.name}</span>
+        <span title={team.name} className={cn("min-w-0 truncate font-medium", short === "responsive" && "max-sm:sr-only")}>
+          {team.name}
+        </span>
       )}
     </>
   );
-  const cls = cn("inline-flex min-w-0 items-center gap-2", className);
+  // max-w-full lets a long name ("Royal Challengers Bengaluru") truncate inside its container.
+  const cls = cn("inline-flex max-w-full min-w-0 items-center gap-2", className);
   return link ? (
     <Link
       href={`/teams/${encodeURIComponent(team.short_code)}`}

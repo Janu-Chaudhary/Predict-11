@@ -14,6 +14,7 @@ from collections.abc import Callable, Iterable
 from sqlalchemy import Connection, text
 
 from .players_data import Bulk, Reference, bulk, fetch_balls, reference
+from .players_identity import identity, match_quality, name_index, normalize
 from .players_models import (
     BattingStats,
     BowlingStats,
@@ -72,61 +73,61 @@ def sum_fielding(items: Iterable[Fielding]) -> Fielding:
 
 
 # --------------------------------------------------------------------------- search
-def _quality(name: str, q: str) -> int:
-    n = name.lower()
-    if n == q:
-        return 0
-    if n.startswith(q):
-        return 1
-    if any(w.startswith(q) for w in n.replace(".", " ").split()):
-        return 2
-    return 3
+RECENT_SEASONS = 2  # a player seen in the last N IPL seasons counts as current
 
 
 def search(conn: Connection, q: str, limit: int = 10) -> SearchResponse:
-    q_norm = " ".join(q.lower().split())
-    if len(q_norm) < 2:
+    """Token/substring search over Cricsheet names, register aliases and full display names
+    ("suryakumar" -> SA Yadav). Players with IPL appearances only, unless none match; ranked by
+    match quality, then IPL matches with a boost for current players."""
+    q_norm = normalize(q)
+    if len(q_norm.replace(" ", "")) < 2:
         return SearchResponse(query=q, results=[])
-    pat = "%" + q_norm.replace("\\", "\\\\").replace("%", r"\%").replace("_", r"\_") + "%"
-    rows = conn.execute(
-        text(
-            """
-            SELECT p.id, p.name, p.name AS matched FROM player p
-            WHERE lower(p.name) LIKE :pat OR lower(p.unique_name) LIKE :pat
-            UNION ALL
-            SELECT p.id, p.name, a.name FROM player_alias a JOIN player p ON p.id = a.player_id
-            WHERE lower(a.name) LIKE :pat
-            """
-        ),
-        {"pat": pat},
-    ).all()
+    tokens = q_norm.split()
     ref = reference(conn)
-    best: dict[str, tuple[int, str, str]] = {}
-    for pid, name, matched in rows:
-        qual = min(_quality(matched, q_norm), _quality(name, q_norm))
-        if pid not in best or qual < best[pid][0]:
-            best[pid] = (qual, name, matched)
+    best: dict[str, tuple[int, str]] = {}
+    for e in name_index(conn):
+        qual = match_quality(e, q_norm, tokens)
+        if qual is not None and (e.player_id not in best or qual < best[e.player_id][0]):
+            best[e.player_id] = (qual, e.name)
 
-    hits: list[tuple[tuple[int, int, int, int], SearchHit]] = []
-    for pid, (qual, name, matched) in best.items():
+    ipl = {pid: v for pid, v in best.items() if ref.appearances.get(pid)}
+    pool = ipl or best
+    latest = ref.latest_season or 0
+    ranked: list[tuple[tuple[int, int, int], str]] = []
+    for pid, (qual, _m) in pool.items():
+        apps = ref.appearances.get(pid, [])
+        last_season = ref.matches[apps[-1][0]].season if apps else 0
+        recent = last_season > latest - RECENT_SEASONS
+        last_order = ref.order[apps[-1][0]] if apps else -1
+        # quality first; then IPL matches, current players weighted up (x2 + 25)
+        relevance = len(apps) * 2 + 25 if recent else len(apps)
+        ranked.append(((qual, -relevance, -last_order), pid))
+    ranked.sort()
+    top = [pid for _k, pid in ranked[:limit]]
+    names = dict(
+        conn.execute(text("SELECT id, name FROM player WHERE id = ANY(:ids)"), {"ids": top}).all()
+    )
+    hits = []
+    for pid in top:
         apps = ref.appearances.get(pid, [])
         seasons = sorted({ref.matches[mid].season for mid, _ in apps})
-        last_team = ref.teams.get(apps[-1][1]) if apps else None
-        last_order = ref.order[apps[-1][0]] if apps else -1
-        hit = SearchHit(
-            id=pid,
-            name=name,
-            matched=matched,
-            team=last_team,
-            first_season=seasons[0] if seasons else None,
-            last_season=seasons[-1] if seasons else None,
-            seasons=len(seasons),
-            matches=len(apps),
+        ident = identity(conn, pid, names.get(pid, pid))
+        hits.append(
+            SearchHit(
+                id=pid,
+                name=ident.name,
+                display_name=ident.display_name,
+                image_url=ident.image_url,
+                matched=pool[pid][1],
+                team=ref.teams.get(apps[-1][1]) if apps else None,
+                first_season=seasons[0] if seasons else None,
+                last_season=seasons[-1] if seasons else None,
+                seasons=len(seasons),
+                matches=len(apps),
+            )
         )
-        # IPL players first; then match quality; then most recent; then most matches
-        hits.append(((0 if apps else 1, qual, -last_order, -len(apps)), hit))
-    hits.sort(key=lambda x: (x[0], x[1].name))
-    return SearchResponse(query=q, results=[h for _, h in hits[:limit]])
+    return SearchResponse(query=q, results=hits)
 
 
 # --------------------------------------------------------------------------- profile
@@ -318,10 +319,13 @@ def profile(
     vs_teams = _splits(pd, pd.opponent, ref.teams)
     form_bat, form_bowl = _form(pd)
     bat_ph, bowl_ph = _phases(_phase_balls(conn, [pid], keep), pid)
+    ident = identity(conn, pid, row[0])
 
     return PlayerProfile(
         id=pid,
         name=row[0],
+        display_name=ident.display_name,
+        image_url=ident.image_url,
         unique_name=row[1],
         aliases=aliases,
         filters=Filters(season=season, since=since),
@@ -362,10 +366,13 @@ def compare(
             (0, BattingStats.of(batting_line([])), BowlingStats.of(bowling_line([])), Fielding()),
         )
         bat_ph, bowl_ph = _phases(balls, pid)
+        ident = identity(conn, pid, names[pid])
         out.append(
             CompareEntry(
                 id=pid,
                 name=names[pid],
+                display_name=ident.display_name,
+                image_url=ident.image_url,
                 matches=n,
                 last_team=pd.last_team,
                 batting=bat,

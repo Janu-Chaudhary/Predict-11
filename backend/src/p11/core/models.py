@@ -174,6 +174,12 @@ class PlayerMedia(Base):
     updated_at: Mapped[dt.datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
+    # ``p11 media cache``: web-relative WebP copies (256 px / 96 px) made from ``cached_url``;
+    # the view only exposes them while ``cached_url = image_url``.
+    cached_url: Mapped[str | None] = mapped_column(Text)
+    local_path: Mapped[str | None] = mapped_column(Text)
+    local_thumb_path: Mapped[str | None] = mapped_column(Text)
+    cached_at: Mapped[dt.datetime | None] = mapped_column(DateTime(timezone=True))
 
 
 class SeasonCredits(Base):
@@ -403,4 +409,43 @@ class PlayerMatchPoints(Base):
         CheckConstraint("status IN " + str(POINTS_STATUSES), name="ck_pmp_status"),
         CheckConstraint("role_used IN " + str(PLAYING_ROLES), name="ck_pmp_role"),
         Index("ix_pmp_player", "player_id"),
+    )
+
+
+# --------------------------------------------------------------------------- conditions
+class VenueGeo(Base):
+    """Venue coordinates (WGS84) used for weather lookups; ``source`` cites where they came from
+    (see p11.ingest.weather.VENUE_GEO)."""
+
+    __tablename__ = "venue_geo"
+    venue_id: Mapped[int] = mapped_column(ForeignKey("venue.id"), primary_key=True)
+    lat: Mapped[float] = mapped_column(Numeric(8, 5))
+    lon: Mapped[float] = mapped_column(Numeric(8, 5))
+    source: Mapped[str] = mapped_column(Text)
+    updated_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+
+class MatchWeather(Base):
+    """Hourly Open-Meteo weather at the match venue, UTC hours covering start -4 h .. +4 h.
+    ``anchor_utc`` is the start time the window was built around; ``start_approx`` is true when
+    it was taken from the inferred day/night slot (15:30 / 19:30 IST) rather than a real time.
+    ``grid_lat``/``grid_lon`` are the model grid cell Open-Meteo actually answered for."""
+
+    __tablename__ = "match_weather"
+    match_id: Mapped[int] = mapped_column(ForeignKey("match.id"), primary_key=True)
+    time_utc: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True), primary_key=True)
+    temperature_2m: Mapped[float | None] = mapped_column(Numeric(5, 2))  # degC
+    relative_humidity_2m: Mapped[float | None] = mapped_column(Numeric(5, 2))  # %
+    dew_point_2m: Mapped[float | None] = mapped_column(Numeric(5, 2))  # degC
+    precipitation: Mapped[float | None] = mapped_column(Numeric(6, 2))  # mm in the hour
+    wind_speed_10m: Mapped[float | None] = mapped_column(Numeric(6, 2))  # km/h
+    anchor_utc: Mapped[dt.datetime] = mapped_column(DateTime(timezone=True))
+    start_approx: Mapped[bool] = mapped_column(Boolean)
+    source: Mapped[str] = mapped_column(Text)  # open-meteo-archive
+    grid_lat: Mapped[float | None] = mapped_column(Numeric(8, 5))
+    grid_lon: Mapped[float | None] = mapped_column(Numeric(8, 5))
+    fetched_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
     )

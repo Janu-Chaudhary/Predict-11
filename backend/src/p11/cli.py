@@ -50,6 +50,14 @@ def cmd_registry_load(args: argparse.Namespace) -> None:
     _out({"changes": log.as_dict(), "row_changes": log.total})
 
 
+def cmd_registry_display_names(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.registry.display_names import load_display_names
+
+    with engine().begin() as conn:
+        _out(load_display_names(conn))
+
+
 def cmd_backfill_cricsheet(args: argparse.Namespace) -> None:
     from p11.core.db import engine
     from p11.core.settings import get_settings
@@ -135,6 +143,15 @@ def cmd_attributes_coverage(args: argparse.Namespace) -> None:
         _out({"coverage": coverage(conn), "derived_accuracy": derived_accuracy(conn)})
 
 
+def cmd_media_cache(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.ingest.media_cache import cache_media
+
+    seasons = None if args.all else (args.season or [2026])
+    with engine().begin() as conn:
+        _out(cache_media(conn, seasons, force=args.force, limit=args.limit))
+
+
 def cmd_starttime_load(args: argparse.Namespace) -> None:
     from p11.core.db import engine
     from p11.ingest.start_times import load_start_times
@@ -162,6 +179,33 @@ def cmd_fantasy_validate(args: argparse.Namespace) -> None:
     _out(rep)
     if rep["failed"]:
         sys.exit(1)
+
+
+def cmd_weather_venues(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.ingest.weather import load_venue_geo
+
+    with engine().begin() as conn:
+        _out(load_venue_geo(conn))
+
+
+def cmd_weather_backfill(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.core.settings import get_settings
+    from p11.ingest.weather import backfill_weather, load_venue_geo
+
+    with engine().connect() as conn:
+        geo = load_venue_geo(conn)
+        conn.commit()
+        rep = backfill_weather(
+            conn,
+            args.season,
+            force=args.force,
+            archive_root=get_settings().raw_archive_dir,
+            commit=conn.commit,
+        )
+        conn.commit()
+    _out({"venue_geo": geo["changes"], **rep.as_dict()})
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -193,6 +237,10 @@ def main(argv: list[str] | None = None) -> None:
     x.add_argument("--people")
     x.add_argument("--names")
     x.set_defaults(func=cmd_registry_load)
+    x = pr.add_parser(
+        "display-names", help="full names (ESPN/BCCI/2025 squads) -> player_alias 'display'"
+    )
+    x.set_defaults(func=cmd_registry_display_names)
 
     pb = sub.add_parser("backfill", help="historical loads").add_subparsers(
         dest="sub", required=True
@@ -236,6 +284,16 @@ def main(argv: list[str] | None = None) -> None:
     x = pa.add_parser("coverage", help="attribute + photo coverage report")
     x.set_defaults(func=cmd_attributes_coverage)
 
+    pm = sub.add_parser("media", help="player photos").add_subparsers(dest="sub", required=True)
+    x = pm.add_parser(
+        "cache", help="download resolved headshots once -> web/public/players/<id>-{256,96}.webp"
+    )
+    x.add_argument("--season", type=int, nargs="*", help="players who appeared (default 2026)")
+    x.add_argument("--all", action="store_true", help="every player with a resolved photo")
+    x.add_argument("--force", action="store_true", help="re-download already cached images")
+    x.add_argument("--limit", type=int, help="at most N images this run")
+    x.set_defaults(func=cmd_media_cache)
+
     pst = sub.add_parser("starttime", help="match start times").add_subparsers(
         dest="sub", required=True
     )
@@ -253,6 +311,18 @@ def main(argv: list[str] | None = None) -> None:
     x = pf.add_parser("validate", help="check 2026 totals vs 40 published Dream11 totals")
     x.add_argument("--full", action="store_true")
     x.set_defaults(func=cmd_fantasy_validate)
+
+    pw = sub.add_parser("weather", help="venue coordinates + Open-Meteo weather").add_subparsers(
+        dest="sub", required=True
+    )
+    x = pw.add_parser("venues", help="load venue coordinates -> venue_geo")
+    x.set_defaults(func=cmd_weather_venues)
+    x = pw.add_parser(
+        "backfill", help="Open-Meteo archive hourly weather (start +-4 h) -> match_weather"
+    )
+    x.add_argument("--season", type=int, nargs="*", help="e.g. --season 2025 2026 (default all)")
+    x.add_argument("--force", action="store_true", help="re-fetch matches already stored")
+    x.set_defaults(func=cmd_weather_backfill)
 
     args = p.parse_args(argv)
     args.func(args)
