@@ -118,7 +118,7 @@ rolling backtest beats the champion; CI guard fails on >5% MAE regression.
 | Pitch & conditions card: par score, pace/spin split, chase bias, dew/weather | must | |
 | **Rate My Team**: paste/build an XI → projected percentile + best swaps | differentiator | |
 | **What-if toggles**: toss winner, dew on/off, pitch type → instant re-opt | differentiator | |
-| ~~Live tracker~~ — dropped (no live scraping); post-match review lands ~1 h after match | — | |
+| Live score + live fantasy points via a **light poll** (re-approved 2026-10-02, see FEATURE-CATALOG §7); full data still from post-match harvest | must | |
 | **Post-match review**: predicted vs actual per player, your XI's rank vs simulated XIs | must | |
 | **Public backtest/accuracy page**: per-season results vs baselines, captain hit-rate, calibration | differentiator | trust signal; rival CricJosh publishes 31.4% top-2 captain rate |
 | Head-to-head: batter vs bowler-type matchups with confidence | differentiator | |
@@ -196,7 +196,7 @@ so the scrapers can be shaken out on other T20 leagues/internationals before IPL
 
 ### Data design — scraping only, post-match first (supersedes §1 vendor recommendation)
 
-Decisions (2026-10-01, follow-up): **no paid APIs, no live in-match scraping**. Scrape each match
+Decisions (2026-10-01, follow-up): **no paid APIs, no live in-match scraping** (amended 2026-10-02: a light live-score poll is allowed — see FEATURE-CATALOG §7). Scrape each match
 **after it completes**, plus **one toss-time scrape** for the announced XI. Use **every free source
 available** and merge them, so no single site is a point of failure.
 
