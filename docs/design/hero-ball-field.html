@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ball Field Hero</title>
+<!-- Prototype for docs/DESIGN-DIRECTION.md §7.1 Concept C "Ball Field".
+     Data: real ball-by-ball of the IPL 2026 Final (GT 155/8 v RCB 161/5, 31 May 2026) from Postgres
+     delivery_resolved (match 1535465, source cricsheet). Each delivery is one particle at its point on the worm;
+     extra "dust" particles in team colours thicken the lines. The next-match card is the same synthetic card as concept A.
+     Canvas 2D, typed arrays, no libraries. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Saira:wdth,wght@75..100,500..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.155 0.028 275); --s1: oklch(0.195 0.032 275); --s2: oklch(0.235 0.036 275);
+    --border: oklch(1 0 0 / 8%); --fg: oklch(0.97 0.006 275); --muted: oklch(0.72 0.025 275);
+    --faint: oklch(0.58 0.025 275); --gold: oklch(0.84 0.15 85); --violet: oklch(0.68 0.19 295);
+    --neg: oklch(0.70 0.19 25); --warn: oklch(0.80 0.15 70);
+    --a: #F9CD05; --b: #4C8EF0;     /* next-match card: CSK v MI (same as concept A) */
+    --gt: #C9A86A; --rcb: #EF4B5F;  /* worm: last match GT v RCB */
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+  }
+  :root[data-theme="light"] {
+    --bg: oklch(0.975 0.006 275); --s1: #fff; --s2: oklch(0.955 0.008 275);
+    --border: oklch(0.2 0.03 275 / 10%); --fg: oklch(0.2 0.035 275); --muted: oklch(0.48 0.03 275);
+    --faint: oklch(0.6 0.02 275); --gold: oklch(0.80 0.15 80); --violet: oklch(0.52 0.2 295);
+    --neg: oklch(0.55 0.2 25); --warn: oklch(0.6 0.14 65);
+    --a: #B8920A; --b: #004BA0; --gt: #1B2133; --rcb: #C8102E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { min-height: 100vh; background: var(--bg); color: var(--fg); font: 400 14px/20px Geist, system-ui, sans-serif; overflow-x: hidden; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 360px at 50% -100px, oklch(0.55 0.16 285 / .35), transparent); }
+  :root[data-theme="light"] body::before { opacity: .35; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 16px;
+    border-bottom: 1px solid var(--border); background: color-mix(in oklch, var(--s1) 72%, transparent); backdrop-filter: blur(20px); }
+  .wordmark { font: 700 20px/1 Saira, sans-serif; font-stretch: 87.5%; margin-right: auto;
+    background: linear-gradient(90deg, #EC4899, #8B5CF6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hbtn { background: none; border: 1px solid var(--border); color: var(--fg); border-radius: 10px; height: 32px; padding: 0 10px; font: 500 12px Geist; cursor: pointer; white-space: nowrap; }
+  .hbtn[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+  .hbtn:focus-visible, .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .hero { position: relative; max-width: 1280px; margin: 0 auto; padding: 16px 16px 32px; display: grid; gap: 20px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 960px) { .hero { grid-template-columns: 1.25fr 1fr; padding: 48px 32px; gap: 32px; } }
+
+  .chart-wrap { width: 100%; }
+  .chart { position: relative; width: 100%; aspect-ratio: 358 / 300; }
+  @media (min-width: 560px) { .chart { aspect-ratio: 16 / 10; } }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .lbl { position: absolute; transform: translate(-100%, -50%); text-align: right; white-space: nowrap; opacity: 0; transition: opacity .4s var(--ease); pointer-events: none; }
+  .lbl.show { opacity: 1; }
+  .lbl b { display: block; font: 700 22px/24px Saira; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+  .lbl b::before { content: ""; display: inline-block; width: 14px; height: 0; border-top: 2px solid var(--c); margin-right: 6px; vertical-align: middle; }
+  .lbl.dash b::before { border-top-style: dashed; }
+  .lbl span { font-size: 12px; color: var(--muted); }
+  .lbl.res { transform: translate(0, 0); text-align: left; font: 600 11px/14px Geist; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .caption { margin-top: 10px; font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; }
+  .caption b { color: var(--fg); font-weight: 600; }
+  .legend { display: inline-flex; gap: 10px; }
+  .legend i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; vertical-align: 0; }
+
+  .card { position: relative; background: var(--s1); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+  .overline { font: 600 11px/14px Geist; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 16px 0 12px; }
+  .team { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .team.right { align-items: flex-end; text-align: right; }
+  .badge { width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center; font: 700 14px/1 Saira; font-stretch: 87.5%; }
+  .team-name { font: 650 28px/1 Saira, sans-serif; font-stretch: 87.5%; }
+  .team-name::after { content: ""; display: block; height: 2px; width: 32px; margin-top: 6px; border-radius: 2px; background: var(--c); }
+  .team.right .team-name::after { margin-left: auto; }
+  .vs { color: var(--faint); font: 500 14px Saira; }
+  .countdown { display: flex; gap: 8px; margin: 8px 0 16px; }
+  .cd { flex: 1; background: var(--s2); border-radius: 10px; padding: 8px 0; text-align: center; overflow: hidden; }
+  .cd b { display: block; font: 700 36px/40px Saira; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+  .cd span { font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .cd b.tick { animation: flip .32s var(--ease); }
+  @keyframes flip { from { transform: translateY(-40%); opacity: 0; } to { transform: none; opacity: 1; } }
+  .prob { margin: 4px 0 16px; }
+  .prob-bar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; background: var(--s2); }
+  .prob-bar span { display: block; height: 100%; transition: width .9s var(--ease); width: 0; }
+  .prob-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .prob-row b { color: var(--fg); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .chip { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .chip.state { color: var(--warn); border-color: color-mix(in oklch, var(--warn) 40%, transparent); }
+  .cta { display: flex; gap: 8px; }
+  .btn { flex: 1; height: 44px; border-radius: 10px; font: 600 14px Geist; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--fg); }
+  .btn.primary { background: var(--gold); color: #151A30; border: 0; }
+  .note { margin-top: 12px; font-size: 12px; color: var(--faint); }
+  .rm .lbl, .rm .prob-bar span { transition: none !important; }
+  .rm .cd b.tick { animation: none; }
+</style>
+</head>
+<body>
+<header>
+  <span class="wordmark">Predict-11</span>
+  <button class="hbtn" id="replay">Replay</button>
+  <button class="hbtn" id="rm" aria-pressed="false">Reduced motion</button>
+  <button class="hbtn" id="theme" aria-label="Toggle light or dark theme">Theme</button>
+</header>
+
+<main class="hero" id="root">
+  <div class="chart-wrap">
+    <div class="chart" id="chart">
+      <canvas id="cv" role="img" aria-label="Worm chart, IPL 2026 Final. Gujarat Titans batted first and made 155 for 8 in 20 overs. Royal Challengers Bengaluru chased it down, 161 for 5 in 17.6 overs, winning by 5 wickets."></canvas>
+      <div class="lbl" id="lbl-a" style="--c:var(--gt)"><b class="num">GT 155/8</b><span>20 ov</span></div>
+      <div class="lbl dash" id="lbl-b" style="--c:var(--rcb)"><b class="num">RCB 161/5</b><span>17.6 ov · won by 5 wkts</span></div>
+    </div>
+    <div class="caption">
+      <span>Last match · <b>IPL 2026 Final</b> · 233 balls, one particle each</span>
+      <span class="legend"><span><i style="background:var(--faint)"></i>dot / 1–3</span><span><i style="background:var(--violet)"></i>4</span><span><i style="background:var(--gold)"></i>6</span><span><i style="background:var(--neg)"></i>W</span></span>
+    </div>
+  </div>
+
+  <section class="card" aria-labelledby="next-title">
+    <div class="overline" id="next-title">Next match · M42 · MA Chidambaram, Chennai</div>
+    <div class="teams">
+      <div class="team" style="--c: var(--a)"><div class="badge" style="background:#F9CD05;color:#1A1A1A">CSK</div><div class="team-name">CSK</div></div>
+      <div class="vs">vs</div>
+      <div class="team right" style="--c: var(--b)"><div class="badge" style="background:#004BA0;color:#fff">MI</div><div class="team-name">MI</div></div>
+    </div>
+    <div class="countdown" role="timer" aria-live="off" aria-label="Time to start">
+      <div class="cd"><b id="cd-h" class="num">00</b><span>hrs</span></div>
+      <div class="cd"><b id="cd-m" class="num">00</b><span>min</span></div>
+      <div class="cd"><b id="cd-s" class="num">00</b><span>sec</span></div>
+    </div>
+    <div class="prob">
+      <div class="prob-row"><span>CSK <b class="num">56%</b></span><span>Win probability (model)</span><span><b class="num">44%</b> MI</span></div>
+      <div class="prob-bar" aria-hidden="true"><span id="pa" style="background:var(--a)"></span><span id="pb" style="background:var(--b)"></span></div>
+    </div>
+    <div class="chips">
+      <span class="chip state">Provisional · XI at toss ~19:00</span>
+      <span class="chip">Par 182</span><span class="chip">Dew likely</span><span class="chip">Spin 58%</span>
+    </div>
+    <div class="cta"><button class="btn primary">Build my XI →</button><button class="btn">Match centre</button></div>
+    <p class="note">Prototype. The worm is real ball-by-ball from the 2026 Final. The next-match card is the same sample card as concept A.</p>
+  </section>
+</main>
+
+<script>
+// Per innings: [over (0-based), legal (1/0), total runs, batter runs, wicket (1/0)] for every delivery.
+const BALLS = /*DATA*/{"1":[[0,1,0,0,0],[0,1,0,0,0],[0,1,4,4,0],[0,1,4,4,0],[0,0,1,0,0],[0,0,1,0,0],[0,1,1,1,0],[0,0,1,0,0],[0,1,1,1,0],[1,1,0,0,0],[1,1,0,0,0],[1,1,4,4,0],[1,1,0,0,0],[1,1,1,1,0],[1,1,0,0,0],[2,1,4,4,0],[2,1,0,0,1],[2,1,1,1,0],[2,1,0,0,0],[2,1,1,1,0],[2,1,0,0,0],[3,1,2,2,0],[3,1,0,0,0],[3,1,0,0,0],[3,1,0,0,1],[3,1,0,0,0],[3,1,4,4,0],[4,1,0,0,0],[4,1,4,4,0],[4,1,4,4,0],[4,1,1,1,0],[4,1,0,0,0],[4,1,0,0,0],[5,1,0,0,0],[5,1,0,0,0],[5,1,1,1,0],[5,1,1,1,0],[5,1,4,4,0],[5,1,0,0,0],[6,1,1,1,0],[6,1,1,1,0],[6,1,1,1,0],[6,1,1,1,0],[6,1,1,1,0],[6,1,0,0,0],[7,1,1,1,0],[7,1,1,1,0],[7,1,1,1,0],[7,1,2,2,0],[7,1,0,0,0],[7,1,0,0,1],[8,1,0,0,0],[8,1,1,1,0],[8,1,1,1,0],[8,1,1,1,0],[8,1,0,0,0],[8,1,1,1,0],[9,1,0,0,0],[9,1,1,1,0],[9,1,1,1,0],[9,1,1,1,0],[9,1,1,1,0],[9,1,0,0,0],[10,1,0,0,0],[10,1,0,0,0],[10,1,1,1,0],[10,1,0,0,0],[10,1,1,1,0],[10,1,2,2,0],[11,1,1,1,0],[11,1,1,1,0],[11,1,1,1,0],[11,1,1,1,0],[11,1,1,1,0],[11,1,1,0,0],[12,1,0,0,1],[12,1,1,1,0],[12,1,1,1,0],[12,1,6,6,0],[12,1,1,1,0],[12,1,1,1,0],[13,1,4,4,0],[13,1,4,4,0],[13,1,1,1,0],[13,1,6,6,0],[13,1,1,1,0],[13,1,0,0,0],[14,1,0,0,1],[14,1,1,1,0],[14,1,2,2,0],[14,1,1,1,0],[14,1,1,1,0],[14,1,1,1,0],[15,1,0,0,0],[15,1,2,2,0],[15,1,2,2,0],[15,1,1,1,0],[15,1,4,4,0],[15,1,1,1,0],[16,1,0,0,1],[16,1,1,1,0],[16,1,1,1,0],[16,1,1,1,0],[16,1,2,2,0],[16,1,1,1,0],[17,1,4,4,0],[17,1,1,1,0],[17,1,1,1,0],[17,1,4,4,0],[17,0,1,0,0],[17,1,1,1,0],[17,1,4,4,0],[18,1,4,4,0],[18,1,1,1,0],[18,1,0,0,1],[18,1,1,1,0],[18,1,0,0,0],[18,1,2,2,0],[19,1,6,6,0],[19,1,0,0,1],[19,1,0,0,0],[19,1,1,1,0],[19,1,1,1,0],[19,1,2,2,0]],"2":[[0,1,1,1,0],[0,1,1,0,0],[0,1,0,0,0],[0,1,0,0,0],[0,1,2,2,0],[0,1,1,1,0],[1,1,4,4,0],[1,1,0,0,0],[1,1,6,6,0],[1,1,4,4,0],[1,1,0,0,0],[1,1,4,4,0],[2,1,4,4,0],[2,1,0,0,0],[2,1,4,4,0],[2,1,1,1,0],[2,1,4,4,0],[2,1,0,0,0],[3,1,4,4,0],[3,1,4,4,0],[3,1,6,6,0],[3,1,4,4,0],[3,1,1,1,0],[3,1,0,0,0],[4,1,1,1,0],[4,1,6,6,0],[4,1,0,0,1],[4,1,0,0,0],[4,1,0,0,0],[4,1,1,1,0],[5,1,0,0,1],[5,1,0,0,0],[5,1,0,0,0],[5,1,0,0,0],[5,1,1,1,0],[5,1,6,6,0],[6,1,6,6,0],[6,1,0,0,0],[6,1,1,1,0],[6,1,1,1,0],[6,1,2,2,0],[6,0,1,0,0],[6,1,0,0,0],[7,1,1,1,0],[7,1,1,1,0],[7,1,0,0,0],[7,1,1,1,0],[7,1,0,0,0],[7,1,4,4,0],[8,1,1,1,0],[8,1,0,0,1],[8,1,1,1,0],[8,1,1,1,0],[8,1,0,0,1],[8,1,0,0,0],[9,1,4,4,0],[9,1,0,0,0],[9,1,1,1,0],[9,1,0,0,0],[9,1,4,4,0],[9,1,0,0,0],[10,1,2,2,0],[10,1,1,1,0],[10,1,0,0,0],[10,1,2,2,0],[10,1,0,0,0],[10,1,4,4,0],[11,1,0,0,0],[11,1,4,4,0],[11,1,1,1,0],[11,1,1,1,0],[11,1,0,0,0],[11,1,1,1,0],[12,1,1,1,0],[12,1,0,0,0],[12,1,6,6,0],[12,1,1,1,0],[12,1,1,1,0],[12,1,1,1,0],[13,1,1,1,0],[13,1,0,0,0],[13,1,1,1,0],[13,1,4,4,0],[13,1,0,0,0],[13,1,0,0,1],[14,1,1,1,0],[14,1,0,0,0],[14,1,4,4,0],[14,1,0,0,0],[14,1,2,2,0],[14,1,0,0,0],[15,1,0,0,0],[15,1,4,4,0],[15,1,1,1,0],[15,1,0,0,0],[15,1,1,1,0],[15,1,0,0,0],[16,1,0,0,0],[16,1,1,1,0],[16,1,1,1,0],[16,1,0,0,0],[16,1,1,1,0],[16,1,0,0,0],[17,1,1,1,0],[17,1,1,1,0],[17,1,0,0,0],[17,1,1,1,0],[17,1,4,4,0],[17,1,6,6,0]]};
+(() => {
+  const root = document.getElementById('root'), rmBtn = document.getElementById('rm');
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const syncRm = () => { root.classList.toggle('rm', reduce); rmBtn.setAttribute('aria-pressed', reduce); };
+  syncRm();
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  document.getElementById('theme').onclick = () => {
+    const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light';
+    readColours(); if (done) drawFinal();
+  };
+
+  // ---------- data → worm points (x in overs, y in runs) ----------
+  const inns = [1, 2].map(k => {
+    const pts = [{ x: 0, y: 0 }], balls = [], wk = [];
+    let runs = 0, legalInOver = 0, curOver = 0;
+    for (const [ov, legal, tr, br, w] of BALLS[k]) {
+      if (ov !== curOver) { curOver = ov; legalInOver = 0; }
+      runs += tr; if (legal) legalInOver++;
+      const x = ov + legalInOver / 6, y = runs;
+      pts.push({ x, y });
+      const kind = w ? 'W' : br === 6 ? '6' : br === 4 ? '4' : 'n';
+      balls.push({ x, y, kind });
+      if (w) wk.push({ x, y });
+    }
+    return { pts, balls, wk };
+  });
+  const YMAX = 180;
+
+  // ---------- canvas ----------
+  const chart = document.getElementById('chart'), cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  let W, H, dpr, M, C = {};
+  function readColours() {
+    C = { gt: css('--gt'), rcb: css('--rcb'), faint: css('--faint'), fg: css('--fg'), violet: css('--violet'), gold: css('--gold'),
+          neg: css('--neg'), border: css('--border'), bg: css('--s1') || css('--bg'), page: css('--bg') };
+  }
+  readColours();
+  function size() {
+    const r = chart.getBoundingClientRect(); dpr = Math.min(2, devicePixelRatio || 1);
+    W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    M = { l: 34, r: W < 500 ? 12 : 20, t: 16, b: 26 };
+  }
+  const sx = x => M.l + (x / 20) * (W - M.l - M.r);
+  const sy = y => H - M.b - (y / YMAX) * (H - M.t - M.b);
+
+  function pointOn(pts, f) { // f in 0..1 along the polyline by index
+    const i = f * (pts.length - 1), a = pts[Math.floor(i)], b = pts[Math.min(pts.length - 1, Math.floor(i) + 1)], t = i % 1;
+    return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t };
+  }
+
+  // ---------- particles (typed arrays) ----------
+  let N, px, py, tx, ty, ox, oy, vx, vy, rad, col, delay;
+  const PAL = []; // colour index → css
+  function buildParticles() {
+    const dust = W < 500 ? 420 : 900;
+    const real = inns[0].balls.length + inns[1].balls.length;
+    N = real + dust;
+    px = new Float32Array(N); py = new Float32Array(N); tx = new Float32Array(N); ty = new Float32Array(N);
+    ox = new Float32Array(N); oy = new Float32Array(N); vx = new Float32Array(N); vy = new Float32Array(N);
+    rad = new Float32Array(N); col = new Uint8Array(N); delay = new Float32Array(N);
+    PAL.length = 0; PAL.push(C.gt, C.rcb, C.faint, C.violet, C.gold, C.neg);
+    let s = 7; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    let i = 0;
+    // dust first so real balls draw on top
+    for (let d = 0; d < dust; d++, i++) {
+      const k = d % 2, p = pointOn(inns[k].pts, rnd());
+      const n = (rnd() - .5) * 5;
+      tx[i] = sx(p.x) + n * .4; ty[i] = sy(p.y) + n; col[i] = k; rad[i] = .7 + rnd() * .9;
+    }
+    inns.forEach((inn, k) => inn.balls.forEach(b => {
+      tx[i] = sx(b.x); ty[i] = sy(b.y);
+      col[i] = b.kind === 'W' ? 5 : b.kind === '6' ? 4 : b.kind === '4' ? 3 : 2;
+      rad[i] = b.kind === 'W' ? 3.2 : b.kind === 'n' ? 1.5 : 2.4; i++;
+    }));
+    for (let j = 0; j < N; j++) {
+      // start as floodlight dust: spread across the canvas, denser near the top (the lights)
+      ox[j] = rnd() * W; oy[j] = Math.pow(rnd(), 1.6) * H;
+      vx[j] = (rnd() - .5) * 10; vy[j] = (rnd() - .7) * 8;
+      // converge left to right, so the worm grows with the overs
+      delay[j] = ((tx[j] - M.l) / (W - M.l - M.r)) * .55 + rnd() * .25;
+      px[j] = ox[j]; py[j] = oy[j];
+    }
+  }
+
+  function drawAxes(alpha) {
+    ctx.globalAlpha = alpha;
+    // powerplay and death bands
+    ctx.fillStyle = C.fg; ctx.globalAlpha = alpha * .04;
+    ctx.fillRect(sx(0), M.t, sx(6) - sx(0), H - M.t - M.b);
+    ctx.fillRect(sx(16), M.t, sx(20) - sx(16), H - M.t - M.b);
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = C.border; ctx.lineWidth = 1;
+    ctx.font = '500 11px "Geist Mono", ui-monospace, monospace'; ctx.fillStyle = C.faint;
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for (let y = 0; y <= 150; y += 50) {
+      ctx.beginPath(); ctx.moveTo(M.l, Math.round(sy(y)) + .5); ctx.lineTo(W - M.r, Math.round(sy(y)) + .5); ctx.stroke();
+      ctx.fillText(y, M.l - 6, sy(y));
+    }
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (const o of [0, 6, 10, 16, 20]) ctx.fillText(o, sx(o), H - M.b + 8);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'bottom'; ctx.textBaseline = 'top'; ctx.fillText('PP', sx(0) + 4, M.t + 4); ctx.textBaseline = 'bottom'; ctx.fillText('DEATH', sx(16) + 4, H - M.b - 4);
+    ctx.globalAlpha = 1;
+  }
+
+  function drawLines(prog) { // prog 0..1 of the stroke
+    inns.forEach((inn, k) => {
+      const pts = inn.pts, n = Math.max(1, Math.floor(prog * (pts.length - 1)));
+      ctx.strokeStyle = k ? C.rcb : C.gt; ctx.lineWidth = 2; ctx.lineJoin = 'round';
+      ctx.setLineDash(k ? [6, 4] : []); // away team dashed: shape cue in addition to colour
+      ctx.beginPath(); ctx.moveTo(sx(0), sy(0));
+      for (let i = 1; i <= n; i++) ctx.lineTo(sx(pts[i].x), sy(pts[i].y));
+      ctx.stroke(); ctx.setLineDash([]);
+      for (const w of inn.wk) if (w.x <= pts[n].x) { // wicket dots with a surface ring
+        ctx.beginPath(); ctx.arc(sx(w.x), sy(w.y), 4.5, 0, 7); ctx.fillStyle = C.page; ctx.fill();
+        ctx.beginPath(); ctx.arc(sx(w.x), sy(w.y), 3, 0, 7); ctx.fillStyle = k ? C.rcb : C.gt; ctx.fill();
+      }
+    });
+  }
+
+  function drawParticles(alphaReal, alphaDust) {
+    // batch by colour: one path per colour
+    for (let c = 0; c < PAL.length; c++) {
+      ctx.fillStyle = PAL[c]; ctx.globalAlpha = c < 2 ? alphaDust : (c === 2 ? alphaReal * .7 : alphaReal);
+      ctx.beginPath();
+      for (let i = 0; i < N; i++) if (col[i] === c) { ctx.moveTo(px[i] + rad[i], py[i]); ctx.arc(px[i], py[i], rad[i], 0, 6.2832); }
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  const lblA = document.getElementById('lbl-a'), lblB = document.getElementById('lbl-b');
+  function placeLabels() {
+    const a = inns[0].pts.at(-1), b = inns[1].pts.at(-1);
+    // GT ends at (20, 155): label just below-left of the end; RCB ends at (17.6, 161): label above-left.
+    lblA.style.left = (sx(a.x) - 4) + 'px'; lblA.style.top = (sy(a.y) + Math.max(30, H * .46)) + 'px';
+    lblB.style.left = (sx(b.x) - 10) + 'px'; lblB.style.top = (sy(b.y) - 24) + 'px';
+  }
+  const showLabels = on => [lblA, lblB].forEach(l => l.classList.toggle('show', on));
+
+  let raf = 0, t0 = 0, done = false;
+  const ease = t => 1 - Math.pow(1 - Math.min(1, Math.max(0, t)), 3);
+  function drawFinal() {
+    ctx.clearRect(0, 0, W, H); drawAxes(1);
+    for (let i = 0; i < N; i++) { px[i] = tx[i]; py[i] = ty[i]; }
+    drawParticles(1, .35); drawLines(1); placeLabels(); showLabels(true);
+  }
+  // Timeline (ms): 0–1100 drift · 900–3000 converge · 2600–3400 line stroke · 3200 labels · then stop (no idle loop).
+  function frame(now) {
+    if (!t0) t0 = now;
+    const t = now - t0, dt = 1 / 60;
+    ctx.clearRect(0, 0, W, H);
+    drawAxes(ease((t - 600) / 900));
+    const conv = (t - 900) / 2100; // 0..1 overall convergence window
+    for (let i = 0; i < N; i++) {
+      // drift: slow floating dust with a gentle upward pull
+      ox[i] += vx[i] * dt; oy[i] += vy[i] * dt;
+      const local = ease((conv - delay[i] * .5) / .5);
+      px[i] = ox[i] + (tx[i] - ox[i]) * local; py[i] = oy[i] + (ty[i] - oy[i]) * local;
+    }
+    const fadeIn = ease(t / 600);
+    drawParticles(fadeIn * (.55 + .45 * ease(conv)), fadeIn * (.6 - .25 * ease(conv)));
+    if (t > 2600) drawLines(ease((t - 2600) / 800));
+    if (t > 3200 && !lblA.classList.contains('show')) { placeLabels(); showLabels(true); }
+    if (t < 3700) raf = requestAnimationFrame(frame);
+    else { drawFinal(); done = true; window.__heroDone = true; }
+  }
+  function run() {
+    cancelAnimationFrame(raf); t0 = 0; done = false; window.__heroDone = false;
+    size(); readColours(); buildParticles(); showLabels(false);
+    if (reduce) { drawFinal(); done = true; window.__heroDone = true; return; }
+    raf = requestAnimationFrame(frame);
+  }
+  // Pause when hidden; on resize redraw the final frame (or restart if mid-animation).
+  document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else if (!done) { t0 = 0; raf = requestAnimationFrame(frame); } });
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { size(); buildParticles(); if (done) drawFinal(); }, 120); });
+
+  // ---------- card ----------
+  function runCard() {
+    const pa = document.getElementById('pa'), pb = document.getElementById('pb');
+    pa.style.transition = pb.style.transition = 'none'; pa.style.width = pb.style.width = '0'; void pa.offsetWidth;
+    pa.style.transition = pb.style.transition = ''; requestAnimationFrame(() => { pa.style.width = '56%'; pb.style.width = '44%'; });
+  }
+  const start = Date.now() + (3 * 3600 + 14 * 60 + 9) * 1000, cd = k => document.getElementById('cd-' + k);
+  function set(el, v) { v = String(v).padStart(2, '0'); if (el.textContent === v) return; el.textContent = v; if (!reduce) { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); } }
+  function tick() { const d = Math.max(0, Math.floor((start - Date.now()) / 1000)); set(cd('h'), Math.floor(d / 3600)); set(cd('m'), Math.floor(d / 60) % 60); set(cd('s'), d % 60); }
+  tick(); setInterval(tick, 1000);
+
+  document.getElementById('replay').onclick = () => { run(); runCard(); };
+  rmBtn.onclick = () => { reduce = !reduce; syncRm(); run(); runCard(); };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => { run(); runCard(); });
+})();
+</script>
+</body>
+</html>

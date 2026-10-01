@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XI Assembles Hero</title>
+<!-- Prototype for docs/DESIGN-DIRECTION.md §7.1 Concept B "XI Assembles".
+     Data: real IPL 2026 Final (GT v RCB, 31 May 2026) lineups (Postgres match_player_resolved, match 1535465)
+     with Dream11 roles and actual Dream11 points from backend p11.scoring (T20_2026). The 11 on the pitch are the
+     hindsight-best valid XI (stands in for the model's predicted XI, which does not exist yet).
+     Countdown and win probability on the card are placeholders. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Saira:wdth,wght@75..100,500..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.155 0.028 275); --s1: oklch(0.195 0.032 275); --s2: oklch(0.235 0.036 275); --s3: oklch(0.27 0.04 275);
+    --border: oklch(1 0 0 / 8%); --fg: oklch(0.97 0.006 275); --muted: oklch(0.72 0.025 275);
+    --faint: oklch(0.58 0.025 275); --gold: oklch(0.84 0.15 85); --violet: oklch(0.68 0.19 295);
+    --pitch: oklch(0.42 0.09 150); --stripe: oklch(0.50 0.10 150); --live: oklch(0.75 0.13 230);
+    --gt: #C9A86A; --rcb: #EF4B5F;
+    --wk: #FDE68A; --bat: #BAE6FD; --ar: #DDD6FE; --bowl: #A7F3D0;
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+  }
+  :root[data-theme="light"] {
+    --bg: oklch(0.975 0.006 275); --s1: #fff; --s2: oklch(0.955 0.008 275); --s3: oklch(0.92 0.01 275);
+    --border: oklch(0.2 0.03 275 / 10%); --fg: oklch(0.2 0.035 275); --muted: oklch(0.48 0.03 275);
+    --faint: oklch(0.6 0.02 275); --gold: oklch(0.80 0.15 80); --violet: oklch(0.52 0.2 295);
+    --pitch: oklch(0.62 0.12 150); --stripe: oklch(0.66 0.12 150); --live: oklch(0.5 0.13 235);
+    --gt: #1B2133; --rcb: #C8102E;
+    --wk: #92400E; --bat: #075985; --ar: #5B21B6; --bowl: #065F46;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { min-height: 100vh; background: var(--bg); color: var(--fg); font: 400 14px/20px Geist, system-ui, sans-serif; overflow-x: hidden; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 360px at 50% -100px, oklch(0.55 0.16 285 / .35), transparent); }
+  :root[data-theme="light"] body::before { opacity: .35; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  .mono { font-family: "Geist Mono", ui-monospace, monospace; font-weight: 500; }
+
+  header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 16px;
+    border-bottom: 1px solid var(--border); background: color-mix(in oklch, var(--s1) 72%, transparent); backdrop-filter: blur(20px); }
+  .wordmark { font: 700 20px/1 Saira, sans-serif; font-stretch: 87.5%; margin-right: auto;
+    background: linear-gradient(90deg, #EC4899, #8B5CF6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hbtn { background: none; border: 1px solid var(--border); color: var(--fg); border-radius: 10px; height: 32px; padding: 0 10px;
+    font: 500 12px Geist; cursor: pointer; white-space: nowrap; }
+  .hbtn[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+  .hbtn:focus-visible, .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .hero { position: relative; max-width: 1280px; margin: 0 auto; padding: 16px 16px 32px; display: grid; gap: 20px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 960px) { .hero { grid-template-columns: 1.2fr 1fr; padding: 40px 32px; gap: 32px; } }
+
+  /* ---------- stage ---------- */
+  .stage-wrap { width: 100%; max-width: 720px; margin: 0 auto; }
+  .stage { position: relative; width: 100%; aspect-ratio: 358 / 500; overflow-x: clip; }
+  @media (min-width: 560px) { .stage { aspect-ratio: 720 / 540; } }
+  .field { position: absolute; border-radius: 50%; overflow: hidden;
+    background: repeating-linear-gradient(90deg, color-mix(in oklch, var(--pitch) 30%, transparent) 0 10%, color-mix(in oklch, var(--stripe) 26%, transparent) 10% 20%);
+    border: 1.5px solid color-mix(in oklch, var(--pitch) 65%, transparent); }
+  .field::before { content: ""; position: absolute; inset: 18%; border-radius: 50%; border: 1px dashed var(--border); }
+  .field::after { content: ""; position: absolute; left: 50%; top: 50%; width: 7%; height: 26%; transform: translate(-50%, -50%);
+    border-radius: 3px; background: color-mix(in oklch, #c9b27a 30%, transparent); }
+  .rowlbl { position: absolute; transform: translateY(-50%); font: 600 11px/14px Geist; letter-spacing: .06em; padding: 2px 6px; border-radius: 999px;
+    color: var(--c); background: color-mix(in oklch, var(--c) 14%, transparent); opacity: 0; transition: opacity .2s var(--ease); }
+  .benchlbl { position: absolute; font: 600 11px/14px Geist; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+  .benchlbl i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c); margin-right: 5px; vertical-align: 0; }
+
+  .tok { position: absolute; left: 0; top: 0; width: 0; height: 0; will-change: transform; }
+  .tok .in { position: absolute; left: 0; top: 0; transform: translate(-50%, -22px); display: flex; flex-direction: column; align-items: center; width: 84px; }
+  .av { position: relative; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--s2);
+    box-shadow: inset 0 0 0 3px var(--c); font: 700 14px/1 Saira; font-stretch: 87.5%; color: var(--fg); transition: transform .45s var(--ease); }
+  .tok.bench .av { transform: scale(.6); }
+  .tok.bench.dim { opacity: .35; }
+  .nm { margin-top: 4px; font: 600 12px/16px Geist; letter-spacing: -.01em; white-space: nowrap; max-width: 84px; overflow: hidden; text-overflow: ellipsis; }
+  .pt { margin-top: 2px; font: 700 12px/16px Saira; font-stretch: 87.5%; font-variant-numeric: tabular-nums; padding: 0 7px; border-radius: 999px; }
+  .tok .nm, .tok .pt { opacity: 0; transition: opacity .2s var(--ease); }
+  .tok.on .nm, .tok.on .pt { opacity: 1; }
+  .t0 { background: var(--s3); color: var(--fg); } .t1 { background: color-mix(in oklch, var(--violet) 35%, transparent); color: var(--fg); }
+  .t2 { background: var(--violet); color: #fff; } .t3 { background: color-mix(in oklch, var(--gold) 70%, transparent); color: #151A30; } .t4 { background: var(--gold); color: #151A30; }
+  .cv { position: absolute; right: -6px; top: -6px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+    font: 700 10px/1 Geist; transform: scale(0); opacity: 0; }
+  .cv.c { background: var(--gold); color: #151A30; }
+  .cv.vc { background: var(--s1); color: var(--fg); }
+  .cv.vc::before { content: ""; position: absolute; inset: -2px; border-radius: 50%; padding: 2px;
+    background: linear-gradient(90deg, #EC4899, #8B5CF6); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+  .cv.show { transform: scale(1); opacity: 1; }
+
+  .bar { margin-top: 12px; display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--s1); border: 1px solid var(--border); border-radius: 12px; }
+  .bar .k { font: 600 11px/14px Geist; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .bar .v { font: 700 20px/24px Saira; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+  .bar .split { font-size: 12px; color: var(--muted); }
+  .bar .total { margin-left: auto; text-align: right; }
+  .roll { display: inline-flex; font: 700 40px/44px Saira; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+  .digit { display: inline-block; height: 44px; overflow: hidden; }
+  .digit > span { display: block; transition: transform .3s var(--ease); }
+  .digit > span > span { display: block; height: 44px; }
+  .digit.sep { width: .28em; }
+  @media (max-width: 559px) { .nm { font-size: 11px; max-width: 74px; } .tok .in { width: 76px; } }
+  .caption { margin-top: 8px; font-size: 12px; color: var(--muted); text-align: center; }
+
+  /* ---------- next-match card (same as concept A) ---------- */
+  .card { position: relative; background: var(--s1); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+  .overline { font: 600 11px/14px Geist; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 16px 0 12px; }
+  .team { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .team.right { align-items: flex-end; text-align: right; }
+  .badge { width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center; font: 700 14px/1 Saira; font-stretch: 87.5%; }
+  .team-name { font: 650 28px/1 Saira, sans-serif; font-stretch: 87.5%; }
+  .team-name::after { content: ""; display: block; height: 2px; width: 32px; margin-top: 6px; border-radius: 2px; background: var(--c); }
+  .team.right .team-name::after { margin-left: auto; }
+  .vs { color: var(--faint); font: 500 14px Saira; }
+  .countdown { display: flex; gap: 8px; margin: 8px 0 16px; }
+  .cd { flex: 1; background: var(--s2); border-radius: 10px; padding: 8px 0; text-align: center; overflow: hidden; }
+  .cd b { display: block; font: 700 36px/40px Saira; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+  .cd span { font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .cd b.tick { animation: flip .32s var(--ease); }
+  @keyframes flip { from { transform: translateY(-40%); opacity: 0; } to { transform: none; opacity: 1; } }
+  .prob { margin: 4px 0 16px; }
+  .prob-bar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; background: var(--s2); }
+  .prob-bar span { display: block; height: 100%; transition: width .9s var(--ease); width: 0; }
+  .prob-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .prob-row b { color: var(--fg); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .chip { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .chip.state { color: var(--live); border-color: color-mix(in oklch, var(--live) 40%, transparent); }
+  .cta { display: flex; gap: 8px; }
+  .btn { flex: 1; height: 44px; border-radius: 10px; font: 600 14px Geist; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--fg); }
+  .btn.primary { background: var(--gold); color: #151A30; border: 0; }
+  .note { margin-top: 12px; font-size: 12px; color: var(--faint); }
+
+  .rm .digit > span, .rm .av, .rm .prob-bar span { transition: none !important; }
+  .rm .cd b.tick { animation: none; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header>
+  <span class="wordmark">Predict-11</span>
+  <button class="hbtn" id="replay">Replay</button>
+  <button class="hbtn" id="rm" aria-pressed="false">Reduced motion</button>
+  <button class="hbtn" id="theme" aria-label="Toggle light or dark theme">Theme</button>
+</header>
+
+<main class="hero" id="root">
+  <div class="stage-wrap">
+    <div class="stage" id="stage" role="img" aria-label="Fantasy XI for the IPL 2026 Final, GT v RCB: Jitesh Sharma (WK); Kohli (captain) and David (BAT); Rashid, Sundar, Arshad and V Iyer (AR); Rasikh Salam (vice-captain), Hazlewood, Bhuvneshwar and Rabada (BOWL). 1,103 points.">
+      <div class="field" id="field"></div>
+    </div>
+    <div class="bar" aria-live="polite">
+      <div><div class="k">Players</div><div class="v"><span id="cnt">0</span>/11</div></div>
+      <div class="split num" id="split">GT 0 · RCB 0</div>
+      <div class="total"><div class="k">Perfect XI · Dream11 pts</div><div class="roll" id="roll" aria-label="0 points"></div></div>
+    </div>
+    <div class="caption">IPL 2026 Final · GT v RCB · real lineups, actual Dream11 points (C ×2, VC ×1.5)</div>
+  </div>
+
+  <section class="card" aria-labelledby="next-title">
+    <div class="overline" id="next-title">Final · Narendra Modi Stadium, Ahmedabad</div>
+    <div class="teams">
+      <div class="team" style="--c: var(--gt)">
+        <div class="badge" style="background:#1B2133;color:#C9A86A;box-shadow:inset 0 0 0 1px #C9A86A55">GT</div>
+        <div class="team-name">GT</div>
+      </div>
+      <div class="vs">vs</div>
+      <div class="team right" style="--c: var(--rcb)">
+        <div class="badge" style="background:#C8102E;color:#fff">RCB</div>
+        <div class="team-name">RCB</div>
+      </div>
+    </div>
+    <div class="countdown" role="timer" aria-live="off" aria-label="Time to start">
+      <div class="cd"><b id="cd-h" class="num">00</b><span>hrs</span></div>
+      <div class="cd"><b id="cd-m" class="num">00</b><span>min</span></div>
+      <div class="cd"><b id="cd-s" class="num">00</b><span>sec</span></div>
+    </div>
+    <div class="prob">
+      <div class="prob-row"><span>GT <b class="num">47%</b></span><span>Win probability (model)</span><span><b class="num">53%</b> RCB</span></div>
+      <div class="prob-bar" aria-hidden="true"><span id="pa" style="background:var(--gt)"></span><span id="pb" style="background:var(--rcb)"></span></div>
+    </div>
+    <div class="chips">
+      <span class="chip state">XI confirmed · 19:00</span>
+      <span class="chip">Impact: Prasidh / V Iyer</span><span class="chip">Dew likely</span>
+    </div>
+    <div class="cta">
+      <button class="btn primary">Build my XI →</button>
+      <button class="btn">Match centre</button>
+    </div>
+    <p class="note">Prototype. Lineups, roles and points are real (Final, 31 May 2026). The pitch shows the hindsight-best XI in place of the model's prediction. Countdown and win % are placeholders.</p>
+  </section>
+</main>
+
+<script>
+const PLAYERS = /*DATA*/[{"n":"V Kohli","s":"Kohli","t":"RCB","r":"BAT","p":151,"x":true,"c":"C"},{"n":"Rasikh Salam","s":"Rasikh","t":"RCB","r":"BOWL","p":116,"x":true,"c":"VC"},{"n":"Rashid Khan","s":"Rashid","t":"GT","r":"AR","p":96,"x":true,"c":""},{"n":"Washington Sundar","s":"Sundar","t":"GT","r":"AR","p":84,"x":true,"c":""},{"n":"JR Hazlewood","s":"Hazlewood","t":"RCB","r":"BOWL","p":79,"x":true,"c":""},{"n":"Arshad Khan","s":"Arshad","t":"GT","r":"AR","p":78,"x":true,"c":""},{"n":"B Kumar","s":"Bhuvi","t":"RCB","r":"BOWL","p":75,"x":true,"c":""},{"n":"VR Iyer","s":"V Iyer","t":"RCB","r":"AR","p":74,"x":true,"c":""},{"n":"K Rabada","s":"Rabada","t":"GT","r":"BOWL","p":54,"x":true,"c":""},{"n":"TH David","s":"David","t":"RCB","r":"BAT","p":48,"x":true,"c":""},{"n":"KH Pandya","s":"Krunal","t":"RCB","r":"AR","p":46,"x":false,"c":""},{"n":"RM Patidar","s":"Patidar","t":"RCB","r":"BAT","p":45,"x":false,"c":""},{"n":"Mohammed Siraj","s":"Siraj","t":"GT","r":"BOWL","p":44,"x":false,"c":""},{"n":"JM Sharma","s":"Jitesh","t":"RCB","r":"WK","p":39,"x":true,"c":""},{"n":"N Sindhu","s":"Sindhu","t":"GT","r":"AR","p":36,"x":false,"c":""},{"n":"JC Buttler","s":"Buttler","t":"GT","r":"WK","p":35,"x":false,"c":""},{"n":"B Sai Sudharsan","s":"Sai Sudharsan","t":"GT","r":"BAT","p":24,"x":false,"c":""},{"n":"Shubman Gill","s":"Gill","t":"GT","r":"BAT","p":22,"x":false,"c":""},{"n":"JO Holder","s":"Holder","t":"GT","r":"AR","p":20,"x":false,"c":""},{"n":"R Tewatia","s":"Tewatia","t":"GT","r":"AR","p":15,"x":false,"c":""},{"n":"D Padikkal","s":"Padikkal","t":"RCB","r":"BAT","p":13,"x":false,"c":""},{"n":"R Shepherd","s":"Shepherd","t":"RCB","r":"AR","p":12,"x":false,"c":""},{"n":"JA Duffy","s":"Duffy","t":"RCB","r":"BOWL","p":10,"x":false,"c":""},{"n":"M Prasidh Krishna","s":"Prasidh","t":"GT","r":"BOWL","p":7,"x":false,"c":""}];
+(() => {
+  const root = document.getElementById('root');
+  const stage = document.getElementById('stage');
+  const field = document.getElementById('field');
+  const rmBtn = document.getElementById('rm');
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const syncRm = () => { root.classList.toggle('rm', reduce); rmBtn.setAttribute('aria-pressed', reduce); };
+  syncRm();
+
+  document.getElementById('theme').onclick = () => {
+    const r = document.documentElement; r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light';
+  };
+
+  const ROLES = ['WK', 'BAT', 'AR', 'BOWL'];
+  const ROLE_C = { WK: 'var(--wk)', BAT: 'var(--bat)', AR: 'var(--ar)', BOWL: 'var(--bowl)' };
+  const tier = p => p >= 80 ? 't4' : p >= 60 ? 't3' : p >= 40 ? 't2' : p >= 20 ? 't1' : 't0';
+  const initials = s => s.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+
+  // Bench order: by team, then role, then name. Picks: by role row, then points.
+  const bench = { GT: [], RCB: [] };
+  [...PLAYERS].sort((a, b) => ROLES.indexOf(a.r) - ROLES.indexOf(b.r) || a.s.localeCompare(b.s)).forEach(p => bench[p.t].push(p));
+  const picks = PLAYERS.filter(p => p.x).sort((a, b) => ROLES.indexOf(a.r) - ROLES.indexOf(b.r) || b.p - a.p);
+  const rows = ROLES.map(r => picks.filter(p => p.r === r));
+
+  // Build tokens.
+  const toks = new Map();
+  PLAYERS.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'tok bench';
+    el.innerHTML = `<div class="in"><div class="av" style="--c:var(--${p.t.toLowerCase()})">${initials(p.s)}${p.c ? `<span class="cv ${p.c.toLowerCase()}">${p.c}</span>` : ''}</div>
+      <div class="nm">${p.s}</div><div class="pt ${tier(p.p)}">${p.p}</div></div>`;
+    el.title = `${p.n} · ${p.t} · ${p.r} · ${p.p} pts`;
+    stage.appendChild(el);
+    toks.set(p, el);
+  });
+  const rowLbls = ROLES.map(r => { const d = document.createElement('div'); d.className = 'rowlbl'; d.textContent = r; d.style.setProperty('--c', ROLE_C[r]); stage.appendChild(d); return d; });
+  const benchLbls = ['GT', 'RCB'].map(t => { const d = document.createElement('div'); d.className = 'benchlbl'; d.innerHTML = `<i style="--c:var(--${t.toLowerCase()})"></i>${t} XI`; stage.appendChild(d); return d; });
+
+  // Layout: returns bench and pitch positions (px, relative to the stage).
+  let L;
+  function layout() {
+    const W = stage.clientWidth, H = stage.clientHeight, wide = W >= 540;
+    const benchPos = new Map(), pitchPos = new Map();
+    let fx, fy, fw, fh;
+    if (wide) {
+      const bw = 70; fx = bw + 8; fy = 0; fw = W - 2 * (bw + 8); fh = H;
+      ['GT', 'RCB'].forEach((t, side) => {
+        const cx = side ? W - bw / 2 : bw / 2;
+        benchLbls[side].style.left = cx + 'px'; benchLbls[side].style.top = (H * .5 - 3 * 40 - 20) + 'px';
+        const top = H * .5 - 3 * 40 + 20;
+        bench[t].forEach((p, i) => benchPos.set(p, [cx + (i % 2 ? 16 : -16), top + Math.floor(i / 2) * 40]));
+      });
+    } else {
+      fx = 0; fy = 56; fw = W; fh = H - 112;
+      ['GT', 'RCB'].forEach((t, side) => {
+        const y = side ? H - 18 : 18, n = bench[t].length, step = Math.min(28, (W - 20) / n);
+        benchLbls[side].style.left = '50%'; benchLbls[side].style.top = (side ? H - 50 : 36) + 'px';
+        bench[t].forEach((p, i) => benchPos.set(p, [W / 2 + (i - (n - 1) / 2) * step, y]));
+      });
+    }
+    Object.assign(field.style, { left: fx + 'px', top: fy + 'px', width: fw + 'px', height: fh + 'px' });
+    const ys = wide ? [.15, .37, .6, .82] : [.13, .36, .6, .83];
+    rows.forEach((row, ri) => {
+      const y = fy + fh * ys[ri];
+      // usable width of the oval at this height
+      const dy = (y - (fy + fh / 2)) / (fh / 2), half = (fw / 2) * Math.sqrt(Math.max(0, 1 - dy * dy)) * .92;
+      const slot = wide ? Math.min(104, (2 * half) / Math.max(row.length, 1)) : Math.min(80, (W - 44) / Math.max(row.length, 1));
+      const shift = wide ? 18 : 18;
+      row.forEach((p, i) => pitchPos.set(p, [fx + fw / 2 + (i - (row.length - 1) / 2) * slot + shift, y]));
+      const lbl = rowLbls[ri];
+      const firstX = fx + fw / 2 - (row.length - 1) / 2 * slot + shift;
+      lbl.style.left = Math.max(2, firstX - 22 - 44) + 'px'; lbl.style.top = (y - 2) + 'px';
+    });
+    L = { benchPos, pitchPos };
+  }
+
+  const place = (el, [x, y]) => { el.style.transform = `translate(${x}px, ${y}px)`; };
+
+  // Scoreboard roll.
+  const rollEl = document.getElementById('roll');
+  function renderRoll(n) {
+    const s = Math.round(n).toLocaleString('en-IN');
+    if (rollEl.dataset.len != s.length) {
+      rollEl.innerHTML = ''; rollEl.dataset.len = s.length;
+      for (const ch of s) {
+        const d = document.createElement('span'); d.className = 'digit' + (/\d/.test(ch) ? '' : ' sep');
+        d.innerHTML = /\d/.test(ch) ? `<span>${Array.from({ length: 10 }, (_, k) => `<span>${k}</span>`).join('')}</span>` : `<span><span>${ch}</span></span>`;
+        rollEl.appendChild(d);
+      }
+    }
+    [...s].forEach((ch, i) => { if (/\d/.test(ch)) rollEl.children[i].firstChild.style.transform = `translateY(${-44 * +ch}px)`; });
+    rollEl.setAttribute('aria-label', `${s} points`);
+  }
+
+  const cnt = document.getElementById('cnt'), split = document.getElementById('split');
+  let timers = [], anims = [];
+  function clearAll() { timers.forEach(clearTimeout); timers = []; anims.forEach(a => a.cancel()); anims = []; }
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  function setCount(landed) {
+    cnt.textContent = landed.length;
+    split.textContent = `GT ${landed.filter(p => p.t === 'GT').length} · RCB ${landed.filter(p => p.t === 'RCB').length}`;
+    renderRoll(landed.reduce((s, p) => s + p.p, 0));
+  }
+  const finalTotal = picks.reduce((s, p) => s + p.p * (p.c === 'C' ? 2 : p.c === 'VC' ? 1.5 : 1), 0);
+
+  function showFinal() {
+    PLAYERS.forEach(p => {
+      const el = toks.get(p);
+      if (p.x) { el.className = 'tok on'; place(el, L.pitchPos.get(p)); }
+      else { el.className = 'tok bench dim'; place(el, L.benchPos.get(p)); }
+      el.querySelector('.cv')?.classList.add('show');
+    });
+    rowLbls.forEach(l => l.style.opacity = 1);
+    setCount(picks); renderRoll(finalTotal);
+    window.__heroDone = true;
+  }
+
+  function run() {
+    clearAll(); window.__heroDone = false; layout();
+    if (reduce) {
+      // 120 ms opacity fade into the final frame.
+      showFinal();
+      anims.push(stage.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 120 }));
+      return;
+    }
+    // Reset to benches.
+    PLAYERS.forEach((p, i) => {
+      const el = toks.get(p); el.className = 'tok bench'; place(el, L.benchPos.get(p));
+      el.querySelector('.cv')?.classList.remove('show');
+      anims.push(el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 240, delay: i * 18, easing: 'ease-out', fill: 'backwards' }));
+    });
+    rowLbls.forEach(l => l.style.opacity = 0);
+    setCount([]);
+    at(500, () => { rowLbls.forEach(l => l.style.opacity = 1); PLAYERS.filter(p => !p.x).forEach(p => toks.get(p).classList.add('dim')); });
+    const landed = [];
+    const STAGGER = 110, DUR = 560, START = 650;
+    picks.forEach((p, i) => {
+      const el = toks.get(p), [x0, y0] = L.benchPos.get(p), [x1, y1] = L.pitchPos.get(p);
+      at(START + i * STAGGER, () => {
+        el.classList.remove('bench');
+        // Arc: lift toward the field centre on the way in; spring-ish overshoot (bounce ≈ .15).
+        const mx = (x0 + x1) / 2, my = Math.min(y0, y1) - 30;
+        const a = el.animate([
+          { transform: `translate(${x0}px, ${y0}px)` },
+          { transform: `translate(${mx}px, ${my}px)`, offset: .45 },
+          { transform: `translate(${x1}px, ${y1}px)` }
+        ], { duration: DUR, easing: 'cubic-bezier(0.34, 1.25, 0.64, 1)' });
+        place(el, [x1, y1]); anims.push(a);
+        a.finished.then(() => { el.classList.add('on'); landed.push(p); setCount(landed); }).catch(() => {});
+      });
+    });
+    const end = START + (picks.length - 1) * STAGGER + DUR + 250;
+    at(end, () => {
+      picks.filter(p => p.c).forEach((p, i) => {
+        const b = toks.get(p).querySelector('.cv');
+        anims.push(b.animate([{ transform: 'scale(.6)', opacity: 0 }, { transform: 'scale(1.12)', opacity: 1, offset: .7 }, { transform: 'scale(1)', opacity: 1 }],
+          { duration: 220, delay: i * 120, easing: 'cubic-bezier(0.2,0,0,1)', fill: 'backwards' }));
+        b.classList.add('show');
+      });
+    });
+    at(end + 380, () => renderRoll(finalTotal));
+    at(end + 760, () => { window.__heroDone = true; });
+  }
+
+  addEventListener('resize', () => { if (window.__heroDone) { layout(); showFinal(); } });
+  document.getElementById('replay').onclick = () => { run(); runCard(); };
+  rmBtn.onclick = () => { reduce = !reduce; syncRm(); run(); runCard(); };
+
+  // ---------- next-match card ----------
+  function runCard() {
+    const pa = document.getElementById('pa'), pb = document.getElementById('pb');
+    pa.style.transition = pb.style.transition = 'none'; pa.style.width = pb.style.width = '0';
+    void pa.offsetWidth; pa.style.transition = pb.style.transition = '';
+    requestAnimationFrame(() => { pa.style.width = '47%'; pb.style.width = '53%'; });
+  }
+  const start = Date.now() + (2 * 3600 + 41 * 60 + 17) * 1000;
+  const cd = k => document.getElementById('cd-' + k);
+  function set(el, v) {
+    v = String(v).padStart(2, '0'); if (el.textContent === v) return; el.textContent = v;
+    if (!reduce) { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); }
+  }
+  function tick() { const d = Math.max(0, Math.floor((start - Date.now()) / 1000)); set(cd('h'), Math.floor(d / 3600)); set(cd('m'), Math.floor(d / 60) % 60); set(cd('s'), d % 60); }
+  tick(); setInterval(tick, 1000);
+
+  const go = () => { run(); runCard(); };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
+})();
+</script>
+</body>
+</html>

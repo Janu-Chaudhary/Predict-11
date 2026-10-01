@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predict-11 Design Prototypes</title>
+<!-- Index of the landing-hero and loader prototypes for docs/DESIGN-DIRECTION.md §7. Open this file in a browser. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Saira:wdth,wght@75..100,500..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.155 0.028 275); --s1: oklch(0.195 0.032 275); --s2: oklch(0.235 0.036 275);
+    --border: oklch(1 0 0 / 8%); --fg: oklch(0.97 0.006 275); --muted: oklch(0.72 0.025 275);
+    --faint: oklch(0.58 0.025 275); --gold: oklch(0.84 0.15 85); --violet: oklch(0.68 0.19 295); --pos: oklch(0.78 0.16 155);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); font: 400 14px/20px Geist, system-ui, sans-serif; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 320px at 50% -80px, oklch(0.55 0.16 285 / .3), transparent); }
+  main { position: relative; max-width: 1280px; margin: 0 auto; padding: 32px 16px 48px; }
+  .wordmark { font: 700 20px/1 Saira, sans-serif; font-stretch: 87.5%;
+    background: linear-gradient(90deg, #EC4899, #8B5CF6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  h1 { font: 650 32px/36px Saira, sans-serif; font-stretch: 87.5%; margin: 12px 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 24px; max-width: 70ch; }
+  .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  a.card { display: flex; flex-direction: column; text-decoration: none; color: inherit; background: var(--s1); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color .2s; }
+  a.card:hover, a.card:focus-visible { border-color: color-mix(in oklch, var(--gold) 60%, transparent); outline: none; }
+  .thumb { aspect-ratio: 16 / 10; background: var(--s2); overflow: hidden; border-bottom: 1px solid var(--border); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+  .body { padding: 12px 16px 16px; }
+  .row { display: flex; align-items: baseline; gap: 8px; }
+  h2 { font: 600 16px/22px Geist; margin: 0; }
+  .tag { margin-left: auto; font: 600 11px/14px Geist; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; }
+  .tag.real { color: var(--pos); border-color: color-mix(in oklch, var(--pos) 40%, transparent); }
+  p { margin: 6px 0 0; color: var(--muted); }
+  .file { margin-top: 8px; font: 500 12px "Geist Mono", ui-monospace, monospace; color: var(--faint); }
+</style>
+</head>
+<body>
+<main>
+  <span class="wordmark">Predict-11</span>
+  <h1>Landing hero and loader prototypes</h1>
+  <p class="lead">Open each one to watch it play. Every hero has Replay and Reduced-motion controls and uses the same next-match card. Specs are in docs/DESIGN-DIRECTION.md §7. Screenshots are in screens/.</p>
+  <div class="grid">
+    <a class="card" href="hero-wagon-wheel.html">
+      <div class="thumb"><img src="screens/hero-wagon-wheel-desktop-end.png" alt="" loading="lazy"></div>
+      <div class="body"><div class="row"><h2>A · Wagon-Wheel Bloom</h2><span class="tag">synthetic</span></div>
+        <p>Scoring rays bloom from the striker's end, one shot at a time. This is the recommended hero.</p>
+        <div class="file">hero-wagon-wheel.html</div></div>
+    </a>
+    <a class="card" href="hero-wagon-wheel-real.html">
+      <div class="thumb"><img src="screens/hero-wagon-wheel-real-desktop-end.png" alt="" loading="lazy"></div>
+      <div class="body"><div class="row"><h2>A · Wagon wheel, real data</h2><span class="tag real">real</span></div>
+        <p>Concept A drawn from official shot directions: Kohli's 75* (42) in the 2026 Final.</p>
+        <div class="file">hero-wagon-wheel-real.html</div></div>
+    </a>
+    <a class="card" href="hero-xi-assembles.html">
+      <div class="thumb"><img src="screens/hero-xi-assembles-desktop-end.png" alt="" loading="lazy"></div>
+      <div class="body"><div class="row"><h2>B · XI Assembles</h2><span class="tag real">real</span></div>
+        <p>Eleven players from the Final (GT v RCB) fly from the benches onto the pitch, C and VC pop last, and the total rolls up.</p>
+        <div class="file">hero-xi-assembles.html</div></div>
+    </a>
+    <a class="card" href="hero-ball-field.html">
+      <div class="thumb"><img src="screens/hero-ball-field-desktop-end.png" alt="" loading="lazy"></div>
+      <div class="body"><div class="row"><h2>C · Ball Field → worm</h2><span class="tag real">real</span></div>
+        <p>Floodlight dust settles into the 2026 Final's two-innings worm. Each of the 233 balls is one particle.</p>
+        <div class="file">hero-ball-field.html</div></div>
+    </a>
+    <a class="card" href="loaders.html">
+      <div class="thumb"><img src="screens/loaders-desktop.png" alt="" loading="lazy"></div>
+      <div class="body"><div class="row"><h2>Loaders</h2><span class="tag">system</span></div>
+        <p>Seam-spin app loader, stumps-and-bails inline loader, floodlight-sweep skeleton and scoreboard roll.</p>
+        <div class="file">loaders.html</div></div>
+    </a>
+  </div>
+</main>
+</body>
+</html>

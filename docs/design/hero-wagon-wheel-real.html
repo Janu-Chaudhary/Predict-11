@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wagon Wheel Real</title>
+<!-- Copy of concept A (docs/DESIGN-DIRECTION.md §7.1) using REAL official shot data: V Kohli 75* (42) in the IPL 2026 Final
+     (RCB v GT, 31 May 2026). Source: cached Ellipse /wagon payload spikes/iplt20/samples/03/final_wagon_epr.json (spider_data:
+     field_direction in degrees, field_distance_percent, field_zone). The next-match card is still the synthetic CSK v MI sample. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@500&family=Saira:wdth,wght@75..100,500..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.155 0.028 275); --s1: oklch(0.195 0.032 275); --s2: oklch(0.235 0.036 275);
+    --border: oklch(1 0 0 / 8%); --fg: oklch(0.97 0.006 275); --muted: oklch(0.72 0.025 275);
+    --faint: oklch(0.58 0.025 275); --gold: oklch(0.84 0.15 85); --violet: oklch(0.68 0.19 295);
+    --pitch: oklch(0.42 0.09 150); --neg: oklch(0.70 0.19 25);
+    --a: #F9CD05; --b: #4C8EF0;
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+  }
+  :root[data-theme="light"] {
+    --bg: oklch(0.975 0.006 275); --s1: #fff; --s2: oklch(0.955 0.008 275);
+    --border: oklch(0.2 0.03 275 / 10%); --fg: oklch(0.2 0.035 275); --muted: oklch(0.48 0.03 275);
+    --faint: oklch(0.6 0.02 275); --gold: oklch(0.80 0.15 80); --violet: oklch(0.52 0.2 295);
+    --pitch: oklch(0.62 0.12 150); --a: #B8920A; --b: #004BA0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh; background: var(--bg); color: var(--fg);
+    font: 400 14px/20px Geist, system-ui, sans-serif; overflow-x: hidden;
+  }
+  body::before { /* floodlight glow */
+    content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 360px at 50% -100px, oklch(0.55 0.16 285 / .35), transparent);
+  }
+  :root[data-theme="light"] body::before { opacity: .35; }
+  .num { font-variant-numeric: tabular-nums lining-nums; }
+  header {
+    position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 12px;
+    height: 56px; padding: 0 16px; border-bottom: 1px solid var(--border);
+    background: color-mix(in oklch, var(--s1) 72%, transparent); backdrop-filter: blur(20px);
+  }
+  .wordmark { font: 700 20px/1 Saira, sans-serif; font-stretch: 87.5%;
+    background: linear-gradient(90deg, #EC4899, #8B5CF6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pill { margin-left: auto; font-size: 12px; color: var(--muted); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 999px; }
+  .pill b { color: var(--fg); font-weight: 600; }
+  button.theme[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+  .side { font: 600 11px Geist; letter-spacing: .06em; fill: var(--faint); }
+  .ray:hover { stroke-width: 3; opacity: 1; }
+  .wordmark { white-space: nowrap; } button.theme { white-space: nowrap; font-size: 12px; font-weight: 500; }
+  @media (max-width: 480px) { .pill { display: none; } #replay { margin-left: auto; } header { gap: 6px; } button.theme { padding: 0 8px; } }
+  button.theme { background: none; border: 1px solid var(--border); color: var(--fg); border-radius: 10px;
+    height: 32px; padding: 0 10px; font: inherit; cursor: pointer; }
+
+  .hero { position: relative; max-width: 1280px; margin: 0 auto; padding: 24px 16px 32px;
+    display: grid; gap: 24px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 960px) { .hero { grid-template-columns: 1.05fr 1fr; padding: 48px 32px; } }
+
+  .wheel-wrap { width: 100%; max-width: 560px; margin: 0 auto; }
+  .wheel-wrap svg { aspect-ratio: 1; }
+  svg.wheel { width: 100%; height: 100%; display: block; overflow: visible; }
+  .field { fill: color-mix(in oklch, var(--pitch) 22%, transparent); stroke: color-mix(in oklch, var(--pitch) 60%, transparent); stroke-width: 1.5; }
+  .ring { fill: none; stroke: var(--border); stroke-width: 1; stroke-dasharray: 3 5; }
+  .strip { fill: color-mix(in oklch, #c9b27a 35%, transparent); }
+  .ray { fill: none; stroke-linecap: round; }
+  .ray.r1 { stroke: var(--faint); stroke-width: 1; opacity: .55; }
+  .ray.r4 { stroke: var(--violet); stroke-width: 1.75; }
+  .ray.r6 { stroke: var(--gold); stroke-width: 2.25; }
+  .tip { r: 2.5; }
+  .wheel-caption { margin-top: 12px; text-align: center; font-size: 12px; color: var(--muted); }
+  .legend { display: inline-flex; gap: 12px; margin-left: 8px; }
+  .legend i { display: inline-block; width: 14px; height: 2px; vertical-align: middle; margin-right: 4px; border-radius: 2px; }
+
+  .card { position: relative; background: var(--s1); border: 1px solid var(--border); border-radius: 16px; padding: 20px; }
+  .overline { font: 600 11px/14px Geist; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; margin: 16px 0 12px; }
+  .team { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+  .team.right { align-items: flex-end; text-align: right; }
+  .badge { width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center;
+    font: 700 14px/1 Saira; font-stretch: 87.5%; }
+  .team-name { font: 650 28px/1 Saira, sans-serif; font-stretch: 87.5%; }
+  .team-name::after { content: ""; display: block; height: 2px; width: 32px; margin-top: 6px; border-radius: 2px; background: var(--c); }
+  .team.right .team-name::after { margin-left: auto; }
+  .vs { color: var(--faint); font: 500 14px Saira; }
+
+  .countdown { display: flex; gap: 8px; margin: 8px 0 16px; }
+  .cd { flex: 1; background: var(--s2); border-radius: 10px; padding: 8px 0; text-align: center; overflow: hidden; }
+  .cd b { display: block; font: 700 36px/40px Saira; font-stretch: 75%; font-variant-numeric: tabular-nums; }
+  .cd span { font-size: 11px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .cd b.tick { animation: flip .32s var(--ease); }
+  @keyframes flip { from { transform: translateY(-40%); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  .prob { margin: 4px 0 16px; }
+  .prob-bar { display: flex; height: 8px; border-radius: 999px; overflow: hidden; background: var(--s2); }
+  .prob-bar span { display: block; height: 100%; transition: width .9s var(--ease); width: 0; }
+  .prob-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .prob-row b { color: var(--fg); font-weight: 600; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .chip { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .chip.state { color: oklch(0.80 0.15 70); border-color: oklch(0.80 0.15 70 / 40%); }
+
+  .cta { display: flex; gap: 8px; }
+  .btn { flex: 1; height: 44px; border-radius: 10px; font: 600 14px Geist; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--fg); }
+  .btn.primary { background: var(--gold); color: #151A30; border: 0; }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .note { margin-top: 12px; font-size: 12px; color: var(--faint); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cd b.tick { animation: none; }
+    .prob-bar span { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <span class="wordmark">Predict-11</span>
+  <span class="pill">Data <b class="num">19:02</b> ✓</span>
+  <button class="theme" id="replay">Replay</button>
+  <button class="theme" id="rm" aria-pressed="false">Reduced motion</button>
+  <button class="theme" id="theme" aria-label="Toggle light or dark theme">Theme</button>
+</header>
+
+<main class="hero">
+  <div class="wheel-wrap">
+    <svg class="wheel" viewBox="-200 -200 400 400" role="img" aria-labelledby="wheel-title wheel-desc">
+      <title id="wheel-title">Wagon wheel: last match's top innings</title>
+      <desc id="wheel-desc">Real data. Virat Kohli, 75 not out off 42 balls, IPL 2026 Final: 32 scoring shots including 3 sixes and 9 fours.</desc>
+      <ellipse class="field" cx="0" cy="0" rx="190" ry="180"/>
+      <ellipse class="ring" cx="0" cy="0" rx="98" ry="92"/>
+      <rect class="strip" x="-7" y="-26" width="14" height="52" rx="2"/>
+      <text class="side" x="-150" y="-150" text-anchor="middle">LEG</text><text class="side" x="150" y="-150" text-anchor="middle">OFF</text>
+      <g id="rays"></g>
+    </svg>
+    <div class="wheel-caption">
+      Last match · Final · <b style="color:var(--fg)">V Kohli 75* (42)</b>
+      <span class="legend"><span><i style="background:var(--faint)"></i>1–3</span><span><i style="background:var(--violet)"></i>4</span><span><i style="background:var(--gold)"></i>6</span></span>
+    </div>
+  </div>
+
+  <section class="card" aria-labelledby="next-title">
+    <div class="overline" id="next-title">Next match · M42 · MA Chidambaram, Chennai</div>
+    <div class="teams">
+      <div class="team" style="--c: var(--a)">
+        <div class="badge" style="background:#F9CD05;color:#1A1A1A">CSK</div>
+        <div class="team-name">CSK</div>
+      </div>
+      <div class="vs">vs</div>
+      <div class="team right" style="--c: var(--b)">
+        <div class="badge" style="background:#004BA0;color:#fff">MI</div>
+        <div class="team-name">MI</div>
+      </div>
+    </div>
+
+    <div class="countdown" role="timer" aria-live="off" aria-label="Time to start">
+      <div class="cd"><b id="cd-h" class="num">00</b><span>hrs</span></div>
+      <div class="cd"><b id="cd-m" class="num">00</b><span>min</span></div>
+      <div class="cd"><b id="cd-s" class="num">00</b><span>sec</span></div>
+    </div>
+
+    <div class="prob">
+      <div class="prob-row"><span>CSK <b class="num">56%</b></span><span>Win probability (model)</span><span><b class="num">44%</b> MI</span></div>
+      <div class="prob-bar" aria-hidden="true"><span id="pa" style="background:var(--a)"></span><span id="pb" style="background:var(--b)"></span></div>
+    </div>
+
+    <div class="chips">
+      <span class="chip state">Provisional · XI at toss ~19:00</span>
+      <span class="chip">Par 182</span><span class="chip">Dew likely</span><span class="chip">Spin 58%</span>
+    </div>
+
+    <div class="cta">
+      <button class="btn primary">Build my XI →</button>
+      <button class="btn">Match centre</button>
+    </div>
+    <p class="note">Prototype. The wagon wheel is real official shot data (IPL 2026 Final, Ellipse wagon feed). The next-match card is a sample.</p>
+  </section>
+</main>
+
+<script>
+(() => {
+  let reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rmBtn = document.getElementById('rm'); rmBtn.setAttribute('aria-pressed', reduce);
+
+  // Theme toggle (prototype only).
+  document.getElementById('theme').onclick = () => {
+    const r = document.documentElement;
+    r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light';
+  };
+
+  // --- Real shots: [over (0-based), ball, runs, field_direction deg, field_distance_percent, field_zone, bowler]. ---
+  // Frame (calibrated against the commentary): 270 = straight back past the bowler, 0 = square leg for a right-hander,
+  // 90 = behind the keeper, 180 = point. Drawn from behind the striker: bowler at the top, leg side on the left for a RHB.
+  const SHOTS = [[2,1,4,52,100,1,"M Siraj"],[2,3,4,347,100,3,"M Siraj"],[2,4,1,287,30,4,"M Siraj"],[3,1,4,55,100,1,"KS Rabada"],[3,2,4,349,100,3,"KS Rabada"],[3,3,6,327,100,3,"KS Rabada"],[3,4,4,18,100,2,"KS Rabada"],[3,5,1,23,85,2,"KS Rabada"],[4,1,1,328,75,3,"M Siraj"],[5,6,6,47,100,1,"KS Rabada"],[6,4,1,292,65,4,"M Siraj"],[7,1,1,24,60,2,"JO Holder"],[7,4,1,297,65,4,"JO Holder"],[8,1,1,252,60,5,"Rashid Khan"],[8,4,1,18,80,2,"Rashid Khan"],[9,1,4,63,100,1,"JO Holder"],[9,3,1,338,80,3,"JO Holder"],[10,1,2,226,80,5,"Rashid Khan"],[10,2,1,31,75,2,"Rashid Khan"],[11,2,4,318,100,3,"Arshad Khan"],[11,3,1,144,75,7,"Arshad Khan"],[11,6,1,147,25,7,"Arshad Khan"],[12,1,1,241,60,5,"Rashid Khan"],[12,5,1,44,35,2,"Rashid Khan"],[13,3,1,273,80,4,"Arshad Khan"],[14,1,1,279,70,4,"M Prasidh Krishna"],[15,2,4,53,100,1,"Arshad Khan"],[15,3,1,215,70,6,"Arshad Khan"],[16,3,1,293,65,4,"Rashid Khan"],[17,2,1,124,80,8,"Arshad Khan"],[17,5,4,322,100,3,"Arshad Khan"],[17,6,6,310,100,4,"Arshad Khan"]];
+  const ZONE = { 1: 'fine leg', 2: 'square leg', 3: 'midwicket', 4: 'long on', 5: 'long off', 6: 'cover', 7: 'point', 8: 'third man' };
+  const g = document.getElementById('rays');
+  const NS = 'http://www.w3.org/2000/svg';
+  const origin = { x: 0, y: 20 }, RX = 190, RY = 180;
+  let anims = [], doneT = 0;
+  function draw() {
+    anims.forEach(a => a.cancel()); anims = []; g.textContent = ''; window.__heroDone = false; clearTimeout(doneT);
+    let last = 0;
+    SHOTS.forEach(([ov, ball, runs, dir, pct, zone, bowler], i) => {
+      const t = dir * Math.PI / 180, ux = -Math.cos(t), uy = Math.sin(t);
+      // distance from the striker to the rope along (ux, uy)
+      const A = (ux / RX) ** 2 + (uy / RY) ** 2, B = 2 * (origin.x * ux / RX ** 2 + origin.y * uy / RY ** 2), C = (origin.x / RX) ** 2 + (origin.y / RY) ** 2 - 1;
+      const edge = (-B + Math.sqrt(B * B - 4 * A * C)) / (2 * A) - 6;
+      const len = runs === 6 ? edge + 4 : runs === 4 ? edge - 2 : Math.max(24, edge * Math.min(pct, 96) / 100);
+      const x = origin.x + ux * len, y = origin.y + uy * len;
+      const bend = runs === 6 ? 18 : 6;
+      const cx = (origin.x + x) / 2 - uy * bend, cy = (origin.y + y) / 2 + ux * bend;
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', `M${origin.x},${origin.y} Q${cx},${cy} ${x},${y}`);
+      p.setAttribute('class', 'ray ' + (runs === 6 ? 'r6' : runs === 4 ? 'r4' : 'r1'));
+      const tt = document.createElementNS(NS, 'title');
+      tt.textContent = `${ov}.${ball} · ${bowler} → ${ZONE[zone]} · ${runs}`;
+      p.appendChild(tt); g.appendChild(p);
+      let tip = null;
+      if (runs >= 4) {
+        tip = document.createElementNS(NS, 'circle');
+        tip.setAttribute('cx', x); tip.setAttribute('cy', y); tip.setAttribute('r', 2.5);
+        tip.setAttribute('fill', runs === 6 ? 'var(--gold)' : 'var(--violet)');
+        tip.style.opacity = reduce ? 1 : 0; tip.style.transition = 'opacity .2s';
+        g.appendChild(tip);
+      }
+      if (!reduce) {
+        const L = p.getTotalLength();
+        const delay = 300 + i * 70, dur = runs >= 4 ? 520 : 360; // 32 shots in ball order, about 2.7 s total
+        last = Math.max(last, delay + dur);
+        const an = p.animate([{ strokeDasharray: L, strokeDashoffset: L }, { strokeDasharray: L, strokeDashoffset: 0 }],
+          { duration: dur, delay, easing: 'cubic-bezier(0.2,0,0,1)', fill: 'backwards' });
+        anims.push(an);
+        an.finished.then(() => { if (tip) tip.style.opacity = 1; }).catch(() => {});
+      }
+    });
+    doneT = setTimeout(() => { window.__heroDone = true; }, last + 50);
+  }
+  draw();
+
+  // --- Win-probability bar fills after first paint. ---
+  function fillBar() {
+    const pa = document.getElementById('pa'), pb = document.getElementById('pb');
+    pa.style.transition = pb.style.transition = 'none'; pa.style.width = pb.style.width = '0'; void pa.offsetWidth;
+    pa.style.transition = pb.style.transition = reduce ? 'none' : '';
+    requestAnimationFrame(() => { pa.style.width = '56%'; pb.style.width = '44%'; });
+  }
+  fillBar();
+  document.getElementById('replay').onclick = () => { draw(); fillBar(); };
+  rmBtn.onclick = () => { reduce = !reduce; rmBtn.setAttribute('aria-pressed', reduce); draw(); fillBar(); };
+
+  // --- Countdown with flip on change (sample start = now + 3h 14m). ---
+  const start = Date.now() + (3 * 3600 + 14 * 60 + 9) * 1000;
+  const els = { h: cd('h'), m: cd('m'), s: cd('s') };
+  function cd(k) { return document.getElementById('cd-' + k); }
+  function set(el, v) {
+    v = String(v).padStart(2, '0');
+    if (el.textContent === v) return;
+    el.textContent = v;
+    if (!reduce) { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); }
+  }
+  function tick() {
+    const d = Math.max(0, Math.floor((start - Date.now()) / 1000));
+    set(els.h, Math.floor(d / 3600)); set(els.m, Math.floor(d / 60) % 60); set(els.s, d % 60);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
