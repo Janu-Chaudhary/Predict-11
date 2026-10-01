@@ -1,0 +1,21 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env: {POSTGRES_USER: p11, POSTGRES_PASSWORD: p11, POSTGRES_DB: p11}
+        ports: ["5433:5432"]
+        options: --health-cmd "pg_isready -U p11" --health-interval 3s --health-retries 20
+    defaults:
+      run: {working-directory: backend}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync
+      - run: uv run ruff check src tests
+      - run: uv run alembic upgrade head
+      - run: uv run pytest -q

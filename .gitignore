@@ -21,3 +21,9 @@ data/raw/*.csv
 spikes/.venv/
 spikes/**/samples/
 spikes/**/.venv-libs/
+.env
+data/archive/
+data/lake/
+backend/.venv/
+web/node_modules/
+web/.next/

@@ -1,0 +1,21 @@
+name: predict11
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: p11
+      POSTGRES_PASSWORD: p11
+      POSTGRES_DB: p11
+    ports:
+      - "127.0.0.1:5433:5432"   # localhost only; 5432 is taken by the host's own Postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U p11 -d p11"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  pgdata:
