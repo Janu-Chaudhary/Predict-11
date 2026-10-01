@@ -804,3 +804,13 @@ the system-status signal without movement. Heroes render their final frame. Skel
 4. Restyle the existing `TeamBadge`, `RoleChip`, `RangeBar`, `PitchView` and `FreshnessBadge` before
    building new screens, so every new screen inherits the grammar.
 5. Update the nav to Home / Matches / Build / Table / More, with routes per §3.1.
+
+## 8. Owner decision: landing hero (2026-10-02)
+
+**Rotate by match state** (prototypes in `docs/design/`):
+- **Before a match** (fixture known, until result): **B, XI assembles**. Shows the predicted XI with C/VC and projected total,
+  switching from "Provisional" to "XI confirmed" at toss. CTA → Build.
+- **After a match** (until the next fixture's toss window): **A, wagon wheel** of the last match's top innings when
+  official shot data exists (2025+). Otherwise **C, particle worm** of the last match.
+- Off-season: C on the season final.
+All three share the next-match card and honour prefers-reduced-motion with static final frames.
