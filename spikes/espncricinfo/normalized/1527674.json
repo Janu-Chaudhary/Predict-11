@@ -16,10 +16,11 @@
   "super_over": {},
   "unknown_wicket_kinds": [],
   "scrape": {
-   "requests": 10,
+   "requests": 0,
    "retries_5xx": 0,
-   "cache_hits": 0,
-   "seconds": 9.8
+   "cache_hits": 10,
+   "status": {},
+   "seconds": 0.0
   }
  },
  "toss": {

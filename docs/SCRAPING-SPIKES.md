@@ -103,6 +103,27 @@ without it 8/10 XIs fail — all mismatches were identity, none were scraping er
   super over only in prose.
 - The checker itself had weak toss/ball checks. These were fixed and all three sources re-scored.
 
+## Full-season run, IPL 2026, 74 matches (2026-10-02, re-verified)
+
+| Source | Toss | XI | Innings | Player-stat mismatch matches | Ball-field diffs | Cost |
+|---|---|---|---|---|---|---|
+| stats.bcci.tv | 74/74 | 74/74 | 74/74 | 2 | 11 in 5 matches (of 17,527 balls) | ~160 req full season, 0 errors |
+| Cricbuzz (6 overrides) | 74/74 | 74/74 | 73/74 | 2 | ~17 in 8 matches | 295 req / 5.5 min, 0 errors |
+| ESPN | pending | | | | | |
+
+All 74 matches map 1:1 by date + both teams on both sources.
+
+**Cricsheet is not always right.** In 1527679 (catch: Kishan vs c&b), 1527678 (Pant run-out
+fielder missing) and 1527687 (incoming batter after a run-out), BCCI **and** Cricbuzz agree with
+each other against Cricsheet. → Merge policy changed: **per-field majority vote across sources
+(Cricsheet = one vote, tie-break priority BCCI > Cricsheet > ESPN > Cricbuzz), disagreements kept
+with evidence and flagged** — not "Cricsheet overwrites".
+
+Other source-level quirks found: Cricbuzz commentary can miss a delivery its own scorecard counts
+(1527691 wide); BCCI attaches retirements to the next ball; BCCI initials-style names collide
+(K Sharma) → prefer full-name resolution; run-out credit differs between sources (direct hit vs
+involvement) → matters for Dream11 run-out points.
+
 ## Still untested
 - How early the XI appears on each site before a live match (off-season now) → test on the next
   live T20 (any series) before IPL 2027.

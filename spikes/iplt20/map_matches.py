@@ -1,6 +1,6 @@
 """Map Cricsheet match ids -> BCCI (stats.bcci.tv) match UUIDs using date AND both team names.
 
-usage: map_matches.py <cricsheet_id> [...]   -> writes samples/raw/match_map.json, prints mapping
+usage: map_matches.py <cricsheet_id> [...] | --all   -> writes samples/raw/match_map.json, prints mapping
 """
 import csv
 import json
@@ -36,6 +36,8 @@ def results(gid):
 
 def main(ids):
     idx = {r["file"].split(".")[0]: r for r in csv.DictReader(open(TSV), delimiter="\t")}
+    if ids == ["--all"]:
+        ids = list(idx)
     gid = season_gid()
     ms = results(gid)
     mapping = {}
@@ -52,6 +54,13 @@ def main(ids):
         mapping[cs] = m["gid"]
         print(f"{cs}\t{m['gid']}\t{m['start_date']}\t{m['match_short_name']}\t{m['match_status']}\t"
               f"{m['result_name']}\t{m['result_string']}")
+    used = [g for g in mapping.values() if g]
+    dup = {g for g in used if used.count(g) > 1}
+    unused = [m["gid"] for m in ms if m["gid"] not in used]
+    print(f"mapped {len(used)}/{len(ids)}; duplicate UUIDs: {sorted(dup)}; BCCI matches unmapped: {len(unused)}")
+    for m in ms:
+        if m["gid"] in unused:
+            print("  unmapped BCCI:", m["gid"], m["start_date"], m["team1_name"], "v", m["team2_name"])
     (RAW / "match_map.json").write_text(json.dumps(mapping, indent=1))
     print(f"results list: {len(ms)} matches, comp_gid={gid}")
 

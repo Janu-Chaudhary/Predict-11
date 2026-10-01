@@ -28,7 +28,7 @@ ESPN_PBP = "https://site.web.api.espn.com/apis/site/v2/sports/cricket/8676/playb
 CI_MATCH = "https://www.espncricinfo.com/matches/engine/match/{id}.html"
 MIN_GAP = 1.05  # seconds between requests (<= 1 req/s)
 
-STATS = {"requests": 0, "retries_5xx": 0, "cache_hits": 0}
+STATS = {"requests": 0, "retries_5xx": 0, "cache_hits": 0, "status": {}}
 _session = None
 _last = [0.0]
 
@@ -47,7 +47,7 @@ def _get(url, params=None):
     if _session is None:
         _session = cr.Session(impersonate="chrome")
     delay = 2.0
-    for attempt in range(7):
+    for attempt in range(10):
         wait = MIN_GAP - (time.time() - _last[0])
         if wait > 0:
             time.sleep(wait)
@@ -58,13 +58,19 @@ def _get(url, params=None):
         except Exception as e:  # network hiccup -> treat like 5xx
             print(f"   ! {e!r}", file=sys.stderr)
             r = None
+        k = str(r.status_code) if r is not None else "ERR"
+        STATS["status"][k] = STATS["status"].get(k, 0) + 1
+        with open(RAW / "_requests.jsonl", "a") as fh:  # persistent request log (survives restarts)
+            fh.write(json.dumps({"t": round(_last[0], 2), "dt": round(time.time() - _last[0], 2), "url": url,
+                                 "params": params, "status": k,
+                                 "body": r.text[:40] if r is not None and r.status_code >= 400 else None}) + "\n")
         if r is not None and r.status_code < 500:
             return r
         STATS["retries_5xx"] += 1
         print(f"   {r.status_code if r is not None else 'ERR'} {(r.text[:60] if r is not None else '')!r} "
               f"retry {attempt + 1} in {delay:.0f}s", file=sys.stderr)
         time.sleep(delay)
-        delay *= 2
+        delay = min(delay * 2, 60)
     raise RuntimeError(f"giving up on {url} {params}")
 
 

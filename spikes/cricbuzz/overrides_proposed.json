@@ -1,0 +1,7 @@
+{
+  "_doc": "Proposed additions to spikes/compare/overrides.json (Cricbuzz display name -> Cricsheet name). Both are ambiguous under name_compatible only in matches where a same-surname player is also in the registry. Verified against Cricsheet stats in the failing match.",
+  "Sarfaraz Khan": {"cricsheet": "SN Khan", "cricsheet_id": "f088b960", "cricbuzz_id": "9429",
+                    "evidence": "1529280 (CSK v GT): ambiguous with M Shahrukh Khan; Cricbuzz impact_in for CSK, 0 (1) in both sources; SN Khan cricinfo 642525"},
+  "Mukul Choudhary": {"cricsheet": "MD Choudhary", "cricsheet_id": "1c84109e", "cricbuzz_id": "39219",
+                      "evidence": "1529302 (LSG v CSK): ambiguous with Mukesh Choudhary (CSK); LSG XI, 13 (10) + 1 catch in both sources; MD Choudhary cricinfo 1354217"}
+}

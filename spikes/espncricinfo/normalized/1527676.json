@@ -1,0 +1,4190 @@
+{
+ "source": "espn",
+ "source_match_id": "1527676",
+ "cricsheet_id": "1527676",
+ "meta": {
+  "title": "3rd Match",
+  "status": "RR won by 8 wickets (with 47 balls remaining)",
+  "url": "https://www.cricinfo.com/series/ipl-2026-1510719/rajasthan-royals-vs-chennai-super-kings-3rd-match-1527676/full-scorecard",
+  "pbp_items": 199,
+  "pbp_skipped": 0,
+  "nonstriker_feed_vs_reconstruction": {
+   "agree": 199,
+   "disagree": 0,
+   "feed_missing": 0
+  },
+  "super_over": {},
+  "unknown_wicket_kinds": [],
+  "scrape": {
+   "requests": 6,
+   "retries_5xx": 0,
+   "cache_hits": 24,
+   "status": {
+    "200": 6
+   },
+   "seconds": 9.4
+  }
+ },
+ "toss": {
+  "winner": "Rajasthan Royals",
+  "decision": "field"
+ },
+ "players": [
+  {
+   "team": "Chennai Super Kings",
+   "name": "Sanju Samson",
+   "source_id": "425943",
+   "cricinfo_id": "425943",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Ruturaj Gaikwad",
+   "source_id": "1060380",
+   "cricinfo_id": "1060380",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Ayush Mhatre",
+   "source_id": "1452455",
+   "cricinfo_id": "1452455",
+   "status": "impact_out"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Matthew Short",
+   "source_id": "605575",
+   "cricinfo_id": "605575",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Sarfaraz Khan",
+   "source_id": "642525",
+   "cricinfo_id": "642525",
+   "status": "impact_in"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Kartik Sharma",
+   "source_id": "1459392",
+   "cricinfo_id": "1459392",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Shivam Dube",
+   "source_id": "714451",
+   "cricinfo_id": "714451",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Jamie Overton",
+   "source_id": "510530",
+   "cricinfo_id": "510530",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Noor Ahmad",
+   "source_id": "1182529",
+   "cricinfo_id": "1182529",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Matt Henry",
+   "source_id": "506612",
+   "cricinfo_id": "506612",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Anshul Kamboj",
+   "source_id": "1175428",
+   "cricinfo_id": "1175428",
+   "status": "xi"
+  },
+  {
+   "team": "Chennai Super Kings",
+   "name": "Khaleel Ahmed",
+   "source_id": "942645",
+   "cricinfo_id": "942645",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Yashasvi Jaiswal",
+   "source_id": "1151278",
+   "cricinfo_id": "1151278",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Vaibhav Sooryavanshi",
+   "source_id": "1408688",
+   "cricinfo_id": "1408688",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Dhruv Jurel",
+   "source_id": "1175488",
+   "cricinfo_id": "1175488",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Riyan Parag",
+   "source_id": "1079434",
+   "cricinfo_id": "1079434",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Shimron Hetmyer",
+   "source_id": "670025",
+   "cricinfo_id": "670025",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Ravindra Jadeja",
+   "source_id": "234675",
+   "cricinfo_id": "234675",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Jofra Archer",
+   "source_id": "669855",
+   "cricinfo_id": "669855",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Nandre Burger",
+   "source_id": "971349",
+   "cricinfo_id": "971349",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Sandeep Sharma",
+   "source_id": "438362",
+   "cricinfo_id": "438362",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Ravi Bishnoi",
+   "source_id": "1175441",
+   "cricinfo_id": "1175441",
+   "status": "xi"
+  },
+  {
+   "team": "Rajasthan Royals",
+   "name": "Brijesh Sharma",
+   "source_id": "1515046",
+   "cricinfo_id": "1515046",
+   "status": "xi"
+  }
+ ],
+ "deliveries": [
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 1,
+   "batter": "Sanju Samson",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ruturaj Gaikwad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "425943",
+    "bowler": "669855",
+    "non_striker": "1060380"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 2,
+   "batter": "Sanju Samson",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ruturaj Gaikwad",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "425943",
+    "bowler": "669855",
+    "non_striker": "1060380"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 3,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Sanju Samson",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "425943"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 4,
+   "batter": "Sanju Samson",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ruturaj Gaikwad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "425943",
+    "bowler": "669855",
+    "non_striker": "1060380"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 5,
+   "batter": "Sanju Samson",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ruturaj Gaikwad",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "425943",
+    "bowler": "669855",
+    "non_striker": "1060380"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 6,
+   "batter": "Sanju Samson",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ruturaj Gaikwad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "425943",
+    "bowler": "669855",
+    "non_striker": "1060380"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 1,
+   "batter": "Sanju Samson",
+   "bowler": "Nandre Burger",
+   "non_striker": "Ruturaj Gaikwad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "425943",
+    "bowler": "971349",
+    "non_striker": "1060380"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 2,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Nandre Burger",
+   "non_striker": "Sanju Samson",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "971349",
+    "non_striker": "425943"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 3,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Nandre Burger",
+   "non_striker": "Sanju Samson",
+   "batter_runs": 0,
+   "extras": 4,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "971349",
+    "non_striker": "425943"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 4,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Nandre Burger",
+   "non_striker": "Sanju Samson",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "971349",
+    "non_striker": "425943"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 5,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Nandre Burger",
+   "non_striker": "Sanju Samson",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "971349",
+    "non_striker": "425943"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 6,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Nandre Burger",
+   "non_striker": "Sanju Samson",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "971349",
+    "non_striker": "425943"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 7,
+   "batter": "Sanju Samson",
+   "bowler": "Nandre Burger",
+   "non_striker": "Ruturaj Gaikwad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "bowled",
+   "player_out": "Sanju Samson",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "425943",
+    "bowler": "971349",
+    "non_striker": "1060380"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 1,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ayush Mhatre",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "1452455"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 2,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ayush Mhatre",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "1452455"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 3,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ayush Mhatre",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "1452455"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 4,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ayush Mhatre",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "1452455"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 5,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ayush Mhatre",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "1452455"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 6,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ayush Mhatre",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "1452455"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 7,
+   "batter": "Ruturaj Gaikwad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Ayush Mhatre",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "bowled",
+   "player_out": "Ruturaj Gaikwad",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1060380",
+    "bowler": "669855",
+    "non_striker": "1452455"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 1,
+   "batter": "Ayush Mhatre",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matthew Short",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Ayush Mhatre",
+   "fielders": [
+    "Dhruv Jurel"
+   ],
+   "cricinfo": {
+    "batter": "1452455",
+    "bowler": "971349",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 2,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matthew Short",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "971349",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 3,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matthew Short",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "971349",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 4,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matthew Short",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "971349",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 5,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matthew Short",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "971349",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 6,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matthew Short",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "971349",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 7,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matthew Short",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "971349",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 1,
+   "batter": "Matthew Short",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "1515046",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 2,
+   "batter": "Matthew Short",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "1515046",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 3,
+   "batter": "Matthew Short",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "1515046",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 4,
+   "batter": "Matthew Short",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "1515046",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 5,
+   "batter": "Matthew Short",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "1515046",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 6,
+   "batter": "Matthew Short",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "1515046",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 7,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Matthew Short",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "1515046",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 1,
+   "batter": "Matthew Short",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "438362",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 2,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Matthew Short",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "438362",
+    "non_striker": "605575"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 3,
+   "batter": "Matthew Short",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Matthew Short",
+   "fielders": [
+    "Yashasvi Jaiswal"
+   ],
+   "cricinfo": {
+    "batter": "605575",
+    "bowler": "438362",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 4,
+   "batter": "Kartik Sharma",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "438362",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 5,
+   "batter": "Kartik Sharma",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "438362",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 6,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "438362",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 1,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 2,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 3,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "1175441",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 4,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 5,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "1175441",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 6,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Sarfaraz Khan",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "642525"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 1,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 2,
+   "batter": "Sarfaraz Khan",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "lbw",
+   "player_out": "Sarfaraz Khan",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "642525",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 3,
+   "batter": "Shivam Dube",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "714451",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 4,
+   "batter": "Shivam Dube",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "714451",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 5,
+   "batter": "Shivam Dube",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "714451",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 6,
+   "batter": "Shivam Dube",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Shivam Dube",
+   "fielders": [
+    "Ravi Bishnoi"
+   ],
+   "cricinfo": {
+    "batter": "714451",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 1,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 2,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 3,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 4,
+   "batter": "Jamie Overton",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "1175441",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 5,
+   "batter": "Jamie Overton",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "1175441",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 6,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 1,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "234675",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 2,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "234675",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 3,
+   "batter": "Kartik Sharma",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "234675",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 4,
+   "batter": "Jamie Overton",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 5,
+   "batter": "Jamie Overton",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 6,
+   "batter": "Jamie Overton",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "234675",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Kartik Sharma",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "1515046",
+    "non_striker": "1459392"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 2,
+   "batter": "Kartik Sharma",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 3,
+   "batter": "Kartik Sharma",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 4,
+   "batter": "Kartik Sharma",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "lbw",
+   "player_out": "Kartik Sharma",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1459392",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 5,
+   "batter": "Noor Ahmad",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 6,
+   "batter": "Noor Ahmad",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 7,
+   "batter": "Noor Ahmad",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Noor Ahmad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "234675",
+    "non_striker": "1182529"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 2,
+   "batter": "Noor Ahmad",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "234675",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 3,
+   "batter": "Jamie Overton",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Noor Ahmad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "234675",
+    "non_striker": "1182529"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 4,
+   "batter": "Jamie Overton",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Noor Ahmad",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "234675",
+    "non_striker": "1182529"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 5,
+   "batter": "Jamie Overton",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Noor Ahmad",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "234675",
+    "non_striker": "1182529"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 6,
+   "batter": "Noor Ahmad",
+   "bowler": "Ravindra Jadeja",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "234675",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Jofra Archer",
+   "non_striker": "Noor Ahmad",
+   "batter_runs": 3,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "669855",
+    "non_striker": "1182529"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 2,
+   "batter": "Noor Ahmad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "669855",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 3,
+   "batter": "Noor Ahmad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "669855",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 4,
+   "batter": "Noor Ahmad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "669855",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 5,
+   "batter": "Noor Ahmad",
+   "bowler": "Jofra Archer",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Noor Ahmad",
+   "fielders": [
+    "Dhruv Jurel"
+   ],
+   "cricinfo": {
+    "batter": "1182529",
+    "bowler": "669855",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 6,
+   "batter": "Matt Henry",
+   "bowler": "Jofra Archer",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "506612",
+    "bowler": "669855",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matt Henry",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 2,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matt Henry",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 3,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matt Henry",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 4,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matt Henry",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 5,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matt Henry",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 6,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matt Henry",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 7,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Matt Henry",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Matt Henry",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "1515046",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 2,
+   "batter": "Matt Henry",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "506612",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 3,
+   "batter": "Matt Henry",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "506612",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 4,
+   "batter": "Matt Henry",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "506612",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 5,
+   "batter": "Matt Henry",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "506612",
+    "bowler": "1515046",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 6,
+   "batter": "Jamie Overton",
+   "bowler": "Brijesh Sharma",
+   "non_striker": "Matt Henry",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "1515046",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Matt Henry",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "1175441",
+    "non_striker": "506612"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 2,
+   "batter": "Matt Henry",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "506612",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 3,
+   "batter": "Matt Henry",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught and bowled",
+   "player_out": "Matt Henry",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "506612",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 4,
+   "batter": "Anshul Kamboj",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 5,
+   "batter": "Anshul Kamboj",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 6,
+   "batter": "Anshul Kamboj",
+   "bowler": "Ravi Bishnoi",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "1175441",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Jofra Archer",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "669855",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 2,
+   "batter": "Jamie Overton",
+   "bowler": "Jofra Archer",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "669855",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 3,
+   "batter": "Jamie Overton",
+   "bowler": "Jofra Archer",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "669855",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 4,
+   "batter": "Jamie Overton",
+   "bowler": "Jofra Archer",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "669855",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 5,
+   "batter": "Jamie Overton",
+   "bowler": "Jofra Archer",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "669855",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 6,
+   "batter": "Jamie Overton",
+   "bowler": "Jofra Archer",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "669855",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "438362",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 2,
+   "batter": "Jamie Overton",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "438362",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 3,
+   "batter": "Anshul Kamboj",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "438362",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 4,
+   "batter": "Jamie Overton",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "438362",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 5,
+   "batter": "Anshul Kamboj",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "438362",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 6,
+   "batter": "Jamie Overton",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "438362",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 2,
+   "batter": "Anshul Kamboj",
+   "bowler": "Nandre Burger",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "noballs",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "971349",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 3,
+   "batter": "Anshul Kamboj",
+   "bowler": "Nandre Burger",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "971349",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 4,
+   "batter": "Anshul Kamboj",
+   "bowler": "Nandre Burger",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "971349",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 5,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 6,
+   "batter": "Anshul Kamboj",
+   "bowler": "Nandre Burger",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "971349",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 7,
+   "batter": "Jamie Overton",
+   "bowler": "Nandre Burger",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "971349",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 19,
+   "ball": 1,
+   "batter": "Jamie Overton",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "438362",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 19,
+   "ball": 2,
+   "batter": "Jamie Overton",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "438362",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 19,
+   "ball": 3,
+   "batter": "Anshul Kamboj",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Jamie Overton",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175428",
+    "bowler": "438362",
+    "non_striker": "510530"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 19,
+   "ball": 4,
+   "batter": "Jamie Overton",
+   "bowler": "Sandeep Sharma",
+   "non_striker": "Anshul Kamboj",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "run out",
+   "player_out": "Anshul Kamboj",
+   "fielders": [
+    "Shimron Hetmyer",
+    "Dhruv Jurel"
+   ],
+   "cricinfo": {
+    "batter": "510530",
+    "bowler": "438362",
+    "non_striker": "1175428"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 3,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 4,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 5,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 6,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 1,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 3,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 4,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 5,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 6,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 3,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 4,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 5,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 6,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 1,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 3,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 4,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 5,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 6,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1175428",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1175428",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 3,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 4,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 5,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 6,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 4,
+   "extra_type": "byes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1182529",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1182529",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 3,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1182529",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 4,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1182529",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 5,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1182529",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 6,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1182529",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Vaibhav Sooryavanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1175428",
+    "non_striker": "1408688"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 2,
+   "batter": "Vaibhav Sooryavanshi",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Vaibhav Sooryavanshi",
+   "fielders": [
+    "Sarfaraz Khan"
+   ],
+   "cricinfo": {
+    "batter": "1408688",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 3,
+   "batter": "Dhruv Jurel",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 4,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Dhruv Jurel",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1175428",
+    "non_striker": "1175488"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 5,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Dhruv Jurel",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1175428",
+    "non_striker": "1175488"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 6,
+   "batter": "Dhruv Jurel",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Jamie Overton",
+   "non_striker": "Dhruv Jurel",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "510530",
+    "non_striker": "1175488"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 2,
+   "batter": "Dhruv Jurel",
+   "bowler": "Jamie Overton",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "510530",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 3,
+   "batter": "Dhruv Jurel",
+   "bowler": "Jamie Overton",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "510530",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 4,
+   "batter": "Dhruv Jurel",
+   "bowler": "Jamie Overton",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "510530",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 5,
+   "batter": "Dhruv Jurel",
+   "bowler": "Jamie Overton",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "510530",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 6,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Jamie Overton",
+   "non_striker": "Dhruv Jurel",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "510530",
+    "non_striker": "1175488"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 1,
+   "batter": "Dhruv Jurel",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 2,
+   "batter": "Dhruv Jurel",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 3,
+   "batter": "Dhruv Jurel",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "bowled",
+   "player_out": "Dhruv Jurel",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175488",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 4,
+   "batter": "Riyan Parag",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "1175428",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 5,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1175428",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 6,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Anshul Kamboj",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1175428",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 1,
+   "batter": "Riyan Parag",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "942645",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 3,
+   "batter": "Riyan Parag",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 4,
+   "batter": "Riyan Parag",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 5,
+   "batter": "Riyan Parag",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 6,
+   "batter": "Riyan Parag",
+   "bowler": "Khaleel Ahmed",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "942645",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1182529",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 2,
+   "batter": "Riyan Parag",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "1182529",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 3,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1182529",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 4,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "1182529",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 5,
+   "batter": "Riyan Parag",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "1182529",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 6,
+   "batter": "Riyan Parag",
+   "bowler": "Noor Ahmad",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "1182529",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 2,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 3,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 4,
+   "batter": "Riyan Parag",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 5,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matt Henry",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "506612",
+    "non_striker": "1079434"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 6,
+   "batter": "Riyan Parag",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 7,
+   "batter": "Riyan Parag",
+   "bowler": "Matt Henry",
+   "non_striker": "Yashasvi Jaiswal",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1079434",
+    "bowler": "506612",
+    "non_striker": "1151278"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 12,
+   "ball": 1,
+   "batter": "Yashasvi Jaiswal",
+   "bowler": "Matthew Short",
+   "non_striker": "Riyan Parag",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151278",
+    "bowler": "605575",
+    "non_striker": "1079434"
+   }
+  }
+ ]
+}

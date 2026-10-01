@@ -87,6 +87,22 @@ WK_CODE = {"CAUGHT": "caught", "BOWLED": "bowled", "LBW": "lbw", "STUMPED": "stu
            "RETIRED OUT": "retired out", "HANDLEDBALL": "handled the ball", "TIMEDOUT": "timed out"}
 
 
+def wk_kind(b: dict) -> str | None:
+    code = (b.get("wicketCode") or "").upper()
+    code = code.replace("RETD_", "RETIRED").replace("_", "")   # RETD_OUT / RETD_HURT seen in 2026
+    return WK_CODE.get(code) or kind_from_desc(b.get("outDesc", ""))
+
+
+def text_runs(txt: str) -> int | None:
+    """Runs off a ball from commentary text 'Bowler to Batter, <outcome>, ...' (used when legalRuns is null)."""
+    # comma is sometimes missing: 'Natarajan to Shreyas Iyer  1 run, very full'
+    m = re.match(r"^.+? to [^,]+?(?:,|\s{2,})\s*(no run|four|six|\d+ runs?)\b", txt, re.I)
+    if not m:
+        return None
+    o = m.group(1).lower()
+    return 0 if o == "no run" else 4 if o == "four" else 6 if o == "six" else int(o.split()[0])
+
+
 def kind_from_desc(desc: str) -> str | None:
     d = desc.lower().strip()
     for pat, k in [(r"^c (and|&) b ", "caught and bowled"), (r"^c ", "caught"), (r"^st ", "stumped"),
@@ -105,8 +121,8 @@ def extra_type(head: str) -> str | None:
         return "wides"
     if h.startswith("no ball"):
         return "noballs"
-    h = re.sub(r"^\d+ ", "", h)  # "1 leg bye", "4 byes"
-    if h.startswith("leg bye"):
+    h = re.sub(r"^(\d+|one|two|three|four|five|six) ", "", h)  # "1 leg bye", "4 byes", "FOUR byes"
+    if h.startswith(("leg bye", "legbye")):
         return "legbyes"
     if h.startswith("bye"):
         return "byes"
@@ -167,6 +183,15 @@ def scrape(mid: str, cs_id: str, refresh: bool = False) -> dict:
         last_comm = items
         balls = sorted([c for c in items if c.get("overNumber") is not None],
                        key=lambda c: (c.get("ballNbr", 0), c["timestamp"]))
+        # stale/duplicate ball stubs: no striker id / score (seen once, superseded by a full record of the
+        # same ballNbr+overNumber). Drop them; anything without a full twin is kept and will error loudly.
+        full = {(c.get("ballNbr"), c["overNumber"]) for c in balls
+                if "batTeamScore" in c and c.get("batsmanStriker", {}).get("batId")}
+        stubs = [c for c in balls if "batTeamScore" not in c or not c.get("batsmanStriker", {}).get("batId")]
+        for c in stubs:
+            if (c.get("ballNbr"), c["overNumber"]) in full:
+                notes.append(f"inn{inn} {c['overNumber']}: dropped stub ball record '{c.get('commText', '')[:50]}'")
+        balls = [c for c in balls if c not in stubs or (c.get("ballNbr"), c["overNumber"]) not in full]
         bats = [card["batTeamDetails"]["batsmenData"][k] for k in
                 sorted(card["batTeamDetails"]["batsmenData"], key=lambda k: int(k.split("_")[1]))]
         bat_by_id = {b["batId"]: b for b in bats}
@@ -196,7 +221,19 @@ def scrape(mid: str, cs_id: str, refresh: bool = False) -> dict:
             k = pref[0]
             used.add(k)
             wk_at.setdefault(k, []).append(w)
-        # WICKET events with no scorecard wicket (e.g. retired hurt not in wicketsData)
+        # retired hurt: in batsmenData (wicketCode RETD_HURT) but absent from wicketsData. Cricsheet files it
+        # as a wicket on the last ball the batter faced; do the same (heuristic: assumes he retired as striker)
+        wk_ids = {w["batId"] for w in wkts}
+        for b in bats:
+            if wk_kind(b) == "retired hurt" and b["batId"] not in wk_ids:
+                faced = [k for k, c in enumerate(balls) if c["batsmanStriker"]["batId"] == b["batId"]]
+                if not faced or faced[-1] in wk_at:
+                    notes.append(f"inn{inn}: retired hurt {b['batName']} not placed")
+                    continue
+                wk_at[faced[-1]] = [{"batId": b["batId"], "batName": b["batName"]}]
+                notes.append(f"inn{inn} {balls[faced[-1]]['overNumber']}: retired hurt {b['batName']} "
+                             f"placed on last ball faced")
+        # WICKET events with no scorecard wicket
         for k, c in enumerate(balls):
             if "WICKET" in (c.get("event") or "") and k not in wk_at:
                 notes.append(f"inn{inn} {c['overNumber']}: WICKET event without wicketsData entry")
@@ -217,8 +254,18 @@ def scrape(mid: str, cs_id: str, refresh: bool = False) -> dict:
             ext = extra_type(parts[1]) if len(parts) > 1 else None
             bat_runs = int(c.get("legalRuns") or 0)
             total = int(c.get("totalRuns") or 0)
+            if c.get("legalRuns") is None and ext is None:
+                # degraded record (legalRuns null, totalRuns 0, sometimes batTeamScore 0): runs from text
+                tr = text_runs(txt)
+                notes.append(f"inn{inn} {c['overNumber']}: legalRuns null; runs from text = {tr}")
+                bat_runs = total if tr is None else tr
+                total = max(total, bat_runs)
+            if ext in ("byes", "legbyes") and bat_runs:
+                # '1 leg bye' sometimes carried in legalRuns
+                notes.append(f"inn{inn} {c['overNumber']}: {ext} carried in legalRuns={bat_runs}; moved to extras")
+                total, bat_runs = max(total, bat_runs), 0
             delta = c["batTeamScore"] - prev_score
-            prev_score = c["batTeamScore"]
+            prev_score = c["batTeamScore"] or prev_score   # degraded records carry batTeamScore 0
             if delta != total:
                 notes.append(f"inn{inn} {c['overNumber']}: totalRuns={total} but score delta={delta}")
                 if delta > total and ext is None:
@@ -254,7 +301,7 @@ def scrape(mid: str, cs_id: str, refresh: bool = False) -> dict:
                    "wicket_kind": None, "player_out": None, "fielders": []}
             for w in wk_at.get(k, [])[:1]:
                 b = bat_by_id.get(w["batId"], {})
-                kind = WK_CODE.get((b.get("wicketCode") or "").upper()) or kind_from_desc(b.get("outDesc", ""))
+                kind = wk_kind(b)
                 if not kind:
                     notes.append(f"inn{inn}: unknown wicketCode {b.get('wicketCode')!r} / {b.get('outDesc')!r}")
                     kind = (b.get("wicketCode") or "unknown").lower()
@@ -267,6 +314,11 @@ def scrape(mid: str, cs_id: str, refresh: bool = False) -> dict:
                         extra_players[f] = {"team": id2team.get(f), "name": id2name[f], "source_id": str(f),
                                             "cricinfo_id": None, "status": "sub"}
                 row.update(wicket_kind=kind, player_out=pname(w["batId"], w["batName"]), fielders=fl)
+                if kind in ("caught", "caught and bowled") and row["batter_runs"]:
+                    # 'WICKET,SIX' events with legalRuns=6 but unchanged score: no runs off a catch
+                    notes.append(f"inn{inn} {c['overNumber']}: caught but legalRuns={row['batter_runs']} "
+                                 f"(score delta {delta}); set batter_runs=0")
+                    row["batter_runs"] = 0
             if len(wk_at.get(k, [])) > 1:
                 notes.append(f"inn{inn} {c['overNumber']}: >1 wicket on one ball, kept first")
             deliveries.append(row)

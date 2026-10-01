@@ -58,18 +58,22 @@ def pick_name(pid, short, sc_name, known):
     """Choose the display name most likely to resolve to Cricsheet.
 
     1. manual crosswalk by BCCI id;  2. drop short names whose surname is absent from known_as
-    (feed has corrupt short names, e.g. id 65476 'Riyan Parag' -> 'RP Das');  3. first candidate found in
-    the public Cricsheet register;  4. else the first consistent short name, else known_as."""
+    (feed has corrupt short names, e.g. id 65476 'Riyan Parag' -> 'RP Das');  3. first of
+    [known_as, short names] found in the public Cricsheet register;  4. else known_as, else short name."""
     cw = crosswalk().get(str(pid))
     if cw:
         return cw, "crosswalk"
     kt = set(_toks(known))
     cands = [c for c in dict.fromkeys((short, sc_name)) if c and (not kt or _toks(c)[-1:] and _toks(c)[-1] in kt)]
     reg = registry_names()
-    for c in cands + ([known] if known else []):
+    # full known_as first: initials collide far more often in the global register
+    # (e.g. 'K Sharma' = Karn Sharma, but Kartik Sharma is 'Kartik Sharma' in Cricsheet)
+    for c in ([known] if known else []) + cands:
         if c in reg:
             return c, "register"
-    return (cands[0], "short") if cands else (known, "known_as")
+    # nothing registered: full name fuzzy-matches Cricsheet initials better than BCCI's
+    # (e.g. 'LMD Madushanka' vs Cricsheet 'D Madushanka'; 'Dilshan Madushanka' matches)
+    return (known, "known_as") if known else ((cands[0], "short") if cands else (None, "none"))
 
 
 def crosswalk():
@@ -98,7 +102,7 @@ def fetch(uuid, refresh=False):
                          RAW / "_epr_squads" / f"{comp}_{t['team_id']}.json", edak=True)
             for tt in e.get("teams", []):
                 for p in tt["players"]:
-                    squads[str(p["player_id"])] = p
+                    squads[str(p["player_id"])] = dict(p, team_id=tt.get("team_id"))
         except Exception as ex:  # squads are only a naming nicety; never fatal
             print("WARN epr squads:", ex, file=sys.stderr)
     return sc, balls, squads
@@ -132,7 +136,17 @@ def build(uuid, cs_id, sc, balls, squads):
                 for p in t["player"] if short.lower() in (p.get("short_name", "").lower(),
                                                           (p.get("known_as") or "").lower())
                 or _toks(p.get("known_as"))[-1:] == _toks(short)]
-        return hits[0] if len(hits) == 1 else None
+        if len(hits) == 1:
+            return hits[0]
+        # substitute fielder outside the 16-man list (e.g. 'c Manish Pandey b Narine'): full season squad
+        sq = [p for p in squads.values() if str(p.get("team_id")) == str(team_id)
+              and (short.lower() == (p.get("player_known_as") or "").lower()
+                   or _toks(p.get("player_known_as"))[-1:] == _toks(short))]
+        if len(sq) == 1:
+            pid = str(sq[0]["player_id"])
+            nm_, _ = pick_name(pid, sq[0].get("player_name"), None, sq[0].get("player_known_as"))
+            return names.setdefault(pid, nm_)
+        return None
 
     def nm(pid):
         pid = str(pid or "")
@@ -167,29 +181,45 @@ def build(uuid, cs_id, sc, balls, squads):
             raw_kind = (dis.get("dismissal_name") or x.get("dismissal_name") or "").lower()
             kind = KIND.get(raw_kind, raw_kind)
             out = nm(dis.get("out_player_id") or x.get("out_player_id"))
+            dstr = dis.get("dismissal_str") or ""
             fl = [f for f in sorted(x.get("fielding") or [], key=lambda f: f.get("fielding_order", 0))
                   if f.get("fielding_action") in FIELD_ACTIONS]
-            fielders = list(dict.fromkeys(nm(f["fielding_player_id"]) for f in fl if f.get("fielding_player_id")))
-            if fl and not fielders:  # e.g. substitute fielder with null id: "run out (sub [Rizvi])"
-                fielders = [n for n in (sub_lookup(t, x["bowling_team_id"])
-                                        for t in re.findall(r"\[([^\]]+)\]", dis.get("dismissal_str") or ""))
-                            if n]
-            if kind == "caught" and str(x["bowling_player_id"]) in [
+            # null fielding id at position 'bowler' -> the ball's bowler (e.g. run-out assist by bowler)
+            fielders = list(dict.fromkeys(
+                nm(f["fielding_player_id"] or (x["bowling_player_id"] if f.get("fielding_position") == "bowler"
+                                               else None))
+                for f in fl if f.get("fielding_player_id") or f.get("fielding_position") == "bowler"))
+            if re.match(r"c\s*&\s*b\b", dstr) or (kind == "caught" and str(x["bowling_player_id"]) in [
                     str(f["fielding_player_id"]) for f in x.get("fielding") or []
-                    if f.get("fielding_action") == "caught"]:
+                    if f.get("fielding_action") == "caught"]):
                 kind, fielders = "caught and bowled", []
+            elif kind in ("caught", "stumped", "run out") and len(fielders) < len(fl) or \
+                    (kind in ("caught", "stumped") and not fielders):
+                # feed has a catch/run-out row with null id, or no catch row at all (only 'fielded'):
+                # fall back to the official dismissal text, e.g. "c Manish Pandey b Narine",
+                # "c †Buttler b Rabada", "run out (sub [Rizvi])", "run out (A/B)"
+                mt = re.match(r"(?:c|st)\s+(.+?)\s+b\s", dstr) or re.match(r"run out\s*\((.+)\)", dstr)
+                txt = [t for t in re.split(r"/", mt.group(1))] if mt else []
+                for t in txt:
+                    t = re.sub(r"[†\[\]]|\bsub\b", "", t).strip()
+                    n = sub_lookup(t, x["bowling_team_id"]) if t else None
+                    if n and n not in fielders:
+                        fielders.append(n)
             if kind in ("bowled", "lbw", "hit wicket"):
                 fielders = []
         dels.append({
             "innings": inn, "super_over": bcci_inn > 4 or (inn > 2 and int(m.get("tiebreaker_id") or 0) != 0),
             "over": int(x["over_number"]) - 1, "ball": int(x["ball_number"]),
             "batter": nm(x["batting_player_id"]), "bowler": nm(x["bowling_player_id"]),
-            "non_striker": nm(x.get("nonstriker_player_id")),
+            # feed occasionally repeats the striker as non-striker -> treat as missing, reconstruct below
+            "non_striker": None if str(x.get("nonstriker_player_id")) == str(x["batting_player_id"])
+            else nm(x.get("nonstriker_player_id")),
             "batter_runs": int(x["runs_off_bat"] or 0), "extras": wd + nb + b_ + lb + pen,
             "extra_type": etype, "wicket_kind": kind, "player_out": out, "fielders": fielders,
             "source_ball_id": x["ball_id"],
         })
     n_recon = reconstruct_non_striker(dels, sc, nm, inn_seq)
+    n_ret = shift_retirements(dels)
     toss_w = team_name.get(m.get("toss_winner_team_id"))
     dec = (m.get("toss_decision") or "").lower()
     dec = {"bowl": "field", "field": "field", "bat": "bat"}.get(dec, dec or None)
@@ -201,11 +231,31 @@ def build(uuid, cs_id, sc, balls, squads):
                  "winner": team_name.get(m.get("winner_team_id")),
                  "tiebreaker": m.get("tiebreaker_name"),
                  "dls": int(m.get("is_adjusted_target") or 0) == 1 or "DLS" in (m.get("result_string") or ""),
-                 "reduced_overs": m.get("is_reduced_overs"), "non_striker_reconstructed": n_recon},
+                 "reduced_overs": m.get("is_reduced_overs"), "non_striker_reconstructed": n_recon,
+                 "retirements_shifted": n_ret},
         "toss": {"winner": toss_w, "decision": dec},
         "players": players,
         "deliveries": dels,
     }
+
+
+RETIRE = {"retired hurt", "retired out", "retired not out"}
+
+
+def shift_retirements(dels):
+    """BCCI hangs a retirement on the NEXT ball bowled (to the incoming batter); Cricsheet records it on
+    the last ball the retiring batter was involved in. Move it back one row (same innings) when that
+    row has no wicket of its own. Returns #moved."""
+    moved = 0
+    for i, d in enumerate(dels):
+        if d["wicket_kind"] in RETIRE and i and dels[i - 1]["innings"] == d["innings"] \
+                and not dels[i - 1]["wicket_kind"] and d["player_out"] in (dels[i - 1]["batter"],
+                                                                         dels[i - 1]["non_striker"]):
+            p = dels[i - 1]
+            p["wicket_kind"], p["player_out"], p["fielders"] = d["wicket_kind"], d["player_out"], []
+            d["wicket_kind"], d["player_out"], d["fielders"] = None, None, []
+            moved += 1
+    return moved
 
 
 def reconstruct_non_striker(dels, sc, nm, inn_seq):

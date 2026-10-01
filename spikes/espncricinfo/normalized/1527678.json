@@ -1,0 +1,4803 @@
+{
+ "source": "espn",
+ "source_match_id": "1527678",
+ "cricsheet_id": "1527678",
+ "meta": {
+  "title": "5th Match",
+  "status": "DC won by 6 wickets (with 17 balls remaining)",
+  "url": "https://www.cricinfo.com/series/ipl-2026-1510719/lucknow-super-giants-vs-delhi-capitals-5th-match-1527678/full-scorecard",
+  "pbp_items": 229,
+  "pbp_skipped": 0,
+  "nonstriker_feed_vs_reconstruction": {
+   "agree": 229,
+   "disagree": 0,
+   "feed_missing": 0
+  },
+  "super_over": {},
+  "unknown_wicket_kinds": [],
+  "scrape": {
+   "requests": 31,
+   "retries_5xx": 3,
+   "cache_hits": 24,
+   "status": {
+    "200": 28,
+    "502": 3
+   },
+   "seconds": 14.1
+  }
+ },
+ "toss": {
+  "winner": "Delhi Capitals",
+  "decision": "field"
+ },
+ "players": [
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Mitchell Marsh",
+   "source_id": "272450",
+   "cricinfo_id": "272450",
+   "status": "impact_out"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Rishabh Pant",
+   "source_id": "931581",
+   "cricinfo_id": "931581",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Aiden Markram",
+   "source_id": "600498",
+   "cricinfo_id": "600498",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Ayush Badoni",
+   "source_id": "1151270",
+   "cricinfo_id": "1151270",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Nicholas Pooran",
+   "source_id": "604302",
+   "cricinfo_id": "604302",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Abdul Samad",
+   "source_id": "1175485",
+   "cricinfo_id": "1175485",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Mukul Choudhary",
+   "source_id": "1354217",
+   "cricinfo_id": "1354217",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Shahbaz Ahmed",
+   "source_id": "1159711",
+   "cricinfo_id": "1159711",
+   "status": "impact_in"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Mohammed Shami",
+   "source_id": "481896",
+   "cricinfo_id": "481896",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Anrich Nortje",
+   "source_id": "481979",
+   "cricinfo_id": "481979",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Mohsin Khan",
+   "source_id": "1132005",
+   "cricinfo_id": "1132005",
+   "status": "xi"
+  },
+  {
+   "team": "Lucknow Super Giants",
+   "name": "Prince Yadav",
+   "source_id": "1350768",
+   "cricinfo_id": "1350768",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "T Natarajan",
+   "source_id": "802575",
+   "cricinfo_id": "802575",
+   "status": "impact_out"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "KL Rahul",
+   "source_id": "422108",
+   "cricinfo_id": "422108",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Pathum Nissanka",
+   "source_id": "1028655",
+   "cricinfo_id": "1028655",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Nitish Rana",
+   "source_id": "604527",
+   "cricinfo_id": "604527",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Sameer Rizvi",
+   "source_id": "1175489",
+   "cricinfo_id": "1175489",
+   "status": "impact_in"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Axar Patel",
+   "source_id": "554691",
+   "cricinfo_id": "554691",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Tristan Stubbs",
+   "source_id": "595978",
+   "cricinfo_id": "595978",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Vipraj Nigam",
+   "source_id": "1449074",
+   "cricinfo_id": "1449074",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "David Miller",
+   "source_id": "321777",
+   "cricinfo_id": "321777",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Lungi Ngidi",
+   "source_id": "542023",
+   "cricinfo_id": "542023",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Kuldeep Yadav",
+   "source_id": "559235",
+   "cricinfo_id": "559235",
+   "status": "xi"
+  },
+  {
+   "team": "Delhi Capitals",
+   "name": "Mukesh Kumar",
+   "source_id": "926851",
+   "cricinfo_id": "926851",
+   "status": "xi"
+  }
+ ],
+ "deliveries": [
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 1,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 2,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 3,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 4,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 5,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 6,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 7,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 1,
+   "batter": "Mitchell Marsh",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "542023",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 2,
+   "batter": "Mitchell Marsh",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "542023",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 3,
+   "batter": "Mitchell Marsh",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "542023",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 4,
+   "batter": "Mitchell Marsh",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "542023",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 5,
+   "batter": "Rishabh Pant",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "542023",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 6,
+   "batter": "Rishabh Pant",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "542023",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 1,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 2,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 3,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 4,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 5,
+   "batter": "Rishabh Pant",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "931581",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 6,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Rishabh Pant",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "run out",
+   "player_out": "Rishabh Pant",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "931581"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 1,
+   "batter": "Aiden Markram",
+   "bowler": "Axar Patel",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "554691",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 2,
+   "batter": "Aiden Markram",
+   "bowler": "Axar Patel",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "554691",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 3,
+   "batter": "Aiden Markram",
+   "bowler": "Axar Patel",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "554691",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 4,
+   "batter": "Mitchell Marsh",
+   "bowler": "Axar Patel",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "554691",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 5,
+   "batter": "Mitchell Marsh",
+   "bowler": "Axar Patel",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "554691",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 6,
+   "batter": "Aiden Markram",
+   "bowler": "Axar Patel",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "554691",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 1,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 0,
+   "extras": 4,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 2,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 3,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 4,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 5,
+   "batter": "Mitchell Marsh",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "926851",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 6,
+   "batter": "Aiden Markram",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 4,
+   "ball": 7,
+   "batter": "Aiden Markram",
+   "bowler": "Mukesh Kumar",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "926851",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 1,
+   "batter": "Mitchell Marsh",
+   "bowler": "Axar Patel",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "554691",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 2,
+   "batter": "Mitchell Marsh",
+   "bowler": "Axar Patel",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 0,
+   "extras": 4,
+   "extra_type": "byes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "554691",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 3,
+   "batter": "Mitchell Marsh",
+   "bowler": "Axar Patel",
+   "non_striker": "Aiden Markram",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "554691",
+    "non_striker": "600498"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 4,
+   "batter": "Aiden Markram",
+   "bowler": "Axar Patel",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "554691",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 5,
+   "batter": "Aiden Markram",
+   "bowler": "Axar Patel",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "bowled",
+   "player_out": "Aiden Markram",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "600498",
+    "bowler": "554691",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 5,
+   "ball": 6,
+   "batter": "Ayush Badoni",
+   "bowler": "Axar Patel",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151270",
+    "bowler": "554691",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 1,
+   "batter": "Mitchell Marsh",
+   "bowler": "T Natarajan",
+   "non_striker": "Ayush Badoni",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "802575",
+    "non_striker": "1151270"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 2,
+   "batter": "Ayush Badoni",
+   "bowler": "T Natarajan",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1151270",
+    "bowler": "802575",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 3,
+   "batter": "Ayush Badoni",
+   "bowler": "T Natarajan",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Ayush Badoni",
+   "fielders": [
+    "KL Rahul"
+   ],
+   "cricinfo": {
+    "batter": "1151270",
+    "bowler": "802575",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 4,
+   "batter": "Nicholas Pooran",
+   "bowler": "T Natarajan",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "802575",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 5,
+   "batter": "Nicholas Pooran",
+   "bowler": "T Natarajan",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "802575",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 6,
+   "ball": 6,
+   "batter": "Mitchell Marsh",
+   "bowler": "T Natarajan",
+   "non_striker": "Nicholas Pooran",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "802575",
+    "non_striker": "604302"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 1,
+   "batter": "Nicholas Pooran",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "559235",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 2,
+   "batter": "Nicholas Pooran",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "559235",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 3,
+   "batter": "Nicholas Pooran",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "559235",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 4,
+   "batter": "Mitchell Marsh",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Nicholas Pooran",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "559235",
+    "non_striker": "604302"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 5,
+   "batter": "Nicholas Pooran",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "559235",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 7,
+   "ball": 6,
+   "batter": "Mitchell Marsh",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Nicholas Pooran",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "559235",
+    "non_striker": "604302"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 1,
+   "batter": "Nicholas Pooran",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "542023",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 2,
+   "batter": "Mitchell Marsh",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Nicholas Pooran",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "542023",
+    "non_striker": "604302"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 3,
+   "batter": "Mitchell Marsh",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Nicholas Pooran",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "542023",
+    "non_striker": "604302"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 4,
+   "batter": "Mitchell Marsh",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Nicholas Pooran",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "542023",
+    "non_striker": "604302"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 5,
+   "batter": "Nicholas Pooran",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "bowled",
+   "player_out": "Nicholas Pooran",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604302",
+    "bowler": "542023",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 8,
+   "ball": 6,
+   "batter": "Abdul Samad",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Mitchell Marsh",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "542023",
+    "non_striker": "272450"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 1,
+   "batter": "Mitchell Marsh",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 2,
+   "batter": "Mitchell Marsh",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 3,
+   "batter": "Mitchell Marsh",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Mitchell Marsh",
+   "fielders": [
+    "Tristan Stubbs"
+   ],
+   "cricinfo": {
+    "batter": "272450",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 4,
+   "batter": "Mukul Choudhary",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 5,
+   "batter": "Mukul Choudhary",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 9,
+   "ball": 6,
+   "batter": "Mukul Choudhary",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 1,
+   "batter": "Mukul Choudhary",
+   "bowler": "Axar Patel",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "554691",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 2,
+   "batter": "Abdul Samad",
+   "bowler": "Axar Patel",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "554691",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 3,
+   "batter": "Mukul Choudhary",
+   "bowler": "Axar Patel",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "554691",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 4,
+   "batter": "Mukul Choudhary",
+   "bowler": "Axar Patel",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "554691",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 5,
+   "batter": "Abdul Samad",
+   "bowler": "Axar Patel",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "554691",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 10,
+   "ball": 6,
+   "batter": "Mukul Choudhary",
+   "bowler": "Axar Patel",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "554691",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 1,
+   "batter": "Abdul Samad",
+   "bowler": "Vipraj Nigam",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 0,
+   "extras": 4,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "1449074",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 2,
+   "batter": "Abdul Samad",
+   "bowler": "Vipraj Nigam",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "1449074",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 3,
+   "batter": "Abdul Samad",
+   "bowler": "Vipraj Nigam",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "1449074",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 4,
+   "batter": "Mukul Choudhary",
+   "bowler": "Vipraj Nigam",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "1449074",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 5,
+   "batter": "Abdul Samad",
+   "bowler": "Vipraj Nigam",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "1449074",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 11,
+   "ball": 6,
+   "batter": "Abdul Samad",
+   "bowler": "Vipraj Nigam",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "1449074",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 1,
+   "batter": "Mukul Choudhary",
+   "bowler": "T Natarajan",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "802575",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 2,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 3,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 4,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 5,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Mukul Choudhary",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1354217"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 12,
+   "ball": 6,
+   "batter": "Mukul Choudhary",
+   "bowler": "T Natarajan",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "802575",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 1,
+   "batter": "Mukul Choudhary",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught and bowled",
+   "player_out": "Mukul Choudhary",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1354217",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 2,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 3,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 4,
+   "batter": "Abdul Samad",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "559235",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 5,
+   "batter": "Abdul Samad",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "559235",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 13,
+   "ball": 6,
+   "batter": "Abdul Samad",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "559235",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 1,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "T Natarajan",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "802575",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 2,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "T Natarajan",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "802575",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 3,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 4,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 5,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 14,
+   "ball": 6,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "T Natarajan",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "802575",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 1,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 2,
+   "batter": "Abdul Samad",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "559235",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 3,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 4,
+   "batter": "Abdul Samad",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "559235",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 5,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "559235",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 15,
+   "ball": 6,
+   "batter": "Abdul Samad",
+   "bowler": "Kuldeep Yadav",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "559235",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 1,
+   "batter": "Abdul Samad",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "542023",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 2,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "542023",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 3,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "542023",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 4,
+   "batter": "Abdul Samad",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "542023",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 5,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "542023",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 16,
+   "ball": 6,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "542023",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 1,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "T Natarajan",
+   "non_striker": "Abdul Samad",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "802575",
+    "non_striker": "1175485"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 2,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 3,
+   "batter": "Abdul Samad",
+   "bowler": "T Natarajan",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Abdul Samad",
+   "fielders": [
+    "David Miller"
+   ],
+   "cricinfo": {
+    "batter": "1175485",
+    "bowler": "802575",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 4,
+   "batter": "Mohammed Shami",
+   "bowler": "T Natarajan",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "481896",
+    "bowler": "802575",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 5,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "T Natarajan",
+   "non_striker": "Mohammed Shami",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "802575",
+    "non_striker": "481896"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 17,
+   "ball": 6,
+   "batter": "Mohammed Shami",
+   "bowler": "T Natarajan",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Mohammed Shami",
+   "fielders": [
+    "Kuldeep Yadav"
+   ],
+   "cricinfo": {
+    "batter": "481896",
+    "bowler": "802575",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 1,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Anrich Nortje",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "542023",
+    "non_striker": "481979"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 2,
+   "batter": "Shahbaz Ahmed",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Anrich Nortje",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1159711",
+    "bowler": "542023",
+    "non_striker": "481979"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 3,
+   "batter": "Anrich Nortje",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Anrich Nortje",
+   "fielders": [
+    "Tristan Stubbs"
+   ],
+   "cricinfo": {
+    "batter": "481979",
+    "bowler": "542023",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 18,
+   "ball": 4,
+   "batter": "Mohsin Khan",
+   "bowler": "Lungi Ngidi",
+   "non_striker": "Shahbaz Ahmed",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Mohsin Khan",
+   "fielders": [
+    "Mukesh Kumar"
+   ],
+   "cricinfo": {
+    "batter": "1132005",
+    "bowler": "542023",
+    "non_striker": "1159711"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 1,
+   "batter": "KL Rahul",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "KL Rahul",
+   "fielders": [
+    "Mohsin Khan"
+   ],
+   "cricinfo": {
+    "batter": "422108",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 2,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 3,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 4,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 5,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 6,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 7,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 0,
+   "ball": 8,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 1,
+   "batter": "Pathum Nissanka",
+   "bowler": "Prince Yadav",
+   "non_striker": "Nitish Rana",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1028655",
+    "bowler": "1350768",
+    "non_striker": "604527"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 2,
+   "batter": "Nitish Rana",
+   "bowler": "Prince Yadav",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "1350768",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 3,
+   "batter": "Nitish Rana",
+   "bowler": "Prince Yadav",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "1350768",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 4,
+   "batter": "Nitish Rana",
+   "bowler": "Prince Yadav",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "1350768",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 5,
+   "batter": "Nitish Rana",
+   "bowler": "Prince Yadav",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "1350768",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 6,
+   "batter": "Nitish Rana",
+   "bowler": "Prince Yadav",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "1350768",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 1,
+   "ball": 7,
+   "batter": "Nitish Rana",
+   "bowler": "Prince Yadav",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "1350768",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 1,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 2,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 3,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 4,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 5,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 6,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 2,
+   "ball": 7,
+   "batter": "Nitish Rana",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "481896",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 1,
+   "batter": "Pathum Nissanka",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Nitish Rana",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1028655",
+    "bowler": "1132005",
+    "non_striker": "604527"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 2,
+   "batter": "Pathum Nissanka",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Nitish Rana",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1028655",
+    "bowler": "1132005",
+    "non_striker": "604527"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 3,
+   "batter": "Nitish Rana",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Nitish Rana",
+   "fielders": [
+    "Abdul Samad"
+   ],
+   "cricinfo": {
+    "batter": "604527",
+    "bowler": "1132005",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 2,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 5,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 3,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Pathum Nissanka",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "1028655"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 1,
+   "batter": "Pathum Nissanka",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1028655",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 2,
+   "batter": "Pathum Nissanka",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1028655",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 3,
+   "batter": "Pathum Nissanka",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1028655",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 4,
+   "batter": "Pathum Nissanka",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Pathum Nissanka",
+   "fielders": [
+    "Rishabh Pant"
+   ],
+   "cricinfo": {
+    "batter": "1028655",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 5,
+   "batter": "Axar Patel",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "554691",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 6,
+   "batter": "Axar Patel",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "bowled",
+   "player_out": "Axar Patel",
+   "fielders": [],
+   "cricinfo": {
+    "batter": "554691",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 7,
+   "batter": "Tristan Stubbs",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 8,
+   "batter": "Tristan Stubbs",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 4,
+   "ball": 9,
+   "batter": "Tristan Stubbs",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 1,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 3,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "legbyes",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 5,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 5,
+   "ball": 6,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 1,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481896",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481896",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 3,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481896",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481896",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 5,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481896",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481896",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 6,
+   "ball": 7,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481896",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 1,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 3,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 5,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 6,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 7,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 7,
+   "ball": 8,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 1,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481896",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481896",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 3,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481896",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481896",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 5,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481896",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 8,
+   "ball": 6,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohammed Shami",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481896",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 1,
+   "batter": "Sameer Rizvi",
+   "bowler": "Shahbaz Ahmed",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1159711",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Shahbaz Ahmed",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1159711",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 3,
+   "batter": "Sameer Rizvi",
+   "bowler": "Shahbaz Ahmed",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1159711",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 4,
+   "batter": "Tristan Stubbs",
+   "bowler": "Shahbaz Ahmed",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1159711",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 5,
+   "batter": "Sameer Rizvi",
+   "bowler": "Shahbaz Ahmed",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1159711",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 9,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Shahbaz Ahmed",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1159711",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 1,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 3,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 4,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 5,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 10,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 1,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 2,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 3,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 4,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 1,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 5,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 11,
+   "ball": 7,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 12,
+   "ball": 1,
+   "batter": "Sameer Rizvi",
+   "bowler": "Prince Yadav",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1350768",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 12,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Prince Yadav",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1350768",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 12,
+   "ball": 3,
+   "batter": "Tristan Stubbs",
+   "bowler": "Prince Yadav",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1350768",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 12,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Prince Yadav",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1350768",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 12,
+   "ball": 5,
+   "batter": "Sameer Rizvi",
+   "bowler": "Prince Yadav",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1350768",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 12,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Prince Yadav",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1350768",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 13,
+   "ball": 1,
+   "batter": "Tristan Stubbs",
+   "bowler": "Aiden Markram",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "600498",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 13,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Aiden Markram",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 2,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "600498",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 13,
+   "ball": 3,
+   "batter": "Sameer Rizvi",
+   "bowler": "Aiden Markram",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "600498",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 13,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Aiden Markram",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "600498",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 13,
+   "ball": 5,
+   "batter": "Sameer Rizvi",
+   "bowler": "Aiden Markram",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "600498",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 13,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Aiden Markram",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "600498",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 14,
+   "ball": 1,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 14,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 14,
+   "ball": 3,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 14,
+   "ball": 4,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 14,
+   "ball": 5,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 14,
+   "ball": 6,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 15,
+   "ball": 1,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 15,
+   "ball": 2,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 15,
+   "ball": 3,
+   "batter": "Tristan Stubbs",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "1132005",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 15,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 15,
+   "ball": 5,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 15,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Mohsin Khan",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1132005",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 16,
+   "ball": 1,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 16,
+   "ball": 2,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 16,
+   "ball": 3,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 16,
+   "ball": 4,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 5,
+   "extra_type": "wides",
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 16,
+   "ball": 5,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 16,
+   "ball": 6,
+   "batter": "Sameer Rizvi",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "481979",
+    "non_striker": "595978"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 16,
+   "ball": 7,
+   "batter": "Tristan Stubbs",
+   "bowler": "Anrich Nortje",
+   "non_striker": "Sameer Rizvi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "595978",
+    "bowler": "481979",
+    "non_striker": "1175489"
+   }
+  },
+  {
+   "innings": 2,
+   "super_over": false,
+   "over": 17,
+   "ball": 1,
+   "batter": "Sameer Rizvi",
+   "bowler": "Abdul Samad",
+   "non_striker": "Tristan Stubbs",
+   "batter_runs": 6,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1175489",
+    "bowler": "1175485",
+    "non_striker": "595978"
+   }
+  }
+ ]
+}
