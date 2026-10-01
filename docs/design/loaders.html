@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predict-11 Loaders</title>
+<!-- Prototype for docs/DESIGN-DIRECTION.md §7.2: seam-spin app loader, stumps & bails inline loader, floodlight-sweep skeleton. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Saira:wdth,wght@75..100,500..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: oklch(0.155 0.028 275); --s1: oklch(0.195 0.032 275); --s2: oklch(0.235 0.036 275); --s3: oklch(0.27 0.04 275);
+    --border: oklch(1 0 0 / 8%); --fg: oklch(0.97 0.006 275); --muted: oklch(0.72 0.025 275);
+    --gold: oklch(0.84 0.15 85); --violet: oklch(0.68 0.19 295); --seam: oklch(0.62 0.2 25);
+    --ball: oklch(0.96 0.01 90); --wood: oklch(0.86 0.06 80);
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+  }
+  :root[data-theme="light"] {
+    --bg: oklch(0.975 0.006 275); --s1: #fff; --s2: oklch(0.955 0.008 275); --s3: oklch(0.92 0.01 275);
+    --border: oklch(0.2 0.03 275 / 10%); --fg: oklch(0.2 0.035 275); --muted: oklch(0.48 0.03 275);
+    --gold: oklch(0.80 0.15 80); --ball: oklch(0.99 0.005 90); --wood: oklch(0.72 0.08 75);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); font: 400 14px/20px Geist, system-ui, sans-serif; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(60% 320px at 50% -80px, oklch(0.55 0.16 285 / .3), transparent); }
+  main { position: relative; max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font: 650 28px/32px Saira, sans-serif; font-stretch: 87.5%; margin: 0 0 4px; }
+  p.lead { color: var(--muted); margin: 0 0 16px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .controls button { height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--s1); color: var(--fg); font: 500 13px Geist; cursor: pointer; }
+  .controls button[aria-pressed="true"] { border-color: var(--gold); color: var(--gold); }
+  .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--s1); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .card h2 { font: 600 16px/22px Geist; margin: 0 0 4px; }
+  .card .meta { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .stage { display: grid; place-items: center; min-height: 180px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+
+  /* ---------- 1. Seam spin (app-level loader) ---------- */
+  .seam-loader { display: grid; justify-items: center; gap: 14px; }
+  .ball { width: 56px; height: 56px; }
+  .ball .leather { fill: var(--ball); }
+  .ball .shade { fill: url(#shade); }
+  .ball .seam-g { transform-origin: 0 0; animation: seam 0.9s linear infinite; }
+  .ball .seam { fill: none; stroke: var(--seam); stroke-width: 2.2; }
+  .ball .stitch { fill: none; stroke: var(--seam); stroke-width: 1.2; stroke-dasharray: 1.2 2.4; opacity: .85; }
+  @keyframes seam { /* rotation about the vertical axis: scaleX 1 → -1 → 1 */
+    0% { transform: scaleX(1); } 50% { transform: scaleX(-1); } 100% { transform: scaleX(1); } }
+  .ball-wrap { animation: tilt 1.8s var(--ease) infinite; }
+  @keyframes tilt { 0%,100% { transform: rotate(-18deg); } 50% { transform: rotate(-12deg); } }
+  .loader-label { font: 500 12px Geist; color: var(--muted); letter-spacing: .04em; }
+  .loader-label .dots::after { content: ""; animation: dots 1.2s steps(4) infinite; }
+  @keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+
+  /* ---------- 2. Stumps & bails (inline action loader) ---------- */
+  .stumps { width: 40px; height: 40px; }
+  .stumps .stump { fill: var(--wood); }
+  .stumps .bail { fill: var(--gold); transform-box: fill-box; transform-origin: center; }
+  .stumps .b1 { animation: bail1 1.4s var(--ease) infinite; }
+  .stumps .b2 { animation: bail2 1.4s var(--ease) infinite; }
+  @keyframes bail1 { 0%,30% { transform: none; } 50% { transform: translate(-3px,-9px) rotate(-35deg); } 70%,100% { transform: none; } }
+  @keyframes bail2 { 0%,34% { transform: none; } 54% { transform: translate(4px,-11px) rotate(40deg); } 74%,100% { transform: none; } }
+  .builder-bar { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 420px; padding: 10px 14px;
+    background: color-mix(in oklch, var(--s1) 72%, transparent); backdrop-filter: blur(20px);
+    border: 1px solid var(--border); border-radius: 12px; }
+  .builder-bar .txt { flex: 1; font-size: 13px; }
+  .builder-bar .txt b { font-variant-numeric: tabular-nums; }
+  .builder-bar .approx { color: var(--muted); }
+  .builder-bar .stumps { width: 28px; height: 28px; }
+
+  /* ---------- 3. Skeleton with floodlight sweep ---------- */
+  .sk { position: relative; overflow: hidden; background: var(--s2); border-radius: 6px; }
+  .sk::after { content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+    background: linear-gradient(100deg, transparent 20%, oklch(1 0 0 / 6%) 50%, transparent 80%);
+    animation: sweep 1.6s var(--ease) infinite; }
+  :root[data-theme="light"] .sk::after { background: linear-gradient(100deg, transparent 20%, oklch(1 0 0 / 70%) 50%, transparent 80%); }
+  @keyframes sweep { to { transform: translateX(100%); } }
+  .sk-row { display: grid; grid-template-columns: 28px 1fr 48px 96px; gap: 12px; align-items: center; height: 52px; border-bottom: 1px solid var(--border); }
+  .sk-row:last-child { border-bottom: 0; }
+  .sk.circle { width: 28px; height: 28px; border-radius: 999px; }
+  .sk.line { height: 10px; }
+  .sk.line.w60 { width: 60%; } .sk.line.w40 { width: 40%; margin-top: 6px; height: 8px; }
+  .sk.bar { height: 8px; border-radius: 999px; }
+  .skeleton-list { width: 100%; padding: 4px 12px; }
+
+  /* ---------- 4. Scoreboard digit roll (value change, not a loader) ---------- */
+  .roll { font: 700 40px/44px Saira; font-stretch: 75%; font-variant-numeric: tabular-nums; display: inline-flex; }
+  .digit { display: inline-block; height: 44px; overflow: hidden; }
+  .digit span { display: block; transition: transform .3s var(--ease); }
+
+  /* Reduced motion: real media query + manual preview toggle. */
+  @media (prefers-reduced-motion: reduce) {
+    .ball .seam-g, .ball-wrap, .stumps .bail, .sk::after, .loader-label .dots::after { animation: none !important; }
+    .digit span { transition: none !important; }
+    .seam-loader, .builder-bar .stumps { animation: fade 1.2s ease-in-out infinite alternate; }
+  }
+  .rm .ball .seam-g, .rm .ball-wrap, .rm .stumps .bail, .rm .sk::after, .rm .loader-label .dots::after { animation: none !important; }
+  .rm .digit span { transition: none !important; }
+  .rm .seam-loader, .rm .builder-bar .stumps { animation: fade 1.2s ease-in-out infinite alternate; }
+  @keyframes fade { from { opacity: 1; } to { opacity: .55; } }
+</style>
+</head>
+<body>
+<main id="root">
+  <h1>Loading system</h1>
+  <p class="lead">Prototypes for §7.2. Toggle reduced motion to preview the fallbacks (the real <code>prefers-reduced-motion</code> query is also honoured).</p>
+  <div class="controls">
+    <button id="rm" aria-pressed="false">Reduced motion preview</button>
+    <button id="theme">Toggle light / dark</button>
+    <button id="bump">Simulate re-optimise</button>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <h2>1 · Seam spin, the app-level loader</h2>
+      <div class="meta">Cold start or a full-route wait over 800 ms only. Shown for at least 600 ms. After 8 s it adds "Taking longer than usual · Retry".</div>
+      <div class="stage">
+        <div class="seam-loader" role="status" aria-live="polite">
+          <div class="ball-wrap">
+            <svg class="ball" viewBox="-30 -30 60 60" aria-hidden="true">
+              <defs>
+                <radialGradient id="shade" cx="35%" cy="30%" r="75%">
+                  <stop offset="0" stop-color="#fff" stop-opacity=".0"/>
+                  <stop offset="1" stop-color="#1b2036" stop-opacity=".35"/>
+                </radialGradient>
+                <clipPath id="clip"><circle r="26"/></clipPath>
+              </defs>
+              <circle class="leather" r="26"/>
+              <g clip-path="url(#clip)">
+                <g class="seam-g">
+                  <path class="seam" d="M -6,-26 C 6,-12 6,12 -6,26"/>
+                  <path class="seam" d="M 2,-26 C 14,-12 14,12 2,26"/>
+                  <path class="stitch" d="M -9,-26 C 3,-12 3,12 -9,26"/>
+                  <path class="stitch" d="M 5,-26 C 17,-12 17,12 5,26"/>
+                </g>
+              </g>
+              <circle class="shade" r="26"/>
+            </svg>
+          </div>
+          <span class="loader-label">Loading match data<span class="dots"></span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2 · Stumps & bails, the inline action loader</h2>
+      <div class="meta">Builder re-optimise, save, and what-if. Lives inside the sticky builder bar. Numbers show "≈" until the server confirms.</div>
+      <div class="stage">
+        <div class="builder-bar" role="status" aria-live="polite">
+          <svg class="stumps" viewBox="0 0 40 40" aria-hidden="true">
+            <rect class="stump" x="9"  y="12" width="4" height="26" rx="1.5"/>
+            <rect class="stump" x="18" y="12" width="4" height="26" rx="1.5"/>
+            <rect class="stump" x="27" y="12" width="4" height="26" rx="1.5"/>
+            <rect class="bail b1" x="9"  y="8.5" width="11" height="2.6" rx="1.3"/>
+            <rect class="bail b2" x="20" y="8.5" width="11" height="2.6" rx="1.3"/>
+          </svg>
+          <div class="txt"><span class="approx">Re-optimising…</span><br>
+            <b>11/11</b> · <b>≈98.5</b>/100 cr · Proj <b>≈</b><span class="roll" style="font-size:14px;line-height:20px" id="mini">612</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Skeleton with floodlight sweep</h2>
+      <div class="meta">Every data page (via <code>loading.tsx</code> and Suspense). It mirrors the final layout. The sweep is a 6% light band every 1.6 s. Reduced motion shows static blocks.</div>
+      <div class="stage">
+        <div class="skeleton-list" aria-busy="true" aria-label="Loading players">
+          <div class="sk-row"><div class="sk circle"></div><div><div class="sk line w60"></div><div class="sk line w40"></div></div><div class="sk line"></div><div class="sk bar"></div></div>
+          <div class="sk-row"><div class="sk circle"></div><div><div class="sk line w60"></div><div class="sk line w40"></div></div><div class="sk line"></div><div class="sk bar"></div></div>
+          <div class="sk-row"><div class="sk circle"></div><div><div class="sk line w60"></div><div class="sk line w40"></div></div><div class="sk line"></div><div class="sk bar"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4 · Scoreboard roll for value changes</h2>
+      <div class="meta">This is not a loader. Projected totals, credits and table points roll digit by digit in 300 ms when they change.</div>
+      <div class="stage">
+        <div class="roll" id="roll" aria-live="polite" aria-atomic="true"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+(() => {
+  const root = document.getElementById('root');
+  const rmBtn = document.getElementById('rm');
+  rmBtn.onclick = () => {
+    const on = root.classList.toggle('rm');
+    rmBtn.setAttribute('aria-pressed', on);
+  };
+  document.getElementById('theme').onclick = () => {
+    const r = document.documentElement;
+    r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light';
+  };
+
+  // Digit roll
+  const rollEl = document.getElementById('roll');
+  function renderRoll(n) {
+    const s = String(n);
+    if (rollEl.children.length !== s.length) {
+      rollEl.innerHTML = '';
+      for (let i = 0; i < s.length; i++) {
+        const d = document.createElement('span'); d.className = 'digit';
+        const inner = document.createElement('span');
+        inner.innerHTML = Array.from({ length: 10 }, (_, k) => `<span style="height:44px;display:block">${k}</span>`).join('');
+        d.appendChild(inner); rollEl.appendChild(d);
+      }
+    }
+    [...s].forEach((ch, i) => {
+      rollEl.children[i].firstChild.style.transform = `translateY(${-44 * Number(ch)}px)`;
+    });
+    rollEl.setAttribute('aria-label', `Projected ${n} points`);
+  }
+  let val = 612; renderRoll(val);
+  document.getElementById('bump').onclick = () => {
+    val = 590 + Math.floor(Math.random() * 60);
+    renderRoll(val);
+    document.getElementById('mini').textContent = val;
+  };
+})();
+</script>
+</body>
+</html>
