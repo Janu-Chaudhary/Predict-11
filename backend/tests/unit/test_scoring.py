@@ -548,3 +548,17 @@ class TestMultipliers:
             fantasy_team_points(sc, ["A", "B"], "A", "A", R)
         with pytest.raises(ValueError):
             fantasy_team_points(sc, ["A", "B"], "A", "X", R)
+
+
+def test_no_result_match_scores_zero_for_everyone():
+    """Dream11 gives 0 (incl. lineup points) in abandoned / no-result matches."""
+    from p11.scoring import T20_2026, score_match
+    from p11.scoring.types import Delivery, LineupEntry, LineupStatus, Role
+
+    dels = [Delivery(innings=1, over=0, ball=1, batter="A", bowler="B", non_striker="C",
+                     batter_runs=6, extras=0)]
+    lineup = [LineupEntry("A", "X", Role.BAT, LineupStatus.STARTING_XI),
+              LineupEntry("B", "Y", Role.BOWL, LineupStatus.STARTING_XI)]
+    res = score_match(dels, lineup, T20_2026, no_result=True)
+    assert all(p.total == 0 for p in res.players.values())
+    assert score_match(dels, lineup, T20_2026)["A"].total > 0

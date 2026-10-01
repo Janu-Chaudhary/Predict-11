@@ -290,8 +290,14 @@ def score_match(
     deliveries: Iterable[Delivery],
     lineup: Iterable[LineupEntry],
     rules: RuleSet,
+    *,
+    no_result: bool = False,
 ) -> MatchScore:
     """Score every lineup member of one match under ``rules``.
+
+    ``no_result=True`` (abandoned / no-result match): Dream11 awards 0 to every player,
+    including lineup points, even if some balls were bowled. Verified against published
+    IPL 2026 totals (KKR v PBKS, 2026-04-06).
 
     Only lineup members score. Names that appear in the deliveries but are not in the
     lineup (ordinary substitute fielders) are reported in ``unscored_participants``.
@@ -320,7 +326,7 @@ def score_match(
             entry = LineupEntry(entry.player, entry.team, entry.role,
                                 LineupStatus.SUBSTITUTE_PLAYED)
         s = stats.get(name, PlayerStats())
-        it = _items(entry, s, rules)
+        it = {} if no_result else _items(entry, s, rules)
         cats = dict.fromkeys(CATEGORIES, 0)
         for k, v in it.items():
             cats[CATEGORY_OF[k]] += v

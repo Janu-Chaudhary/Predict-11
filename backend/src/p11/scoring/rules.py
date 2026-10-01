@@ -136,7 +136,7 @@ T20_2025 = RuleSet(
     effective_from=date(2025, 3, 22),
     notes=(
         "Source: dream11.com/fantasy-cricket/point-system (archived 2025-04-23)",
-        "milestone_mode and haul_mode stacking semantics unverified; see RULES.md",
+        "highest-only milestones/hauls verified vs 40 published IPL 2026 totals; RULES.md",
     ),
 )
 
