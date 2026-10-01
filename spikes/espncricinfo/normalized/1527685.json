@@ -1,0 +1,631 @@
+{
+ "source": "espn",
+ "source_match_id": "1527685",
+ "cricsheet_id": "1527685",
+ "meta": {
+  "title": "12th Match",
+  "status": "No result",
+  "url": "https://www.cricinfo.com/series/ipl-2026-1510719/kolkata-knight-riders-vs-punjab-kings-12th-match-1527685/full-scorecard",
+  "pbp_items": 22,
+  "pbp_skipped": 1,
+  "nonstriker_feed_vs_reconstruction": {
+   "agree": 22,
+   "disagree": 0,
+   "feed_missing": 0
+  },
+  "super_over": {},
+  "unknown_wicket_kinds": [],
+  "scrape": {
+   "requests": 2,
+   "retries_5xx": 0,
+   "cache_hits": 0,
+   "seconds": 2.0
+  }
+ },
+ "toss": {
+  "winner": "Kolkata Knight Riders",
+  "decision": "bat"
+ },
+ "players": [
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Ajinkya Rahane",
+   "source_id": "277916",
+   "cricinfo_id": "277916",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Finn Allen",
+   "source_id": "959759",
+   "cricinfo_id": "959759",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Cameron Green",
+   "source_id": "1076713",
+   "cricinfo_id": "1076713",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Angkrish Raghuvanshi",
+   "source_id": "1292495",
+   "cricinfo_id": "1292495",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Rovman Powell",
+   "source_id": "820351",
+   "cricinfo_id": "820351",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Rinku Singh",
+   "source_id": "723105",
+   "cricinfo_id": "723105",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Ramandeep Singh",
+   "source_id": "1079470",
+   "cricinfo_id": "1079470",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Anukul Roy",
+   "source_id": "1079839",
+   "cricinfo_id": "1079839",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Navdeep Saini",
+   "source_id": "700167",
+   "cricinfo_id": "700167",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Vaibhav Arora",
+   "source_id": "1209292",
+   "cricinfo_id": "1209292",
+   "status": "xi"
+  },
+  {
+   "team": "Kolkata Knight Riders",
+   "name": "Kartik Tyagi",
+   "source_id": "1122918",
+   "cricinfo_id": "1122918",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Shreyas Iyer",
+   "source_id": "642519",
+   "cricinfo_id": "642519",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Prabhsimran Singh",
+   "source_id": "1161024",
+   "cricinfo_id": "1161024",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Nehal Wadhera",
+   "source_id": "1151273",
+   "cricinfo_id": "1151273",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Cooper Connolly",
+   "source_id": "1210488",
+   "cricinfo_id": "1210488",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Shashank Singh",
+   "source_id": "377534",
+   "cricinfo_id": "377534",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Marcus Stoinis",
+   "source_id": "325012",
+   "cricinfo_id": "325012",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Marco Jansen",
+   "source_id": "696401",
+   "cricinfo_id": "696401",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Vijaykumar Vyshak",
+   "source_id": "777815",
+   "cricinfo_id": "777815",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Xavier Bartlett",
+   "source_id": "1050545",
+   "cricinfo_id": "1050545",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Arshdeep Singh",
+   "source_id": "1125976",
+   "cricinfo_id": "1125976",
+   "status": "xi"
+  },
+  {
+   "team": "Punjab Kings",
+   "name": "Yuzvendra Chahal",
+   "source_id": "430246",
+   "cricinfo_id": "430246",
+   "status": "xi"
+  }
+ ],
+ "deliveries": [
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 1,
+   "batter": "Ajinkya Rahane",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Finn Allen",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "277916",
+    "bowler": "1125976",
+    "non_striker": "959759"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 2,
+   "batter": "Finn Allen",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "959759",
+    "bowler": "1125976",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 3,
+   "batter": "Ajinkya Rahane",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Finn Allen",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "277916",
+    "bowler": "1125976",
+    "non_striker": "959759"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 4,
+   "batter": "Ajinkya Rahane",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Finn Allen",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "277916",
+    "bowler": "1125976",
+    "non_striker": "959759"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 5,
+   "batter": "Finn Allen",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "959759",
+    "bowler": "1125976",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 0,
+   "ball": 6,
+   "batter": "Finn Allen",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "959759",
+    "bowler": "1125976",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 1,
+   "batter": "Finn Allen",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "959759",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 2,
+   "batter": "Finn Allen",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "959759",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 3,
+   "batter": "Finn Allen",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "959759",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 4,
+   "batter": "Finn Allen",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Finn Allen",
+   "fielders": [
+    "Prabhsimran Singh"
+   ],
+   "cricinfo": {
+    "batter": "959759",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 5,
+   "batter": "Cameron Green",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 4,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1076713",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 1,
+   "ball": 6,
+   "batter": "Cameron Green",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": "caught",
+   "player_out": "Cameron Green",
+   "fielders": [
+    "Prabhsimran Singh"
+   ],
+   "cricinfo": {
+    "batter": "1076713",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 1,
+   "batter": "Ajinkya Rahane",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Angkrish Raghuvanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "277916",
+    "bowler": "1125976",
+    "non_striker": "1292495"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 2,
+   "batter": "Angkrish Raghuvanshi",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1292495",
+    "bowler": "1125976",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 3,
+   "batter": "Angkrish Raghuvanshi",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1292495",
+    "bowler": "1125976",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 4,
+   "batter": "Ajinkya Rahane",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Angkrish Raghuvanshi",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "277916",
+    "bowler": "1125976",
+    "non_striker": "1292495"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 5,
+   "batter": "Angkrish Raghuvanshi",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1292495",
+    "bowler": "1125976",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 2,
+   "ball": 6,
+   "batter": "Angkrish Raghuvanshi",
+   "bowler": "Arshdeep Singh",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 1,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1292495",
+    "bowler": "1125976",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 1,
+   "batter": "Angkrish Raghuvanshi",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1292495",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 2,
+   "batter": "Angkrish Raghuvanshi",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1292495",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 3,
+   "batter": "Angkrish Raghuvanshi",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Ajinkya Rahane",
+   "batter_runs": 5,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "1292495",
+    "bowler": "1050545",
+    "non_striker": "277916"
+   }
+  },
+  {
+   "innings": 1,
+   "super_over": false,
+   "over": 3,
+   "ball": 4,
+   "batter": "Ajinkya Rahane",
+   "bowler": "Xavier Bartlett",
+   "non_striker": "Angkrish Raghuvanshi",
+   "batter_runs": 0,
+   "extras": 0,
+   "extra_type": null,
+   "wicket_kind": null,
+   "player_out": null,
+   "fielders": [],
+   "cricinfo": {
+    "batter": "277916",
+    "bowler": "1050545",
+    "non_striker": "1292495"
+   }
+  }
+ ]
+}

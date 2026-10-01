@@ -16,3 +16,8 @@ data/raw/*.csv
 
 # os
 .DS_Store
+
+# scraping spikes (temp probe scripts + payloads)
+spikes/.venv/
+spikes/**/samples/
+spikes/**/.venv-libs/
