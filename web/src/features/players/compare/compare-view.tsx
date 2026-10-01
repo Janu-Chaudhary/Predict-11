@@ -4,13 +4,14 @@ import { Columns3, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { HeaderSkeleton, TableSkeleton } from "@/components/loaders/page-skeletons";
+import { PlayerAvatar } from "@/components/player/player-avatar";
 import { TeamBadge } from "@/components/player/team-badge";
 import { EmptyState } from "@/components/shell/empty-state";
 import { PageHeader } from "@/components/shell/page-header";
 import { cn } from "@/lib/utils";
 
 import { MAX_COMPARE } from "../constants";
-import { teamCode } from "../format";
+import { displayName, photoOf, teamCode } from "../format";
 import { PlayerPicker } from "../player-picker";
 import { usePlayerCompare } from "../queries";
 import type { StatFilter } from "../types";
@@ -49,12 +50,13 @@ export function CompareView({ ids, filter }: { ids: string[]; filter: StatFilter
           const p = ordered.find((x) => x.id === id);
           return (
             <div key={id} className="flex h-11 items-center gap-2 rounded-[10px] border border-border bg-card pr-1 pl-2">
-              {p?.last_team ? <TeamBadge team={teamCode(p.last_team) ?? ""} /> : <span aria-hidden className="h-6 w-9 rounded-full bg-surface-3" />}
-              <span className="min-w-0 flex-1 truncate text-sm font-semibold">{p?.name ?? id}</span>
+              <PlayerAvatar name={p ? displayName(p) : id} src={p ? photoOf(p) : null} team={teamCode(p?.last_team) ?? undefined} size="xs" />
+              <span className="min-w-0 flex-1 truncate text-sm font-semibold">{p ? displayName(p) : id}</span>
+              {p?.last_team && <TeamBadge team={teamCode(p.last_team) ?? ""} />}
               <button
                 type="button"
                 onClick={() => go(ids.filter((x) => x !== id))}
-                aria-label={`Remove ${p?.name ?? id} from comparison`}
+                aria-label={`Remove ${p ? displayName(p) : id} from comparison`}
                 className="inline-flex size-9 items-center justify-center rounded-lg text-muted-foreground outline-none hover:bg-surface-2 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <X aria-hidden className="size-4" />
@@ -79,7 +81,7 @@ export function CompareView({ ids, filter }: { ids: string[]; filter: StatFilter
           icon={Columns3}
           title="Pick two or three players"
           why="Search above to add players. Each gets a column with the same batting, bowling, fielding and phase rows."
-          action={{ href: compareHref(["ba607b88", "740742ef"], {}), label: "Try V Kohli vs RG Sharma" }}
+          action={{ href: compareHref(["ba607b88", "740742ef"], {}), label: "Try Virat Kohli vs Rohit Sharma" }}
         />
       ) : q.isPending ? (
         <div role="status" aria-busy="true" aria-label="Loading comparison">

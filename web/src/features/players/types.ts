@@ -3,7 +3,14 @@
  * Hand-written (no `pnpm gen:api`) while the backend contract settles; dates arrive as ISO strings.
  */
 
-export type PlayerRef = { id: string; name: string };
+/**
+ * `name` is the Cricsheet scorecard name ("V Kohli"). `display_name` ("Virat Kohli") and
+ * `image_url` (headshot) are additive fields; older API builds omit them, so read them through
+ * `displayName()` / `photoOf()` in format.ts.
+ */
+export type PlayerIdentity = { display_name?: string | null; image_url?: string | null };
+
+export type PlayerRef = { id: string; name: string } & PlayerIdentity;
 
 export type BattingStats = {
   innings: number;
@@ -105,7 +112,7 @@ export type TeamSpan = { id: number; name: string; first_season: number; last_se
 
 export type Filters = { season: number | null; since: string | null };
 
-export type PlayerProfile = {
+export type PlayerProfile = PlayerIdentity & {
   id: string;
   name: string;
   unique_name: string;
@@ -131,7 +138,7 @@ export type PlayerProfile = {
   form_bowling: FormBowl[];
 };
 
-export type CompareEntry = {
+export type CompareEntry = PlayerIdentity & {
   id: string;
   name: string;
   matches: number;
@@ -145,7 +152,7 @@ export type CompareEntry = {
 
 export type CompareResponse = { filters: Filters; players: CompareEntry[] };
 
-export type SearchHit = {
+export type SearchHit = PlayerIdentity & {
   id: string;
   name: string;
   /** name or alias that matched the query */

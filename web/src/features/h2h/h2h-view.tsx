@@ -10,11 +10,14 @@ import { PageHeader } from "@/components/shell/page-header";
 import { cn } from "@/lib/utils";
 
 import { PlayerPicker, type PickedPlayer } from "../players/player-picker";
+import { displayName, photoOf } from "../players/format";
+import type { PlayerRef } from "../players/types";
 import { QueryError } from "../players/ui";
 import { DEFAULT_PAIR } from "./constants";
 import { H2HCard } from "./h2h-card";
 import { MatchupList } from "./matchup-list";
 import { useH2H, type H2HQuery } from "./queries";
+import { BowlingTypeCard } from "./type-card";
 
 
 export function h2hHref(q: H2HQuery): string {
@@ -41,8 +44,11 @@ export function H2HView({ query }: { query: H2HQuery }) {
 
   const go = (next: H2HQuery) => router.replace(h2hHref(next), { scroll: false });
   const pending = q.isPending || q.isPlaceholderData ? "Loading…" : "Unknown player";
-  const batterVal: PickedPlayer | null = query.batter ? (picked[query.batter] ?? (data?.batter?.id === query.batter ? data.batter : { id: query.batter, name: pending })) : null;
-  const bowlerVal: PickedPlayer | null = query.bowler ? (picked[query.bowler] ?? (data?.bowler?.id === query.bowler ? data.bowler : { id: query.bowler, name: pending })) : null;
+  const asPicked = (r: PlayerRef): PickedPlayer => ({ id: r.id, name: displayName(r), image: photoOf(r) });
+  const batterVal: PickedPlayer | null = query.batter ? (picked[query.batter] ?? (data?.batter?.id === query.batter ? asPicked(data.batter) : { id: query.batter, name: pending })) : null;
+  const bowlerVal: PickedPlayer | null = query.bowler ? (picked[query.bowler] ?? (data?.bowler?.id === query.bowler ? asPicked(data.bowler) : { id: query.bowler, name: pending })) : null;
+  const batterName = data?.batter ? displayName(data.batter) : "";
+  const bowlerName = data?.bowler ? displayName(data.bowler) : "";
 
   const choose = (role: "batter" | "bowler", p: PickedPlayer | null) => {
     if (p) setPicked((m) => ({ ...m, [p.id]: p }));
@@ -91,7 +97,7 @@ export function H2HView({ query }: { query: H2HQuery }) {
           icon={Swords}
           title="Pick a batter, a bowler, or both"
           why="One player shows their toughest (or easiest) opponents; two players show every ball between them."
-          action={{ href: h2hHref(DEFAULT_PAIR), label: "Try V Kohli v JJ Bumrah" }}
+          action={{ href: h2hHref(DEFAULT_PAIR), label: "Try Virat Kohli v Jasprit Bumrah" }}
         />
       ) : q.isError ? (
         <QueryError error={q.error} onRetry={() => q.refetch()} what="the head-to-head" />
@@ -112,7 +118,7 @@ export function H2HView({ query }: { query: H2HQuery }) {
               ) : (
                 <EmptyState
                   icon={Swords}
-                  title={`${data.batter.name} has never faced ${data.bowler.name}`}
+                  title={`${batterName} has never faced ${bowlerName}`}
                   why={`No IPL deliveries between them${query.since ? ` since ${query.since}` : ""}. The lists alongside show who each of them has met most.`}
                   action={query.since ? { href: h2hHref({ ...query, since: undefined }), label: "Try all IPL seasons" } : undefined}
                 />
@@ -122,6 +128,7 @@ export function H2HView({ query }: { query: H2HQuery }) {
                 Pick a {data.batter ? "bowler" : "batter"} to see every ball between the two, or open a name from the list.
               </p>
             )}
+            {data.batter && <BowlingTypeCard batterId={data.batter.id} batterName={batterName} bowlerId={data.bowler?.id} bowlerName={bowlerName || undefined} since={query.since} />}
             {data.notes.length > 0 && (
               <ul className="text-xs text-muted-foreground">
                 {data.notes.map((n) => (
@@ -133,22 +140,22 @@ export function H2HView({ query }: { query: H2HQuery }) {
           <div className="grid grid-cols-1 min-w-0 content-start gap-4 lg:col-span-4">
             {data.batter && (
               <MatchupList
-                title={`Toughest bowlers for ${data.batter.name}`}
+                title={`Toughest bowlers for ${batterName}`}
                 subtitle={`Most dismissals, min ${data.min_balls} balls`}
                 rows={data.top_bowlers_vs_batter}
                 activeId={query.bowler}
                 hrefFor={(r) => h2hHref({ ...query, bowler: r.player.id })}
-                empty={`No bowler has bowled ${data.min_balls}+ balls to ${data.batter.name} in this period.`}
+                empty={`No bowler has bowled ${data.min_balls}+ balls to ${batterName} in this period.`}
               />
             )}
             {data.bowler && (
               <MatchupList
-                title={`Batters who dominate ${data.bowler.name}`}
+                title={`Batters who dominate ${bowlerName}`}
                 subtitle={`Most runs, min ${data.min_balls} balls`}
                 rows={data.top_batters_vs_bowler}
                 activeId={query.batter}
                 hrefFor={(r) => h2hHref({ ...query, batter: r.player.id })}
-                empty={`No batter has faced ${data.min_balls}+ balls from ${data.bowler.name} in this period.`}
+                empty={`No batter has faced ${data.min_balls}+ balls from ${bowlerName} in this period.`}
               />
             )}
           </div>

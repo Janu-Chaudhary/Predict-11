@@ -4,10 +4,11 @@ import { Search, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { StumpsLoader } from "@/components/loaders/stumps-loader";
+import { PlayerAvatar } from "@/components/player/player-avatar";
 import { TeamBadge } from "@/components/player/team-badge";
 import { cn } from "@/lib/utils";
 
-import { seasonSpan, teamCode } from "./format";
+import { displayName, photoOf, seasonSpan, teamCode } from "./format";
 import { usePlayerSearchHits } from "./queries";
 import type { SearchHit } from "./types";
 
@@ -20,7 +21,8 @@ export function useDebounced<T>(value: T, ms = 200): T {
   return v;
 }
 
-export type PickedPlayer = { id: string; name: string; team?: string | null };
+/** `name` is the display name (full name when the API has one). */
+export type PickedPlayer = { id: string; name: string; team?: string | null; image?: string | null };
 
 /**
  * Player autocomplete (ARIA 1.2 combobox + listbox). Searches names *and aliases* via
@@ -64,7 +66,7 @@ export function PlayerPicker({
   const activeIdx = Math.min(active, Math.max(hits.length - 1, 0));
 
   const pick = (h: SearchHit) => {
-    onChange({ id: h.id, name: h.name, team: h.team });
+    onChange({ id: h.id, name: displayName(h), team: h.team, image: photoOf(h) });
     setQuery("");
     setOpen(false);
     setEditing(false);
@@ -91,8 +93,9 @@ export function PlayerPicker({
       </label>
       {!(editing || value === null) && value ? (
         <div className="flex h-11 items-center gap-2 rounded-[10px] border border-border bg-card pr-1 pl-2">
-          {value.team && <TeamBadge team={teamCode(value.team) ?? ""} />}
+          <PlayerAvatar name={value.name} src={value.image} team={teamCode(value.team) ?? undefined} size="xs" />
           <span className="min-w-0 flex-1 truncate text-sm font-semibold">{value.name}</span>
+          {value.team && <TeamBadge team={teamCode(value.team) ?? ""} />}
           <button
             type="button"
             onClick={startEdit}
@@ -172,7 +175,8 @@ export function PlayerPicker({
       >
         {hits.map((h, i) => {
           const code = teamCode(h.team);
-          const viaAlias = h.matched && h.matched !== h.name;
+          const shown = displayName(h);
+          const viaAlias = h.matched && h.matched !== h.name && h.matched !== shown;
           return (
             <li
               key={h.id}
@@ -184,14 +188,16 @@ export function PlayerPicker({
               onClick={() => pick(h)}
               className={cn("flex min-h-11 cursor-pointer items-center gap-2.5 rounded-lg px-2 py-1.5", i === activeIdx && "bg-surface-2")}
             >
-              {code ? <TeamBadge team={code} /> : <span className="h-6 w-9 shrink-0 rounded-full bg-surface-3" aria-hidden />}
+              <PlayerAvatar name={shown} src={photoOf(h)} team={code ?? undefined} size="sm" />
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-medium">{h.name}</span>
+                <span className="block truncate text-sm font-medium">{shown}</span>
                 <span className="num block truncate text-xs text-muted-foreground">
+                  {shown !== h.name && <>{h.name} · </>}
                   {viaAlias && <>“{h.matched}” · </>}
                   {h.first_season ? seasonSpan([h.first_season, h.last_season ?? h.first_season]) : ""} · {h.matches} matches
                 </span>
               </span>
+              {code && <TeamBadge team={code} />}
             </li>
           );
         })}

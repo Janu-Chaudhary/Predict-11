@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftRight, Columns3, History } from "lucide-react";
+import { ArrowLeftRight, Columns3, History, Trophy } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -16,18 +16,18 @@ import { Panel } from "./ui";
  * Static on purpose: a "popular" endpoint doesn't exist yet. Teams are their last IPL side.
  */
 export const POPULAR_PLAYERS = [
-  { id: "ba607b88", name: "V Kohli", team: "Royal Challengers Bengaluru", note: "Most IPL runs" },
-  { id: "462411b3", name: "JJ Bumrah", team: "Mumbai Indians", note: "Death-overs specialist" },
-  { id: "740742ef", name: "RG Sharma", team: "Mumbai Indians", note: "Opener" },
+  { id: "ba607b88", name: "Virat Kohli", team: "Royal Challengers Bengaluru", note: "Most IPL runs" },
+  { id: "462411b3", name: "Jasprit Bumrah", team: "Mumbai Indians", note: "Death-overs specialist" },
+  { id: "740742ef", name: "Rohit Sharma", team: "Mumbai Indians", note: "Opener" },
   { id: "4a8a2e3b", name: "MS Dhoni", team: "Chennai Super Kings", note: "Finisher, WK" },
-  { id: "271f83cd", name: "SA Yadav", team: "Mumbai Indians", note: "Suryakumar Yadav" },
+  { id: "271f83cd", name: "Suryakumar Yadav", team: "Mumbai Indians", note: "360° batter" },
   { id: "5f547c8b", name: "Rashid Khan", team: "Gujarat Titans", note: "Leg-spin" },
-  { id: "fe93fd9d", name: "RA Jadeja", team: "Rajasthan Royals", note: "All-rounder" },
-  { id: "9d430b40", name: "SP Narine", team: "Kolkata Knight Riders", note: "All-rounder" },
+  { id: "fe93fd9d", name: "Ravindra Jadeja", team: "Rajasthan Royals", note: "All-rounder" },
+  { id: "9d430b40", name: "Sunil Narine", team: "Kolkata Knight Riders", note: "All-rounder" },
   { id: "b4b99816", name: "Shubman Gill", team: "Gujarat Titans", note: "Opener" },
-  { id: "99b75528", name: "JC Buttler", team: "Gujarat Titans", note: "Opener, WK" },
-  { id: "57ee1fde", name: "YS Chahal", team: "Punjab Kings", note: "Most IPL wickets" },
-  { id: "12b610c2", name: "TM Head", team: "Sunrisers Hyderabad", note: "Powerplay hitter" },
+  { id: "99b75528", name: "Jos Buttler", team: "Gujarat Titans", note: "Opener, WK" },
+  { id: "57ee1fde", name: "Yuzvendra Chahal", team: "Punjab Kings", note: "Most IPL wickets" },
+  { id: "12b610c2", name: "Travis Head", team: "Sunrisers Hyderabad", note: "Powerplay hitter" },
 ];
 
 export function PlayersIndex() {
@@ -44,7 +44,7 @@ export function PlayersIndex() {
             value={null}
             onChange={(p) => p && router.push(`/players/${encodeURIComponent(p.id)}`)}
           />
-          <p className="mt-2 text-xs text-muted-foreground">Matches full names and known aliases (“Virat Kohli” finds V Kohli). Only players with IPL matches are listed.</p>
+          <p className="mt-2 text-xs text-muted-foreground">Matches full names, scorecard names and known aliases (“Virat”, “V Kohli”). Only players with IPL matches are listed.</p>
         </Panel>
 
         {recent.length > 0 && (
@@ -52,7 +52,7 @@ export function PlayersIndex() {
             <ul className="divide-y divide-border">
               {recent.map((p) => (
                 <li key={p.id}>
-                  <PlayerRow player={{ id: p.id, name: p.name, team: teamCode(p.team) ?? "" }} meta={p.team ?? undefined} />
+                  <PlayerRow player={{ id: p.id, name: p.name, team: teamCode(p.team) ?? "", photoUrl: p.image }} meta={p.team ?? undefined} />
                 </li>
               ))}
             </ul>
@@ -71,6 +71,12 @@ export function PlayersIndex() {
       </div>
 
       <aside className="grid grid-cols-1 content-start gap-4 lg:col-span-4" aria-label="Player tools">
+        <ToolCard
+          href="/fantasy"
+          icon={Trophy}
+          title="Fantasy leaderboards"
+          body="Dream11 points by season: floor, median and ceiling, consistency and points per credit, plus the best XIs."
+        />
         <ToolCard
           href="/players/compare?ids=ba607b88,740742ef"
           icon={Columns3}

@@ -7,6 +7,7 @@ import {
   MapPin,
   Shield,
   Shirt,
+  Sparkles,
   Target,
   Trophy,
   Users,
@@ -27,6 +28,7 @@ export const PRIMARY_NAV: NavItem[] = [
 export const EXPLORE_NAV: NavItem[] = [
   { href: "/teams", label: "Teams", icon: Shield, description: "Squads, fixtures, team stats" },
   { href: "/players", label: "Players", icon: Users, description: "Profiles, form, matchups" },
+  { href: "/fantasy", label: "Fantasy", icon: Sparkles, description: "Dream11 leaderboards, consistency, best XIs" },
   { href: "/h2h", label: "H2H", icon: ArrowLeftRight, description: "Team vs team, batter vs bowler" },
   { href: "/venues", label: "Venues", icon: MapPin, description: "Par scores, pace/spin, dew" },
   { href: "/records", label: "Records", icon: Trophy, description: "All-time and season records" },

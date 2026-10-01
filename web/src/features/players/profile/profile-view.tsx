@@ -1,19 +1,21 @@
 "use client";
 
-import { ArrowLeftRight, Columns3, Sparkles, UserX } from "lucide-react";
+import { ArrowLeftRight, Columns3, UserX } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { ProfilePageSkeleton } from "@/components/loaders/page-skeletons";
+import { PlayerAvatar } from "@/components/player/player-avatar";
 import { TeamBadge } from "@/components/player/team-badge";
 import { EmptyState } from "@/components/shell/empty-state";
 import { TabLinks } from "@/components/shell/tab-links";
 import { cn } from "@/lib/utils";
 
+import { PlayerFantasyPanel } from "../../fantasy/player-fantasy";
 import { ApiError } from "../api";
 import type { ProfileTab } from "../constants";
-import { fmt, fmtDate, seasonSpan, teamCode } from "../format";
+import { displayName, fmt, fmtDate, photoOf, seasonSpan, teamCode } from "../format";
 import { usePlayerProfile } from "../queries";
 import { rememberPlayer } from "../recent";
 import type { PlayerProfile, StatFilter } from "../types";
@@ -35,7 +37,7 @@ export function ProfileView({ id, tab, filter }: { id: string; tab: ProfileTab; 
   const p = q.data;
 
   useEffect(() => {
-    if (p && p.id === id) rememberPlayer({ id: p.id, name: p.name, team: p.last_team });
+    if (p && p.id === id) rememberPlayer({ id: p.id, name: displayName(p), team: p.last_team, image: photoOf(p) });
   }, [p, id]);
 
   const href = (next: { tab?: ProfileTab; filter?: StatFilter }) => {
@@ -68,15 +70,21 @@ export function ProfileView({ id, tab, filter }: { id: string; tab: ProfileTab; 
   const skill = primarySkill(p);
   const h2hHref = skill === "bowl" ? `/h2h?bowler=${encodeURIComponent(p.id)}` : `/h2h?batter=${encodeURIComponent(p.id)}`;
   const empty = p.matches === 0;
+  const title = displayName(p);
+  const aliases = p.aliases.filter((a) => a !== title && a !== p.name);
 
   return (
     <div className={cn("transition-opacity", q.isPlaceholderData && "opacity-60")} aria-busy={q.isFetching}>
       <header className="mb-4 flex flex-wrap items-start gap-3 md:mb-6 md:gap-4">
-        {code ? <TeamBadge team={code} size="xl" /> : <span aria-hidden className="size-14 shrink-0 rounded-full bg-surface-3" />}
+        <PlayerAvatar name={title} src={photoOf(p)} team={code ?? undefined} size="lg" eager />
         <div className="min-w-0 flex-1">
-          <p className="text-overline text-muted-foreground">{p.last_team ?? "IPL player"}</p>
-          <h1 className="text-display truncate">{p.name}</h1>
-          {p.aliases.length > 0 && <p className="truncate text-sm text-muted-foreground">Also known as {p.aliases.join(", ")}</p>}
+          <p className="text-overline flex items-center gap-1.5 text-muted-foreground">
+            {code && <TeamBadge team={code} showCode={false} />}
+            <span className="truncate">{p.last_team ?? "IPL player"}</span>
+          </p>
+          <h1 className="text-display truncate">{title}</h1>
+          {title !== p.name && <p className="truncate text-xs text-muted-foreground">Scorecard name: {p.name}</p>}
+          {aliases.length > 0 && <p className="truncate text-sm text-muted-foreground">Also known as {aliases.join(", ")}</p>}
           <dl className="num mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-sm">
             <Meta label="Seasons">
               {seasonSpan(p.seasons)} <span className="text-muted-foreground">({p.seasons.length})</span>
@@ -137,7 +145,7 @@ export function ProfileView({ id, tab, filter }: { id: string; tab: ProfileTab; 
           )}
         </div>
         <aside className="grid grid-cols-1 content-start gap-4 lg:sticky lg:top-20 lg:col-span-4 lg:self-start" aria-label="Player side panel">
-          <FantasySlot />
+          <PlayerFantasyPanel id={p.id} filter={filter} scopeLabel={filterLabel(filter)} />
           <Panel title="Teams" bodyClassName="px-0 md:px-0 pb-1">
             <ul className="divide-y divide-border">
               {p.teams.map((t) => (
@@ -163,26 +171,5 @@ function Meta({ label, children }: { label: string; children: React.ReactNode })
       <dt className="text-xs text-muted-foreground">{label}</dt>
       <dd className="font-medium">{children}</dd>
     </div>
-  );
-}
-
-/** Reserved slot: fantasy floor / median / ceiling arrive once fantasy points are persisted (C1/C2). */
-function FantasySlot() {
-  return (
-    <section aria-labelledby="fantasy-slot-h" className="rounded-xl border border-dashed border-border bg-card/60 p-4">
-      <div className="flex items-center justify-between gap-2">
-        <h2 id="fantasy-slot-h" className="text-overline text-muted-foreground">
-          Fantasy range
-        </h2>
-        <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">Coming later</span>
-      </div>
-      <div aria-hidden className="mt-3 h-2.5 rounded-full bg-surface-2">
-        <div className="mx-[22%] h-full rounded-full bg-surface-3" />
-      </div>
-      <p className="mt-3 flex gap-2 text-sm text-muted-foreground">
-        <Sparkles aria-hidden className="mt-0.5 size-4 shrink-0" />
-        Floor, median and ceiling Dream11 points per match will appear here once historical fantasy points are stored.
-      </p>
-    </section>
   );
 }

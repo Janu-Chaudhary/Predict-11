@@ -14,6 +14,7 @@ import { ErrorState } from "./error-state";
 import { fmtDate, fmtPct, fmtRuns, isNum } from "./format";
 import { useVenue } from "./queries";
 import type { VenueCard as VenueCardData } from "./types";
+import { DewSection, PaceSpinSection, TossTrendSection } from "./venue-conditions";
 import { LeaderList, Panel, SeasonParBars, ParComparison, PhaseBars, TossOutcome, TossSplitBar, TotalsList } from "./venue-sections";
 
 /** First season of the impact-player era; the API reports the same window as `recent`. */
@@ -26,7 +27,7 @@ const COVERED_NOTE = /pace vs spin/i;
  * Venue card (E1): par first-innings score (2023+ next to all-time), chase and toss bias,
  * phase run rates, record totals and venue leaders. Pure view: data in, markup out.
  */
-export function VenueCardView({ venue, recentFrom = RECENT_FROM }: { venue: VenueCardData; recentFrom?: number }) {
+export function VenueCardView({ venue, recentFrom = RECENT_FROM, conditions = false }: { venue: VenueCardData; recentFrom?: number; /** Fetch toss trend, pace/spin and dew (needs a QueryClient). */ conditions?: boolean }) {
   const v = venue;
   const seasons = v.first_match && v.last_match ? `${v.first_match.slice(0, 4)}–${v.last_match.slice(0, 4)}` : null;
   const hasSeasonToss = v.by_season.some((s) => isNum(s.field_pct ?? null));
@@ -95,7 +96,9 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM }: { venue: Venu
         <div className="grid gap-3 md:gap-4 lg:grid-cols-12">
           <div className="min-w-0 lg:col-span-7">
             <SeasonParBars seasons={v.by_season} venueName={v.name} recentFrom={recentFrom} />
-            {hasSeasonToss ? (
+            {conditions ? (
+              <TossTrendSection venueId={v.id} recentFrom={recentFrom} />
+            ) : hasSeasonToss ? (
               <div className="mt-3 md:mt-4">
                 <StatBarChart
                   title="Toss decision by season · chose to field %"
@@ -105,11 +108,7 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM }: { venue: Venu
                   series={[{ key: "field", label: "Chose to field %", color: "var(--chart-3)" }]}
                 />
               </div>
-            ) : (
-              <p className="mt-2 px-1 text-[11px] leading-4 text-muted-foreground">
-                Toss decision per season is not in the API yet; the Toss panel compares {recentFrom}+ with all-time meanwhile.
-              </p>
-            )}
+            ) : null}
           </div>
           <div className="min-w-0 lg:col-span-5">
             <PhaseBars recent={v.phases_recent} allTime={v.phases_all_time} recentFrom={recentFrom} />
@@ -135,20 +134,27 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM }: { venue: Venu
         </div>
 
         <div className="grid gap-3 md:grid-cols-2 md:gap-4">
+          {conditions ? (
+            <>
+              <PaceSpinSection venueId={v.id} recentFrom={recentFrom} />
+              <DewSection venueId={v.id} recentFrom={recentFrom} />
+            </>
+          ) : (
+            <>
           <EmptyState
             compact
             icon={Wind}
             title="Pace vs spin wickets"
-            why="Which bowling type takes wickets here needs each bowler’s style, which isn’t stored yet."
-            when="After the bowling-styles scrape lands (planned with the H2H bowling-type splits)."
+            why="Pace and spin shares of overs and wickets load separately from the venue card."
           />
           <EmptyState
             compact
             icon={Droplets}
             title="Dew factor"
-            why="Dew is inferred from day vs night starts and second-innings scoring, which needs match start times."
-            when="Once start times are scraped with the fixtures feed."
+            why="Chase win % on high- vs low-dew evenings loads separately from the venue card."
           />
+            </>
+          )}
         </div>
 
         {notes.length > 0 && (
@@ -204,5 +210,5 @@ export function VenueDetail({ id }: { id: number }) {
       />
     );
   }
-  return <VenueCardView venue={q.data} />;
+  return <VenueCardView venue={q.data} conditions />;
 }

@@ -5,7 +5,7 @@ import { StatTile } from "@/components/data/stat-tile";
 import { Sparkline } from "@/components/data/sparkline";
 import { TeamBadge } from "@/components/player/team-badge";
 
-import { fmt, fmtDate, teamCode } from "../format";
+import { displayName, fmt, fmtDate, teamCode } from "../format";
 import { FormBars } from "../form-bars";
 import type { PlayerProfile, SeasonLine } from "../types";
 import { Panel } from "../ui";
@@ -129,7 +129,7 @@ function SeasonTable({ p }: { p: PlayerProfile }) {
       <h2 id="by-season-h" className="text-overline mb-2 text-muted-foreground">
         By season
       </h2>
-      <StatTable caption={`${p.name}: IPL stats by season`} columns={cols} rows={p.by_season} rowKey={(r) => String(r.season)} initialSort={{ key: "season", dir: "desc" }} />
+      <StatTable caption={`${displayName(p)}: IPL stats by season`} columns={cols} rows={p.by_season} rowKey={(r) => String(r.season)} initialSort={{ key: "season", dir: "desc" }} />
     </section>
   );
 }

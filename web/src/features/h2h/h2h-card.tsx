@@ -1,7 +1,9 @@
 import { ConfidenceBadge } from "@/components/data/confidence-badge";
 import { cn } from "@/lib/utils";
 
-import { fmt, fmtDate } from "../players/format";
+import { PlayerAvatar } from "@/components/player/player-avatar";
+
+import { displayName, fmt, fmtDate, photoOf } from "../players/format";
 import type { PlayerRef } from "../players/types";
 import { H2H_THRESHOLDS, resolveConfidence } from "./confidence";
 import type { PairStats } from "./types";
@@ -22,17 +24,25 @@ export function H2HCard({ batter, bowler, pair }: { batter: PlayerRef; bowler: P
   const level = resolveConfidence(pair.confidence, pair.balls);
   const outs = howOutList(pair.how_out);
   const low = level === "low";
+  const bat = displayName(batter);
+  const bowl = displayName(bowler);
   return (
     <article aria-labelledby="h2h-title" className="min-w-0 rounded-xl border border-border bg-card shadow-e1">
       <header className="flex flex-wrap items-start justify-between gap-2 border-b border-border px-3 py-3 md:px-4">
-        <div className="min-w-0">
+        <div className="flex min-w-0 items-center gap-3">
+          <span aria-hidden className="flex shrink-0 -space-x-2">
+            <PlayerAvatar name={bat} src={photoOf(batter)} size="md" className="ring-2 ring-card" />
+            <PlayerAvatar name={bowl} src={photoOf(bowler)} size="md" className="ring-2 ring-card" />
+          </span>
+          <div className="min-w-0">
           <p className="text-overline text-muted-foreground">Batter v bowler · IPL</p>
           <h2 id="h2h-title" className="text-title truncate">
-            {batter.name} <span className="text-muted-foreground">v</span> {bowler.name}
+            {bat} <span className="text-muted-foreground">v</span> {bowl}
           </h2>
           <p className="num text-xs text-muted-foreground">
             {pair.matches} matches · {pair.innings} innings
           </p>
+          </div>
         </div>
         <ConfidenceBadge n={pair.balls} level={level} thresholds={H2H_THRESHOLDS} />
       </header>
@@ -66,7 +76,7 @@ export function H2HCard({ batter, bowler, pair }: { batter: PlayerRef; bowler: P
               ))}
             </ul>
           ) : (
-            <p className="text-sm text-muted-foreground">Never dismissed by {bowler.name}.</p>
+            <p className="text-sm text-muted-foreground">Never dismissed by {bowl}.</p>
           )}
         </div>
 
@@ -85,7 +95,7 @@ export function H2HCard({ batter, bowler, pair }: { batter: PlayerRef; bowler: P
           <div className="max-h-72 overflow-auto rounded-lg border border-border" role="region" aria-label="By-season breakdown" tabIndex={0}>
             <table className="num w-full border-separate border-spacing-0 text-[13px]">
               <caption className="sr-only">
-                {batter.name} against {bowler.name} by season
+                {bat} against {bowl} by season
               </caption>
               <thead>
                 <tr>

@@ -5,9 +5,10 @@ import { StatTable, type StatColumn } from "@/components/data/stat-table";
 import { TeamBadge } from "@/components/player/team-badge";
 
 import { H2H_THRESHOLDS } from "../../h2h/confidence";
-import { fmt, PHASE_LABEL, teamCode } from "../format";
+import { displayName, fmt, PHASE_LABEL, teamCode } from "../format";
 import type { PlayerProfile, Split } from "../types";
 import { MetricBar, Panel } from "../ui";
+import { BatterTypesTable, BowlerHandsTable } from "./matchup-tables";
 
 export function SplitsTab({ p, skill }: { p: PlayerProfile; skill: "bat" | "bowl" }) {
   const batPhases = p.batting_phases.filter((x) => x.balls > 0);
@@ -62,11 +63,17 @@ export function SplitsTab({ p, skill }: { p: PlayerProfile; skill: "bat" | "bowl
     </Panel>
   );
 
+  const since = p.filters.since ?? undefined;
+  const seasonOnly = p.filters.season !== null;
+  const types = p.batting.balls > 0 && <BatterTypesTable key="types" id={p.id} name={displayName(p)} since={since} seasonOnly={seasonOnly} />;
+  const hands = p.bowling.balls > 0 && <BowlerHandsTable key="hands" id={p.id} name={displayName(p)} since={since} seasonOnly={seasonOnly} />;
+
   return (
     <>
       {skill === "bowl" ? [bowl, bat] : [bat, bowl]}
-      <SplitTable title="Venues" caption={`${p.name}: venue splits`} rows={p.venues} skill={skill} />
-      <SplitTable title="Against teams" caption={`${p.name}: splits by opponent`} rows={p.vs_teams} skill={skill} teams />
+      {skill === "bowl" ? [hands, types] : [types, hands]}
+      <SplitTable title="Venues" caption={`${displayName(p)}: venue splits`} rows={p.venues} skill={skill} />
+      <SplitTable title="Against teams" caption={`${displayName(p)}: splits by opponent`} rows={p.vs_teams} skill={skill} teams />
     </>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { fetchVenue, VENUE_STALE_MS, venueKeys } from "@/features/venues/api";
+import { conditionKeys, fetchDew, fetchPaceSpin, fetchTossTrend } from "@/features/venues/conditions-api";
 import { Prefetched } from "@/features/venues/prefetch";
 import { VenueDetail } from "@/features/venues/venue-card";
 
@@ -24,7 +25,14 @@ export default async function VenuePage({ params }: { params: Promise<{ id: stri
   const id = parseId((await params).id);
   if (id === null) notFound();
   return (
-    <Prefetched queries={[{ queryKey: venueKeys.card(id), queryFn: (signal) => fetchVenue(id, signal), staleTime: VENUE_STALE_MS }]}>
+    <Prefetched
+      queries={[
+        { queryKey: venueKeys.card(id), queryFn: (signal) => fetchVenue(id, signal), staleTime: VENUE_STALE_MS },
+        { queryKey: conditionKeys.toss(id), queryFn: (signal) => fetchTossTrend(id, signal), staleTime: VENUE_STALE_MS },
+        { queryKey: conditionKeys.paceSpin(id), queryFn: (signal) => fetchPaceSpin(id, signal), staleTime: VENUE_STALE_MS },
+        { queryKey: conditionKeys.dew(id), queryFn: (signal) => fetchDew(id, signal), staleTime: VENUE_STALE_MS },
+      ]}
+    >
       <VenueDetail id={id} />
     </Prefetched>
   );

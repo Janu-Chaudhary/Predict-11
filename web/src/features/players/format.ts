@@ -93,3 +93,13 @@ export function parseSeason(v: string | undefined): number | undefined {
   const n = Number(v);
   return v && Number.isInteger(n) && n >= 2008 && n <= 2100 ? n : undefined;
 }
+
+/** Full name for display ("Virat Kohli"); falls back to the scorecard name until the API sends it. */
+export function displayName(p: { name: string; display_name?: string | null }): string {
+  return p.display_name?.trim() || p.name;
+}
+
+/** Headshot URL or null (initials fallback in PlayerAvatar). */
+export function photoOf(p: { image_url?: string | null }): string | null {
+  return p.image_url?.trim() || null;
+}

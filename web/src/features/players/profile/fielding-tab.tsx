@@ -4,7 +4,7 @@ import { StatTable, type StatColumn } from "@/components/data/stat-table";
 import { StatTile } from "@/components/data/stat-tile";
 import { TeamBadge } from "@/components/player/team-badge";
 
-import { fmt, teamCode } from "../format";
+import { displayName, fmt, teamCode } from "../format";
 import type { PlayerProfile, SeasonLine } from "../types";
 import { Panel } from "../ui";
 
@@ -34,7 +34,7 @@ export function FieldingTab({ p }: { p: PlayerProfile }) {
         <h2 id="field-season-h" className="text-overline mb-2 text-muted-foreground">
           By season
         </h2>
-        <StatTable caption={`${p.name}: fielding by season`} columns={cols} rows={p.by_season} rowKey={(r) => String(r.season)} initialSort={{ key: "season", dir: "desc" }} />
+        <StatTable caption={`${displayName(p)}: fielding by season`} columns={cols} rows={p.by_season} rowKey={(r) => String(r.season)} initialSort={{ key: "season", dir: "desc" }} />
       </section>
     </>
   );

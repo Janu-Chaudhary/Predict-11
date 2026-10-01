@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Fragment } from "react";
 
-import { TeamBadge } from "@/components/player/team-badge";
+import { PlayerAvatar } from "@/components/player/player-avatar";
 import { cn } from "@/lib/utils";
 
-import { fmt, teamCode } from "../format";
+import { displayName, fmt, photoOf, teamCode } from "../format";
 import type { CompareEntry } from "../types";
 import { rowBest, visibleRows } from "./metrics";
 
@@ -32,8 +32,8 @@ export function CompareTable({ players, caption }: { players: CompareEntry[]; ca
                     href={`/players/${encodeURIComponent(p.id)}`}
                     className="inline-flex max-w-[9rem] items-center justify-end gap-1.5 rounded font-semibold outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring sm:max-w-none"
                   >
-                    {p.last_team && <TeamBadge team={teamCode(p.last_team) ?? ""} className="max-sm:hidden" />}
-                    <span className="truncate">{p.name}</span>
+                    <PlayerAvatar name={displayName(p)} src={photoOf(p)} team={teamCode(p.last_team) ?? undefined} size="xs" className="max-sm:hidden" />
+                    <span className="truncate">{displayName(p)}</span>
                   </Link>
                 </th>
               ))}

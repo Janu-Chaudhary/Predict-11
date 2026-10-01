@@ -1,9 +1,10 @@
 import Link from "next/link";
 
 import { ConfidenceBadge } from "@/components/data/confidence-badge";
+import { PlayerAvatar } from "@/components/player/player-avatar";
 import { cn } from "@/lib/utils";
 
-import { fmt } from "../players/format";
+import { displayName, fmt, photoOf } from "../players/format";
 import { H2H_THRESHOLDS, resolveConfidence } from "./confidence";
 import type { MatchupRow } from "./types";
 
@@ -52,8 +53,9 @@ export function MatchupList({
                   )}
                 >
                   <span className="num w-5 shrink-0 text-right text-xs text-faint">{i + 1}</span>
+                  <PlayerAvatar name={displayName(r.player)} src={photoOf(r.player)} size="sm" />
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-medium">{r.player.name}</span>
+                    <span className="block truncate text-sm font-medium">{displayName(r.player)}</span>
                     <span className="num block truncate text-xs text-muted-foreground">
                       {r.runs} off {r.balls} · SR {fmt(r.strike_rate, 0)} · dot {fmt(r.dot_pct, 0)}%
                     </span>
