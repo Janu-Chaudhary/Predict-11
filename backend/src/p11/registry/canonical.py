@@ -11,13 +11,14 @@ import re
 
 from sqlalchemy import Connection, text
 
-# Franchise renames: old name -> current name. Only true renames of the *same* franchise.
-# (Deccan Chargers -> Sunrisers Hyderabad is a different franchise and is NOT merged.)
+# Team merges: old name -> current name. True renames of the same franchise, plus owner-approved
+# history merges (Deccan Chargers -> Sunrisers Hyderabad: one Hyderabad team history, 2026-10-02).
 TEAM_RENAMES: dict[str, str] = {
     "Royal Challengers Bangalore": "Royal Challengers Bengaluru",
     "Delhi Daredevils": "Delhi Capitals",
     "Kings XI Punjab": "Punjab Kings",
     "Rising Pune Supergiants": "Rising Pune Supergiant",
+    "Deccan Chargers": "Sunrisers Hyderabad",
 }
 
 # Venue spellings whose first comma-separated part is still not the canonical ground name.

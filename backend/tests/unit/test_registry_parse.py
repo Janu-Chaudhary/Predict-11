@@ -28,7 +28,7 @@ def test_team_renames():
     assert canonical_team_name("Royal Challengers Bangalore") == "Royal Challengers Bengaluru"
     assert canonical_team_name("Delhi Daredevils") == "Delhi Capitals"
     assert canonical_team_name("Kings XI Punjab") == "Punjab Kings"
-    assert canonical_team_name("Deccan Chargers") == "Deccan Chargers"  # different franchise
+    assert canonical_team_name("Deccan Chargers") == "Sunrisers Hyderabad"  # owner-approved merge
 
 
 def test_venue_variants_collapse():
