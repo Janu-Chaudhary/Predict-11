@@ -117,6 +117,53 @@ def cmd_lake_export(args: argparse.Namespace) -> None:
     _out({"lake_dir": str(d), "rows": export_lake(engine(), d)})
 
 
+def cmd_attributes_load(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.ingest.player_attributes import coverage, load_all
+
+    with engine().begin() as conn:
+        out = load_all(conn, fetch_espn=args.fetch_espn)
+        out["coverage"] = coverage(conn)
+    _out(out)
+
+
+def cmd_attributes_coverage(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.ingest.player_attributes import coverage, derived_accuracy
+
+    with engine().connect() as conn:
+        _out({"coverage": coverage(conn), "derived_accuracy": derived_accuracy(conn)})
+
+
+def cmd_starttime_load(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.ingest.start_times import load_start_times
+
+    with engine().begin() as conn:
+        _out(load_start_times(conn, infer=not args.no_infer))
+
+
+def cmd_fantasy_compute(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.fantasy.compute import compute_points
+
+    with engine().begin() as conn:
+        _out(compute_points(conn, args.season, force=args.force).as_dict())
+
+
+def cmd_fantasy_validate(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.fantasy.validate import validate_2026
+
+    with engine().connect() as conn:
+        rep = validate_2026(conn)
+    if not args.full:
+        rep.pop("results")
+    _out(rep)
+    if rep["failed"]:
+        sys.exit(1)
+
+
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="p11")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -175,6 +222,37 @@ def main(argv: list[str] | None = None) -> None:
     x = pl.add_parser("export", help="write deliveries/matches/match_players parquet")
     x.add_argument("--dir")
     x.set_defaults(func=cmd_lake_export)
+
+    pa = sub.add_parser("attributes", help="player role / hand / bowling style").add_subparsers(
+        dest="sub", required=True
+    )
+    x = pa.add_parser("load", help="all sources -> player_attribute (+ player_media)")
+    x.add_argument(
+        "--fetch-espn",
+        action="store_true",
+        help="fetch missing ESPN athlete profiles (<= 1 req/s, cached in data/archive)",
+    )
+    x.set_defaults(func=cmd_attributes_load)
+    x = pa.add_parser("coverage", help="attribute + photo coverage report")
+    x.set_defaults(func=cmd_attributes_coverage)
+
+    pst = sub.add_parser("starttime", help="match start times").add_subparsers(
+        dest="sub", required=True
+    )
+    x = pst.add_parser("load", help="cached BCCI/ESPN times + validated day/night inference")
+    x.add_argument("--no-infer", action="store_true")
+    x.set_defaults(func=cmd_starttime_load)
+
+    pf = sub.add_parser("fantasy", help="persisted Dream11 points").add_subparsers(
+        dest="sub", required=True
+    )
+    x = pf.add_parser("compute", help="score matches -> player_match_points (idempotent)")
+    x.add_argument("--season", type=int, nargs="*", help="e.g. --season 2025 2026 (default all)")
+    x.add_argument("--force", action="store_true", help="rescore matches that look up to date")
+    x.set_defaults(func=cmd_fantasy_compute)
+    x = pf.add_parser("validate", help="check 2026 totals vs 40 published Dream11 totals")
+    x.add_argument("--full", action="store_true")
+    x.set_defaults(func=cmd_fantasy_validate)
 
     args = p.parse_args(argv)
     args.func(args)

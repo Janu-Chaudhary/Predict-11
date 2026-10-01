@@ -53,6 +53,22 @@ from .db import Base
 MATCH_STATUSES = ("single_source", "unverified", "verified", "conflict", "quarantined")
 SOURCE_STATUSES = ("loaded", "quarantined")
 ROLES_IN_MATCH = ("xi", "impact_in", "impact_out", "sub", "sub_fielder")
+# Dream11 playing roles (p11.scoring.Role) and the normalized bowling types of
+# p11.registry.attributes; ``day`` = afternoon start, ``night`` = evening start.
+PLAYING_ROLES = ("WK", "BAT", "AR", "BOWL")
+BATTING_HANDS = ("R", "L")
+BOWLING_TYPES = (
+    "right-arm fast",
+    "right-arm medium",
+    "off-spin",
+    "leg-spin",
+    "left-arm fast",
+    "left-arm medium",
+    "left-arm orthodox",
+    "left-arm wrist",
+)
+DAY_NIGHT = ("day", "night")
+POINTS_STATUSES = ("xi", "impact_in", "impact_out", "sub")
 
 
 # --------------------------------------------------------------------------- registry
@@ -120,6 +136,46 @@ class Season(Base):
     __table_args__ = (UniqueConstraint("competition_id", "year", name="uq_season"),)
 
 
+class PlayerAttribute(Base):
+    """Player role / batting hand / bowling style as one source reports it (one row per
+    player per source). Consumers read the ``player_attribute_resolved`` view, which picks per
+    field the first non-null value by source priority (see p11.registry.attributes.PRIORITY).
+    ``source='derived'`` rows are a role fallback computed from IPL history."""
+
+    __tablename__ = "player_attribute"
+    player_id: Mapped[str] = mapped_column(ForeignKey("player.id"), primary_key=True)
+    source: Mapped[str] = mapped_column(Text, primary_key=True)
+    playing_role: Mapped[str | None] = mapped_column(Text)
+    source_role: Mapped[str | None] = mapped_column(Text)  # raw role text from the source
+    batting_hand: Mapped[str | None] = mapped_column(Text)
+    bowling_style: Mapped[str | None] = mapped_column(Text)  # raw, e.g. "right-arm offbreak"
+    bowling_type: Mapped[str | None] = mapped_column(Text)  # normalized
+    as_of: Mapped[dt.date] = mapped_column(Date)
+    detail: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
+    updated_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+    __table_args__ = (
+        CheckConstraint("playing_role IN " + str(PLAYING_ROLES), name="ck_player_attr_role"),
+        CheckConstraint("batting_hand IN " + str(BATTING_HANDS), name="ck_player_attr_hand"),
+        CheckConstraint("bowling_type IN " + str(BOWLING_TYPES), name="ck_player_attr_bowl"),
+    )
+
+
+class PlayerMedia(Base):
+    """Player headshot URL per source (URLs only, nothing downloaded). Consumers read
+    ``player_media_resolved`` (newest ``image_season`` wins)."""
+
+    __tablename__ = "player_media"
+    player_id: Mapped[str] = mapped_column(ForeignKey("player.id"), primary_key=True)
+    source: Mapped[str] = mapped_column(Text, primary_key=True)  # bcci | iplt20_2025
+    image_url: Mapped[str] = mapped_column(Text)
+    image_season: Mapped[int] = mapped_column(Integer)
+    updated_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+
 class SeasonCredits(Base):
     """Dream11 credits are fixed per player per season (IPL only, so keyed by year).
 
@@ -177,11 +233,17 @@ class Match(Base):
     stage: Mapped[str | None] = mapped_column(Text)  # Final, Qualifier 1, ...
     overs: Mapped[int] = mapped_column(SmallInteger, default=20)
     player_of_match: Mapped[list[str] | None] = mapped_column(ARRAY(Text))
+    # scheduled start (UTC) and slot; start_time_source = bcci|espn|inferred (inferred rows
+    # carry only day_night, see p11.ingest.start_times)
+    start_time_utc: Mapped[dt.datetime | None] = mapped_column(DateTime(timezone=True))
+    day_night: Mapped[str | None] = mapped_column(Text)
+    start_time_source: Mapped[str | None] = mapped_column(Text)
     resolved_from: Mapped[str] = mapped_column(Text)  # cricsheet|bcci|...|vote|manual
     ball_source: Mapped[str | None] = mapped_column(Text)  # source whose balls are resolved
     data_status: Mapped[str] = mapped_column(Text)
     __table_args__ = (
         CheckConstraint("data_status IN " + str(MATCH_STATUSES), name="ck_match_data_status"),
+        CheckConstraint("day_night IN " + str(DAY_NIGHT), name="ck_match_day_night"),
         Index("ix_match_season_date", "season_id", "start_date"),
     )
 
@@ -308,4 +370,37 @@ class FieldConflict(Base):
             postgresql_nulls_not_distinct=True,
         ),
         CheckConstraint("status IN ('open', 'resolved')", name="ck_field_conflict_status"),
+    )
+
+
+# --------------------------------------------------------------------------- fantasy
+class PlayerMatchPoints(Base):
+    """Dream11 points of one lineup member in one match (p11.fantasy.compute). One row per
+    (match, player): ``rules_version`` is the rule set in force on the match date (T20_2024 for
+    every pre-2025 match). No-result matches are stored with 0 everywhere. ``items`` holds the
+    itemised breakdown (p11.scoring.CATEGORY_OF keys); ``computed_at`` changes only when a
+    recompute actually changes the row (trigger)."""
+
+    __tablename__ = "player_match_points"
+    match_id: Mapped[int] = mapped_column(ForeignKey("match.id"), primary_key=True)
+    player_id: Mapped[str] = mapped_column(ForeignKey("player.id"), primary_key=True)
+    team_id: Mapped[int] = mapped_column(ForeignKey("team.id"))
+    rules_version: Mapped[str] = mapped_column(Text)
+    role_used: Mapped[str] = mapped_column(Text)
+    role_source: Mapped[str] = mapped_column(Text)  # player_attribute source, or "default"
+    status: Mapped[str] = mapped_column(Text)
+    batting: Mapped[int] = mapped_column(Integer)
+    bowling: Mapped[int] = mapped_column(Integer)
+    fielding: Mapped[int] = mapped_column(Integer)
+    lineup: Mapped[int] = mapped_column(Integer)
+    bonuses: Mapped[int] = mapped_column(Integer)
+    total: Mapped[int] = mapped_column(Integer)
+    items: Mapped[dict[str, Any]] = mapped_column(JSONB)
+    computed_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+    __table_args__ = (
+        CheckConstraint("status IN " + str(POINTS_STATUSES), name="ck_pmp_status"),
+        CheckConstraint("role_used IN " + str(PLAYING_ROLES), name="ck_pmp_role"),
+        Index("ix_pmp_player", "player_id"),
     )
