@@ -6,22 +6,17 @@ import { useState } from "react";
 import { badgesClash, getTeam } from "@/lib/tokens";
 import { cn } from "@/lib/utils";
 
-/** Rendered size (px) of the circular badge per size, and of the crest inside it. */
-const DIM = {
-  sm: { box: 20, img: 16 },
-  md: { box: 32, img: 24 },
-  lg: { box: 40, img: 30 },
-  xl: { box: 56, img: 42 },
-} as const;
+/** Rendered box (px) per size; the crest is fitted (contain) inside it. */
+const DIM = { sm: 20, md: 32, lg: 44, xl: 64, "2xl": 96 } as const;
 
 export type TeamBadgeSize = keyof typeof DIM;
 
 /**
- * Team identity badge (§2.3). Crest from /public/teams on a light disc with a team-colour ring;
- * historical franchises and missing/broken logos fall back to the monogram in team colours.
- * `sm` is an inline pill (crest + code) for rows; `md`+ are circular crests (code is sr-only).
- * Pass `opponent` + `side="away"` in a two-team context to apply the clash rule: a clashing away
- * badge swaps its ring to the secondary colour and dashes it.
+ * Team identity mark (§2.3, owner redesign 2026-10-02): the official transparent crest from
+ * /public/teams drawn bare on the page background (no disc, ring or tile). Historical
+ * franchises and missing/broken logos show the short code as a monogram in the team colour.
+ * `sm` adds the code next to the crest for rows; `md`+ show the crest alone (code is sr-only).
+ * `opponent` + `side="away"` still flag a colour clash (`data-clash`) for two-team contexts.
  */
 export function TeamBadge({
   team,
@@ -42,40 +37,28 @@ export function TeamBadge({
   const t = getTeam(team);
   const [broken, setBroken] = useState(false);
   const clash = Boolean(opponent && side === "away" && badgesClash(opponent, team));
-  const ring = clash ? t.secondary : t.primary;
   const d = DIM[size];
   const withCode = showCode ?? size === "sm";
   const useLogo = Boolean(t.logo) && !broken;
 
-  const disc = useLogo ? (
+  const mark = useLogo ? (
+    <Image
+      aria-hidden
+      src={t.logo!}
+      alt=""
+      width={d}
+      height={d}
+      onError={() => setBroken(true)}
+      className="shrink-0 object-contain"
+      style={{ width: d, height: d }}
+    />
+  ) : withCode && size === "sm" ? null : (
     <span
       aria-hidden
-      className={cn("relative flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-white", clash && "outline-dashed outline-1 outline-offset-1")}
-      style={{ width: d.box, height: d.box, boxShadow: `0 0 0 ${size === "sm" ? 1.5 : 2}px ${ring}`, outlineColor: clash ? ring : undefined }}
+      className="font-condensed flex shrink-0 items-center justify-center leading-none font-bold tracking-tight text-[var(--mono-l)] dark:text-[var(--mono-d)]"
+      style={{ width: d, height: d, fontSize: Math.max(10, Math.round(d * 0.36)), ["--mono-l" as string]: t.chartLight, ["--mono-d" as string]: t.chartDark }}
     >
-      <Image
-        src={t.logo!}
-        alt=""
-        width={d.img}
-        height={d.img}
-        onError={() => setBroken(true)}
-        className="object-contain"
-        style={{ width: d.img, height: d.img }}
-      />
-    </span>
-  ) : (
-    <span
-      aria-hidden
-      className={cn("font-condensed flex shrink-0 items-center justify-center rounded-full leading-none font-bold", size === "sm" ? "text-[9px]" : size === "md" ? "text-[11px]" : size === "lg" ? "text-[13px]" : "text-base")}
-      style={{
-        width: d.box,
-        height: d.box,
-        backgroundColor: t.primary,
-        color: t.onPrimary,
-        boxShadow: clash ? `0 0 0 2px var(--background), 0 0 0 4px ${ring}` : `inset 0 -2px 0 ${t.secondary}`,
-      }}
-    >
-      {size === "sm" && withCode ? "" : t.short.slice(0, 4)}
+      {t.short.slice(0, 4)}
     </span>
   );
 
@@ -88,11 +71,11 @@ export function TeamBadge({
       data-historical={t.historical || undefined}
       className={cn(
         "inline-flex shrink-0 items-center",
-        withCode && "h-6 gap-1 rounded-full bg-surface-2 py-0.5 pr-2 pl-0.5 ring-1 ring-border ring-inset",
+        withCode && "gap-1",
         className,
       )}
     >
-      {disc}
+      {mark}
       {withCode ? (
         <span aria-hidden className="font-condensed text-[11px] leading-none font-bold tracking-wide text-foreground">
           {t.short}

@@ -259,7 +259,7 @@ export function TeamView({
       {/* Team page header: 2 px top border in team colour (§2.3 allowed accent). */}
       <header className="mb-4 rounded-xl border border-border bg-card p-4 shadow-e1" style={{ borderTop: `2px solid ${theme.primary}` }}>
         <div className="flex items-center gap-4">
-          <TeamBadge team={team.short_code} size="xl" />
+          <TeamBadge team={team.short_code} size="2xl" />
           <div className="min-w-0">
             <p className="text-overline text-muted-foreground">
               {team.active ? "Current franchise" : "Former franchise"} · <span className="num">{seasonSpan(team.seasons)}</span>
