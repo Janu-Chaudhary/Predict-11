@@ -1,99 +1,135 @@
-# Predict-11 — IPL Dream11 Fantasy XI Predictor
+# Predict-11 🏏
 
-A from-scratch rebuild: a **trained ML model + constraint optimizer** that picks
-an optimal Dream11 fantasy XI for an IPL fixture, validated by a **walk-forward
-backtest** against real historical fantasy points.
+**IPL analytics and a machine-learning Dream11 fantasy-points model**: 19 seasons of
+ball-by-ball data (2008–2026), a LightGBM model that predicts every player's fantasy points
+(with a floor–ceiling range) at the toss, an exact team optimiser, and a **Model Lab** that
+explains how the model was trained and how good it really is.
 
-This replaces the original heuristic project (hand-tuned weights, scraping trapped
-in notebooks, no evaluation). Here the prediction is learned and measured.
+**Live:** website **https://predict11-olive.vercel.app** · API `https://predict11-api.onrender.com/docs`
+(free tier: the first request after ~15 idle minutes takes about a minute to wake the API)
 
-```
-Cricsheet YAML ─► DuckDB ─► Dream11 scoring (labels) ─► leak-safe features
-                                                              │
-                                          LightGBM regressor (predicted FP/player)
-                                                              │
-   temporal backtest vs baselines  ◄────────────┬───────────►  PuLP optimizer (XI + C/VC)
-   (random / form / oracle)                      │                       │
-                                                 ▼                       ▼
-                                          FastAPI  ──────────────►  single-page UI
-```
+![Home](docs/screenshots/home.webp)
 
-## Why this design
+## What's inside
 
-| Concern | Old project | This rebuild |
-|---|---|---|
-| Prediction | hand-tuned heuristic, never measured | LightGBM trained on 17 seasons, backtested |
-| Data source | Selenium scraping + unquoted CSV (comma-in-venue bugs) | structured **Cricsheet YAML → DuckDB** |
-| Ground truth | none | Dream11 points reconstructed from ball-by-ball |
-| Leakage | n/a | features use only strictly-prior matches (`shift(1)`) |
-| Selection | greedy with hardcoded fixture | **ILP** optimizer, exact C/VC modelling, real constraints |
-| Evaluation | none | walk-forward backtest vs random / form / oracle |
-| Architecture | 1 file, 4 concerns, dead code | layered package: `data / scoring / features / model / optimize / api` |
-
-## Quickstart
-
-```bash
-python -m venv .venv && . .venv/bin/activate
-pip install -e .
-
-# build everything: ingest -> labels+features -> train -> backtest
-predict11 all
-
-# predict an XI for a fixture
-predict11 predict chennai-super-kings mumbai-indians
-
-# run the web app  ->  http://127.0.0.1:8000
-predict11 serve
-```
-
-(If not installing the package, prefix commands with `PYTHONPATH=src python -m predict11.cli`.)
-
-## Pipeline stages
-
-| Stage | Module | What it does |
-|---|---|---|
-| Ingest | `data/ingest.py` | 884 Cricsheet YAMLs → `matches`, `deliveries`, `playing_xi` (DuckDB) |
-| Scoring | `scoring/fantasy_points.py` | Dream11 T20 rules → actual fantasy points per player per match (**labels**) |
-| Features | `features/build.py` | leak-safe pre-match features (form, venue, opponent, consistency, role) |
-| Model | `model/train.py` | LightGBM regressor, temporal split, MAE/RMSE/Spearman |
-| Backtest | `model/backtest.py` | walk-forward XI selection vs baselines |
-| Optimize | `optimize/select_xi.py` | PuLP ILP: best XI + captain/vice under Dream11 constraints |
-| Serve | `api/` | FastAPI + single-page frontend |
-
-## Current results (test seasons 2023–2025, 159 matches)
-
-| Strategy | Mean realized XI points |
+| Area | What you get |
 |---|---|
-| Oracle (hindsight) | 921 |
-| **Model** | **565** |
-| Form heuristic (≈ old approach) | 562 |
-| Random legal XI | 487 |
+| **Points table** | Every season 2008–2026, official NRR / tie-breaks, playoff results, champion card, season leaders, points race, playoff **scenarios** and the season **story** |
+| **Teams** | Franchise history, season-by-season finishes, squad (latest roster), matches, team v team |
+| **Players** | Full profiles (batting, bowling, fielding, phase splits, pace v spin, v batting hand), fantasy range, form; **Compare** up to 3 players with split bars, skill radar and season charts |
+| **H2H** | Batter v bowler face-off with sample-size confidence, dismissal types, by season |
+| **Venues** | Stadium photos, par scores (2023+ impact-player era vs all-time), toss and chase trends, phase run rates, pace v spin, dew & weather |
+| **Fantasy** | Dream11 points for every match since 2008 (validated 40/40 against published 2026 totals), leaderboards, consistency, hindsight best XIs, team of the season |
+| **Predictions** | The model's XI for every 2026 match, made **before** the match from earlier data only, vs a last-5-form baseline and the best possible XI |
+| **Build** | Pitch-view team builder on the model's predictions: lock / exclude, re-optimise under Dream11 rules |
+| **Model Lab** | The whole training story for learning ML: data, 92 features, learning curves, tuning, evaluation with confidence intervals, calibration, residuals, SHAP explanations, run comparison and a glossary |
 
-Model beats random 70% of matches and edges the form heuristic (57%); captain lands
-in the match's actual top-3 scorers 25.8% of the time. Per-match fantasy scoring is
-inherently high-variance, so the ML edge over recent form is real but modest — and
-honestly reported rather than inflated.
+| | |
+|---|---|
+| ![Points table](docs/screenshots/points-table.webp) | ![Player](docs/screenshots/player-profile.webp) |
+| ![Compare](docs/screenshots/compare.webp) | ![Venue](docs/screenshots/venue.webp) |
 
-## Data
+## The model
 
-Source: [Cricsheet](https://cricsheet.org/) ball-by-ball IPL data (YAML), already
-under `data/raw/cricsheet_ipl/` (gitignored). Squad metadata (role, credits,
-overseas) from the `data/raw/Teams/*.csv` files. See `predict11 ingest` to rebuild
-the DuckDB from raw. No live scraping is required to run the project.
+Predicts each player's Dream11 points **at the toss** (playing XIs, venue, toss and weather
+known; everything else from earlier matches only).
 
-## Tests
+- **Features (92, point-in-time):** form windows and EWM, batting / bowling / fielding craft and
+  phase usage, matchups against the announced opposition XI (pace/spin share, left-hander share),
+  venue and opponent history, team context, venue par, toss, dew and weather, era.
+- **Model:** LightGBM — a mean head (squared error) plus p10 / p50 / p90 quantile heads;
+  ~270 trees, 16k learned values. Recency-weighted.
+- **Optimiser:** exact ILP (HiGHS) for the best legal XI with captain ×2 / vice-captain ×1.5.
+- **Evaluation:** rolling-origin CV over 2020–2024 for tuning, 2025 held out and scored once, then a
+  2026 walk-forward (retrained every 10 matches, like live use). Paired bootstrap 95% CIs vs a
+  "mean of the last 5 games" baseline. A leakage test guards the point-in-time features.
+
+| vs last-5 baseline | 2025 test (frozen) | 2026 walk-forward (retrained) |
+|---|---|---|
+| Best-XI points / match | 759 vs 751 (n.s.) | **831 vs 755** (+76, CI +39…+115) |
+| Captain in top 2 | 21% vs 17% (n.s.) | **27% vs 7%** |
+| MAE per player | **33.6 vs 35.9** | **35.5 vs 38.5** |
+
+Fantasy points are mostly noise (the model explains ~5% of variance), so the edge comes from
+many small advantages and is largest when the model is retrained in-season. Full write-up:
+[docs/MODEL-REPORT.md](docs/MODEL-REPORT.md), and interactively in the Model Lab.
+
+## Architecture
+
+```
+Cricsheet (2008–26) ─┐                                    ┌─► Next.js 16 web (Vercel)
+stats.bcci.tv ───────┼─► ingest + player registry ─► Postgres (Supabase) ◄─┤
+ESPN / Cricbuzz ─────┤      Dream11 scoring, weather,       ▲              └─► FastAPI (Render)
+Open-Meteo ──────────┘      photos, credits                 │                    │
+                                                            │       analytics, optimiser,
+                    features ─► LightGBM (mean + quantiles) ┘       Model Lab, predictions
+```
+
+| Layer | Stack |
+|---|---|
+| Web | Next.js 16 (App Router), React, Tailwind v4, TanStack Query, Recharts, Vitest |
+| API | Python 3.12+, FastAPI, SQLAlchemy, Pydantic, pandas, LightGBM, PuLP / HiGHS, uv |
+| Data | PostgreSQL 16/17, Alembic migrations |
+| Deploy | Vercel (web) · Render free, Docker (API) · Supabase free (Postgres) · GitHub Actions (CI, keep-alive) |
+
+```
+backend/   FastAPI app + data pipeline + model (src/p11/{api,analytics,ingest,registry,
+           scoring,fantasy,features,model,optimize}), Alembic migrations, tests
+web/       Next.js app (src/app routes, src/features/*, shared src/components)
+models/    trained model run deployed with the API (models/latest.json → run dir)
+data/      raw inputs (squad CSVs with credits, curated photo lists); downloads are git-ignored
+docs/      model report, plan, feature catalog, design direction, next queue
+infra/     docker-compose for local Postgres, helper scripts
+spikes/    early source-scraping experiments
+```
+
+## Run it locally
+
+Requirements: Docker, [uv](https://docs.astral.sh/uv/), Node 22+ and pnpm.
 
 ```bash
-pytest            # scoring rules, optimizer constraints, leak-safety, API contract
+cp .env.example .env
+make db-up        # Postgres 16 on :5433
+make setup        # backend deps
+make migrate      # schema
+make api          # API on http://localhost:8000 (docs at /docs)
+make web          # web on http://localhost:3000   (cd web && pnpm install first)
+make test         # backend tests (integration tests need the loaded database)
 ```
 
-## Layout
+Loading the data from scratch (`uv run p11 --help` lists everything):
 
+```bash
+cd backend
+uv run p11 cricsheet download ...       # Cricsheet zips
+uv run p11 registry load                # players, ids, aliases
+uv run p11 backfill cricsheet ...       # matches + ball-by-ball
+uv run p11 fantasy compute              # Dream11 points per player-match
+uv run p11 credits load --season 2025   # squad CSVs → credits
+uv run p11 attributes load              # roles, batting hand, bowling type, photos
+uv run p11 media cache --all            # local photo cache
+uv run p11 weather venues ...           # coordinates + match weather
+uv run p11 model train                  # ~25 min on 8 cores; writes models/<run>/ + DB rows
 ```
-src/predict11/{data,scoring,features,model,optimize,api}/   # one concern per package
-frontend/index.html                                         # single-page UI
-data/raw/{cricsheet_ipl,Teams}/                             # inputs (gitignored)
-data/curated/predict11.duckdb                               # built artifact
-models/lgbm_fp.txt                                          # trained model
-tests/                                                      # unit + integration
-```
+
+A snapshot of the database can be restored with `make db-restore FILE=...`.
+
+## Deploy
+
+- **API (Render, free):** `render.yaml` blueprint → Docker image from `backend/Dockerfile`
+  (bundles the model run). Set `P11_DATABASE_URL`. Auto-deploys on push to `main`.
+- **Web (Vercel, free):** project root `web/`, env `NEXT_PUBLIC_API_URL` = the API URL.
+- **Database (Supabase, free):** run Alembic migrations, then restore a dump.
+- **Keep-alive:** `.github/workflows/keepalive.yml` pings the API every 2 days (repo variable
+  `API_URL`) so the free database doesn't pause.
+- Retraining runs locally (or on a GitHub Actions runner), never on the free API host:
+  commit the new `models/<run>/` and Render redeploys.
+
+## Data & credits
+
+Ball-by-ball data from [Cricsheet](https://cricsheet.org) (ODC-BY). Player photos and team
+crests from the official IPL site; stadium photos from Wikimedia Commons under their CC
+licences (credited on each page). Weather from [Open-Meteo](https://open-meteo.com).
+Not affiliated with the IPL, BCCI or Dream11; for analysis and learning only.
+
+The previous (v1) version of this project is preserved at the `v1` tag.

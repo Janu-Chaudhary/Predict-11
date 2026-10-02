@@ -18,4 +18,20 @@ jobs:
       - run: uv sync
       - run: uv run ruff check src tests
       - run: uv run alembic upgrade head
-      - run: uv run pytest -q
+      # tests marked `integration` need the loaded IPL database (make db-up + ingest); CI runs
+      # against an empty schema, so they run locally only
+      - run: uv run pytest -q -m "not integration"
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run: {working-directory: web}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22, cache: pnpm, cache-dependency-path: web/pnpm-lock.yaml}
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test -- --testTimeout=30000
