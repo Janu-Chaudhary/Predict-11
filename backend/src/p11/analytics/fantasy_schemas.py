@@ -14,7 +14,8 @@ Role = Literal["WK", "BAT", "AR", "BOWL"]
 
 class FantasyPlayerRef(BaseModel):
     id: str
-    name: str
+    name: str = Field(description='Scorecard name ("V Kohli")')
+    display_name: str | None = Field(default=None, description="Full name; falls back to name")
     image_url: str | None = None
 
 
@@ -109,6 +110,9 @@ class LeaderboardRow(BaseModel):
     pct_50_plus: float
     credits: float | None
     points_per_credit: float | None = Field(description="Mean points per match / credits")
+    last10: list[int] = Field(
+        default_factory=list, description="Points in the last 10 scored games, oldest -> newest"
+    )
 
 
 class Leaderboard(BaseModel):
@@ -187,6 +191,8 @@ class SeasonXI(BaseModel):
     metric: Literal["total", "mean"]
     min_matches: int
     players: list[SeasonXIPlayer]
+    captain: str | None = Field(description="Biggest scorer by the XI's metric (C x2)")
+    vice_captain: str | None = Field(description="Second biggest scorer (VC x1.5)")
     sum_total: int
     sum_mean: float
     solver: str

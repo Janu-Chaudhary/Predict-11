@@ -68,6 +68,7 @@ class FantasyData:
     by_player: dict[str, list[PointsRow]]  # chronological, scored (no-result excluded)
     by_season: dict[int, list[PointsRow]]  # scored rows only
     names: dict[str, str]
+    display_names: dict[str, str]  # player_alias source='display' (full name)
     roles: dict[str, str]  # player_attribute_resolved.playing_role
     images: dict[str, str]
     credits: dict[int, SeasonCredits] = field(default_factory=dict)
@@ -121,7 +122,7 @@ select coalesce(string_agg(relname || ':' || (n_tup_ins + n_tup_upd + n_tup_del)
                            order by relname), '')
 from pg_stat_user_tables
 where relname in ('player_match_points', 'match', 'season_credits', 'player_attribute',
-                  'player_media', 'player', 'team', 'season')
+                  'player_media', 'player', 'player_alias', 'team', 'season')
 """
 
 
@@ -140,9 +141,22 @@ def load() -> FantasyData:
             )
             if r[1]
         }
-        images: dict[str, str] = dict(
-            conn.execute(text("select player_id, image_url from player_media_resolved")).all()
+        display_names: dict[str, str] = dict(
+            conn.execute(
+                text(
+                    "select distinct on (player_id) player_id, name from player_alias "
+                    "where source = 'display' order by player_id, name"
+                )
+            ).all()
         )
+        # locally cached WebP first, like p11.analytics.players_identity
+        images: dict[str, str] = {
+            r[0]: r[1]
+            for r in conn.execute(
+                text("select player_id, coalesce(local_path, image_url) from player_media_resolved")
+            )
+            if r[1]
+        }
         credits: dict[int, SeasonCredits] = {}
         for year in sorted(core.seasons):
             eff, cmap = credits_for_season(conn, year)
@@ -172,7 +186,7 @@ def load() -> FantasyData:
             )
         )
     rows.sort(key=lambda x: (x.seq, x.player_id))
-    data = FantasyData(core, seq, rows, {}, {}, {}, names, roles, images, credits)
+    data = FantasyData(core, seq, rows, {}, {}, {}, names, display_names, roles, images, credits)
     for x in rows:
         data.by_match.setdefault(x.match_id, []).append(x)
         if core.by_id[x.match_id].result == "no_result":

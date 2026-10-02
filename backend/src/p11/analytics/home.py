@@ -31,6 +31,7 @@ from .home_phase import (
 from .home_schemas import (
     XI,
     BallKind,
+    FantasyTile,
     H2HTile,
     HomeMatch,
     HomeScore,
@@ -718,6 +719,26 @@ def _records_tile(conn: Connection) -> RecordsTile | None:
     )
 
 
+def _fantasy_tile(year: int) -> FantasyTile | None:
+    from .fantasy import leaderboard  # local: fantasy loads its own cache on first use
+
+    lb = leaderboard(year, min_matches=1, limit=1)
+    if not lb.rows:
+        return None
+    r = lb.rows[0]
+    return FantasyTile(
+        season=lb.season,
+        top=PlayerStatLine(
+            id=r.player.id,
+            name=r.player.display_name or r.player.name,
+            team=r.team.short_code,
+            value=r.total,
+        ),
+        matches=r.n,
+        mean=r.mean,
+    )
+
+
 _TILES_TTL_S = 300.0
 _tiles_cache: tuple[float, HomeTiles] | None = None
 
@@ -750,4 +771,5 @@ def _compute_tiles(conn: Connection) -> HomeTiles:
         h2h=guarded(lambda: _h2h_tile(conn)),
         venues=guarded(lambda: _venues_tile(conn, year)),
         records=guarded(lambda: _records_tile(conn)),
+        fantasy=guarded(lambda: _fantasy_tile(year)),
     )

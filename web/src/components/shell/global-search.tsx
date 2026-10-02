@@ -1,10 +1,12 @@
 "use client";
 
 import { MapPin, Search, Shield, UserRound } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { StumpsLoader } from "@/components/loaders/stumps-loader";
+import { PlayerAvatar } from "@/components/player/player-avatar";
 import { TeamBadge } from "@/components/player/team-badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +20,10 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { Kbd } from "@/components/ui/kbd";
-import { usePlayerSearch } from "@/lib/api/queries";
+import { teamCode } from "@/features/players/format";
+import { fetchVenues, VENUE_STALE_MS, venueKeys } from "@/features/venues/api";
+import { usePlayerSearch, usePopularPlayers } from "@/lib/api/queries";
+import type { PlayerHit } from "@/lib/api/search";
 import { TEAM_CODES, TEAMS } from "@/lib/tokens";
 
 import { ALL_NAV } from "./nav-items";
@@ -38,9 +43,21 @@ function useDebounced<T>(value: T, ms: number) {
   return v;
 }
 
+function PlayerItem({ p, onSelect }: { p: PlayerHit; onSelect: () => void }) {
+  const team = teamCode(p.team) ?? undefined;
+  return (
+    <CommandItem value={`player-${p.id}`} onSelect={onSelect}>
+      {p.imageUrl ? <PlayerAvatar name={p.name} src={p.imageUrl} team={team} size="xs" /> : <UserRound aria-hidden />}
+      <span className="flex-1 truncate">{p.name}</span>
+      {p.role && <span className="text-xs text-muted-foreground">{p.role}</span>}
+      {team && <TeamBadge team={team} />}
+    </CommandItem>
+  );
+}
+
 /**
- * Global ⌘K search (§3.1): players (API), teams (static), venues (once the endpoint exists)
- * and every nav destination. Replaces all free-text name boxes.
+ * Global ⌘K search (§3.1): players (API; popular players while empty), teams (static), venues
+ * (the /venues list, filtered here) and every nav destination. Replaces all free-text name boxes.
  */
 export function GlobalSearch() {
   const router = useRouter();
@@ -48,6 +65,8 @@ export function GlobalSearch() {
   const [query, setQuery] = useState("");
   const debounced = useDebounced(query, 200);
   const search = usePlayerSearch(debounced);
+  const popular = usePopularPlayers(open);
+  const venues = useQuery({ queryKey: venueKeys.list, queryFn: ({ signal }) => fetchVenues(signal), staleTime: VENUE_STALE_MS, enabled: open, retry: false });
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -77,7 +96,16 @@ export function GlobalSearch() {
   const result = search.data;
   const playerHits = searching && result?.status === "ok" ? result.hits.slice(0, 8) : [];
   const unavailable = searching && result?.status === "unavailable" ? result.reason : null;
-  const nothing = navHits.length === 0 && teamHits.length === 0 && playerHits.length === 0;
+  const suggested = !query.trim() ? (popular.data ?? []) : [];
+  const venueHits = useMemo(() => {
+    const q = debounced.trim();
+    if (q.length < 2) return [];
+    return (venues.data?.venues ?? [])
+      .filter((v) => matches(q, v.name, v.city ?? undefined))
+      .sort((a, b) => b.matches - a.matches)
+      .slice(0, 5);
+  }, [debounced, venues.data]);
+  const nothing = navHits.length === 0 && teamHits.length === 0 && playerHits.length === 0 && venueHits.length === 0;
 
   return (
     <>
@@ -121,12 +149,14 @@ export function GlobalSearch() {
             {playerHits.length > 0 && (
               <CommandGroup heading="Players">
                 {playerHits.map((p) => (
-                  <CommandItem key={p.id} value={`player-${p.id}`} onSelect={() => go(`/players/${encodeURIComponent(p.id)}`)}>
-                    <UserRound aria-hidden />
-                    <span className="flex-1 truncate">{p.name}</span>
-                    {p.role && <span className="text-xs text-muted-foreground">{p.role}</span>}
-                    {p.team && <TeamBadge team={p.team} />}
-                  </CommandItem>
+                  <PlayerItem key={p.id} p={p} onSelect={() => go(`/players/${encodeURIComponent(p.id)}`)} />
+                ))}
+              </CommandGroup>
+            )}
+            {suggested.length > 0 && (
+              <CommandGroup heading="Popular players">
+                {suggested.map((p) => (
+                  <PlayerItem key={p.id} p={p} onSelect={() => go(`/players/${encodeURIComponent(p.id)}`)} />
                 ))}
               </CommandGroup>
             )}
@@ -163,12 +193,22 @@ export function GlobalSearch() {
                 </CommandGroup>
               </>
             )}
-            {matches(query, "venues", "ground", "stadium") && (
+            {venueHits.length > 0 && (
+              <CommandGroup heading="Venues">
+                {venueHits.map((v) => (
+                  <CommandItem key={v.id} value={`venue-${v.id}`} onSelect={() => go(`/venues/${v.id}`)}>
+                    <MapPin aria-hidden />
+                    <span className="flex-1 truncate">{v.name}</span>
+                    {v.city && <span className="text-xs text-muted-foreground">{v.city}</span>}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            )}
+            {venueHits.length === 0 && matches(query, "venues", "ground", "stadium") && (
               <CommandGroup heading="Venues">
                 <CommandItem value="nav-venues-index" onSelect={() => go("/venues")}>
                   <MapPin aria-hidden />
                   <span className="flex-1">Browse all venues</span>
-                  <span className="text-xs text-muted-foreground">Venue search arrives with the venues API</span>
                 </CommandItem>
               </CommandGroup>
             )}

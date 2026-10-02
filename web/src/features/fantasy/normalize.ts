@@ -233,8 +233,8 @@ export function matchBestXi(raw: unknown): MatchBestXi {
 }
 
 /**
- * The season XI has no captain in the contract. The C/VC that maximise a hindsight total are
- * always the two biggest scorers, so we mark those (by total, or by mean for the by-mean XI).
+ * The backend picks the season XI's C/VC (its two biggest scorers by the XI's metric). Older
+ * responses without `captain` fall back to the same rule here.
  */
 function seasonXi(raw: unknown): SeasonXi | null {
   if (!isObj(raw)) return null;
@@ -242,8 +242,8 @@ function seasonXi(raw: unknown): SeasonXi | null {
   const base = arr(raw.players).map((p) => xiPick(p, null, null, false));
   const key = (p: XiPick) => (metric === "mean" ? (p.mean ?? 0) : p.points);
   const order = [...base].sort((a, b) => key(b) - key(a));
-  const cId = order[0]?.player.id;
-  const vcId = order[1]?.player.id;
+  const cId = str(raw, "captain") ?? order[0]?.player.id;
+  const vcId = str(raw, "vice_captain") ?? order[1]?.player.id;
   const picks = base.map((p) => {
     const captain = p.player.id === cId;
     const vice = p.player.id === vcId;

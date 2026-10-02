@@ -36,6 +36,7 @@ def get_conn() -> Iterator[Connection]:
 
 Conn = Annotated[Connection, Depends(get_conn)]
 Since = Annotated[str | None, Query(description="YYYY or YYYY-MM-DD")]
+Season = Annotated[int | None, Query(ge=2008, le=2100, description="Single season only")]
 
 
 def _since(since: str | None) -> dt.date | None:
@@ -57,8 +58,10 @@ def _found[T](x: T | None, what: str) -> T:
     response_model=BatterVsTypes,
     operation_id="get_batter_vs_bowling_types",
 )
-def batter_vs_bowling_types(conn: Conn, player_id: str, since: Since = None) -> BatterVsTypes:
-    return _found(conditions.batter_vs_types(conn, player_id, _since(since)), "player")
+def batter_vs_bowling_types(
+    conn: Conn, player_id: str, since: Since = None, season: Season = None
+) -> BatterVsTypes:
+    return _found(conditions.batter_vs_types(conn, player_id, _since(since), season), "player")
 
 
 @router.get(
@@ -66,8 +69,10 @@ def batter_vs_bowling_types(conn: Conn, player_id: str, since: Since = None) -> 
     response_model=BowlerVsHands,
     operation_id="get_bowler_vs_batting_hand",
 )
-def bowler_vs_batting_hand(conn: Conn, player_id: str, since: Since = None) -> BowlerVsHands:
-    return _found(conditions.bowler_vs_hands(conn, player_id, _since(since)), "player")
+def bowler_vs_batting_hand(
+    conn: Conn, player_id: str, since: Since = None, season: Season = None
+) -> BowlerVsHands:
+    return _found(conditions.bowler_vs_hands(conn, player_id, _since(since), season), "player")
 
 
 # --------------------------------------------------------------------------- venue extras

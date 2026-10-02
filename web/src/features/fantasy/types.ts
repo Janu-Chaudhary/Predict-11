@@ -11,7 +11,7 @@ export type FantasyPlayerRef = {
   id: string;
   /** Scorecard name ("V Kohli"). */
   name: string;
-  /** Full name ("Virat Kohli"); not in the fantasy contract yet, so usually absent. */
+  /** Full name ("Virat Kohli"); falls back to `name`. */
   display_name?: string | null;
   image_url?: string | null;
 };

@@ -64,9 +64,9 @@ export function SplitsTab({ p, skill }: { p: PlayerProfile; skill: "bat" | "bowl
   );
 
   const since = p.filters.since ?? undefined;
-  const seasonOnly = p.filters.season !== null;
-  const types = p.batting.balls > 0 && <BatterTypesTable key="types" id={p.id} name={displayName(p)} since={since} seasonOnly={seasonOnly} />;
-  const hands = p.bowling.balls > 0 && <BowlerHandsTable key="hands" id={p.id} name={displayName(p)} since={since} seasonOnly={seasonOnly} />;
+  const season = p.filters.season ?? undefined;
+  const types = p.batting.balls > 0 && <BatterTypesTable key="types" id={p.id} name={displayName(p)} since={since} season={season} />;
+  const hands = p.bowling.balls > 0 && <BowlerHandsTable key="hands" id={p.id} name={displayName(p)} since={since} season={season} />;
 
   return (
     <>

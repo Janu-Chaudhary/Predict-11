@@ -105,11 +105,19 @@ def search(conn: Connection, q: str, limit: int = 10) -> SearchResponse:
         ranked.append(((qual, -relevance, -last_order), pid))
     ranked.sort()
     top = [pid for _k, pid in ranked[:limit]]
+    return SearchResponse(
+        query=q, results=_hits(conn, ref, top, {pid: pool[pid][1] for pid in top})
+    )
+
+
+def _hits(
+    conn: Connection, ref: Reference, ids: list[str], matched: dict[str, str] | None = None
+) -> list[SearchHit]:
     names = dict(
-        conn.execute(text("SELECT id, name FROM player WHERE id = ANY(:ids)"), {"ids": top}).all()
+        conn.execute(text("SELECT id, name FROM player WHERE id = ANY(:ids)"), {"ids": ids}).all()
     )
     hits = []
-    for pid in top:
+    for pid in ids:
         apps = ref.appearances.get(pid, [])
         seasons = sorted({ref.matches[mid].season for mid, _ in apps})
         ident = identity(conn, pid, names.get(pid, pid))
@@ -119,7 +127,7 @@ def search(conn: Connection, q: str, limit: int = 10) -> SearchResponse:
                 name=ident.name,
                 display_name=ident.display_name,
                 image_url=ident.image_url,
-                matched=pool[pid][1],
+                matched=(matched or {}).get(pid, ident.display_name),
                 team=ref.teams.get(apps[-1][1]) if apps else None,
                 first_season=seasons[0] if seasons else None,
                 last_season=seasons[-1] if seasons else None,
@@ -127,7 +135,21 @@ def search(conn: Connection, q: str, limit: int = 10) -> SearchResponse:
                 matches=len(apps),
             )
         )
-    return SearchResponse(query=q, results=hits)
+    return hits
+
+
+def popular(conn: Connection, limit: int = 8) -> SearchResponse:
+    """Suggestions for an empty search box: players of the latest IPL season, most appearances
+    that season first, then most IPL matches overall."""
+    ref = reference(conn)
+    latest = ref.latest_season
+    ranked: list[tuple[tuple[int, int], str]] = []
+    for pid, apps in ref.appearances.items():
+        this = sum(1 for mid, _ in apps if ref.matches[mid].season == latest)
+        if this:
+            ranked.append(((-this, -len(apps)), pid))
+    ranked.sort()
+    return SearchResponse(query="", results=_hits(conn, ref, [pid for _k, pid in ranked[:limit]]))
 
 
 # --------------------------------------------------------------------------- profile

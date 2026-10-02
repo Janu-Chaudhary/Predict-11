@@ -3,11 +3,10 @@
 import { useRouter } from "next/navigation";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { SEASONS } from "@/lib/seasons";
 import { cn } from "@/lib/utils";
 
-/** IPL seasons with data, newest first. */
-export const SEASONS = Array.from({ length: 2026 - 2008 + 1 }, (_, i) => 2026 - i);
-export const CURRENT_SEASON = SEASONS[0];
+export { CURRENT_SEASON, SEASONS } from "@/lib/seasons";
 
 /**
  * Season switcher. Controlled (`value` + `onValueChange`) or navigational (`hrefFor`).

@@ -51,7 +51,13 @@ class NotFound(LookupError):
 
 # --------------------------------------------------------------------------- helpers
 def _pref(d: fd.FantasyData, pid: str) -> FantasyPlayerRef:
-    return FantasyPlayerRef(id=pid, name=d.names.get(pid, pid), image_url=d.images.get(pid))
+    name = d.names.get(pid, pid)
+    return FantasyPlayerRef(
+        id=pid,
+        name=name,
+        display_name=d.display_names.get(pid, name),
+        image_url=d.images.get(pid),
+    )
 
 
 def _team(d: fd.FantasyData, team_id: int, year: int) -> TeamRef:
@@ -240,6 +246,7 @@ def leaderboard(
                 pct_50_plus=round(x.pct_50_plus, 1),
                 credits=cr,
                 points_per_credit=_ppc(x.mean, cr),
+                last10=[r.total for r in prs[-10:]],
             )
         )
 
@@ -434,10 +441,18 @@ def _season_xi(
                 mean=round(tot / len(prs), 2),
             )
         )
+
+    # The C/VC that maximise a hindsight sum are always its two biggest scorers.
+    def ranked(p: SeasonXIPlayer) -> tuple[float, int, str]:
+        return (-(p.mean if metric == "mean" else p.total), -p.total, p.player.id)
+
+    order = sorted(players, key=ranked)
     return SeasonXI(
         metric=metric,
         min_matches=min_matches,
         players=players,
+        captain=order[0].player.id if order else None,
+        vice_captain=order[1].player.id if len(order) > 1 else None,
         sum_total=sum(p.total for p in players),
         sum_mean=round(sum(p.mean for p in players), 2),
         solver=sel.solver,

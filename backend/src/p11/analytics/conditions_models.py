@@ -38,6 +38,7 @@ class TypeSplit(BaseModel):
 class BatterVsTypes(BaseModel):
     batter: PlayerRef
     batting_hand: str | None
+    season: int | None = None
     since: dt.date | None
     by_type: list[TypeSplit]
     by_group: list[TypeSplit]
@@ -64,6 +65,7 @@ class BowlerVsHands(BaseModel):
     bowler: PlayerRef
     bowling_type: str | None
     group: str | None
+    season: int | None = None
     since: dt.date | None
     by_hand: list[HandSplit]
     coverage: Coverage

@@ -109,6 +109,8 @@ export type HomeTiles = {
   h2h: { team_a: HomeTeam; team_b: HomeTeam; matches: number; a_wins: number; b_wins: number } | null;
   venues: { season: number; venues_used: number; top_par_venue: HomeVenue | null; top_par: number | null } | null;
   records: { team: HomeTeam; opponent: HomeTeam; runs: number; wickets: number; year: number; match_id: number } | null;
+  /** Season's top Dream11 scorer (older APIs omit the key). */
+  fantasy?: { season: number; top: PlayerStatLine; matches: number; mean: number } | null;
 };
 
 /** What the hero area finally renders, after data availability is checked. */

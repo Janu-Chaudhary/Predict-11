@@ -11,6 +11,7 @@ export type PlayerHit = {
   name: string;
   team?: string;
   role?: string;
+  imageUrl?: string;
 };
 
 export type PlayerSearchResult =
@@ -23,11 +24,12 @@ function toHit(raw: unknown): PlayerHit | null {
   if (!raw || typeof raw !== "object") return null;
   const r = raw as Record<string, unknown>;
   const id = str(r.id) ?? str(r.player_id) ?? str(r.key) ?? str(r.slug);
-  const name = str(r.name) ?? str(r.full_name) ?? str(r.display_name) ?? str(r.known_as);
+  const name = str(r.display_name) ?? str(r.name) ?? str(r.full_name) ?? str(r.known_as);
   if (!id || !name) return null;
   const team = str(r.team) ?? str(r.team_code) ?? str(r.current_team) ?? str((r.team as Record<string, unknown> | undefined)?.code);
   const role = str(r.role) ?? str(r.playing_role);
-  return { id, name, team, role };
+  const imageUrl = str(r.image_url);
+  return imageUrl ? { id, name, team, role, imageUrl } : { id, name, team, role };
 }
 
 /** Accepts `[...]`, `{results|items|players|data|hits: [...]}`. */
@@ -61,5 +63,16 @@ export async function searchPlayers(q: string, signal?: AbortSignal): Promise<Pl
     return { status: "ok", hits: parsePlayerSearch(await res.json()) };
   } catch {
     return { status: "unavailable", reason: "Search returned an unexpected response." };
+  }
+}
+
+/** Suggestions for the empty ⌘K box: GET /api/v1/players/popular. Failures resolve to []. */
+export async function fetchPopularPlayers(signal?: AbortSignal): Promise<PlayerHit[]> {
+  try {
+    const res = await fetch(`${API_URL}/api/v1/players/popular?limit=6`, { signal, headers: { accept: "application/json" } });
+    return res.ok ? parsePlayerSearch(await res.json()) : [];
+  } catch (e) {
+    if ((e as Error).name === "AbortError") throw e;
+    return [];
   }
 }

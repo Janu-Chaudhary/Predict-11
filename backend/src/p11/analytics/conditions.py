@@ -31,7 +31,15 @@ from .conditions_models import (
     TossTrend,
     TypeSplit,
 )
-from .players_data import InningsTotal, Reference, bulk, cached, fetch_balls, reference
+from .players_data import (
+    InningsTotal,
+    MatchInfo,
+    Reference,
+    bulk,
+    cached,
+    fetch_balls,
+    reference,
+)
 from .players_models import PlayerRef
 from .players_stats import H2H, Ball, BowlingCard, confidence, overs_str
 from .venues import RECENT_FROM, par_stats, toss_stats
@@ -148,8 +156,12 @@ def split_by_type(
     return rows, groups, unknown, unknown_bowlers
 
 
+def _in_scope(m: MatchInfo, season: int | None, since: dt.date | None) -> bool:
+    return (season is None or m.season == season) and (since is None or m.date >= since)
+
+
 def batter_vs_types(
-    conn: Connection, batter: str, since: dt.date | None = None
+    conn: Connection, batter: str, since: dt.date | None = None, season: int | None = None
 ) -> BatterVsTypes | None:
     who = _player(conn, batter)
     if who is None:
@@ -159,7 +171,7 @@ def batter_vs_types(
     balls = [
         b
         for b in fetch_balls(conn, "d.batter_id = :p", {"p": batter})
-        if since is None or ref.matches[b.match_id].date >= since
+        if _in_scope(ref.matches[b.match_id], season, since)
     ]
     rows, groups, unknown, unknown_bowlers = split_by_type(balls, attrs.bowling_type)
     total = sum(1 for b in balls if b.faced)
@@ -177,6 +189,7 @@ def batter_vs_types(
     return BatterVsTypes(
         batter=who,
         batting_hand=attrs.batting_hand.get(batter),
+        season=season,
         since=since,
         by_type=rows,
         by_group=groups,
@@ -233,7 +246,7 @@ def split_by_hand(balls: Iterable[Ball], hands: dict[str, str]) -> tuple[list[Ha
 
 
 def bowler_vs_hands(
-    conn: Connection, bowler: str, since: dt.date | None = None
+    conn: Connection, bowler: str, since: dt.date | None = None, season: int | None = None
 ) -> BowlerVsHands | None:
     who = _player(conn, bowler)
     if who is None:
@@ -243,7 +256,7 @@ def bowler_vs_hands(
     balls = [
         b
         for b in fetch_balls(conn, "d.bowler_id = :p", {"p": bowler})
-        if since is None or ref.matches[b.match_id].date >= since
+        if _in_scope(ref.matches[b.match_id], season, since)
     ]
     rows, unknown = split_by_hand(balls, attrs.batting_hand)
     total = sum(1 for b in balls if b.legal)
@@ -259,6 +272,7 @@ def bowler_vs_hands(
         bowler=who,
         bowling_type=btype,
         group=group_of(btype),
+        season=season,
         since=since,
         by_hand=rows,
         coverage=_coverage(total, total - unknown.balls, batters, batters - unknown.batters),

@@ -68,6 +68,11 @@ def player_search(
     return players.search(conn, q, limit)
 
 
+@router.get("/players/popular", response_model=SearchResponse)
+def player_popular(conn: Conn, limit: Annotated[int, Query(ge=1, le=50)] = 8) -> SearchResponse:
+    return players.popular(conn, limit)
+
+
 @router.get("/players/compare", response_model=CompareResponse)
 def player_compare(
     conn: Conn,

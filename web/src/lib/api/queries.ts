@@ -3,11 +3,12 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { fetchHealth } from "./client";
-import { searchPlayers } from "./search";
+import { fetchPopularPlayers, searchPlayers } from "./search";
 
 export const queryKeys = {
   health: ["health"] as const,
   playerSearch: (q: string) => ["players", "search", q] as const,
+  popularPlayers: ["players", "popular"] as const,
 };
 
 export function useHealth() {
@@ -28,6 +29,17 @@ export function usePlayerSearch(q: string) {
     enabled: term.length >= 2,
     placeholderData: keepPreviousData,
     staleTime: 5 * 60_000,
+    retry: false,
+  });
+}
+
+/** Popular players for the empty ⌘K palette; fetched once the palette opens. */
+export function usePopularPlayers(enabled: boolean) {
+  return useQuery({
+    queryKey: queryKeys.popularPlayers,
+    queryFn: ({ signal }) => fetchPopularPlayers(signal),
+    enabled,
+    staleTime: 30 * 60_000,
     retry: false,
   });
 }

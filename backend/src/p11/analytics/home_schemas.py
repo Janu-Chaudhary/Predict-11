@@ -201,9 +201,17 @@ class RecordsTile(BaseModel):
     match_id: int
 
 
+class FantasyTile(BaseModel):
+    season: int
+    top: PlayerStatLine = Field(description="Most Dream11 points in the season (value = total)")
+    matches: int
+    mean: float
+
+
 class HomeTiles(BaseModel):
     table: TableTile | None
     players: PlayersTile | None
     h2h: H2HTile | None
     venues: VenuesTile | None
     records: RecordsTile | None
+    fantasy: FantasyTile | None = None

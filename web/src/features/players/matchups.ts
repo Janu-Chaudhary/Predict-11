@@ -28,7 +28,7 @@ export type TypeSplit = {
   confidence: string;
 };
 
-export type BatterVsTypes = { batter: PlayerRef; batting_hand: string | null; since: string | null; by_type: TypeSplit[]; by_group: TypeSplit[]; coverage: Coverage; notes: string[] };
+export type BatterVsTypes = { batter: PlayerRef; batting_hand: string | null; season?: number | null; since: string | null; by_type: TypeSplit[]; by_group: TypeSplit[]; coverage: Coverage; notes: string[] };
 
 export type HandSplit = {
   hand: string;
@@ -46,20 +46,20 @@ export type HandSplit = {
   confidence: string;
 };
 
-export type BowlerVsHands = { bowler: PlayerRef; bowling_type: string | null; group: string | null; since: string | null; by_hand: HandSplit[]; coverage: Coverage; notes: string[] };
+export type BowlerVsHands = { bowler: PlayerRef; bowling_type: string | null; group: string | null; season?: number | null; since: string | null; by_hand: HandSplit[]; coverage: Coverage; notes: string[] };
 
-export const fetchBatterVsTypes = (id: string, since?: string, signal?: AbortSignal) =>
-  getJson<BatterVsTypes>(`/matchups/batter/${encodeURIComponent(id)}/vs-bowling-types`, { since }, signal);
+export const fetchBatterVsTypes = (id: string, since?: string, signal?: AbortSignal, season?: number) =>
+  getJson<BatterVsTypes>(`/matchups/batter/${encodeURIComponent(id)}/vs-bowling-types`, { since, season }, signal);
 
-export const fetchBowlerVsHands = (id: string, since?: string, signal?: AbortSignal) =>
-  getJson<BowlerVsHands>(`/matchups/bowler/${encodeURIComponent(id)}/vs-batting-hand`, { since }, signal);
+export const fetchBowlerVsHands = (id: string, since?: string, signal?: AbortSignal, season?: number) =>
+  getJson<BowlerVsHands>(`/matchups/bowler/${encodeURIComponent(id)}/vs-batting-hand`, { since, season }, signal);
 
 const retry = (n: number, err: unknown) => !(err instanceof ApiError && err.status !== null && err.status < 500) && n < 1;
 
-export function useBatterVsTypes(id: string | undefined, since?: string, enabled = true) {
+export function useBatterVsTypes(id: string | undefined, since?: string, enabled = true, season?: number) {
   return useQuery({
-    queryKey: ["matchups", "batter-types", id ?? null, since ?? null] as const,
-    queryFn: ({ signal }) => fetchBatterVsTypes(id!, since, signal),
+    queryKey: ["matchups", "batter-types", id ?? null, since ?? null, season ?? null] as const,
+    queryFn: ({ signal }) => fetchBatterVsTypes(id!, since, signal, season),
     enabled: Boolean(id) && enabled,
     placeholderData: keepPreviousData,
     staleTime: 10 * 60_000,
@@ -67,10 +67,10 @@ export function useBatterVsTypes(id: string | undefined, since?: string, enabled
   });
 }
 
-export function useBowlerVsHands(id: string | undefined, since?: string, enabled = true) {
+export function useBowlerVsHands(id: string | undefined, since?: string, enabled = true, season?: number) {
   return useQuery({
-    queryKey: ["matchups", "bowler-hands", id ?? null, since ?? null] as const,
-    queryFn: ({ signal }) => fetchBowlerVsHands(id!, since, signal),
+    queryKey: ["matchups", "bowler-hands", id ?? null, since ?? null, season ?? null] as const,
+    queryFn: ({ signal }) => fetchBowlerVsHands(id!, since, signal, season),
     enabled: Boolean(id) && enabled,
     placeholderData: keepPreviousData,
     staleTime: 10 * 60_000,

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { CURRENT_SEASON } from "@/components/data/season-select";
+import { CURRENT_SEASON } from "@/lib/seasons";
 
 /** /table → the current season's table. */
 export default function TableIndexPage() {

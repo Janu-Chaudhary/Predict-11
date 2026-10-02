@@ -1,4 +1,4 @@
-import { ArrowLeftRight, ChevronRight, ListOrdered, MapPin, Trophy, Users, type LucideIcon } from "lucide-react";
+import { ArrowLeftRight, ChevronRight, ListOrdered, MapPin, Sparkles, Trophy, Users, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -136,6 +136,19 @@ export function Bento({ tiles }: { tiles: HomeTiles | null }) {
             </>
           ) : (
             <Empty />
+          )}
+        </Tile>
+        <Tile href="/fantasy" icon={Sparkles} label="Fantasy" className="col-span-2 min-h-0 lg:col-span-4">
+          {t?.fantasy ? (
+            <>
+              <Big>{t.fantasy.top.value}</Big>
+              <Meta>
+                Most Dream11 points {t.fantasy.season}: {t.fantasy.top.name}
+                {t.fantasy.top.team ? ` (${t.fantasy.top.team})` : ""} · <span className="num">{t.fantasy.mean.toFixed(1)}</span> a game
+              </Meta>
+            </>
+          ) : (
+            <Meta>Leaderboards, best XIs and team of the season.</Meta>
           )}
         </Tile>
       </div>

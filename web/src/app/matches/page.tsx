@@ -1,7 +1,7 @@
 import { CalendarDays } from "lucide-react";
 import type { Metadata } from "next";
 
-import { CURRENT_SEASON } from "@/components/data/season-select";
+import { CURRENT_SEASON } from "@/lib/seasons";
 import { EmptyState } from "@/components/shell/empty-state";
 import { PageHeader } from "@/components/shell/page-header";
 

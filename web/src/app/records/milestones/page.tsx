@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CURRENT_SEASON } from "@/components/data/season-select";
+import { CURRENT_SEASON } from "@/lib/seasons";
 import { PageHeader } from "@/components/shell/page-header";
 import { fetchMilestones, recordKeys, RECORDS_STALE_MS } from "@/features/milestones/api";
 import { RecordsSeasonSelect } from "@/features/milestones/controls";

@@ -14,13 +14,9 @@ function Note({ text }: { text: string | null }) {
   return <p className="mt-2 px-1 text-xs text-muted-foreground">{text}</p>;
 }
 
-function scopeNote(seasonOnly: boolean) {
-  return seasonOnly ? "Single-season scope isn’t available for type splits; showing career." : null;
-}
-
 /** D2: batter vs each bowling type (and the pace / spin totals), with a sample-size badge per row. */
-export function BatterTypesTable({ id, name, since, seasonOnly = false }: { id: string; name: string; since?: string; seasonOnly?: boolean }) {
-  const q = useBatterVsTypes(id, since);
+export function BatterTypesTable({ id, name, since, season }: { id: string; name: string; since?: string; season?: number }) {
+  const q = useBatterVsTypes(id, since, true, season);
   if (q.isPending) return <TableSkeleton rows={6} cols={6} />;
   if (q.isError) return <QueryError error={q.error} onRetry={() => q.refetch()} what="bowling-type splits" />;
   const d = q.data;
@@ -55,14 +51,13 @@ export function BatterTypesTable({ id, name, since, seasonOnly = false }: { id: 
         footer="Pace and spin totals first, then each type. Sample badge: low under 12 balls, medium 12–29, high 30+."
       />
       <Note text={unknownNote(d.coverage, "bowling type")} />
-      <Note text={scopeNote(seasonOnly)} />
     </section>
   );
 }
 
 /** D2: bowler vs right- and left-handed batters. */
-export function BowlerHandsTable({ id, name, since, seasonOnly = false }: { id: string; name: string; since?: string; seasonOnly?: boolean }) {
-  const q = useBowlerVsHands(id, since);
+export function BowlerHandsTable({ id, name, since, season }: { id: string; name: string; since?: string; season?: number }) {
+  const q = useBowlerVsHands(id, since, true, season);
   if (q.isPending) return <TableSkeleton rows={2} cols={6} />;
   if (q.isError) return <QueryError error={q.error} onRetry={() => q.refetch()} what="batting-hand splits" />;
   const d = q.data;
@@ -83,7 +78,6 @@ export function BowlerHandsTable({ id, name, since, seasonOnly = false }: { id: 
       <h2 className="text-overline mb-2 text-muted-foreground">Against batting hands{d.bowling_type ? ` · ${d.bowling_type}` : ""}</h2>
       <StatTable caption={`${name}: bowling against right- and left-handed batters`} columns={cols} rows={d.by_hand} rowKey={(r) => r.hand} footer="Legal balls. SR = balls per wicket; runs include wides and no-balls; run outs excluded." />
       <Note text={unknownNote(d.coverage, "batting hand")} />
-      <Note text={scopeNote(seasonOnly)} />
     </section>
   );
 }

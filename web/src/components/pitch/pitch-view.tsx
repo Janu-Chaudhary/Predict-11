@@ -2,24 +2,16 @@ import type { Player } from "@/lib/mock";
 import { ROLES, ROLE_THEME, getTeam } from "@/lib/tokens";
 import { cn } from "@/lib/utils";
 
+import { PlayerAvatar } from "@/components/player/player-avatar";
 import type { PlayerStatus } from "@/components/player/player-card";
 import { Lock } from "lucide-react";
 
 const ROW_LABEL = { WK: "Wicket-keepers", BAT: "Batters", AR: "All-rounders", BOWL: "Bowlers" } as const;
 
-function initials(name: string) {
-  return name
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((p) => p[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
-}
-
 /**
  * Stylised field with one row per role (§4.3). Radius 16, pitch green is the only fill;
- * tokens carry team colour, C (gold) / VC (gradient ring) roundels and a lock glyph.
+ * tokens show the player photo (initials fallback) in a team-colour ring, C (gold) / VC
+ * (gradient ring) roundels and a lock glyph.
  * Tapping a token (onSelect) opens the player sheet in the builder.
  */
 export function PitchView({
@@ -76,13 +68,12 @@ export function PitchView({
                         <span className="relative">
                           <span
                             className={cn(
-                              "font-condensed flex size-11 items-center justify-center rounded-full text-sm font-bold ring-2 ring-white/60 transition-transform duration-200 ease-emphasized group-hover:scale-105 motion-reduce:transition-none sm:size-12",
+                              "flex rounded-full ring-2 ring-white/60 ring-offset-2 ring-offset-pitch transition-transform duration-200 ease-emphasized group-hover:scale-105 motion-reduce:transition-none",
                               selected && "ring-[3px] ring-white",
                               status === "locked" && "ring-primary",
                             )}
-                            style={{ backgroundColor: team.primary, color: team.onPrimary }}
                           >
-                            {initials(p.name)}
+                            <PlayerAvatar name={p.name} src={p.photoUrl} team={p.team} size="md" className="sm:size-12!" />
                           </span>
                           {p.captain && (
                             <span aria-hidden className="font-condensed absolute -top-1 -right-1.5 flex size-5 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
