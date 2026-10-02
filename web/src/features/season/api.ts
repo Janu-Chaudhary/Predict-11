@@ -9,6 +9,7 @@ import type {
   Scenarios,
   SeasonStory,
   SeasonSummary,
+  TeamSquad,
   TeamSummary,
   VenueList,
 } from "./types";
@@ -82,4 +83,5 @@ export const seasonApi = {
   matches: (opts: { season?: number | null; team?: string | null } = {}, signal?: AbortSignal) =>
     request<MatchSummary[]>("/matches", { signal, query: { season: opts.season, team: opts.team } }),
   venues: (signal?: AbortSignal) => request<VenueList>("/venues", { signal }),
+  squad: (teamId: number, signal?: AbortSignal) => request<TeamSquad>(`/teams/${teamId}/squad`, { signal }),
 };

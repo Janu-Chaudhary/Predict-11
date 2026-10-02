@@ -17,6 +17,7 @@ export const seasonKeys = {
   records: (season: number | null, venue: number | null) => ["records", season, venue] as const,
   matches: (season: number | null, team: string | null) => ["matches", season, team] as const,
   venues: ["venues"] as const,
+  squad: (teamId: number) => ["teams", teamId, "squad"] as const,
 };
 
 export function useSeasons() {
@@ -114,4 +115,8 @@ export function useVenueOptions() {
     retry: false,
     select: (d) => [...d.venues].sort((a, b) => b.matches - a.matches),
   });
+}
+
+export function useTeamSquad(teamId: number) {
+  return useQuery({ queryKey: seasonKeys.squad(teamId), queryFn: ({ signal }) => seasonApi.squad(teamId, signal), staleTime: 10 * 60_000 });
 }

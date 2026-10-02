@@ -6,7 +6,7 @@ import { useState } from "react";
 import { getTeam } from "@/lib/tokens";
 import { cn } from "@/lib/utils";
 
-const PX = { xs: 24, sm: 32, md: 40, lg: 56, xl: 80 } as const;
+const PX = { xs: 24, sm: 32, md: 40, lg: 56, xl: 80, "2xl": 120, hero: 176 } as const;
 export type PlayerAvatarSize = keyof typeof PX;
 
 export function initials(name: string) {
@@ -32,10 +32,11 @@ export function photoSource(src: string, px: number): { src: string; local: bool
 }
 
 /**
- * Circular player photo with a team-colour ring. Prefers the API's `image_url`, which is the
- * locally cached WebP when available; lazy-loaded with a floodlight-sweep skeleton until loaded.
- * No URL or a load error → initials on surface-3.
- * Decorative by default (`alt=""`) because the name is always printed next to it.
+ * Player photo. The official headshots are transparent cut-outs, so a photo is drawn frameless
+ * (no circle, ring or fill) straight on the page background, bottom-aligned in its square box.
+ * Prefers the API's `image_url`, which is the locally cached WebP when available; lazy-loaded
+ * with a skeleton until loaded. No URL or a load error → initials in a circle with a team-colour
+ * ring. Decorative by default (`alt=""`) because the name is always printed next to it.
  */
 export function PlayerAvatar({
   name,
@@ -73,12 +74,12 @@ export function PlayerAvatar({
       aria-label={alt || undefined}
       aria-hidden={alt ? undefined : true}
       data-state={showImage ? state : "fallback"}
-      className={cn("relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-surface-3", className)}
-      style={{ width: px, height: px, boxShadow: `0 0 0 ${px >= 40 ? 2 : 1.5}px ${ring}` }}
+      className={cn("relative inline-flex shrink-0 items-end justify-center", !showImage && "overflow-hidden rounded-full bg-surface-3", className)}
+      style={{ width: px, height: px, boxShadow: showImage ? undefined : `0 0 0 ${px >= 40 ? 2 : 1.5}px ${ring}` }}
     >
       {showImage ? (
         <>
-          {state === "loading" && <span className="sk absolute inset-0 rounded-full" />}
+          {state === "loading" && <span className="sk absolute inset-0 rounded-lg" />}
           <Image
             src={photo!.src}
             unoptimized={photo!.local}
@@ -89,7 +90,7 @@ export function PlayerAvatar({
             onLoad={() => setState("loaded")}
             onError={() => setState("error")}
             className={cn(
-              "size-full object-cover object-top transition-opacity duration-200 motion-reduce:transition-none",
+              "size-full object-contain object-bottom transition-opacity duration-200 motion-reduce:transition-none",
               state === "loaded" ? "opacity-100" : "opacity-0",
             )}
           />

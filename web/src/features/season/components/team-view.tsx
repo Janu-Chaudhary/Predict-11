@@ -22,9 +22,10 @@ import { TEAM_TABS, type TeamTab } from "../tabs";
 import { replaceQuery } from "../url";
 import { ErrorState, StatusPill } from "./states";
 import { TeamH2H } from "./team-h2h";
+import { TeamSquadView } from "./team-squad";
 import { seasonSpan } from "./teams-grid";
 
-const TAB_LABEL: Record<TeamTab, string> = { overview: "Overview", matches: "Matches", h2h: "Head-to-head" };
+const TAB_LABEL: Record<TeamTab, string> = { overview: "Overview", squad: "Squad", matches: "Matches", h2h: "Head-to-head" };
 
 export type SeasonFinish = {
   season: number;
@@ -274,6 +275,7 @@ export function TeamView({
       </header>
       <TabLinks label="Team views" tabs={TEAM_TABS.map((k) => ({ key: k, label: TAB_LABEL[k] }))} active={tab} hrefFor={(k) => (k === "overview" ? base : `${base}?tab=${k}`)} />
       {tab === "overview" && <Overview team={team} />}
+      {tab === "squad" && <TeamSquadView team={team} />}
       {tab === "matches" && <Matches team={team} initialSeason={initialSeason} />}
       {tab === "h2h" && <TeamH2H team={team} teams={teams.data} initialVs={initialVs} initialVenue={initialVenue} />}
     </>

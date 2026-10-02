@@ -75,9 +75,10 @@ export function ProfileView({ id, tab, filter }: { id: string; tab: ProfileTab; 
 
   return (
     <div className={cn("transition-opacity", q.isPlaceholderData && "opacity-60")} aria-busy={q.isFetching}>
-      <header className="mb-4 flex flex-wrap items-start gap-3 md:mb-6 md:gap-4">
-        <PlayerAvatar name={title} src={photoOf(p)} team={code ?? undefined} size="lg" eager />
-        <div className="min-w-0 flex-1">
+      <header className="mb-4 flex flex-wrap items-end gap-3 md:mb-6 md:gap-5">
+        {/* Frameless cut-out as tall as the header block (owner request 2026-10-02). */}
+        <PlayerAvatar name={title} src={photoOf(p)} team={code ?? undefined} size="hero" eager className="max-sm:size-[120px]!" />
+        <div className="min-w-0 flex-1 self-center">
           <p className="text-overline flex items-center gap-1.5 text-muted-foreground">
             {code && <TeamBadge team={code} showCode={false} />}
             <span className="truncate">{p.last_team ?? "IPL player"}</span>

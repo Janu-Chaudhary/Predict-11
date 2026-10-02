@@ -318,3 +318,16 @@ export type Records = {
 
 export type VenueOption = { id: number; name: string; city: string | null; matches: number };
 export type VenueList = { venues: VenueOption[] };
+
+/** GET /teams/{id}/squad (backend p11.analytics.teams_squad). */
+export type SquadPlayer = {
+  player: { id: string; name: string; display_name?: string | null; image_url?: string | null };
+  role: "WK" | "BAT" | "AR" | "BOWL";
+  overseas: boolean | null;
+  credits: number | null;
+  /** Matches for this team in the season (0 = on the squad list but didn't play). */
+  matches: number;
+  in_squad_list: boolean;
+};
+
+export type TeamSquad = { team: TeamRef; season: number; credits_season: number | null; players: SquadPlayer[] };

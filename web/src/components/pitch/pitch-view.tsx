@@ -10,8 +10,8 @@ const ROW_LABEL = { WK: "Wicket-keepers", BAT: "Batters", AR: "All-rounders", BO
 
 /**
  * Stylised field with one row per role (§4.3). Radius 16, pitch green is the only fill;
- * tokens show the player photo (initials fallback) in a team-colour ring, C (gold) / VC
- * (gradient ring) roundels and a lock glyph.
+ * tokens show the frameless player cut-out (initials fallback), C (gold) / VC (gradient ring)
+ * roundels and a lock glyph.
  * Tapping a token (onSelect) opens the player sheet in the builder.
  */
 export function PitchView({
@@ -62,19 +62,19 @@ export function PitchView({
                         aria-label={`${p.name}, ${team.name}, ${ROLE_THEME[p.role].label}, ${p.credits} credits, median ${p.projection.median} points${status ? `, ${status}` : ""}${p.captain ? ", captain" : ""}${p.viceCaptain ? ", vice-captain" : ""}`}
                         className={cn(
                           "group flex min-h-11 w-full flex-col items-center gap-1 rounded-lg p-1 outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                          selected && "bg-white/15 ring-2 ring-white/70",
+                          status === "locked" && "ring-2 ring-primary",
                           status === "excluded" && "opacity-45",
                         )}
                       >
                         <span className="relative">
-                          <span
-                            className={cn(
-                              "flex rounded-full ring-2 ring-white/60 ring-offset-2 ring-offset-pitch transition-transform duration-200 ease-emphasized group-hover:scale-105 motion-reduce:transition-none",
-                              selected && "ring-[3px] ring-white",
-                              status === "locked" && "ring-primary",
-                            )}
-                          >
-                            <PlayerAvatar name={p.name} src={p.photoUrl} team={p.team} size="md" className="sm:size-12!" />
-                          </span>
+                          <PlayerAvatar
+                            name={p.name}
+                            src={p.photoUrl}
+                            team={p.team}
+                            size="lg"
+                            className="transition-transform duration-200 ease-emphasized group-hover:scale-105 motion-reduce:transition-none max-sm:size-12!"
+                          />
                           {p.captain && (
                             <span aria-hidden className="font-condensed absolute -top-1 -right-1.5 flex size-5 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
                               C

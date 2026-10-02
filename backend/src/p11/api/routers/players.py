@@ -1,6 +1,6 @@
-"""/api/v1 routes: players, matchups, venues, milestones, streaks.
+"""/api/v1 routes: players, matchups, venues, milestones, streaks, team squads.
 
-Business logic lives in p11.analytics (players*, matchups, venues).
+Business logic lives in p11.analytics (players*, matchups, venues, teams_squad).
 """
 
 from __future__ import annotations
@@ -13,7 +13,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import Connection
 
-from ...analytics import matchups, players, players_records, venues
+from ...analytics import matchups, players, players_records, teams_squad, venues
 from ...analytics.players_data import bulk, parse_since, reference
 from ...analytics.players_models import (
     CompareResponse,
@@ -122,6 +122,14 @@ def head_to_head(
 
 
 # --------------------------------------------------------------------------- venues
+@router.get("/teams/{team_id}/squad", response_model=teams_squad.TeamSquad)
+def team_squad(conn: Conn, team_id: int) -> teams_squad.TeamSquad:
+    try:
+        return teams_squad.squad(conn, team_id)
+    except teams_squad.NotFound as e:
+        raise HTTPException(404, str(e)) from e
+
+
 @router.get("/venues", response_model=venues.VenueList)
 def venue_list(conn: Conn) -> venues.VenueList:
     return venues.venue_list(conn)

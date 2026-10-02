@@ -61,6 +61,12 @@ class CreditRow:
     full_name: str
     credits: Decimal | None  # None: blank in the CSV (reported, not loaded)
     file: str
+    overseas: bool | None = None  # "Foreign Player" column; None when absent/blank
+
+
+def _bool(v: str | None) -> bool | None:
+    s = (v or "").strip().casefold()
+    return True if s in ("true", "yes", "1") else False if s in ("false", "no", "0") else None
 
 
 def read_team_csv(path: Path) -> list[CreditRow]:
@@ -85,6 +91,7 @@ def read_team_csv(path: Path) -> list[CreditRow]:
                     full_name=full,
                     credits=Decimal(raw) if _NUM.match(raw) else None,
                     file=path.name,
+                    overseas=_bool(r.get("Foreign Player")),
                 )
             )
         return out
@@ -142,6 +149,7 @@ def load_credits(conn: Connection, teams_dir: Path, season: int) -> CreditsRepor
             "player_id": pid,
             "team_id": team_id,
             "credits": r.credits,
+            "overseas": r.overseas,
             "source": f"Teams/{r.file}",
         }
         rep.matched += 1

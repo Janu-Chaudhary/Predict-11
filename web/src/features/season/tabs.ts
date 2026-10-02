@@ -2,7 +2,7 @@
 export const SEASON_TABS = ["table", "scenarios", "story"] as const;
 export type SeasonTab = (typeof SEASON_TABS)[number];
 
-export const TEAM_TABS = ["overview", "matches", "h2h"] as const;
+export const TEAM_TABS = ["overview", "squad", "matches", "h2h"] as const;
 export type TeamTab = (typeof TEAM_TABS)[number];
 
 export function parseTab<T extends string>(value: string | string[] | undefined, tabs: readonly T[], fallback: T): T {

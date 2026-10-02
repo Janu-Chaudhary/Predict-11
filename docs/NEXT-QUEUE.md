@@ -14,17 +14,20 @@ _Updated 2026-10-02. Everything above this line in git history is built, verifie
 - Web (Floodlight): Home (rotating hero), Table, Records, Teams, Players, H2H, Venues, Fantasy,
   loaders, ⌘K search, dark/light.
 
-## Q1 — Small gaps (≈15 min, 1 agent)
-1. Fantasy endpoints: add `display_name` + `image_url` to leaderboard / best-XI / team-of-season
-   rows; add `last10` points to `LeaderboardRow` (UI sparkline column appears automatically).
-2. Shared `PitchView`: use `PlayerAvatar` photos on player tokens.
-3. Home bento: link to /fantasy.
-4. Team-of-season C/VC chosen by backend (contract) instead of UI rule.
-5. Matchup splits: accept `season` (not only `since`) so single-season profile scope works.
-6. ⌘K search: add venues; backend "popular players" endpoint.
-7. Add suggested DB indexes (`delivery(non_striker_id)`, partial
-   `delivery(player_out_id)`, GIN `fielder_ids`, `delivery(batter_id, bowler_id)`, `match(venue_id)`,
-   `pg_trgm` on player/alias names).
+## Q1 — Small gaps — DONE (d5b3f4c)
+Fantasy display names/photos/last10/backend C-VC, pitch photos, Fantasy bento tile, season-scoped
+matchup splits, ⌘K venues + popular players, query indexes (migration e1a7c3d90b42).
+Also: team **Squad** tab (`/teams/{id}/squad`, latest-season roster + 2025 squad list,
+overseas flag in `season_credits`), frameless player cut-outs everywhere, full-height profile
+photo.
+
+## Known issues
+- `test_endpoints_respond_fast_when_warm[/players/compare]` runs ~330–440 ms vs a 300 ms budget
+  (also fails without the new indexes; check with the dev servers stopped).
+- CSK squad CSV has no Ruturaj Gaikwad row (no credits for him). 2026 squad CSVs needed to drop
+  released players from the Squad tab.
+- Photos are cached at 256 px: slightly soft at the 176 px profile size on 2x screens; a 512 px
+  cache variant would need a re-download of the originals.
 
 ## Q2 — Production scrapers + match centre (Phase 2–3)
 1. Promote spike scrapers to `p11.ingest.sources` adapters (BCCI, ESPN, Cricbuzz, Hindu) with raw
