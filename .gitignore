@@ -34,4 +34,7 @@ data/backups/
 
 # model runs (boosters, eval frames, telemetry): rebuilt by `p11 model train`; summary in DB
 models/lgbm-*/
-models/latest.json
+# the deployed run is committed (Render builds from git)
+!models/lgbm-20261002-1515/
+build/
+supabase/.temp/

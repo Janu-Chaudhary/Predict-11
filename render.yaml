@@ -1,0 +1,26 @@
+# Render Blueprint: the Predict-11 API (FastAPI + LightGBM) on the free plan.
+# Dashboard → New → Blueprint → this repo. Set P11_DATABASE_URL (Supabase session pooler URL,
+# postgresql+psycopg://postgres.<ref>:<password>@aws-0-ap-south-1.pooler.supabase.com:5432/postgres?sslmode=require)
+# when prompted; it is never stored in git. The web app (web/) is deployed on Vercel.
+services:
+  - type: web
+    name: predict11-api
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - backend/**
+        - models/**
+        - render.yaml
+    envVars:
+      - key: P11_DATABASE_URL
+        sync: false
+      - key: P11_ENV
+        value: prod
+      - key: P11_CORS_ORIGIN_REGEX
+        value: ^https://([a-z0-9-]+\.)*vercel\.app$|^http://localhost:3000$

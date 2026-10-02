@@ -1,0 +1,180 @@
+{
+  "version": "lgbm-20261002-1515",
+  "created_at": "2026-10-02T09:45:52+00:00",
+  "params": {
+    "num_leaves": 31,
+    "min_child_samples": 100,
+    "learning_rate": 0.03
+  },
+  "trees": {
+    "mean": 65,
+    "q10": 50,
+    "q50": 74,
+    "q90": 79
+  },
+  "test_trees": {
+    "mean": 89,
+    "q10": 94,
+    "q50": 92,
+    "q90": 64
+  },
+  "n_learned_values": 16348,
+  "rows": 27700,
+  "importance": [
+    [
+      "mean_20",
+      0.073
+    ],
+    [
+      "ewm_5",
+      0.047
+    ],
+    [
+      "opp_conceded_10",
+      0.025
+    ],
+    [
+      "league_par_60",
+      0.025
+    ],
+    [
+      "bowl_death_share_10",
+      0.024
+    ],
+    [
+      "mean_all",
+      0.024
+    ],
+    [
+      "opp_scored_10",
+      0.022
+    ],
+    [
+      "rank_in_team",
+      0.022
+    ],
+    [
+      "bat_pos_5",
+      0.022
+    ],
+    [
+      "opp_lift",
+      0.021
+    ],
+    [
+      "team_scored_10",
+      0.019
+    ],
+    [
+      "team_bat_depth_excl",
+      0.019
+    ],
+    [
+      "n_prev",
+      0.019
+    ],
+    [
+      "home_share",
+      0.019
+    ],
+    [
+      "venue_matches",
+      0.018
+    ]
+  ],
+  "features": [
+    "n_prev",
+    "mean_all",
+    "mean_3",
+    "mean_5",
+    "mean_10",
+    "mean_20",
+    "ewm_5",
+    "sd_10",
+    "max_10",
+    "p50plus_10",
+    "plow_10",
+    "batting_10",
+    "bowling_10",
+    "fielding_10",
+    "season_n",
+    "season_mean",
+    "seasons_played",
+    "days_rest",
+    "bat_pos_last",
+    "bat_pos_5",
+    "batted_rate_10",
+    "bowled_rate_10",
+    "sr_10",
+    "avg_10",
+    "bpi_10",
+    "bdry_pct_10",
+    "six_rate_10",
+    "sr_car",
+    "avg_car",
+    "bpi_car",
+    "bdry_pct_car",
+    "six_rate_car",
+    "econ_10",
+    "wpm_10",
+    "bsr_10",
+    "dot_pct_10",
+    "overs_pm_10",
+    "econ_car",
+    "wpm_car",
+    "bsr_car",
+    "dot_pct_car",
+    "overs_pm_car",
+    "bat_pp_share_10",
+    "bat_mid_share_10",
+    "bat_death_share_10",
+    "bowl_pp_share_10",
+    "bowl_death_share_10",
+    "field_dis_10",
+    "sr_v_spin",
+    "sr_v_pace",
+    "econ_v_L",
+    "econ_v_R",
+    "opp_spin_share",
+    "opp_left_share",
+    "opp_attack",
+    "opp_batting",
+    "exp_sr_matchup",
+    "exp_econ_matchup",
+    "team_bat_depth_excl",
+    "rank_in_team",
+    "team_scored_10",
+    "team_conceded_10",
+    "opp_scored_10",
+    "opp_conceded_10",
+    "home_share",
+    "team_rest",
+    "venue_n",
+    "venue_mean_shrunk",
+    "venue_lift",
+    "opp_n",
+    "opp_mean_shrunk",
+    "opp_lift",
+    "venue_par_20",
+    "venue_matches",
+    "venue_par_rel",
+    "league_par_60",
+    "bats_first",
+    "won_toss",
+    "temp",
+    "humidity",
+    "dew_point",
+    "dew_spread",
+    "wind",
+    "rain",
+    "night",
+    "role_code",
+    "left_hand",
+    "bowl_grp_code",
+    "impact_era",
+    "year",
+    "match_number",
+    "playoff"
+  ],
+  "seconds": 1569
+}
