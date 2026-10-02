@@ -1,7 +1,9 @@
 import { API_URL } from "@/lib/env";
 
 import type {
+  FantasyLeaderboard,
   HeadToHead,
+  MatchWorm,
   MatchSummary,
   PointsTable,
   Records,
@@ -84,4 +86,7 @@ export const seasonApi = {
     request<MatchSummary[]>("/matches", { signal, query: { season: opts.season, team: opts.team } }),
   venues: (signal?: AbortSignal) => request<VenueList>("/venues", { signal }),
   squad: (teamId: number, signal?: AbortSignal) => request<TeamSquad>(`/teams/${teamId}/squad`, { signal }),
+  fantasyLeaders: (season: number, limit = 5, signal?: AbortSignal) =>
+    request<FantasyLeaderboard>("/fantasy/leaderboard", { signal, query: { season, limit } }),
+  worm: (matchId: number, signal?: AbortSignal) => request<MatchWorm>(`/home/worm/${matchId}`, { signal }),
 };

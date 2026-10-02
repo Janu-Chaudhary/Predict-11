@@ -222,7 +222,10 @@ def _playoffs(
             lst, fin = out.get(tid, ([], None))
             lst.append(
                 PlayoffResult(
-                    match_id=m.id, stage=stage, code=code, result=res,
+                    match_id=m.id,
+                    stage=stage,
+                    code=code,
+                    result=res,
                     opponent=team_ref(core, m.opponent(tid), year),
                 )  # fmt: skip
             )
@@ -230,6 +233,7 @@ def _playoffs(
                 fin = "champion" if res == "W" else "runner_up"
             out[tid] = (lst, fin)
     return out
+
 
 def points_table(year: int, after_match: int | None = None) -> PointsTable:
     core = data.core()

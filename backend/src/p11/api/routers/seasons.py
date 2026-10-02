@@ -14,7 +14,6 @@ from typing import Literal
 
 from fastapi import APIRouter, HTTPException, Query, Request, Response
 
-from ..cache import weak_etag
 from ...analytics import seasons as svc
 from ...analytics import seasons_data as data
 from ...analytics.seasons_schemas import (
@@ -28,6 +27,7 @@ from ...analytics.seasons_schemas import (
     SeasonSummary,
     TeamSummary,
 )
+from ..cache import weak_etag
 
 router = APIRouter(tags=["seasons"])
 log = logging.getLogger(__name__)

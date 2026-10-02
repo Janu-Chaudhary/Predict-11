@@ -18,6 +18,8 @@ export const seasonKeys = {
   matches: (season: number | null, team: string | null) => ["matches", season, team] as const,
   venues: ["venues"] as const,
   squad: (teamId: number) => ["teams", teamId, "squad"] as const,
+  fantasyLeaders: (season: number) => ["fantasy", "leaderboard", season, "top"] as const,
+  worm: (matchId: number) => ["matches", matchId, "worm"] as const,
 };
 
 export function useSeasons() {
@@ -119,4 +121,25 @@ export function useVenueOptions() {
 
 export function useTeamSquad(teamId: number) {
   return useQuery({ queryKey: seasonKeys.squad(teamId), queryFn: ({ signal }) => seasonApi.squad(teamId, signal), staleTime: 10 * 60_000 });
+}
+
+/** Season fantasy points leaders (side rail). Optional: failure just hides the card. */
+export function useFantasyLeaders(season: number) {
+  return useQuery({
+    queryKey: seasonKeys.fantasyLeaders(season),
+    queryFn: ({ signal }) => seasonApi.fantasyLeaders(season, 5, signal),
+    staleTime: STATIC,
+    retry: false,
+  });
+}
+
+/** Match header + ball-by-ball worm for the match centre. */
+export function useMatchWorm(matchId: number | null) {
+  return useQuery({
+    queryKey: seasonKeys.worm(matchId ?? 0),
+    queryFn: ({ signal }) => seasonApi.worm(matchId!, signal),
+    enabled: matchId !== null,
+    staleTime: STATIC,
+    retry: (n, e) => n < 1 && !(e instanceof Error && "status" in e && (e as { status: number }).status === 404),
+  });
 }

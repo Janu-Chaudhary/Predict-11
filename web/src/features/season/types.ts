@@ -336,3 +336,41 @@ export type SquadPlayer = {
 };
 
 export type TeamSquad = { team: TeamRef; season: number; credits_season: number | null; players: SquadPlayer[] };
+
+// ── Season rail / match centre (read-only views of existing endpoints) ─────────
+
+/** One row of GET /fantasy/leaderboard (only the fields the season rail reads). */
+export type FantasyLeader = {
+  rank: number;
+  player: PlayerRef & { display_name?: string | null; image_url?: string | null };
+  team: TeamRef | null;
+  role: string | null;
+  n: number;
+  total: number;
+  mean: number;
+  max: number;
+};
+
+export type FantasyLeaderboard = { season: number; rows: FantasyLeader[] };
+
+/** GET /home/worm/{match_id}: match header plus ball-by-ball cumulative runs per innings. */
+export type WormBall = { x: number; runs: number; wickets: number; kind: "dot" | "run" | "four" | "six" | "wicket"; label: string };
+export type MatchWorm = {
+  match: {
+    id: number;
+    date: string;
+    season: number;
+    title: string | null;
+    stage: string | null;
+    match_number: number | null;
+    venue: VenueRef | null;
+    team1: TeamRef;
+    team2: TeamRef;
+    winner_id: number | null;
+    result: string | null;
+    scores: { innings: number; team_id: number; runs: number; wickets: number; overs: string }[];
+  };
+  innings: { innings: number; team: TeamRef; runs: number; wickets: number; overs: string; balls: WormBall[] }[];
+  ball_count: number;
+  y_max: number;
+};

@@ -14,7 +14,6 @@ from typing import Literal
 
 from fastapi import APIRouter, HTTPException, Path, Query, Request, Response
 
-from ..cache import weak_etag
 from ...analytics import fantasy as svc
 from ...analytics import fantasy_data as data
 from ...analytics.fantasy_schemas import (
@@ -25,6 +24,7 @@ from ...analytics.fantasy_schemas import (
     TeamOfSeason,
 )
 from ...analytics.players_data import parse_since
+from ..cache import weak_etag
 
 
 def _warm() -> None:

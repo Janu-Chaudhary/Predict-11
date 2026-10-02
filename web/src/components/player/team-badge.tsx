@@ -46,6 +46,8 @@ export function TeamBadge({
       aria-hidden
       src={t.logo!}
       alt=""
+      // Local 256 px WebPs: serve the file itself; the optimiser cache would keep old artwork.
+      unoptimized
       width={d}
       height={d}
       onError={() => setBroken(true)}
