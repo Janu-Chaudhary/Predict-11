@@ -14,6 +14,7 @@ from typing import Literal
 
 from fastapi import APIRouter, HTTPException, Path, Query, Request, Response
 
+from ..cache import weak_etag
 from ...analytics import fantasy as svc
 from ...analytics import fantasy_data as data
 from ...analytics.fantasy_schemas import (
@@ -43,7 +44,7 @@ def _serve[T](
     request: Request, response: Response, key: str, compute: Callable[[], T]
 ) -> T | Response:
     try:
-        etag = f'W/"f{data.fingerprint()}"'
+        etag = weak_etag(data.fingerprint(), "f")
         if request.headers.get("if-none-match") == etag:
             return Response(status_code=304, headers={"ETag": etag, "Cache-Control": CACHE_CONTROL})
         result = data.memo(key, compute)
