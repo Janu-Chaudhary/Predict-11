@@ -23,6 +23,8 @@ spikes/.venv/
 spikes/**/samples/
 spikes/**/.venv-libs/
 .env
+.env.*
+!.env.example
 data/archive/
 data/lake/
 backend/.venv/
