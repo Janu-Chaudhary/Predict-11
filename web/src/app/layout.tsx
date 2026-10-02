@@ -49,7 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <SideRail />
             <main
               id="main"
-              className="mx-auto w-full max-w-[1280px] min-w-0 flex-1 px-4 pt-5 pb-[calc(6rem+env(safe-area-inset-bottom))] md:px-6 lg:pb-12"
+              className="mx-auto w-full max-w-[1680px] min-w-0 flex-1 px-4 pt-5 pb-[calc(6rem+env(safe-area-inset-bottom))] md:px-6 lg:pb-12"
             >
               {children}
             </main>

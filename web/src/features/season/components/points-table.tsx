@@ -1,10 +1,12 @@
+import { Trophy } from "lucide-react";
+import Link from "next/link";
 import { Fragment } from "react";
 
 import { FormStrip } from "@/components/data/form-strip";
 import { cn } from "@/lib/utils";
 
 import { formatNrr, formToResult, nrrTone } from "../format";
-import type { PointsRow } from "../types";
+import type { PlayoffResult, PointsRow } from "../types";
 import { TeamName } from "./states";
 
 export const PLAYOFF_SPOTS = 4;
@@ -41,6 +43,7 @@ export function PointsTableView({
   highlightTeamId?: number;
   className?: string;
 }) {
+  const hasPlayoffs = rows.some((r) => (r.playoffs?.length ?? 0) > 0);
   return (
     <div className={cn("overflow-hidden rounded-xl border border-border bg-card shadow-e1", className)}>
       <div className="overflow-x-auto overscroll-x-contain" role="region" aria-label={caption} tabIndex={0}>
@@ -58,7 +61,8 @@ export function PointsTableView({
               <th scope="col" className={cn(TH, "text-right max-sm:hidden")}><abbr title="No result" className="no-underline">NR</abbr></th>
               <th scope="col" className={cn(TH, "text-right")}><abbr title="Net run rate" className="no-underline">NRR</abbr></th>
               <th scope="col" className={cn(TH, "text-right")}><abbr title="Points" className="no-underline">Pts</abbr></th>
-              <th scope="col" className={cn(TH, "pr-4 text-left")}>Form</th>
+              <th scope="col" className={cn(TH, "text-left")}>Form</th>
+              {hasPlayoffs && <th scope="col" className={cn(TH, "pr-4 text-left")}>Playoffs</th>}
             </tr>
           </thead>
           <tbody>
@@ -75,7 +79,16 @@ export function PointsTableView({
                       {zone && <span className="sr-only">, {ZONE[zone].label}</span>}
                     </td>
                     <td className={cn(TD, "sticky left-9 z-[5] max-w-[16rem] text-left group-hover/row:bg-surface-2 md:max-w-none")}>
-                      <TeamName team={r.team} />
+                      <span className="inline-flex items-center gap-2">
+                        <TeamName team={r.team} />
+                        {r.finish === "champion" && (
+                          <span title="Champions" className="text-gold-text inline-flex items-center gap-1 text-xs font-semibold">
+                            <Trophy aria-hidden className="size-4" />
+                            <span className="max-md:sr-only">Champions</span>
+                          </span>
+                        )}
+                        {r.finish === "runner_up" && <span className="text-xs text-muted-foreground max-md:sr-only">Runner-up</span>}
+                      </span>
                     </td>
                     <td className={cn(TD, "text-right group-hover/row:bg-surface-2")}>{r.played}</td>
                     <td className={cn(TD, "text-right group-hover/row:bg-surface-2")}>{r.won}</td>
@@ -93,13 +106,18 @@ export function PointsTableView({
                       {formatNrr(r.nrr)}
                     </td>
                     <td className={cn(TD, "text-right font-semibold group-hover/row:bg-surface-2")}>{r.points}</td>
-                    <td className={cn(TD, "pr-4 text-left group-hover/row:bg-surface-2")}>
+                    <td className={cn(TD, "text-left group-hover/row:bg-surface-2", !hasPlayoffs && "pr-4")}>
                       {r.form.length ? <FormStrip results={r.form.map(formToResult)} /> : <span className="text-faint">–</span>}
                     </td>
+                    {hasPlayoffs && (
+                      <td className={cn(TD, "pr-4 text-left group-hover/row:bg-surface-2")}>
+                        {r.playoffs?.length ? <PlayoffStrip games={r.playoffs} /> : <span className="text-faint">–</span>}
+                      </td>
+                    )}
                   </tr>
                   {r.position === PLAYOFF_SPOTS && rows.length > PLAYOFF_SPOTS && (
                     <tr aria-hidden data-testid="playoff-line">
-                      <td colSpan={9} className="h-0 p-0">
+                      <td colSpan={hasPlayoffs ? 10 : 9} className="h-0 p-0">
                         <div className="h-px bg-[repeating-linear-gradient(90deg,var(--brand)_0_6px,transparent_6px_10px)]" />
                       </td>
                     </tr>
@@ -112,6 +130,27 @@ export function PointsTableView({
       </div>
       <ZoneKey />
     </div>
+  );
+}
+
+const PO_TONE = { W: "bg-positive/18 text-positive ring-positive/35", L: "bg-negative/15 text-negative ring-negative/35", N: "bg-surface-3 text-muted-foreground ring-border" } as const;
+
+/** Playoff results after the league stage: stage code + W/L, linking to the match. */
+function PlayoffStrip({ games }: { games: PlayoffResult[] }) {
+  return (
+    <ol className="inline-flex items-center gap-1" aria-label={games.map((g) => `${g.stage}: ${g.result === "W" ? "won" : g.result === "L" ? "lost" : "no result"} v ${g.opponent.name}`).join(", ")}>
+      {games.map((g) => (
+        <li key={g.match_id}>
+          <Link
+            href={`/matches/${g.match_id}`}
+            title={`${g.stage} v ${g.opponent.short_code}`}
+            className={cn("font-condensed flex h-6 items-center gap-0.5 rounded-full px-2 text-[11px] font-bold ring-1 ring-inset outline-none focus-visible:ring-2 focus-visible:ring-ring", PO_TONE[g.result])}
+          >
+            <span className="opacity-75">{g.code}</span> {g.result === "N" ? "–" : g.result}
+          </Link>
+        </li>
+      ))}
+    </ol>
   );
 }
 

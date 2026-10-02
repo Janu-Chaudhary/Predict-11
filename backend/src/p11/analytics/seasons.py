@@ -8,6 +8,7 @@ Routers call these functions; they return the Pydantic models in ``seasons_schem
 from __future__ import annotations
 
 from collections.abc import Sequence
+from typing import Literal
 
 from . import seasons_data as data
 from .seasons_adjustments import ABANDONED_NO_BALL, VOID_MATCH_IDS, Abandoned
@@ -18,6 +19,7 @@ from .seasons_scenarios import Fixture, simulate
 from .seasons_schemas import (
     HeadToHead,
     MatchSummary,
+    PlayoffResult,
     PointsRow,
     PointsTable,
     Records,
@@ -199,10 +201,41 @@ def list_teams() -> list[TeamSummary]:
 
 
 # --------------------------------------------------------------------------- F1 table
+_STAGE_CODE = {
+    "qualifier 1": "Q1", "eliminator": "E", "qualifier 2": "Q2", "final": "F",
+    "semi final": "SF", "3rd place play-off": "3P", "elimination final": "E",
+}  # fmt: skip
+
+
+def _playoffs(
+    core: Core, year: int
+) -> dict[int, tuple[list[PlayoffResult], Literal["champion", "runner_up"] | None]]:
+    """Per team: playoff results in date order, and champion / runner-up once the final is in."""
+    out: dict[int, tuple[list[PlayoffResult], Literal["champion", "runner_up"] | None]] = {}
+    for m in sorted(core.season_matches(year), key=lambda m: m.date):
+        if m.league:
+            continue
+        stage = m.stage or "Playoff"
+        code = _STAGE_CODE.get(stage.lower(), stage[:2].upper())
+        for tid in (m.team1_id, m.team2_id):
+            res = "N" if m.winner_id is None else "W" if m.winner_id == tid else "L"
+            lst, fin = out.get(tid, ([], None))
+            lst.append(
+                PlayoffResult(
+                    match_id=m.id, stage=stage, code=code, result=res,
+                    opponent=team_ref(core, m.opponent(tid), year),
+                )  # fmt: skip
+            )
+            if code == "F" and m.winner_id is not None:
+                fin = "champion" if res == "W" else "runner_up"
+            out[tid] = (lst, fin)
+    return out
+
 def points_table(year: int, after_match: int | None = None) -> PointsTable:
     core = data.core()
     league = _league(core, _season_matches(core, year))
     played, _ = _split(league, after_match)
+    po = _playoffs(core, year) if after_match is None else {}
     rows: list[PointsRow] = []
     for s in compute_standings(played):
         rows.append(
@@ -221,6 +254,8 @@ def points_table(year: int, after_match: int | None = None) -> PointsTable:
                 runs_against=s.nrr.runs_against,
                 overs_against=s.nrr.overs_against,
                 form=s.results[-5:],  # type: ignore[arg-type]
+                playoffs=po.get(s.team_id, ([], None))[0],
+                finish=po.get(s.team_id, ([], None))[1],
                 qualified=after_match is None and s.position <= PLAYOFF_SPOTS,
             )
         )

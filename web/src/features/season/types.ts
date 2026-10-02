@@ -87,8 +87,13 @@ export type PointsRow = {
   overs_against: string;
   /** Last 5 league results, oldest first. */
   form: FormResult[];
+  /** Playoff games after the league (older APIs omit it). */
+  playoffs?: PlayoffResult[];
+  finish?: "champion" | "runner_up" | null;
   qualified: boolean;
 };
+
+export type PlayoffResult = { match_id: number; stage: string; code: string; result: FormResult; opponent: TeamRef };
 
 export type PointsTable = {
   season: number;

@@ -10,6 +10,14 @@ from pydantic import BaseModel, Field
 FormResult = Literal["W", "L", "N"]
 
 
+class PlayoffResult(BaseModel):
+    match_id: int
+    stage: str = Field(description="Qualifier 1 | Eliminator | Qualifier 2 | Final | ...")
+    code: str = Field(description="Q1 | E | Q2 | F | SF | 3P")
+    result: FormResult
+    opponent: TeamRef
+
+
 class TeamRef(BaseModel):
     id: int
     name: str = Field(description="Name the franchise used in that season")
@@ -105,6 +113,12 @@ class PointsRow(BaseModel):
     runs_against: int
     overs_against: str
     form: list[FormResult] = Field(description="Last 5 league results, oldest first")
+    playoffs: list[PlayoffResult] = Field(
+        default_factory=list, description="Playoff games after the league stage, in order"
+    )
+    finish: Literal["champion", "runner_up"] | None = Field(
+        default=None, description="Set once the final has been played"
+    )
     qualified: bool = Field(description="Finished in the playoff places (top 4; 2008-10 top 4)")
 
 
