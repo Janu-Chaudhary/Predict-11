@@ -24,8 +24,8 @@ const ZONE: Record<Exclude<Zone, null>, { cls: string; label: string }> = {
   elim: { cls: "bg-brand", label: "Eliminator (3rd–4th)" },
 };
 
-const TH = "text-overline sticky top-0 z-10 h-9 border-b border-border bg-surface-2 px-2 whitespace-nowrap text-muted-foreground";
-const TD = "h-11 border-b border-border bg-card px-2 whitespace-nowrap md:h-10";
+const TH = "text-overline sticky top-0 z-10 h-11 border-b border-border bg-surface-2 px-2 whitespace-nowrap text-muted-foreground";
+const TD = "h-12 border-b border-border bg-card px-3 whitespace-nowrap lg:h-14";
 
 /**
  * Points table (§4.7): zone stripe (gold top 2, violet 3–4) with a key, sticky header and team
@@ -47,7 +47,7 @@ export function PointsTableView({
   return (
     <div className={cn("overflow-hidden rounded-xl border border-border bg-card shadow-e1", className)}>
       <div className="overflow-x-auto overscroll-x-contain" role="region" aria-label={caption} tabIndex={0}>
-        <table className="num w-full border-separate border-spacing-0 text-[13px] leading-[18px] md:text-sm md:leading-5" aria-describedby={ZONE_KEY_ID}>
+        <table className="num w-full border-separate border-spacing-0 text-sm leading-5 lg:text-base lg:leading-6" aria-describedby={ZONE_KEY_ID}>
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr>

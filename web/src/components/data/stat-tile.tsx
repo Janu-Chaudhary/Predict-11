@@ -36,7 +36,7 @@ export function StatTile({
     <>
       <div className="text-overline truncate text-muted-foreground">{label}</div>
       <div className="mt-1 flex items-baseline gap-1">
-        <span className="font-condensed num text-[1.75rem] leading-8 font-bold">
+        <span className="font-condensed num text-[2rem] leading-9 font-bold lg:text-[2.5rem] lg:leading-[2.75rem]">
           {empty ? (
             <span className="text-faint" aria-label="No data">
               –
@@ -65,7 +65,7 @@ export function StatTile({
       )}
     </>
   );
-  const cls = cn("block min-w-0 rounded-lg border border-border bg-card p-3 shadow-e1 md:p-4", className);
+  const cls = cn("block min-w-0 rounded-xl border border-border bg-card p-4 shadow-e1 lg:p-5", className);
   return href ? (
     <Link href={href} className={cn(cls, "transition-colors hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-ring")}>
       {body}

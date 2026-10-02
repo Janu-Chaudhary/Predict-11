@@ -101,7 +101,7 @@ export function StatTable<T>({
   };
 
   const alignOf = (c: StatColumn<T>) => c.align ?? "right";
-  const rowH = dense ? "h-8" : "h-9 md:h-9";
+  const rowH = dense ? "h-9" : "h-11 lg:h-12";
 
   return (
     // grid + minmax(0,1fr): the card's min-content width is 0, so a wide table scrolls inside its
@@ -110,7 +110,7 @@ export function StatTable<T>({
       {/* `relative`: the sr-only caption is absolutely positioned; without a positioned scroll
           region its containing block was <body>, so it escaped the card and widened the page. */}
       <div className="relative overflow-auto overscroll-x-contain" style={{ maxHeight }} tabIndex={0} role="region" aria-label={caption}>
-        <table className="num w-full border-separate border-spacing-0 text-[13px] leading-[18px] md:text-sm md:leading-5">
+        <table className="num w-full border-separate border-spacing-0 text-sm leading-5 lg:text-[15px] lg:leading-6">
           <caption className="sr-only">{caption}</caption>
           <thead>
             <tr>
@@ -124,7 +124,7 @@ export function StatTable<T>({
                     scope="col"
                     aria-sort={ariaSort}
                     className={cn(
-                      "text-overline sticky top-0 z-10 h-9 border-b border-border bg-surface-2 px-3 whitespace-nowrap text-muted-foreground",
+                      "text-overline sticky top-0 z-10 h-10 border-b border-border bg-surface-2 px-3 whitespace-nowrap text-muted-foreground",
                       align === "right" ? "text-right" : align === "center" ? "text-center" : "text-left",
                       c.sticky && "left-0 z-20",
                       ci === 0 && "pl-4",
