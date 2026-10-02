@@ -1,7 +1,9 @@
 # Predict-11 v2 — Next queue
 
-_Updated 2026-10-02. Everything above this line in git history is built, verified and committed
-(see `git log v1..v2`). Items are ordered by priority within each block._
+_Updated 2026-10-03. Items are ordered by priority within each block._
+
+**Live:** web https://predict11-olive.vercel.app (Vercel) · API https://predict11-api.onrender.com
+(Render free, Docker) · Postgres on Supabase free (Mumbai) · CI + keep-alive on GitHub Actions.
 
 ## Done so far (summary)
 - Data: scrapers proven on all 74 IPL 2026 matches (stats.bcci.tv primary, ESPN ID bridge,
@@ -20,6 +22,15 @@ matchup splits, ⌘K venues + popular players, query indexes (migration e1a7c3d9
 Also: team **Squad** tab (`/teams/{id}/squad`, latest-season roster + 2025 squad list,
 overseas flag in `season_credits`), frameless player cut-outs everywhere, full-height profile
 photo.
+
+## Done since (2026-10-02/03)
+- **Model (Q3.1–3.3):** 92 point-in-time features, LightGBM mean + p10/p50/p90, rolling-origin CV
+  2020–24, 2025 test, 2026 walk-forward with bootstrap CIs (`docs/MODEL-REPORT.md`), leakage test.
+- **Model Lab** (`/lab`), **2026 predicted XIs** (`/accuracy`, match Predicted XI tab, Q4.1–4.2),
+  `/build` on real predictions with lock/exclude + server re-optimise (part of Q3.4–3.5).
+- Full-width layouts, Compare redesign, stadium photos (Wikimedia, credited), official crests,
+  archive headshots, playoff results + champion in the table, full names everywhere.
+- Deploy: Dockerfile + Render blueprint, Supabase migration, keep-alive; v1 code removed (tag v1).
 
 ## Known issues
 - `test_endpoints_respond_fast_when_warm[/players/compare]` runs ~330–440 ms vs a 300 ms budget
@@ -46,22 +57,19 @@ photo.
 9. **Test on the next live T20** (any series): XI publish timing per site, live poll cadence
    (`spikes/live/06_poll_freshness.py`), retired-hurt handling.
 
-## Q3 — ML model + fantasy tools (Phase 3 & 7)
-1. Rolling-origin evaluation (no test-set early stopping), paired bootstrap CIs; baselines:
-   last-5 form, naive captain (9.6% top-2 hit-rate in 2026).
-2. Features: announced XI + batting slot, role/phase usage, impact-player era, venue par
-   (recent-weighted), bowling-type & batting-hand matchups (shrunk), toss/chase, dew, rest days.
-3. Model: opportunity × rate decomposition or LightGBM quantile heads (p10/p50/p90); cold start
-   from Cricsheet all-T20 data.
+## Q3 — Model improvements & fantasy tools
+1. Calibrate quantiles (p10–p90 covers 72–74%, target 80%) — conformal or quantile recalibration.
+2. In-season retraining after every round (biggest proven gain); retrain job on a GitHub Actions
+   runner → commit `models/<run>/` → Render redeploys.
+3. Cold start from all-T20 Cricsheet data; per-season roles; batter-v-announced-bowler matchups.
 4. Optimizer modes on `p11.optimize.xi`: safe / balanced / contrarian; captain picker with
    P(top-2); multi-lineup portfolio with exposure caps; ownership estimate; locks/excludes.
 5. UI: `/build` builder (pitch + list, risk slider, why-this-player chips), Rate My Team,
    what-if toggles (toss, dew).
 6. Monte Carlo match simulator for grand-league portfolios (later).
 
-## Q4 — Review & accuracy (Phase 6–7)
-1. Post-match review: predicted vs actual per player, your XI's rank vs simulated XIs.
-2. `/accuracy` page: per-season MAE, captain hit-rate, range calibration vs baselines.
+## Q4 — Review & accuracy
+1. Your XI's rank vs simulated XIs (needs the Monte Carlo simulator).
 
 ## Q5 — Data quality & backlog
 - Real start times 2008–2024 via ESPN events API (`core.espnuk.org/v2/sports/cricket/events/<id>`).
@@ -78,8 +86,7 @@ photo.
 - H2H modes: team v team, player v team.
 - `/records/loading.tsx` scoping so milestones/streaks get their own skeletons.
 
-## Owner decisions pending
-- Remove v1 code from the tree (`src/`, `tests/`, `frontend/`, old `pyproject.toml`); it is
-  preserved at tag `v1`. Blocked earlier by the permission system — owner to run
-  `git rm -r src tests frontend pyproject.toml` if wanted.
-- Before making the repo public: remove the public `Edak` widget key from `spikes/`.
+## Owner follow-ups
+- Revoke the tokens pasted in chat on 2026-10-02/03: Hugging Face, Render API key, Vercel token
+  (the Supabase DB password was rotated already).
+- Update the GitHub repo "About" website link to the Vercel URL.

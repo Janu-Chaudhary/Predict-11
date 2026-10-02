@@ -51,8 +51,8 @@ function TableTab({ season }: { season: number }) {
   return (
     <div className="grid gap-4 lg:gap-6">
       {hasRows && <SeasonKpis season={season} summary={summary} />}
-      <div className="grid gap-4 lg:grid-cols-12 lg:gap-6">
-        <div className="grid min-w-0 content-start gap-4 lg:col-span-8 lg:gap-6">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:gap-6 min-[1700px]:grid-cols-12">
+        <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] content-start gap-4 lg:gap-6 min-[1700px]:col-span-8">
           {q.isPending ? (
             <div role="status" aria-busy="true" aria-label="Loading points table">
               <TableSkeleton rows={10} cols={8} />
@@ -69,7 +69,7 @@ function TableTab({ season }: { season: number }) {
             />
           ) : (
             <>
-              <div>
+              <div className="min-w-0">
                 <PointsTableView rows={q.data.rows} caption={`IPL ${season} points table`} />
                 <p className="mt-2 text-xs text-muted-foreground">
                   <span className="num">
@@ -82,7 +82,7 @@ function TableTab({ season }: { season: number }) {
             </>
           )}
         </div>
-        <aside className="grid min-w-0 content-start gap-4 lg:col-span-4 lg:gap-6" aria-label="Season summary">
+        <aside className="grid min-w-0 content-start gap-4 lg:gap-6 md:grid-cols-2 min-[1700px]:col-span-4 min-[1700px]:grid-cols-1" aria-label="Season summary">
           {summary ? <ChampionCard summary={summary} final={final} /> : seasons.isPending ? <TableSkeleton rows={3} cols={2} /> : null}
           <PlayoffRecap matches={matches} />
           {hasRows && <SeasonLeaders season={season} />}
