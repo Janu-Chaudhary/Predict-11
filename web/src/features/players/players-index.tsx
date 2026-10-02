@@ -5,10 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { PlayerRow } from "@/components/data/player-row";
+import { PlayerAvatar } from "@/components/player/player-avatar";
+import { TeamBadge } from "@/components/player/team-badge";
 
 import { teamCode } from "./format";
 import { PlayerPicker } from "./player-picker";
 import { useRecentPlayers } from "./recent";
+import { SeasonLeaders } from "./season-leaders";
 import { Panel } from "./ui";
 
 /**
@@ -29,6 +32,9 @@ export const POPULAR_PLAYERS = [
   { id: "57ee1fde", name: "Yuzvendra Chahal", team: "Punjab Kings", note: "Most IPL wickets" },
   { id: "12b610c2", name: "Travis Head", team: "Sunrisers Hyderabad", note: "Powerplay hitter" },
 ];
+
+/** Season the index rail ranks (latest completed IPL). */
+const CURRENT_SEASON = 2026;
 
 export function PlayersIndex() {
   const router = useRouter();
@@ -59,36 +65,55 @@ export function PlayersIndex() {
           </Panel>
         )}
 
-        <Panel title="Popular players" bodyClassName="px-0 pb-1 md:px-0" id="popular">
-          <ul className="divide-y divide-border">
-            {POPULAR_PLAYERS.map((p) => (
-              <li key={p.id}>
-                <PlayerRow player={{ id: p.id, name: p.name, team: teamCode(p.team) ?? "" }} meta={p.note} />
-              </li>
-            ))}
+        <Panel title="Popular players" id="popular">
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:gap-3 2xl:grid-cols-3">
+            {POPULAR_PLAYERS.map((p) => {
+              const code = teamCode(p.team) ?? "";
+              return (
+                <li key={p.id}>
+                  <Link
+                    href={`/players/${encodeURIComponent(p.id)}`}
+                    className="flex h-full items-end gap-3 overflow-hidden rounded-xl border border-border bg-surface-2/40 pr-3 outline-none hover:bg-surface-2 focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <PlayerAvatar name={p.name} src={`/players/${p.id}-256.webp`} team={code} size="xl" className="mt-2 shrink-0" />
+                    <span className="min-w-0 flex-1 self-center py-3">
+                      <span className="font-display block truncate text-lg leading-6 font-bold">{p.name}</span>
+                      <span className="block truncate text-sm text-muted-foreground">{p.note}</span>
+                      <span className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <TeamBadge team={code} />
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </Panel>
+
+        <nav aria-label="Player tools" className="grid grid-cols-1 gap-4 xl:grid-cols-3">
+          <ToolCard
+            href="/fantasy"
+            icon={Trophy}
+            title="Fantasy leaderboards"
+            body="Dream11 points by season: floor, median and ceiling, consistency and points per credit, plus the best XIs."
+          />
+          <ToolCard
+            href="/players/compare?ids=ba607b88,740742ef"
+            icon={Columns3}
+            title="Compare players"
+            body="Two or three players side by side, same filters, best value in each row highlighted."
+          />
+          <ToolCard
+            href="/h2h?batter=ba607b88&bowler=462411b3"
+            icon={ArrowLeftRight}
+            title="Batter v bowler"
+            body="Balls, runs, dismissals and strike rate for any pair, with a sample-size confidence badge."
+          />
+        </nav>
       </div>
 
-      <aside className="grid grid-cols-1 content-start gap-4 lg:col-span-4" aria-label="Player tools">
-        <ToolCard
-          href="/fantasy"
-          icon={Trophy}
-          title="Fantasy leaderboards"
-          body="Dream11 points by season: floor, median and ceiling, consistency and points per credit, plus the best XIs."
-        />
-        <ToolCard
-          href="/players/compare?ids=ba607b88,740742ef"
-          icon={Columns3}
-          title="Compare players"
-          body="Two or three players side by side, same filters, best value in each row highlighted."
-        />
-        <ToolCard
-          href="/h2h?batter=ba607b88&bowler=462411b3"
-          icon={ArrowLeftRight}
-          title="Batter v bowler"
-          body="Balls, runs, dismissals and strike rate for any pair, with a sample-size confidence badge."
-        />
+      <aside className="grid grid-cols-1 content-start gap-4 lg:col-span-4" aria-label="Season leaders">
+        <SeasonLeaders season={CURRENT_SEASON} />
       </aside>
     </div>
   );

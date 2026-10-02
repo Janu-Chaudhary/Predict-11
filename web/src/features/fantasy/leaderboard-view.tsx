@@ -72,7 +72,7 @@ export function FantasyLeaderboard({ state }: { state: LeaderState }) {
       />
       <FantasySubnav active="leaderboards" season={state.season !== CURRENT_FANTASY_SEASON ? state.season : null} />
 
-      <div className="mb-3 grid gap-3 rounded-xl border border-border bg-card p-3 shadow-e1 md:p-4">
+      <div className="mb-3 flex flex-wrap items-center gap-x-6 gap-y-3 rounded-xl border border-border bg-card p-3 shadow-e1 md:p-4">
         <div className="flex flex-wrap items-center gap-2">
           <SeasonSelect value={state.season} seasons={FANTASY_SEASONS} onValueChange={(s) => go({ season: s })} />
           <label className="inline-flex items-center gap-2">

@@ -1,16 +1,20 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import { ConfidenceBadge } from "@/components/data/confidence-badge";
 import { StatTable, type StatColumn } from "@/components/data/stat-table";
 import { TeamBadge } from "@/components/player/team-badge";
+import { cn } from "@/lib/utils";
 
 import { H2H_THRESHOLDS } from "../../h2h/confidence";
 import { displayName, fmt, PHASE_LABEL, teamCode } from "../format";
 import type { PlayerProfile, Split } from "../types";
 import { MetricBar, Panel } from "../ui";
 import { BatterTypesTable, BowlerHandsTable } from "./matchup-tables";
+import { ProfileLayout } from "./profile-layout";
 
-export function SplitsTab({ p, skill }: { p: PlayerProfile; skill: "bat" | "bowl" }) {
+export function SplitsTab({ p, skill, rail }: { p: PlayerProfile; skill: "bat" | "bowl"; rail: ReactNode }) {
   const batPhases = p.batting_phases.filter((x) => x.balls > 0);
   const bowlPhases = p.bowling_phases.filter((x) => x.balls > 0);
   const srMax = Math.max(200, ...batPhases.map((x) => x.strike_rate ?? 0));
@@ -68,13 +72,19 @@ export function SplitsTab({ p, skill }: { p: PlayerProfile; skill: "bat" | "bowl
   const types = p.batting.balls > 0 && <BatterTypesTable key="types" id={p.id} name={displayName(p)} since={since} season={season} />;
   const hands = p.bowling.balls > 0 && <BowlerHandsTable key="hands" id={p.id} name={displayName(p)} since={since} season={season} />;
 
+  const phases = [bat, bowl].filter(Boolean).length;
   return (
-    <>
-      {skill === "bowl" ? [bowl, bat] : [bat, bowl]}
-      {skill === "bowl" ? [hands, types] : [types, hands]}
-      <SplitTable title="Venues" caption={`${displayName(p)}: venue splits`} rows={p.venues} skill={skill} />
-      <SplitTable title="Against teams" caption={`${displayName(p)}: splits by opponent`} rows={p.vs_teams} skill={skill} teams />
-    </>
+    <ProfileLayout
+      band={phases > 0 && <div className={cn("grid grid-cols-1 gap-4 lg:gap-6", phases === 2 && "xl:grid-cols-2")}>{skill === "bowl" ? [bowl, bat] : [bat, bowl]}</div>}
+      main={skill === "bowl" ? [hands, types] : [types, hands]}
+      rail={rail}
+      footer={
+        <div className="grid grid-cols-1 gap-4 lg:gap-6 xl:grid-cols-2">
+          <SplitTable title="Venues" caption={`${displayName(p)}: venue splits`} rows={p.venues} skill={skill} />
+          <SplitTable title="Against teams" caption={`${displayName(p)}: splits by opponent`} rows={p.vs_teams} skill={skill} teams />
+        </div>
+      }
+    />
   );
 }
 
@@ -87,7 +97,7 @@ function SplitTable({ title, caption, rows, skill, teams = false }: { title: str
     align: "left",
     sortable: true,
     sticky: true,
-    className: "max-w-[11rem] sm:max-w-none",
+    className: teams ? "max-w-[11rem] sm:max-w-none" : "max-w-[11rem] sm:max-w-none xl:max-w-[12rem] 2xl:max-w-[15rem]",
     cell: (r) =>
       teams ? (
         <span className="inline-flex items-center gap-2">

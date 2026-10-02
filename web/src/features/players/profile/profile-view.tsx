@@ -21,6 +21,7 @@ import { rememberPlayer } from "../recent";
 import type { PlayerProfile, StatFilter } from "../types";
 import { filterLabel, Panel, QueryError, ScopeSelect } from "../ui";
 import { FieldingTab } from "./fielding-tab";
+import { MatchupSummary } from "./matchup-summary";
 import { OverviewTab } from "./overview-tab";
 import { SplitsTab } from "./splits-tab";
 
@@ -72,6 +73,25 @@ export function ProfileView({ id, tab, filter }: { id: string; tab: ProfileTab; 
   const empty = p.matches === 0;
   const title = displayName(p);
   const aliases = p.aliases.filter((a) => a !== title && a !== p.name);
+  const rail = (
+    <>
+      <PlayerFantasyPanel id={p.id} filter={filter} scopeLabel={filterLabel(filter)} />
+      {tab === "overview" && <MatchupSummary p={p} skill={skill} splitsHref={href({ tab: "splits" })} />}
+      <Panel title="Teams" bodyClassName="px-0 md:px-0 pb-1">
+        <ul className="divide-y divide-border">
+          {p.teams.map((t) => (
+            <li key={t.id} className="flex min-h-11 items-center gap-3 px-3 py-1.5 md:px-4">
+              <TeamBadge team={teamCode(t.name) ?? ""} />
+              <span className="min-w-0 flex-1 truncate text-sm">{t.name}</span>
+              <span className="num text-right text-xs text-muted-foreground">
+                {seasonSpan([t.first_season, t.last_season])} · {t.matches} m
+              </span>
+            </li>
+          ))}
+        </ul>
+      </Panel>
+    </>
+  );
 
   return (
     <div className={cn("transition-opacity", q.isPlaceholderData && "opacity-60")} aria-busy={q.isFetching}>
@@ -128,40 +148,20 @@ export function ProfileView({ id, tab, filter }: { id: string; tab: ProfileTab; 
         hrefFor={(k) => href({ tab: k as ProfileTab })}
       />
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-6">
-        <div className="grid grid-cols-1 min-w-0 content-start gap-4 lg:col-span-8">
-          {empty ? (
-            <EmptyState
-              icon={UserX}
-              title={`No matches in ${filterLabel(filter)}`}
-              why="This player has no IPL appearances in the selected scope."
-              action={{ href: href({ filter: {} }), label: "Show career stats" }}
-            />
-          ) : tab === "overview" ? (
-            <OverviewTab p={p} skill={skill} />
-          ) : tab === "splits" ? (
-            <SplitsTab p={p} skill={skill} />
-          ) : (
-            <FieldingTab p={p} />
-          )}
-        </div>
-        <aside className="grid grid-cols-1 content-start gap-4 lg:sticky lg:top-20 lg:col-span-4 lg:self-start" aria-label="Player side panel">
-          <PlayerFantasyPanel id={p.id} filter={filter} scopeLabel={filterLabel(filter)} />
-          <Panel title="Teams" bodyClassName="px-0 md:px-0 pb-1">
-            <ul className="divide-y divide-border">
-              {p.teams.map((t) => (
-                <li key={t.id} className="flex min-h-11 items-center gap-3 px-3 py-1.5 md:px-4">
-                  <TeamBadge team={teamCode(t.name) ?? ""} />
-                  <span className="min-w-0 flex-1 truncate text-sm">{t.name}</span>
-                  <span className="num text-right text-xs text-muted-foreground">
-                    {seasonSpan([t.first_season, t.last_season])} · {t.matches} m
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Panel>
-        </aside>
-      </div>
+      {empty ? (
+        <EmptyState
+          icon={UserX}
+          title={`No matches in ${filterLabel(filter)}`}
+          why="This player has no IPL appearances in the selected scope."
+          action={{ href: href({ filter: {} }), label: "Show career stats" }}
+        />
+      ) : tab === "overview" ? (
+        <OverviewTab p={p} skill={skill} rail={rail} />
+      ) : tab === "splits" ? (
+        <SplitsTab p={p} skill={skill} rail={rail} />
+      ) : (
+        <FieldingTab p={p} rail={rail} />
+      )}
     </div>
   );
 }
