@@ -53,6 +53,7 @@ from .home_schemas import (
     WormInnings,
     XIPlayer,
 )
+from .venue_media import media_for
 
 NOT_A_WICKET = ("retired hurt", "retired not out")
 NOT_BOWLER_WICKET = (
@@ -76,7 +77,9 @@ def _team(team_id: int, canonical: str, year: int | None) -> HomeTeam:
 
 
 def _venue(vid: int | None, name: str | None, city: str | None) -> HomeVenue | None:
-    return HomeVenue(id=vid, name=name, city=city) if vid is not None and name else None
+    if vid is None or not name:
+        return None
+    return HomeVenue(id=vid, name=name, city=city, **media_for(vid))
 
 
 _MATCH_SQL = """

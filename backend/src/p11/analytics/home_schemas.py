@@ -12,6 +12,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from .venue_media import VenueImageFields
+
 Phase = Literal["pre_match", "post_match", "off_season"]
 Hero = Literal["A", "B", "C"]
 BallKind = Literal["dot", "run", "four", "six", "wicket"]
@@ -24,7 +26,7 @@ class HomeTeam(BaseModel):
     short_code: str
 
 
-class HomeVenue(BaseModel):
+class HomeVenue(VenueImageFields):
     id: int
     name: str
     city: str | None = None

@@ -9,7 +9,7 @@ from fastapi import APIRouter, HTTPException, Query, Response
 from sqlalchemy import Connection
 
 from ...analytics import home as svc
-from ...analytics.home_schemas import XI, HomeState, HomeTiles, Wagon, Worm
+from ...analytics.home_schemas import XI, HomeMatch, HomeState, HomeTiles, Wagon, Worm
 from ...core import db
 
 router = APIRouter(prefix="/home", tags=["home"])
@@ -49,6 +49,12 @@ def get_state(
     out = _run(response, lambda c: svc.home_state(c, dev_spike_wagon=dev_spike_wagon))
     response.headers["Cache-Control"] = "no-cache"
     return out
+
+
+@router.get("/match/{match_id}", response_model=HomeMatch, operation_id="get_home_match")
+def get_match(match_id: int, response: Response) -> HomeMatch:
+    """One match's header: teams, scores, result and venue (with the ground photo, if any)."""
+    return _run(response, lambda c: svc.get_match(c, match_id))
 
 
 @router.get("/worm/{match_id}", response_model=Worm, operation_id="get_home_worm")

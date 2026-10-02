@@ -6,6 +6,7 @@ import { EmptyState } from "@/components/shell/empty-state";
 import { SampleDataNote } from "@/components/shell/sample-data-note";
 import { TabLinks, pickTab } from "@/components/shell/tab-links";
 
+import { fetchMatchHeader, MatchVenueBanner } from "./match-venue";
 import { SampleMatchCharts } from "./sample-charts";
 
 const TABS = ["summary", "scorecard", "balls", "lineups", "fantasy", "stats", "h2h", "review"] as const;
@@ -42,11 +43,13 @@ export default async function MatchPage(props: PageProps<"/matches/[id]">) {
   const tab = pickTab(sp.tab, TABS, "summary");
   const base = `/matches/${encodeURIComponent(id)}`;
   const empty = tab === "stats" ? null : EMPTY[tab];
+  const header = await fetchMatchHeader(decodeURIComponent(id));
 
   return (
     <>
       {/* Score header — placeholder until the match endpoint lands. */}
       <section aria-labelledby="match-title" className="mb-4 rounded-xl border border-border bg-card p-4 shadow-e1">
+        {header && <MatchVenueBanner match={header} />}
         <p className="text-overline text-muted-foreground">
           Match <span className="num">{decodeURIComponent(id)}</span> · IPL
         </p>

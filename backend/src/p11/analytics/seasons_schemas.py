@@ -7,6 +7,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+from .venue_media import VenueImageFields
+
 FormResult = Literal["W", "L", "N"]
 
 
@@ -24,7 +26,7 @@ class TeamRef(BaseModel):
     short_code: str
 
 
-class VenueRef(BaseModel):
+class VenueRef(VenueImageFields):
     id: int
     name: str
     city: str | None = None

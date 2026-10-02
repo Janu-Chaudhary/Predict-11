@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Search } from "lucide-react";
+import { LayoutGrid, MapPin, Search, Table2 } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -15,11 +15,69 @@ import { fmtInt, fmtPct, fmtRuns } from "./format";
 import { useVenues } from "./queries";
 import type { VenueSummary } from "./types";
 import { VenueKpis, VenueRail } from "./venue-overview";
+import { VenueThumb } from "./venue-photo";
 
 /** Below this many 2023+ matches a par score is shown but flagged as a small sample. */
 export const SMALL_SAMPLE = 10;
 
 type Scope = "active" | "all";
+type View = "cards" | "table";
+
+const SEG = "inline-flex rounded-[10px] bg-surface-2 p-1";
+const SEG_BTN = "inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm font-medium text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring";
+const SEG_ON = "bg-card text-foreground shadow-e1";
+
+function Stat({ label, value, warn }: { label: string; value: string; warn?: { short: string; title: string } }) {
+  return (
+    <div className="min-w-0">
+      <dt className="text-overline truncate text-muted-foreground">{label}</dt>
+      <dd className="num mt-0.5 flex items-baseline gap-1 font-condensed text-xl leading-6 font-bold">
+        {value}
+        {warn && (
+          <span className="font-sans text-[11px] font-medium text-warning" title={warn.title}>
+            {warn.short}
+          </span>
+        )}
+      </dd>
+    </div>
+  );
+}
+
+/** Photo card: ground photo (or a quiet fallback), name, city, par / chase / matches. */
+export function VenuePhotoCard({ v, recentFrom }: { v: VenueSummary; recentFrom: number }) {
+  const small = v.matches_recent > 0 && v.matches_recent < SMALL_SAMPLE;
+  return (
+    <li className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-e1 transition-shadow focus-within:ring-2 focus-within:ring-ring hover:shadow-e2">
+      <VenueThumb src={v.thumb_url} credit={v.image_credit}>
+        {!v.thumb_url && (
+          <span aria-hidden className="absolute inset-0 flex items-center justify-center text-faint">
+            <MapPin className="size-8" />
+          </span>
+        )}
+      </VenueThumb>
+      <div className="grid gap-3 p-4">
+        <div className="min-w-0">
+          <h3 className="truncate font-display text-lg leading-6 font-semibold [font-stretch:87.5%]" title={v.name}>
+            <Link href={`/venues/${v.id}`} className="outline-none after:absolute after:inset-0 after:content-[''] group-hover:underline">
+              {v.name}
+            </Link>
+          </h3>
+          <p className="truncate text-xs text-muted-foreground">
+            {v.city ?? "City not recorded"}
+            {v.first_season !== null && (
+              <span className="num"> · {v.first_season === v.last_season ? v.first_season : `${v.first_season}–${v.last_season}`}</span>
+            )}
+          </p>
+        </div>
+        <dl className="grid grid-cols-3 gap-2">
+          <Stat label={`Par ${recentFrom}+`} value={v.par_recent === null ? "–" : fmtRuns(v.par_recent)} warn={small ? { short: `n=${v.matches_recent}`, title: `Only ${v.matches_recent} matches since ${recentFrom}` } : undefined} />
+          <Stat label="Chase win" value={fmtPct(v.chase_win_pct_recent)} />
+          <Stat label="Matches" value={fmtInt(v.matches)} />
+        </dl>
+      </div>
+    </li>
+  );
+}
 
 function columns(recentFrom: number): StatColumn<VenueSummary>[] {
   return [
@@ -120,6 +178,7 @@ export function VenueList() {
   const q = useVenues();
   const [scope, setScope] = useState<Scope>("active");
   const [filter, setFilter] = useState("");
+  const [view, setView] = useState<View>("cards");
 
   const rows = useMemo(() => {
     const all = q.data?.venues ?? [];
@@ -143,7 +202,7 @@ export function VenueList() {
       <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4 lg:gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(320px,26rem)]">
         <div className="grid min-w-0 content-start gap-3">
           <div className="flex flex-wrap items-center gap-2">
-            <div role="group" aria-label="Which grounds" className="inline-flex rounded-[10px] bg-surface-2 p-1">
+            <div role="group" aria-label="Which grounds" className={SEG}>
               {(
                 [
                   ["active", `Used since ${recentFrom}`, activeCount],
@@ -155,10 +214,7 @@ export function VenueList() {
                   type="button"
                   aria-pressed={scope === key}
                   onClick={() => setScope(key)}
-                  className={cn(
-                    "inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm font-medium text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                    scope === key && "bg-card text-foreground shadow-e1",
-                  )}
+                  className={cn(SEG_BTN, scope === key && SEG_ON)}
                 >
                   {label}
                   <span className="num text-xs text-muted-foreground">{n}</span>
@@ -176,6 +232,19 @@ export function VenueList() {
                 className="h-11 w-full rounded-[10px] border border-border bg-card pr-3 pl-9 text-sm outline-none placeholder:text-faint focus-visible:ring-2 focus-visible:ring-ring"
               />
             </label>
+            <div role="group" aria-label="Layout" className={cn(SEG, "ml-auto")}>
+              {(
+                [
+                  ["cards", "Cards", LayoutGrid],
+                  ["table", "Table", Table2],
+                ] as const
+              ).map(([key, label, Icon]) => (
+                <button key={key} type="button" aria-pressed={view === key} onClick={() => setView(key)} className={cn(SEG_BTN, view === key && SEG_ON)}>
+                  <Icon aria-hidden className="size-4" />
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {rows.length === 0 ? (
@@ -186,6 +255,20 @@ export function VenueList() {
               why={filter ? `Nothing in ${scope === "active" ? `grounds used since ${recentFrom}` : "the venue list"} matches “${filter.trim()}”.` : "No venues have hosted an IPL match in this window."}
               when="Clear the filter or switch to All grounds."
             />
+          ) : view === "cards" ? (
+            <>
+              <ul aria-label={`IPL venues, ${rows.length} shown`} className="grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-2 md:gap-4 2xl:grid-cols-3">
+                {[...rows]
+                  .sort((a, b) => (scope === "active" ? b.matches_recent - a.matches_recent : 0) || b.matches - a.matches)
+                  .map((v) => (
+                    <VenuePhotoCard key={v.id} v={v} recentFrom={recentFrom} />
+                  ))}
+              </ul>
+              <p className="px-1 text-xs text-muted-foreground">
+                Par = average first-innings total in completed, non-DLS matches; chase win is {recentFrom}+. Ground photos come from Wikimedia Commons under CC BY / BY-SA / CC0
+                licences: the camera icon on each photo names the author and licence and links the original.
+              </p>
+            </>
           ) : (
             <StatTable
               key={scope}

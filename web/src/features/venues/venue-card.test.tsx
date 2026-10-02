@@ -76,4 +76,32 @@ describe("VenueCardView", () => {
     expect(screen.getByText("No completed innings recorded here.")).toBeInTheDocument();
     expect(screen.getByText("No wickets recorded at this ground yet.")).toBeInTheDocument();
   });
+
+  it("shows the ground photo hero with its Commons credit when the venue has one", () => {
+    const withPhoto: VenueCard = {
+      ...WANKHEDE_FIXTURE,
+      image_url: "/venues/154-1600.webp",
+      thumb_url: "/venues/154-640.webp",
+      image_credit: {
+        author: "G patkar",
+        license: "CC BY-SA 3.0",
+        license_url: "https://creativecommons.org/licenses/by-sa/3.0",
+        file_page: "https://commons.wikimedia.org/wiki/File:Wankhede_Stadium.jpg",
+      },
+    };
+    const { container } = render(<VenueCardView venue={withPhoto} />);
+    expect(screen.getByRole("heading", { level: 1, name: "Wankhede Stadium" })).toBeInTheDocument();
+    expect(container.querySelector('img[src="/venues/154-1600.webp"]')).not.toBeNull();
+    // Credit is shown twice (desktop pill + mobile line); both link the file page and licence.
+    const authors = screen.getAllByRole("link", { name: "G patkar" });
+    expect(authors[0]).toHaveAttribute("href", "https://commons.wikimedia.org/wiki/File:Wankhede_Stadium.jpg");
+    expect(screen.getAllByRole("link", { name: "CC BY-SA 3.0" })[0]).toHaveAttribute("href", "https://creativecommons.org/licenses/by-sa/3.0");
+    expect(screen.getByRole("link", { name: /all venues/i })).toHaveAttribute("href", "/venues");
+  });
+
+  it("keeps the text header when there is no photo", () => {
+    const { container } = render(<VenueCardView venue={WANKHEDE_FIXTURE} />);
+    expect(container.querySelector("img[src^='/venues/']")).toBeNull();
+    expect(screen.queryByText(/via Wikimedia Commons/)).toBeNull();
+  });
 });

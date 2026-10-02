@@ -1,10 +1,12 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
 
 import { TeamBadge } from "@/components/player/team-badge";
+import { PhotoCredit } from "@/features/venues/venue-photo";
 import { useResolvedTheme } from "@/hooks/use-resolved-theme";
 import { teamChartColour } from "@/lib/tokens";
 import { cn } from "@/lib/utils";
@@ -233,9 +235,19 @@ export function MatchCard({ state }: { state: HomeState }) {
   else if (state.phase === "off_season" && state.season) body = <OffSeasonCard season={state.season} last={state.last_match} />;
   else if (state.last_match) body = <LastMatchCard m={state.last_match} />;
   if (!body) return null;
+  // Off-season recap: the final's ground photo as a quiet backdrop (with its required credit).
+  const venue = !state.next_fixture && state.phase === "off_season" ? state.last_match?.venue : null;
+  const photo = venue?.image_url ? venue : null;
   return (
-    <section aria-labelledby="home-card-title" className="relative rounded-2xl border border-border bg-card p-5 shadow-e1">
+    <section aria-labelledby="home-card-title" className={cn("relative rounded-2xl border border-border bg-card p-5 shadow-e1", photo && "isolate overflow-hidden")}>
+      {photo?.image_url && (
+        <>
+          <Image src={photo.image_url} alt="" fill unoptimized sizes="(min-width: 1024px) 480px, 100vw" className="-z-10 object-cover opacity-60 dark:opacity-50" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--card)_45%,transparent),color-mix(in_oklab,var(--card)_80%,transparent)_50%,var(--card)_92%)]" />
+        </>
+      )}
       {body}
+      {photo?.image_credit && <PhotoCredit credit={photo.image_credit} className="mt-3 text-faint" />}
     </section>
   );
 }

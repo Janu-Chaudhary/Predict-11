@@ -3,13 +3,15 @@
  * Hand-written so the home feature does not depend on regenerating the shared schema.ts.
  */
 
+import type { VenueImage } from "@/features/venues/types";
+
 export type Phase = "pre_match" | "post_match" | "off_season";
 export type HeroKind = "A" | "B" | "C";
 export type BallKind = "dot" | "run" | "four" | "six" | "wicket";
 export type Role = "WK" | "BAT" | "AR" | "BOWL";
 
 export type HomeTeam = { id: number; name: string; short_code: string };
-export type HomeVenue = { id: number; name: string; city: string | null };
+export type HomeVenue = VenueImage & { id: number; name: string; city: string | null };
 export type HomeScore = { innings: number; team_id: number; runs: number; wickets: number; overs: string };
 
 export type HomeMatch = {

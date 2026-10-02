@@ -20,6 +20,7 @@ from sqlalchemy import Connection
 from .players_data import InningsTotal, Reference, bulk, player_names, reference
 from .players_models import PlayerRef
 from .players_stats import PHASES, overs_str
+from .venue_media import VenueImageFields, media_map
 
 RECENT_FROM = 2023
 HALF_LIFE_SEASONS = 2.0
@@ -82,7 +83,7 @@ class SeasonTrend(BaseModel):
     avg_first_innings: float | None
 
 
-class VenueCard(BaseModel):
+class VenueCard(VenueImageFields):
     id: int
     name: str
     city: str | None
@@ -107,7 +108,7 @@ class VenueCard(BaseModel):
     notes: list[str]
 
 
-class VenueSummary(BaseModel):
+class VenueSummary(VenueImageFields):
     id: int
     name: str
     city: str | None
@@ -263,6 +264,7 @@ def _venue_mids(ref: Reference) -> dict[int, list[int]]:
 def venue_list(conn: Connection) -> VenueList:
     ref = reference(conn)
     inns = _innings_by_match(ref)
+    media = media_map(conn)
     out = []
     for vid, mids in _venue_mids(ref).items():
         name, city = ref.venues.get(vid, (str(vid), None))
@@ -282,6 +284,7 @@ def venue_list(conn: Connection) -> VenueList:
                 par_recent=pr.avg_first_innings,
                 par_all_time=pa.avg_first_innings,
                 chase_win_pct_recent=pr.chase_win_pct,
+                **media.get(vid, {}),
             )
         )
     out.sort(key=lambda v: (-v.matches_recent, -v.matches))
@@ -380,4 +383,5 @@ def venue_card(conn: Connection, vid: int) -> VenueCard | None:
             for w, r, b, n, pid in bowl_top
         ],
         notes=NOTES,
+        **media_map(conn).get(vid, {}),
     )

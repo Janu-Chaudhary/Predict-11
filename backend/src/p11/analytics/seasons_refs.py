@@ -6,6 +6,7 @@ from .seasons_data import Core, InningsRow, MatchRow, PlayerData
 from .seasons_nrr import balls_to_overs, revised_balls
 from .seasons_schemas import InningsScore, MatchSummary, PlayerRef, TeamRef, VenueRef
 from .seasons_teams import era_for
+from .venue_media import media_for
 
 
 def team_ref(core: Core, team_id: int, year: int | None = None) -> TeamRef:
@@ -19,7 +20,7 @@ def venue_ref(core: Core, venue_id: int | None) -> VenueRef | None:
     if venue_id is None or venue_id not in core.venues:
         return None
     v = core.venues[venue_id]
-    return VenueRef(id=v.id, name=v.name, city=v.city)
+    return VenueRef(id=v.id, name=v.name, city=v.city, **media_for(v.id))
 
 
 def player_ref(pdata: PlayerData, player_id: str) -> PlayerRef:

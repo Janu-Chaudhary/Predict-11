@@ -73,4 +73,25 @@ describe("MatchCard", () => {
     expect(screen.getByRole("link", { name: /Build my XI/ })).toHaveAttribute("href", "/build");
     expect(screen.getByText("Provisional · XI at toss")).toBeInTheDocument();
   });
+
+  it("off-season: the final's ground photo sits behind the recap with its credit", () => {
+    const last = state.last_match!;
+    const venue = {
+      ...last.venue!,
+      image_url: "/venues/171-1600.webp",
+      thumb_url: "/venues/171-640.webp",
+      image_credit: { author: "A Cricket Premi", license: "CC BY-SA 4.0", license_url: null, file_page: "https://commons.wikimedia.org/wiki/File:X.jpg" },
+    };
+    const { container } = render(<MatchCard state={{ ...state, last_match: { ...last, venue } }} />);
+    const img = container.querySelector('img[src="/venues/171-1600.webp"]');
+    expect(img).not.toBeNull();
+    expect(img).toHaveAttribute("alt", "");
+    expect(screen.getByRole("link", { name: "A Cricket Premi" })).toHaveAttribute("href", "https://commons.wikimedia.org/wiki/File:X.jpg");
+    expect(screen.getByText(/via Wikimedia Commons/)).toBeInTheDocument();
+  });
+
+  it("off-season without a photo renders no backdrop", () => {
+    const { container } = render(<MatchCard state={state} />);
+    expect(container.querySelector("img[src^='/venues/']")).toBeNull();
+  });
 });

@@ -9,11 +9,13 @@ import { ChartSkeleton, TilesSkeleton } from "@/components/loaders/page-skeleton
 import { EmptyState } from "@/components/shell/empty-state";
 import { PageHeader } from "@/components/shell/page-header";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 import { ErrorState } from "./error-state";
 import { fmtDate, fmtPct, fmtRuns, isNum } from "./format";
 import { useVenue } from "./queries";
 import type { VenueCard as VenueCardData } from "./types";
+import { HERO_OVERLAP, VenueHero } from "./venue-photo";
 import { DewSection, PaceSpinSection, TossTrendSection } from "./venue-conditions";
 import { LeaderList, Panel, SeasonParBars, ParComparison, PhaseBars, TossOutcome, TossSplitBar, TotalsList } from "./venue-sections";
 
@@ -34,27 +36,45 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM, conditions = fa
   const recentSeasons = v.by_season.filter((s) => s.season >= recentFrom);
   const smallRecent = v.recent.matches < 10;
   const notes = v.notes.filter((n) => !COVERED_NOTE.test(n));
+  const overline = v.city ? `Venue · ${v.city}` : "Venue";
+  const subtitle = (
+    <span className="num">
+      {v.matches} IPL matches{seasons && ` · ${seasons}`}
+      {v.last_match && ` · last ${fmtDate(v.last_match)}`}
+    </span>
+  );
 
   return (
     <article aria-labelledby="venue-title">
-      <Link
-        href="/venues"
-        className="mb-3 inline-flex h-11 items-center gap-1.5 rounded-[10px] pr-2 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        <ArrowLeft aria-hidden className="size-4" /> All venues
-      </Link>
-      <PageHeader
-        overline={v.city ? `Venue · ${v.city}` : "Venue"}
-        title={<span id="venue-title">{v.name}</span>}
-        subtitle={
-          <span className="num">
-            {v.matches} IPL matches{seasons && ` · ${seasons}`}
-            {v.last_match && ` · last ${fmtDate(v.last_match)}`}
-          </span>
-        }
-      />
+      {v.image_url ? (
+        <VenueHero
+          image={v.image_url}
+          credit={v.image_credit}
+          overline={overline}
+          title={<span id="venue-title">{v.name}</span>}
+          subtitle={subtitle}
+          topLeft={
+            <Link
+              href="/venues"
+              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-black/45 px-3 text-sm text-white/90 outline-none backdrop-blur-sm hover:bg-black/65 hover:text-white focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              <ArrowLeft aria-hidden className="size-4" /> All venues
+            </Link>
+          }
+        />
+      ) : (
+        <>
+          <Link
+            href="/venues"
+            className="mb-3 inline-flex h-11 items-center gap-1.5 rounded-[10px] pr-2 text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ArrowLeft aria-hidden className="size-4" /> All venues
+          </Link>
+          <PageHeader overline={overline} title={<span id="venue-title">{v.name}</span>} subtitle={subtitle} />
+        </>
+      )}
 
-      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:gap-5">
+      <div className={cn("grid grid-cols-[minmax(0,1fr)] gap-4 lg:gap-5", v.image_url && HERO_OVERLAP)}>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-6">
           <StatTile
             label={`Par 1st inns ${recentFrom}+`}

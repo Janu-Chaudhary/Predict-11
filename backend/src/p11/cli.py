@@ -152,6 +152,14 @@ def cmd_media_cache(args: argparse.Namespace) -> None:
         _out(cache_media(conn, seasons, force=args.force, limit=args.limit))
 
 
+def cmd_media_venues(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.ingest.venue_media import load_venue_media
+
+    with engine().begin() as conn:
+        _out(load_venue_media(conn, force=args.force))
+
+
 def cmd_starttime_load(args: argparse.Namespace) -> None:
     from p11.core.db import engine
     from p11.ingest.start_times import load_start_times
@@ -206,6 +214,28 @@ def cmd_weather_backfill(args: argparse.Namespace) -> None:
         )
         conn.commit()
     _out({"venue_geo": geo["changes"], **rep.as_dict()})
+
+
+def cmd_model_train(args: argparse.Namespace) -> None:
+    import warnings
+
+    from p11.core.db import engine
+    from p11.model.run import train_all
+
+    warnings.filterwarnings("ignore", category=UserWarning)
+    with engine().begin() as conn:
+        run = train_all(conn, log=lambda m: print(m, file=sys.stderr, flush=True))
+    _out({k: run[k] for k in ("version", "params", "trees", "n_learned_values", "seconds")}
+         | {"test_2025": run["metrics"]["test_2025"],
+            "walkforward_2026": run["metrics"]["walkforward_2026"]})  # fmt: skip
+
+
+def cmd_model_report(args: argparse.Namespace) -> None:
+    from p11.core.db import engine
+    from p11.model.run import report
+
+    with engine().connect() as conn:
+        _out({"report": report(conn, args.version)})
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -293,6 +323,12 @@ def main(argv: list[str] | None = None) -> None:
     x.add_argument("--force", action="store_true", help="re-download already cached images")
     x.add_argument("--limit", type=int, help="at most N images this run")
     x.set_defaults(func=cmd_media_cache)
+    x = pm.add_parser(
+        "venues",
+        help="curated Commons ground photos -> web/public/venues/<id>-{1600,640}.webp",
+    )
+    x.add_argument("--force", action="store_true", help="re-crop all (downloads stay cached)")
+    x.set_defaults(func=cmd_media_venues)
 
     pst = sub.add_parser("starttime", help="match start times").add_subparsers(
         dest="sub", required=True
@@ -323,6 +359,17 @@ def main(argv: list[str] | None = None) -> None:
     x.add_argument("--season", type=int, nargs="*", help="e.g. --season 2025 2026 (default all)")
     x.add_argument("--force", action="store_true", help="re-fetch matches already stored")
     x.set_defaults(func=cmd_weather_backfill)
+
+    pmo = sub.add_parser("model", help="fantasy-points model").add_subparsers(
+        dest="sub", required=True
+    )
+    x = pmo.add_parser(
+        "train", help="features -> rolling-origin tuning -> 2025 test -> 2026 walk-forward"
+    )
+    x.set_defaults(func=cmd_model_train)
+    x = pmo.add_parser("report", help="re-render docs/MODEL-REPORT.md for a stored run")
+    x.add_argument("--version", help="model version (default: latest)")
+    x.set_defaults(func=cmd_model_report)
 
     args = p.parse_args(argv)
     args.func(args)

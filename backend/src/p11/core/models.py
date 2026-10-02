@@ -449,3 +449,22 @@ class MatchWeather(Base):
     fetched_at: Mapped[dt.datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
+
+
+class VenueMedia(Base):
+    """One freely licensed ground photo per venue (Wikimedia Commons), cached as local WebP
+    crops under web/public/venues/ (``p11 media venues``). ``author``/``license``/``file_page``
+    are the attribution the CC licences require wherever the photo is shown."""
+
+    __tablename__ = "venue_media"
+    venue_id: Mapped[int] = mapped_column(ForeignKey("venue.id"), primary_key=True)
+    image_path: Mapped[str] = mapped_column(Text)  # web path, 1600x600 cover crop
+    thumb_path: Mapped[str] = mapped_column(Text)  # web path, 640x400 card crop
+    source_url: Mapped[str] = mapped_column(Text)  # Commons original
+    file_page: Mapped[str] = mapped_column(Text)
+    author: Mapped[str] = mapped_column(Text)
+    license: Mapped[str] = mapped_column(Text)
+    license_url: Mapped[str | None] = mapped_column(Text)
+    fetched_at: Mapped[dt.datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )

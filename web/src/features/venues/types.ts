@@ -6,7 +6,27 @@
 
 export type PlayerRef = { id: string; name: string };
 
-export type VenueSummary = {
+/** Attribution the CC licences require wherever a ground photo is shown. */
+export type ImageCredit = {
+  author: string;
+  /** Short licence name, e.g. "CC BY-SA 4.0". */
+  license: string;
+  license_url: string | null;
+  /** Wikimedia Commons file page. */
+  file_page: string;
+};
+
+/**
+ * Optional ground photo (Wikimedia Commons, cached as local WebP by `p11 media venues`).
+ * `image_url` is the 1600x600 cover crop, `thumb_url` the 640x400 card crop.
+ */
+export type VenueImage = {
+  image_url?: string | null;
+  thumb_url?: string | null;
+  image_credit?: ImageCredit | null;
+};
+
+export type VenueSummary = VenueImage & {
   id: number;
   name: string;
   city: string | null;
@@ -85,7 +105,7 @@ export type SeasonTrend = {
   field_pct?: number | null;
 };
 
-export type VenueCard = {
+export type VenueCard = VenueImage & {
   id: number;
   name: string;
   city: string | null;
