@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { PlayerAvatar } from "@/components/player/player-avatar";
 import type { PlayerStatus } from "@/components/player/player-card";
 import { Lock } from "lucide-react";
+import type { ReactNode } from "react";
 
 const ROW_LABEL = { WK: "Wicket-keepers", BAT: "Batters", AR: "All-rounders", BOWL: "Bowlers" } as const;
 
@@ -19,9 +20,12 @@ export function PitchView({
   statuses = {},
   selectedId,
   onSelect,
+  pointsLabel,
   className,
 }: {
   players: Player[];
+  /** Replaces the "<median> pts" line under each token (e.g. "84 → 145"). */
+  pointsLabel?: (p: Player) => ReactNode;
   statuses?: Record<string, PlayerStatus>;
   selectedId?: string | null;
   onSelect?: (id: string) => void;
@@ -95,7 +99,7 @@ export function PitchView({
                           {p.name.split(" ").slice(-1)[0]}
                         </span>
                         <span aria-hidden className="num text-[11px] leading-none text-white/90">
-                          {p.projection.median} pts
+                          {pointsLabel ? pointsLabel(p) : `${p.projection.median} pts`}
                         </span>
                       </button>
                     </li>

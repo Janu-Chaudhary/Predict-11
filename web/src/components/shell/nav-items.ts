@@ -33,7 +33,7 @@ export const EXPLORE_NAV: NavItem[] = [
   { href: "/h2h", label: "H2H", icon: ArrowLeftRight, description: "Team vs team, batter vs bowler" },
   { href: "/venues", label: "Venues", icon: MapPin, description: "Par scores, pace/spin, dew" },
   { href: "/records", label: "Records", icon: Trophy, description: "All-time and season records" },
-  { href: "/accuracy", label: "Accuracy", icon: Target, description: "Backtest and calibration" },
+  { href: "/accuracy", label: "Predictions", icon: Target, description: "2026 predicted XIs vs what happened" },
   { href: "/lab", label: "Model Lab", icon: FlaskConical, description: "How the points model was trained, and how good it is" },
 ];
 

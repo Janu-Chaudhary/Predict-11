@@ -6,10 +6,12 @@ import { EmptyState } from "@/components/shell/empty-state";
 import { SampleDataNote } from "@/components/shell/sample-data-note";
 import { TabLinks, pickTab } from "@/components/shell/tab-links";
 
+import { MatchPredictedXi } from "@/features/predictions/match-predicted-xi";
+
 import { fetchMatchHeader, MatchVenueBanner } from "./match-venue";
 import { SampleMatchCharts } from "./sample-charts";
 
-const TABS = ["summary", "scorecard", "balls", "lineups", "fantasy", "stats", "h2h", "review"] as const;
+const TABS = ["summary", "scorecard", "balls", "lineups", "fantasy", "predicted", "stats", "h2h", "review"] as const;
 type Tab = (typeof TABS)[number];
 const LABEL: Record<Tab, string> = {
   summary: "Summary",
@@ -17,12 +19,13 @@ const LABEL: Record<Tab, string> = {
   balls: "Balls",
   lineups: "Lineups",
   fantasy: "Fantasy",
+  predicted: "Predicted XI",
   stats: "Stats",
   h2h: "H2H",
   review: "Review",
 };
 
-const EMPTY: Record<Exclude<Tab, "stats">, { icon: typeof Layers; title: string; why: string; when: string }> = {
+const EMPTY: Record<Exclude<Tab, "stats" | "predicted">, { icon: typeof Layers; title: string; why: string; when: string }> = {
   summary: { icon: Sparkles, title: "Summary not available yet", why: "Over momentum, win probability, top performers and conditions need this match’s data.", when: "Pre-match preview at T-24 h; full summary about an hour after the result." },
   scorecard: { icon: Table2, title: "No scorecard yet", why: "There is no live data in Predict-11; scorecards are harvested after the match.", when: "About 1 h after the result (retries hourly until all sources agree)." },
   balls: { icon: Layers, title: "Ball-by-ball not available", why: "Ball-by-ball comes from the post-match commentary harvest.", when: "About 45 min after the result; the last and next attempt times will show here." },
@@ -42,7 +45,8 @@ export default async function MatchPage(props: PageProps<"/matches/[id]">) {
   const sp = await props.searchParams;
   const tab = pickTab(sp.tab, TABS, "summary");
   const base = `/matches/${encodeURIComponent(id)}`;
-  const empty = tab === "stats" ? null : EMPTY[tab];
+  const empty = tab === "stats" || tab === "predicted" ? null : EMPTY[tab];
+  const numericId = /^\d{1,10}$/.test(decodeURIComponent(id)) ? Number(decodeURIComponent(id)) : null;
   const header = await fetchMatchHeader(decodeURIComponent(id));
 
   return (
@@ -72,7 +76,13 @@ export default async function MatchPage(props: PageProps<"/matches/[id]">) {
 
       <TabLinks label="Match sections" tabs={TABS.map((t) => ({ key: t, label: LABEL[t] }))} active={tab} hrefFor={(t) => `${base}?tab=${t}`} />
 
-      {empty ? (
+      {tab === "predicted" ? (
+        numericId !== null ? (
+          <MatchPredictedXi matchId={numericId} />
+        ) : (
+          <EmptyState icon={Shirt} title="No honest prediction for this match" why="This match id isn’t a played IPL match." when="Predicted XIs exist for every played 2026 match." action={{ href: "/accuracy", label: "All predicted XIs" }} />
+        )
+      ) : empty ? (
         <EmptyState icon={empty.icon} title={empty.title} why={empty.why} when={empty.when} action={{ href: "/matches", label: "Back to all matches" }} />
       ) : (
         <div className="grid gap-4">

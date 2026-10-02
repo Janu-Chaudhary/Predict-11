@@ -9,7 +9,7 @@ from .. import __version__
 from ..core import db
 from ..core.logging import configure
 from ..core.settings import get_settings
-from .routers import conditions, fantasy, home, model_lab, players, seasons
+from .routers import conditions, fantasy, home, model_lab, players, predictions, seasons
 
 configure()
 
@@ -35,3 +35,4 @@ app.include_router(home.router, prefix="/api/v1")
 app.include_router(fantasy.router, prefix="/api/v1")
 app.include_router(conditions.router, prefix="/api/v1")
 app.include_router(model_lab.router, prefix="/api/v1")
+app.include_router(predictions.router, prefix="/api/v1")

@@ -617,9 +617,13 @@ class MatchDetail(BaseModel):
     coverage: float | None = None
 
 
-def _xi(
+def solve_xi(
     players: list[MatchPlayer], value: Callable[[MatchPlayer], float | None]
 ) -> XiResult | None:
+    """Best Dream11 XI (C x2 / VC x1.5, no credit cap) on ``value``; scored with actual points.
+
+    Shared with the 2026 predicted-XI views (``p11.analytics.predictions``).
+    """
     from ..optimize.xi import Candidate, Infeasible, Options, solve
 
     pool = [
@@ -656,6 +660,9 @@ def _xi(
         actual_points=round(sum(x.points or 0.0 for x in picks), 2) if has_actual else None,
         selected_on=round(sel.total, 2),
     )
+
+
+_xi = solve_xi
 
 
 def match_detail(version: str, match_id: int) -> MatchDetail:

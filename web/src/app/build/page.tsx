@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
 
-import { BuilderDemo } from "@/components/builder/builder-demo";
+import { MatchBuilder } from "@/components/builder/match-builder";
 import { PageHeader } from "@/components/shell/page-header";
-import { SampleDataNote } from "@/components/shell/sample-data-note";
 
-export const metadata: Metadata = { title: "Build" };
+export const metadata: Metadata = {
+  title: "Build",
+  description: "Build a fantasy XI on the model's honest pre-match predictions (walk-forward), with lock, exclude and re-optimise.",
+};
 
-export default function BuildPage() {
+export default async function BuildPage(props: PageProps<"/build">) {
+  const sp = await props.searchParams;
+  const raw = Array.isArray(sp.match) ? sp.match[0] : sp.match;
+  const matchId = raw && /^\d{1,10}$/.test(raw) ? Number(raw) : null;
   return (
     <>
       <PageHeader
         overline="Fantasy builder"
         title="Build your XI"
-        subtitle="Pitch view with lock / exclude. The optimiser, risk slider and multi-lineup portfolio land later."
+        subtitle="Start from the XI the model picked before the match, lock or exclude players, and re-optimise on the same predictions."
       />
-      <SampleDataNote className="mb-4">The XI below is placeholder data, not a prediction. “Re-optimise” is simulated to preview the inline loader.</SampleDataNote>
-      <BuilderDemo />
+      <MatchBuilder matchId={matchId} />
     </>
   );
 }
