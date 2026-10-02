@@ -2,6 +2,7 @@ import {
   ArrowLeftRight,
   CalendarDays,
   Ellipsis,
+  FlaskConical,
   House,
   ListOrdered,
   MapPin,
@@ -33,6 +34,7 @@ export const EXPLORE_NAV: NavItem[] = [
   { href: "/venues", label: "Venues", icon: MapPin, description: "Par scores, pace/spin, dew" },
   { href: "/records", label: "Records", icon: Trophy, description: "All-time and season records" },
   { href: "/accuracy", label: "Accuracy", icon: Target, description: "Backtest and calibration" },
+  { href: "/lab", label: "Model Lab", icon: FlaskConical, description: "How the points model was trained, and how good it is" },
 ];
 
 export const MORE_ITEM: NavItem = { href: "/more", label: "More", icon: Ellipsis };
