@@ -29,3 +29,7 @@ backend/.venv/
 web/node_modules/
 web/.next/
 data/backups/
+
+# model runs (boosters, eval frames, telemetry): rebuilt by `p11 model train`; summary in DB
+models/lgbm-*/
+models/latest.json
