@@ -151,7 +151,6 @@ def build_records(
 ) -> Records:
     ids = {m.id for m in matches}
     by_id = core.by_id
-    names = pdata.names
     pairs = [(m, i) for m in matches for i in m.innings]
     inn_by = {(m.id, i.innings): (m, i) for m, i in pairs}
 
@@ -176,7 +175,7 @@ def build_records(
     def milestone(b: BatRow, balls: int | None) -> FastestMilestone:
         return FastestMilestone(
             **ctx(b.match_id, b.team_id),  # type: ignore[arg-type]
-            player=player_ref(names, b.player_id),
+            player=player_ref(pdata, b.player_id),
             balls=balls or 0,
             final_runs=b.runs,
         )
@@ -188,7 +187,7 @@ def build_records(
     def runs_leader(pid: str, rows: list[BatRow]) -> BattingLeader:
         runs, balls = sum(b.runs for b in rows), sum(b.balls for b in rows)
         return BattingLeader(
-            player=player_ref(names, pid),
+            player=player_ref(pdata, pid),
             team=team_ref(core, latest_team((r.match_id, r.team_id) for r in rows), season),
             innings=len(rows),
             runs=runs,
@@ -201,7 +200,7 @@ def build_records(
     def wkts_leader(pid: str, rows: list[BowlRow]) -> BowlingLeader:
         balls, runs = sum(b.balls for b in rows), sum(b.runs for b in rows)
         return BowlingLeader(
-            player=player_ref(names, pid),
+            player=player_ref(pdata, pid),
             team=team_ref(core, latest_team((r.match_id, r.team_id) for r in rows), season),
             innings=len(rows),
             overs=balls_to_overs(balls),
@@ -226,7 +225,7 @@ def build_records(
         highest_individual_scores=[
             BattingInningsRecord(
                 **ctx(b.match_id, b.team_id),  # type: ignore[arg-type]
-                player=player_ref(names, b.player_id),
+                player=player_ref(pdata, b.player_id),
                 runs=b.runs,
                 balls=b.balls,
                 not_out=not b.out,
@@ -239,7 +238,7 @@ def build_records(
         best_bowling_figures=[
             BowlingFiguresRecord(
                 **ctx(b.match_id, b.team_id),  # type: ignore[arg-type]
-                player=player_ref(names, b.player_id),
+                player=player_ref(pdata, b.player_id),
                 wickets=b.wickets,
                 runs=b.runs,
                 overs=balls_to_overs(b.balls),
@@ -250,8 +249,8 @@ def build_records(
             PartnershipRecord(
                 **ctx(p.match_id, p.team_id),  # type: ignore[arg-type]
                 wicket=p.wicket,
-                batter1=player_ref(names, p.player1_id),
-                batter2=player_ref(names, p.player2_id),
+                batter1=player_ref(pdata, p.player1_id),
+                batter2=player_ref(pdata, p.player2_id),
                 runs=p.runs,
                 balls=p.balls,
                 batter1_runs=p.player1_runs,

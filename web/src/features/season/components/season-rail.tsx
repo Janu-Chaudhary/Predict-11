@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { longDate, shortDate } from "../format";
 import { useFantasyLeaders, useMatches, useRecords } from "../queries";
 import type { MatchSummary, PlayerRef, PointsRow, SeasonSummary, TeamRef } from "../types";
+import { displayName } from "../../players/format";
 
 /** Locally cached cut-out (`p11 media cache`); PlayerAvatar falls back to initials if absent. */
 const photo = (id: string) => `/players/${id}-256.webp`;
@@ -43,8 +44,8 @@ export function SeasonKpis({ season, summary }: { season: number; summary: Seaso
         value={summary?.match_count}
         hint={summary ? `${summary.league_match_count} league · ${summary.team_count} teams` : undefined}
       />
-      <StatTile label="Orange cap" value={runs?.runs} unit="runs" hint={runs ? `${runs.player.name} · ${runs.team?.short_code ?? ""}` : undefined} href={runs ? `/players/${encodeURIComponent(runs.player.id)}` : undefined} />
-      <StatTile label="Purple cap" value={wkts?.wickets} unit="wkts" hint={wkts ? `${wkts.player.name} · ${wkts.team?.short_code ?? ""}` : undefined} href={wkts ? `/players/${encodeURIComponent(wkts.player.id)}` : undefined} />
+      <StatTile label="Orange cap" value={runs?.runs} unit="runs" hint={runs ? `${displayName(runs.player)} · ${runs.team?.short_code ?? ""}` : undefined} href={runs ? `/players/${encodeURIComponent(runs.player.id)}` : undefined} />
+      <StatTile label="Purple cap" value={wkts?.wickets} unit="wkts" hint={wkts ? `${displayName(wkts.player)} · ${wkts.team?.short_code ?? ""}` : undefined} href={wkts ? `/players/${encodeURIComponent(wkts.player.id)}` : undefined} />
       <StatTile label="Fantasy MVP" value={mvp?.total} unit="pts" hint={mvp ? `${name(mvp.player)} · ${mvp.n} games` : fan.isError ? "Not available" : undefined} href={mvp ? `/players/${encodeURIComponent(mvp.player.id)}` : undefined} />
       <StatTile
         label="Highest total"
@@ -55,7 +56,7 @@ export function SeasonKpis({ season, summary }: { season: number; summary: Seaso
       <StatTile
         label="Top score"
         value={hs ? `${hs.runs}${hs.not_out ? "*" : ""}` : undefined}
-        hint={hs ? `${hs.player.name} · ${hs.balls} balls v ${hs.opponent.short_code}` : undefined}
+        hint={hs ? `${displayName(hs.player)} · ${hs.balls} balls v ${hs.opponent.short_code}` : undefined}
         href={hs ? `/matches/${hs.match_id}` : undefined}
       />
     </div>
@@ -232,11 +233,11 @@ export function SeasonLeaders({ season }: { season: number }) {
       </div>
     );
   if (rec.isError || !rec.data) return null;
-  const runs: LeaderRow[] = rec.data.most_runs.slice(0, 4).map((r) => ({ id: r.player.id, name: r.player.name, team: r.team, value: r.runs, meta: `${r.innings} inns · SR ${r.strike_rate.toFixed(1)}` }));
-  const wkts: LeaderRow[] = rec.data.most_wickets.slice(0, 4).map((r) => ({ id: r.player.id, name: r.player.name, team: r.team, value: r.wickets, meta: `${r.overs} ov · econ ${r.economy.toFixed(2)}` }));
+  const runs: LeaderRow[] = rec.data.most_runs.slice(0, 4).map((r) => ({ id: r.player.id, name: displayName(r.player), team: r.team, value: r.runs, meta: `${r.innings} inns · SR ${r.strike_rate.toFixed(1)}` }));
+  const wkts: LeaderRow[] = rec.data.most_wickets.slice(0, 4).map((r) => ({ id: r.player.id, name: displayName(r.player), team: r.team, value: r.wickets, meta: `${r.overs} ov · econ ${r.economy.toFixed(2)}` }));
   const fpts: LeaderRow[] = (fan.data?.rows ?? []).slice(0, 4).map((r) => ({
     id: r.player.id,
-    name: r.player.display_name || r.player.name,
+    name: r.player.display_name || displayName(r.player),
     team: r.team,
     value: r.total,
     meta: `${r.n} games · avg ${r.mean.toFixed(1)}`,

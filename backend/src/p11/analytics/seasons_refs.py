@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .seasons_data import Core, InningsRow, MatchRow
+from .seasons_data import Core, InningsRow, MatchRow, PlayerData
 from .seasons_nrr import balls_to_overs, revised_balls
 from .seasons_schemas import InningsScore, MatchSummary, PlayerRef, TeamRef, VenueRef
 from .seasons_teams import era_for
@@ -22,8 +22,14 @@ def venue_ref(core: Core, venue_id: int | None) -> VenueRef | None:
     return VenueRef(id=v.id, name=v.name, city=v.city)
 
 
-def player_ref(names: dict[str, str], player_id: str) -> PlayerRef:
-    return PlayerRef(id=player_id, name=names.get(player_id, player_id))
+def player_ref(pdata: PlayerData, player_id: str) -> PlayerRef:
+    name = pdata.names.get(player_id, player_id)
+    return PlayerRef(
+        id=player_id,
+        name=name,
+        display_name=pdata.display_names.get(player_id, name),
+        image_url=pdata.images.get(player_id),
+    )
 
 
 def chase_quota_balls(m: MatchRow) -> int:

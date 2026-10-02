@@ -32,7 +32,9 @@ class VenueRef(BaseModel):
 
 class PlayerRef(BaseModel):
     id: str
-    name: str
+    name: str = Field(description='Scorecard name ("V Kohli")')
+    display_name: str | None = Field(default=None, description="Full name; falls back to name")
+    image_url: str | None = None
 
 
 # --------------------------------------------------------------------------- seasons / teams

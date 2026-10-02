@@ -13,12 +13,13 @@ import { shortDate } from "../format";
 import { useSeasonStory } from "../queries";
 import type { BattingLeader, BowlingLeader, CapRace, PlayerRef, TeamRef } from "../types";
 import { ErrorState } from "./states";
+import { displayName } from "../../players/format";
 
 export function raceToChart(race: CapRace, top = 5) {
   const leaders = race.leaders.slice(0, top);
   const series: Series[] = leaders.map((l, i) => ({
     key: `p${i}`,
-    label: `${l.player.name}${l.team ? ` (${l.team.short_code})` : ""}`,
+    label: `${displayName(l.player)}${l.team ? ` (${l.team.short_code})` : ""}`,
     dashed: i >= 3, // shape cue beyond the first three colours
   }));
   const data = race.dates.map((d, di) => {
@@ -33,9 +34,9 @@ function CapRaceChart({ title, race, unit }: { title: string; race: CapRace; uni
   const { series, data, leaders } = raceToChart(race);
   if (!leaders.length) return null;
   const lead = leaders[0];
-  const summary = `${title}: ${lead.player.name} leads with ${lead.total} ${unit}; ${leaders
+  const summary = `${title}: ${displayName(lead.player)} leads with ${lead.total} ${unit}; ${leaders
     .slice(1)
-    .map((l) => `${l.player.name} ${l.total}`)
+    .map((l) => `${displayName(l.player)} ${l.total}`)
     .join(", ")}.`;
   return <StatLineChart title={title} summary={summary} data={data} xKey="date" series={series} height={260} />;
 }
@@ -45,7 +46,7 @@ function PlayerCell({ player, team }: { player: PlayerRef; team: TeamRef | null 
     <span className="flex min-w-0 items-center gap-2">
       {team && <TeamBadge team={team.short_code} />}
       <Link href={`/players/${encodeURIComponent(player.id)}`} className="truncate font-medium outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring">
-        {player.name}
+        {displayName(player)}
       </Link>
     </span>
   );

@@ -101,7 +101,7 @@ def build_story(
     def bat_leader(pid: str) -> BattingLeader:
         a = bats[pid]
         return BattingLeader(
-            player=player_ref(pdata.names, pid),
+            player=player_ref(pdata, pid),
             team=tref(a.teams),
             innings=a.innings,
             runs=a.runs,
@@ -114,7 +114,7 @@ def build_story(
     def bowl_leader(pid: str) -> BowlingLeader:
         o = bowls[pid]
         return BowlingLeader(
-            player=player_ref(pdata.names, pid),
+            player=player_ref(pdata, pid),
             team=tref(o.teams),
             innings=o.innings,
             overs=balls_to_overs(o.balls),
@@ -143,7 +143,7 @@ def build_story(
             dates=o_dates,
             leaders=[
                 RaceSeries(
-                    player=player_ref(pdata.names, p),
+                    player=player_ref(pdata, p),
                     team=tref(bats[p].teams),
                     total=bats[p].runs,
                     cumulative=o_series[p],
@@ -155,7 +155,7 @@ def build_story(
             dates=p_dates,
             leaders=[
                 RaceSeries(
-                    player=player_ref(pdata.names, p),
+                    player=player_ref(pdata, p),
                     team=tref(bowls[p].teams),
                     total=bowls[p].wickets,
                     cumulative=p_series[p],

@@ -166,6 +166,8 @@ class PlayerData:
     bowling: tuple[BowlRow, ...]
     partnerships: tuple[PartnershipRow, ...]
     names: dict[str, str]
+    display_names: dict[str, str] = field(default_factory=dict)
+    images: dict[str, str] = field(default_factory=dict)
 
 
 # --------------------------------------------------------------------------- SQL
@@ -245,7 +247,7 @@ select coalesce(string_agg(relname || ':' || (n_tup_ins + n_tup_upd + n_tup_del)
                            order by relname), '')
 from pg_stat_user_tables
 where relname in ('match', 'match_source', 'innings', 'delivery', 'team', 'team_alias',
-                  'venue', 'season', 'player')
+                  'venue', 'season', 'player', 'player_alias', 'player_media')
 """
 
 
@@ -328,7 +330,22 @@ def load_players(core: Core) -> PlayerData:
         parts.append(PartnershipRow(r[0], r[1], t, wicket_no[key], r[2], r[3], *r[5:9]))
     ids = {b.player_id for b in bat} | {b.player_id for b in bowl}
     names = {r[0]: r[1] for r in _rows("select id, name from player") if r[0] in ids}
-    return PlayerData(tuple(bat), tuple(bowl), tuple(parts), names)
+    displays = {
+        r[0]: r[1]
+        for r in _rows(
+            "select distinct on (player_id) player_id, name from player_alias "
+            "where source = 'display' order by player_id, name"
+        )
+        if r[0] in ids
+    }
+    images = {
+        r[0]: r[1]
+        for r in _rows(
+            "select player_id, coalesce(local_path, image_url) from player_media_resolved"
+        )
+        if r[0] in ids and r[1]
+    }
+    return PlayerData(tuple(bat), tuple(bowl), tuple(parts), names, displays, images)
 
 
 # --------------------------------------------------------------------------- cache

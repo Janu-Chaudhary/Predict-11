@@ -29,6 +29,7 @@ import type {
 } from "../types";
 import { replaceQuery } from "../url";
 import { ErrorState } from "./states";
+import { displayName } from "../../players/format";
 
 const SEASON_OPTIONS = Array.from({ length: 2026 - 2008 + 1 }, (_, i) => 2026 - i);
 const ALL = "all";
@@ -40,7 +41,7 @@ const Player = ({ p, team }: { p: PlayerRef; team?: TeamRef | null }) => (
   <span className="flex items-center gap-2">
     {team && <TeamBadge team={team.short_code} />}
     <Link href={`/players/${encodeURIComponent(p.id)}`} className="font-medium outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring">
-      {p.name}
+      {displayName(p)}
     </Link>
   </span>
 );
@@ -72,14 +73,14 @@ const col = <T,>(c: StatColumn<T>) => c;
 
 const runsCols: StatColumn<Ranked<BattingLeader>>[] = [
   rank,
-  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BattingLeader) => r.player.name, cell: (r: BattingLeader) => <Player p={r.player} team={r.team} /> }),
+  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BattingLeader) => displayName(r.player), cell: (r: BattingLeader) => <Player p={r.player} team={r.team} /> }),
   col({ key: "inn", header: "Inns", value: (r: BattingLeader) => r.innings, hideBelow: "sm" }),
   col({ key: "runs", header: "Runs", value: (r: BattingLeader) => r.runs, className: "font-semibold" }),
   col({ key: "sr", header: "SR", value: (r: BattingLeader) => r.strike_rate.toFixed(1) }),
 ];
 const wktCols: StatColumn<Ranked<BowlingLeader>>[] = [
   rank,
-  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BowlingLeader) => r.player.name, cell: (r: BowlingLeader) => <Player p={r.player} team={r.team} /> }),
+  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BowlingLeader) => displayName(r.player), cell: (r: BowlingLeader) => <Player p={r.player} team={r.team} /> }),
   col({ key: "inn", header: "Inns", value: (r: BowlingLeader) => r.innings, hideBelow: "sm" }),
   col({ key: "w", header: "Wkts", value: (r: BowlingLeader) => r.wickets, className: "font-semibold" }),
   col({ key: "econ", header: "Econ", value: (r: BowlingLeader) => r.economy.toFixed(2) }),
@@ -111,7 +112,7 @@ const marginCols = (unit: string): StatColumn<Ranked<MarginRecord>>[] => [
 ];
 const hsCols: StatColumn<Ranked<BattingInningsRecord>>[] = [
   rank,
-  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BattingInningsRecord) => r.player.name, cell: (r: BattingInningsRecord) => <Player p={r.player} team={r.team} /> }),
+  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BattingInningsRecord) => displayName(r.player), cell: (r: BattingInningsRecord) => <Player p={r.player} team={r.team} /> }),
   col({ key: "r", header: "Runs", value: (r: BattingInningsRecord) => r.runs, cell: (r: BattingInningsRecord) => <span className="font-semibold">{r.runs}{r.not_out ? "*" : ""}</span> }),
   col({ key: "b", header: "Balls", value: (r: BattingInningsRecord) => r.balls }),
   col({ key: "46", header: "4s/6s", value: (r: BattingInningsRecord) => `${r.fours}/${r.sixes}`, hideBelow: "sm" }),
@@ -120,7 +121,7 @@ const hsCols: StatColumn<Ranked<BattingInningsRecord>>[] = [
 ];
 const bbCols: StatColumn<Ranked<BowlingFiguresRecord>>[] = [
   rank,
-  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BowlingFiguresRecord) => r.player.name, cell: (r: BowlingFiguresRecord) => <Player p={r.player} team={r.team} /> }),
+  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: BowlingFiguresRecord) => displayName(r.player), cell: (r: BowlingFiguresRecord) => <Player p={r.player} team={r.team} /> }),
   col({ key: "f", header: "Figures", value: (r: BowlingFiguresRecord) => r.wickets, cell: (r: BowlingFiguresRecord) => <span className="font-semibold">{r.wickets}/{r.runs}</span> }),
   col({ key: "o", header: "Ov", label: "Overs", value: (r: BowlingFiguresRecord) => r.overs }),
   col({ key: "v", header: "Opp", label: "Opponent", align: "left", value: (r: BowlingFiguresRecord) => r.opponent.short_code, cell: (r: BowlingFiguresRecord) => <Vs t={r.opponent} /> }),
@@ -133,12 +134,12 @@ const pshipCols: StatColumn<Ranked<PartnershipRecord>>[] = [
     header: "Pair",
     align: "left",
     sticky: true,
-    value: (r: PartnershipRecord) => r.batter1.name,
+    value: (r: PartnershipRecord) => displayName(r.batter1),
     cell: (r: PartnershipRecord) => (
       <span className="flex items-center gap-2">
         <TeamBadge team={r.team.short_code} />
         <span className="font-medium">
-          {r.batter1.name} <span className="text-muted-foreground">({r.batter1_runs})</span> & {r.batter2.name}{" "}
+          {displayName(r.batter1)} <span className="text-muted-foreground">({r.batter1_runs})</span> & {displayName(r.batter2)}{" "}
           <span className="text-muted-foreground">({r.batter2_runs})</span>
         </span>
       </span>
@@ -151,7 +152,7 @@ const pshipCols: StatColumn<Ranked<PartnershipRecord>>[] = [
 ];
 const fastCols: StatColumn<Ranked<FastestMilestone>>[] = [
   rank,
-  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: FastestMilestone) => r.player.name, cell: (r: FastestMilestone) => <Player p={r.player} team={r.team} /> }),
+  col({ key: "p", header: "Player", align: "left", sticky: true, value: (r: FastestMilestone) => displayName(r.player), cell: (r: FastestMilestone) => <Player p={r.player} team={r.team} /> }),
   col({ key: "b", header: "Balls", value: (r: FastestMilestone) => r.balls, className: "font-semibold" }),
   col({ key: "f", header: "Final", label: "Final score", value: (r: FastestMilestone) => r.final_runs }),
   col({ key: "v", header: "Opp", label: "Opponent", align: "left", value: (r: FastestMilestone) => r.opponent.short_code, cell: (r: FastestMilestone) => <Vs t={r.opponent} /> }),

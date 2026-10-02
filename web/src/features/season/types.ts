@@ -8,7 +8,8 @@ export type FormResult = "W" | "L" | "N";
 
 export type TeamRef = { id: number; name: string; short_code: string };
 export type VenueRef = { id: number; name: string; city: string | null };
-export type PlayerRef = { id: string; name: string };
+/** `name` is the scorecard name ("V Kohli"); show `display_name` ("Virat Kohli") via displayName(). */
+export type PlayerRef = { id: string; name: string; display_name?: string | null; image_url?: string | null };
 
 /* ---------- seasons / teams ---------- */
 
