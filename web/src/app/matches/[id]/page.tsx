@@ -8,7 +8,7 @@ import { TabLinks, pickTab } from "@/components/shell/tab-links";
 
 import { MatchPredictedXi } from "@/features/predictions/match-predicted-xi";
 
-import { fetchMatchHeader, MatchVenueBanner } from "./match-venue";
+import { fetchMatchHeader, MatchScoreHeader, MatchVenueBanner } from "./match-venue";
 import { SampleMatchCharts } from "./sample-charts";
 
 const TABS = ["summary", "scorecard", "balls", "lineups", "fantasy", "predicted", "stats", "h2h", "review"] as const;
@@ -51,27 +51,22 @@ export default async function MatchPage(props: PageProps<"/matches/[id]">) {
 
   return (
     <>
-      {/* Score header — placeholder until the match endpoint lands. */}
+      {/* Score header: GET /home/match/{id} (teams, scores, result, venue photo). */}
       <section aria-labelledby="match-title" className="mb-4 rounded-xl border border-border bg-card p-4 shadow-e1">
         {header && <MatchVenueBanner match={header} />}
-        <p className="text-overline text-muted-foreground">
-          Match <span className="num">{decodeURIComponent(id)}</span> · IPL
-        </p>
-        <h1 id="match-title" className="sr-only">
-          Match {decodeURIComponent(id)}
-        </h1>
-        <div className="mt-3 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-full bg-surface-2 text-faint">?</span>
-            <span className="text-score-xl text-faint">–</span>
-          </div>
-          <span className="text-xs text-muted-foreground">vs</span>
-          <div className="flex items-center gap-3">
-            <span className="text-score-xl text-faint">–</span>
-            <span className="flex size-10 items-center justify-center rounded-full bg-surface-2 text-faint">?</span>
-          </div>
-        </div>
-        <p className="mt-3 text-center text-xs text-muted-foreground">Teams, score and match state appear once the match endpoint is connected.</p>
+        {header ? (
+          <MatchScoreHeader match={header} overline={!header.venue?.image_url} />
+        ) : (
+          <>
+            <p className="text-overline text-muted-foreground">
+              Match <span className="num">{decodeURIComponent(id)}</span> · IPL
+            </p>
+            <h1 id="match-title" className="text-title mt-1">
+              Match {decodeURIComponent(id)}
+            </h1>
+            <p className="mt-2 text-sm text-muted-foreground">This match isn’t in the database, or the API is waking up — try again in a minute.</p>
+          </>
+        )}
       </section>
 
       <TabLinks label="Match sections" tabs={TABS.map((t) => ({ key: t, label: LABEL[t] }))} active={tab} hrefFor={(t) => `${base}?tab=${t}`} />
