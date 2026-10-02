@@ -1,0 +1,2112 @@
+[
+ {
+  "player_id": "c03f1114",
+  "name": "Dinesh Karthik",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2138%2F14615.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 14615,
+  "iplt20_name": "Dinesh Karthik"
+ },
+ {
+  "player_id": "0a476045",
+  "name": "Shikhar Dhawan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2040%2F11707.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 11707,
+  "iplt20_name": "Shikhar Dhawan"
+ },
+ {
+  "player_id": "1c17e270",
+  "name": "Robin Uthappa",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F11320.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 11320,
+  "iplt20_name": "Robin Uthappa"
+ },
+ {
+  "player_id": "1dc12ab9",
+  "name": "Suresh Raina",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1622%2F14165.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 14165,
+  "iplt20_name": "Suresh Raina"
+ },
+ {
+  "player_id": "70d205c9",
+  "name": "Ambati Rayudu",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F15264.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 15264,
+  "iplt20_name": "Ambati Rayudu"
+ },
+ {
+  "player_id": "98ae73b1",
+  "name": "Piyush Chawla",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1854%2F11325.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 11325,
+  "iplt20_name": "Piyush Chawla"
+ },
+ {
+  "player_id": "a757b0d8",
+  "name": "Kieron Pollard",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F12376.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 12376,
+  "iplt20_name": "Kieron Pollard"
+ },
+ {
+  "player_id": "dcce6f09",
+  "name": "David Warner",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1396%2F11657.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 11657,
+  "iplt20_name": "David Warner"
+ },
+ {
+  "player_id": "c4487b84",
+  "name": "AB de Villiers",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2138%2F12825.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 12825,
+  "iplt20_name": "AB de Villiers"
+ },
+ {
+  "player_id": "3c6ffae8",
+  "name": "Yusuf Pathan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1153%2F11652.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 11652,
+  "iplt20_name": "Yusuf Pathan"
+ },
+ {
+  "player_id": "fe11caa6",
+  "name": "Wriddhiman Saha",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2879%2F11452.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 11452,
+  "iplt20_name": "Wriddhiman Saha"
+ },
+ {
+  "player_id": "8b5b6769",
+  "name": "Harbhajan Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1873%2F14019.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 14019,
+  "iplt20_name": "Harbhajan Singh"
+ },
+ {
+  "player_id": "6b19d823",
+  "name": "Amit Mishra",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1396%2F11706.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 11706,
+  "iplt20_name": "Amit Mishra"
+ },
+ {
+  "player_id": "87e562a9",
+  "name": "Dwayne Bravo",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F12369.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 12369,
+  "iplt20_name": "Dwayne Bravo"
+ },
+ {
+  "player_id": "bb345e0b",
+  "name": "Gautam Gambhir",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1396%2F11319.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 11319,
+  "iplt20_name": "Gautam Gambhir"
+ },
+ {
+  "player_id": "cc1e8c68",
+  "name": "Umesh Yadav",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F11660.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 11660,
+  "iplt20_name": "Umesh Yadav"
+ },
+ {
+  "player_id": "4329fbb5",
+  "name": "Shane Watson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1622%2F10783.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 10783,
+  "iplt20_name": "Shane Watson"
+ },
+ {
+  "player_id": "db584dad",
+  "name": "Chris Gayle",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2040%2F12097.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 12097,
+  "iplt20_name": "Chris Gayle"
+ },
+ {
+  "player_id": "b5da6c24",
+  "name": "Parthiv Patel",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F2138%2F11702.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 11702,
+  "iplt20_name": "Parthiv Patel"
+ },
+ {
+  "player_id": "1c914163",
+  "name": "Yuvraj Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1854%2F10804.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 10804,
+  "iplt20_name": "Yuvraj Singh"
+ },
+ {
+  "player_id": "00ea847a",
+  "name": "Mayank Agarwal",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8502%2F2138%2F16946.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2025",
+  "season": 2025,
+  "transparent": true,
+  "bcci_id": 16946,
+  "iplt20_name": "Mayank Agarwal"
+ },
+ {
+  "player_id": "a12e1d51",
+  "name": "Lasith Malinga",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1854%2F11572.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 11572,
+  "iplt20_name": "Lasith Malinga"
+ },
+ {
+  "player_id": "890946a0",
+  "name": "Naman Ojha",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F1468%2F1153%2F15610.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2016",
+  "season": 2016,
+  "transparent": true,
+  "bcci_id": 15610,
+  "iplt20_name": "Naman Ojha"
+ },
+ {
+  "player_id": "c3a96caf",
+  "name": "Mandeep Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1396%2F13573.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 13573,
+  "iplt20_name": "Mandeep Singh"
+ },
+ {
+  "player_id": "b8a55852",
+  "name": "Brendon McCullum",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F2138%2F10788.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 10788,
+  "iplt20_name": "Brendon McCullum"
+ },
+ {
+  "player_id": "4b57e452",
+  "name": "Murali Vijay",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1622%2F14166.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 14166,
+  "iplt20_name": "Murali Vijay"
+ },
+ {
+  "player_id": "30a45b23",
+  "name": "Steven Smith",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1396%2F14326.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 14326,
+  "iplt20_name": "Steve Smith"
+ },
+ {
+  "player_id": "41eb4a4f",
+  "name": "Vinay Kumar",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1873%2F16930.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 16930,
+  "iplt20_name": "Vinay Kumar"
+ },
+ {
+  "player_id": "26e5cabf",
+  "name": "Manoj Tiwary",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F2040%2F12681.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 12681,
+  "iplt20_name": "Manoj Tiwary"
+ },
+ {
+  "player_id": "8fd1a8f5",
+  "name": "Dale Steyn",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F2138%2F12827.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 12827,
+  "iplt20_name": "Dale Steyn"
+ },
+ {
+  "player_id": "99d63244",
+  "name": "Kedar Jadhav",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1153%2F11659.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 11659,
+  "iplt20_name": "Kedar Jadhav"
+ },
+ {
+  "player_id": "bd17b45f",
+  "name": "Stuart Binny",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1558%2F11703.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 11703,
+  "iplt20_name": "Stuart Binny"
+ },
+ {
+  "player_id": "b8d490fd",
+  "name": "Aaron Finch",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F12604.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 12604,
+  "iplt20_name": "Aaron Finch"
+ },
+ {
+  "player_id": "d2a989fc",
+  "name": "Dhawal Kulkarni",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1854%2F17626.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 17626,
+  "iplt20_name": "Dhawal Kulkarni"
+ },
+ {
+  "player_id": "709b0bac",
+  "name": "Saurabh Tiwary",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1854%2F17411.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 17411,
+  "iplt20_name": "Saurabh Tiwary"
+ },
+ {
+  "player_id": "2e8994e7",
+  "name": "Jean-Paul Duminy",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1854%2F12824.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 12824,
+  "iplt20_name": "JP Duminy"
+ },
+ {
+  "player_id": "d2a6c0e6",
+  "name": "Eoin Morgan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1873%2F11654.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 11654,
+  "iplt20_name": "Eoin Morgan"
+ },
+ {
+  "player_id": "fb66ce1f",
+  "name": "Chris Morris",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1558%2F17615.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 17615,
+  "iplt20_name": "Chris Morris"
+ },
+ {
+  "player_id": "d027ba9f",
+  "name": "Kane Williamson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1153%2F14329.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 14329,
+  "iplt20_name": "Kane Williamson"
+ },
+ {
+  "player_id": "8b3e9c7c",
+  "name": "Prithvi Shaw",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1396%2F65301.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 65301,
+  "iplt20_name": "Prithvi Shaw"
+ },
+ {
+  "player_id": "7dc35884",
+  "name": "Shakib Al Hasan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1873%2F12990.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 12990,
+  "iplt20_name": "Shakib Al Hasan"
+ },
+ {
+  "player_id": "9d80c5e1",
+  "name": "Shahbaz Nadeem",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2880%2F11651.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 11651,
+  "iplt20_name": "Shahbaz Nadeem"
+ },
+ {
+  "player_id": "32198ae0",
+  "name": "Moises Henriques",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2040%2F19163.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 19163,
+  "iplt20_name": "Moises Henriques"
+ },
+ {
+  "player_id": "0a8fce53",
+  "name": "Mustafizur Rahman",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1396%2F19402.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 19402,
+  "iplt20_name": "Mustafizur Rahman"
+ },
+ {
+  "player_id": "acee4cc4",
+  "name": "Imran Tahir",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1622%2F16130.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 16130,
+  "iplt20_name": "Imran Tahir"
+ },
+ {
+  "player_id": "51a3c5ef",
+  "name": "Mitchell McClenaghan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1854%2F19694.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 19694,
+  "iplt20_name": "Mitchell McClenaghan"
+ },
+ {
+  "player_id": "c03e2850",
+  "name": "Manan Vohra",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2880%2F13576.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 13576,
+  "iplt20_name": "Manan Vohra"
+ },
+ {
+  "player_id": "dcf81436",
+  "name": "Siddarth Kaul",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2138%2F15269.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 15269,
+  "iplt20_name": "Siddharth Kaul"
+ },
+ {
+  "player_id": "f5180fe6",
+  "name": "Mitchell Johnson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1873%2F10784.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 10784,
+  "iplt20_name": "Mitchell Johnson"
+ },
+ {
+  "player_id": "13c35c9e",
+  "name": "Tim Southee",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F14324.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 14324,
+  "iplt20_name": "Tim Southee"
+ },
+ {
+  "player_id": "abb83e27",
+  "name": "Jonny Bairstow",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2040%2F13284.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 13284,
+  "iplt20_name": "Jonny Bairstow"
+ },
+ {
+  "player_id": "0a3d54b9",
+  "name": "Varun Aaron",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2879%2F15612.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 15612,
+  "iplt20_name": "Varun Aaron"
+ },
+ {
+  "player_id": "7a8bd078",
+  "name": "Shreyas Gopal",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1622%2F16937.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 16937,
+  "iplt20_name": "Shreyas Gopal"
+ },
+ {
+  "player_id": "f62772e5",
+  "name": "Pawan Negi",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1873%2F15613.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 15613,
+  "iplt20_name": "Pawan Negi"
+ },
+ {
+  "player_id": "2a2e6343",
+  "name": "Dan Christian",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2138%2F10917.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 10917,
+  "iplt20_name": "Dan Christian"
+ },
+ {
+  "player_id": "e087956b",
+  "name": "Ben Stokes",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1558%2F16074.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 16074,
+  "iplt20_name": "Ben Stokes"
+ },
+ {
+  "player_id": "e2db2409",
+  "name": "Murugan Ashwin",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F19799.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 19799,
+  "iplt20_name": "Murugan Ashwin"
+ },
+ {
+  "player_id": "9fc0ef64",
+  "name": "Pradeep Sangwan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F2879%2F15614.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 15614,
+  "iplt20_name": "Pradeep Sangwan"
+ },
+ {
+  "player_id": "26a85969",
+  "name": "Rishi Dhawan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2040%2F18288.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 18288,
+  "iplt20_name": "Rishi Dhawan"
+ },
+ {
+  "player_id": "45eda7c8",
+  "name": "Chris Lynn",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1854%2F10922.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 10922,
+  "iplt20_name": "Chris Lynn"
+ },
+ {
+  "player_id": "6eb146d2",
+  "name": "Gurkeerat Singh Mann",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2879%2F14032.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 14032,
+  "iplt20_name": "Gurkeerat Singh"
+ },
+ {
+  "player_id": "90de905a",
+  "name": "Krishnappa Gowtham",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2880%2F20461.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 20461,
+  "iplt20_name": "Krishnappa Gowtham"
+ },
+ {
+  "player_id": "56ab442f",
+  "name": "Nathan Coulter-Nile",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1558%2F22707.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 22707,
+  "iplt20_name": "Nathan Coulter-Nile"
+ },
+ {
+  "player_id": "ffe699c0",
+  "name": "Chris Jordan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F11832.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 11832,
+  "iplt20_name": "Chris Jordan"
+ },
+ {
+  "player_id": "855a210c",
+  "name": "Aditya Tare",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1854%2F29257.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 29257,
+  "iplt20_name": "Aditya Tare"
+ },
+ {
+  "player_id": "c38d3503",
+  "name": "Shivam Mavi",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1153%2F65553.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 65553,
+  "iplt20_name": "Shivam Mavi"
+ },
+ {
+  "player_id": "c18496e1",
+  "name": "Bipul Sharma",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1153%2F14023.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 14023,
+  "iplt20_name": "Bipul Sharma"
+ },
+ {
+  "player_id": "541f85c9",
+  "name": "Shreevats Goswami",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1153%2F11454.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 11454,
+  "iplt20_name": "Shreevats Goswami"
+ },
+ {
+  "player_id": "c16d4035",
+  "name": "Sam Billings",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F17611.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 17611,
+  "iplt20_name": "Sam Billings"
+ },
+ {
+  "player_id": "d4f9dbd4",
+  "name": "Cheteshwar Pujara",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1622%2F12678.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 12678,
+  "iplt20_name": "Cheteshwar Pujara"
+ },
+ {
+  "player_id": "7c7d63a2",
+  "name": "Andrew Tye",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2880%2F22477.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 22477,
+  "iplt20_name": "Andrew Tye"
+ },
+ {
+  "player_id": "8abdf100",
+  "name": "Corey Anderson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F2138%2F20174.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 20174,
+  "iplt20_name": "Corey Anderson"
+ },
+ {
+  "player_id": "db31895a",
+  "name": "Ankit Rajpoot",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2880%2F22299.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 22299,
+  "iplt20_name": "Ankit Rajpoot"
+ },
+ {
+  "player_id": "ad427b5c",
+  "name": "Lalit Yadav",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F1396%2F67380.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 67380,
+  "iplt20_name": "Lalit Yadav"
+ },
+ {
+  "player_id": "4125d931",
+  "name": "Jagadeesha Suchith",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1153%2F26241.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 26241,
+  "iplt20_name": "Jagadeesha Suchith"
+ },
+ {
+  "player_id": "0ebfb1ad",
+  "name": "Evin Lewis",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2880%2F24399.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 24399,
+  "iplt20_name": "Evin Lewis"
+ },
+ {
+  "player_id": "81c08fa3",
+  "name": "Umran Malik",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1873%2F73981.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 73981,
+  "iplt20_name": "Umran Malik"
+ },
+ {
+  "player_id": "c8f5f961",
+  "name": "Anuj Rawat",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F2879%2F66837.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 66837,
+  "iplt20_name": "Anuj Rawat"
+ },
+ {
+  "player_id": "94d7f855",
+  "name": "Colin de Grandhomme",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F2138%2F15462.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 15462,
+  "iplt20_name": "Colin de Grandhomme"
+ },
+ {
+  "player_id": "871e9faf",
+  "name": "Basil Thampi",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F18592.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 18592,
+  "iplt20_name": "Basil Thampi"
+ },
+ {
+  "player_id": "bb965e9a",
+  "name": "Priyam Garg",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1153%2F65341.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 65341,
+  "iplt20_name": "Priyam Garg"
+ },
+ {
+  "player_id": "62af8546",
+  "name": "Mohammad Nabi",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F24611.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 24611,
+  "iplt20_name": "Mohammad Nabi"
+ },
+ {
+  "player_id": "94253925",
+  "name": "Hanuma Vihari",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1396%2F15659.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 15659,
+  "iplt20_name": "Hanuma Vihari"
+ },
+ {
+  "player_id": "d8b2f218",
+  "name": "Barinder Sran",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1854%2F23461.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 23461,
+  "iplt20_name": "Barinder Sran"
+ },
+ {
+  "player_id": "cad00a4d",
+  "name": "Rilee Rossouw",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2040%2F10696.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 10696,
+  "iplt20_name": "Rilee Rossouw"
+ },
+ {
+  "player_id": "69be866a",
+  "name": "Anureet Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F1468%2F2040%2F16945.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2016",
+  "season": 2016,
+  "transparent": true,
+  "bcci_id": 16945,
+  "iplt20_name": "Anureet Singh"
+ },
+ {
+  "player_id": "b0946605",
+  "name": "Alzarri Joseph",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2879%2F28768.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 28768,
+  "iplt20_name": "Alzarri Joseph"
+ },
+ {
+  "player_id": "81049310",
+  "name": "Jayant Yadav",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F2879%2F18001.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 18001,
+  "iplt20_name": "Jayant Yadav"
+ },
+ {
+  "player_id": "24d94623",
+  "name": "Ankit Sharma",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1558%2F17868.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 17868,
+  "iplt20_name": "Ankit Sharma"
+ },
+ {
+  "player_id": "14f96089",
+  "name": "Adam Zampa",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2138%2F13490.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 13490,
+  "iplt20_name": "Adam Zampa"
+ },
+ {
+  "player_id": "d1c36f5c",
+  "name": "Jason Roy",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1153%2F14271.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 14271,
+  "iplt20_name": "Jason Roy"
+ },
+ {
+  "player_id": "4c5d73db",
+  "name": "Chris Woakes",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1396%2F12421.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 12421,
+  "iplt20_name": "Chris Woakes"
+ },
+ {
+  "player_id": "2e11c706",
+  "name": "Ben Cutting",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1873%2F16720.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 16720,
+  "iplt20_name": "Ben Cutting"
+ },
+ {
+  "player_id": "aa8d28ae",
+  "name": "David Wiese",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1873%2F10690.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 10690,
+  "iplt20_name": "David Wiese"
+ },
+ {
+  "player_id": "64775749",
+  "name": "Riley Meredith",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F65395.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 65395,
+  "iplt20_name": "Riley Meredith"
+ },
+ {
+  "player_id": "c0c411cb",
+  "name": "Naveen-ul-Haq",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2880%2F39409.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 39409,
+  "iplt20_name": "Naveen-ul-Haq"
+ },
+ {
+  "player_id": "4933f499",
+  "name": "Jason Behrendorff",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1854%2F12611.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 12611,
+  "iplt20_name": "Jason Behrendorff"
+ },
+ {
+  "player_id": "caf69bf7",
+  "name": "Daniel Sams",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F2880%2F67117.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 67117,
+  "iplt20_name": "Daniel Sams"
+ },
+ {
+  "player_id": "e342e5fb",
+  "name": "Carlos Brathwaite",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1873%2F15239.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 15239,
+  "iplt20_name": "Carlos Brathwaite"
+ },
+ {
+  "player_id": "b4f5c2d9",
+  "name": "Kamlesh Nagarkoti",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8502%2F1622%2F65355.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2025",
+  "season": 2025,
+  "transparent": true,
+  "bcci_id": 65355,
+  "iplt20_name": "Kamlesh Nagarkoti"
+ },
+ {
+  "player_id": "dfc4d8b5",
+  "name": "Kane Richardson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2138%2F18551.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 18551,
+  "iplt20_name": "Kane Richardson"
+ },
+ {
+  "player_id": "eade4650",
+  "name": "Daryl Mitchell",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1558%2F18053.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 18053,
+  "iplt20_name": "Daryl Mitchell"
+ },
+ {
+  "player_id": "afa7e784",
+  "name": "Matthew Wade",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2879%2F12607.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 12607,
+  "iplt20_name": "Matthew Wade"
+ },
+ {
+  "player_id": "c995d726",
+  "name": "Colin Ingram",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1396%2F10294.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 10294,
+  "iplt20_name": "Colin Ingram"
+ },
+ {
+  "player_id": "9219eff0",
+  "name": "James Neesham",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1854%2F23904.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 23904,
+  "iplt20_name": "Jimmy Neesham"
+ },
+ {
+  "player_id": "f10e94c4",
+  "name": "Akshdeep Nath",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F2138%2F15663.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 15663,
+  "iplt20_name": "Akshdeep Nath"
+ },
+ {
+  "player_id": "0c9652b0",
+  "name": "Hrithik Shokeen",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F70447.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 70447,
+  "iplt20_name": "Hrithik Shokeen"
+ },
+ {
+  "player_id": "73c18486",
+  "name": "Kyle Mayers",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2880%2F15108.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 15108,
+  "iplt20_name": "Kyle Mayers"
+ },
+ {
+  "player_id": "2be41edb",
+  "name": "Martin Guptill",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1153%2F14323.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 14323,
+  "iplt20_name": "Martin Guptill"
+ },
+ {
+  "player_id": "6c882e9a",
+  "name": "Bhanuka Rajapaksa",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2040%2F12745.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 12745,
+  "iplt20_name": "Bhanuka Rajapaksa"
+ },
+ {
+  "player_id": "bd54eef5",
+  "name": "Narayan Jagadeesan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F36999.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 36999,
+  "iplt20_name": "Narayan Jagadeesan"
+ },
+ {
+  "player_id": "9385de2e",
+  "name": "Suyash Prabhudessai",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2138%2F65732.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 65732,
+  "iplt20_name": "Suyash Prabhudessai"
+ },
+ {
+  "player_id": "af2c687b",
+  "name": "Colin Munro",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1396%2F15640.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 15640,
+  "iplt20_name": "Colin Munro"
+ },
+ {
+  "player_id": "e86754b2",
+  "name": "Tom Curran",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1396%2F21836.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 21836,
+  "iplt20_name": "Tom Curran"
+ },
+ {
+  "player_id": "378daa89",
+  "name": "Aman Khan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1622%2F74139.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 74139,
+  "iplt20_name": "Aman Khan"
+ },
+ {
+  "player_id": "2e78f685",
+  "name": "Kuldeep Sen",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1558%2F69043.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 69043,
+  "iplt20_name": "Kuldeep Sen"
+ },
+ {
+  "player_id": "4ae1755b",
+  "name": "Harry Brook",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1153%2F38952.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 38952,
+  "iplt20_name": "Harry Brook"
+ },
+ {
+  "player_id": "9061a703",
+  "name": "Josh Little",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2879%2F42658.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 42658,
+  "iplt20_name": "Josh Little"
+ },
+ {
+  "player_id": "7f048519",
+  "name": "David Willey",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2138%2F17940.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 17940,
+  "iplt20_name": "David Willey"
+ },
+ {
+  "player_id": "44a89551",
+  "name": "Srikar Bharat",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1396%2F27716.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 27716,
+  "iplt20_name": "KS Bharat"
+ },
+ {
+  "player_id": "edb3d4f8",
+  "name": "KC Cariappa",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1558%2F17610.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 17610,
+  "iplt20_name": "KC Cariappa"
+ },
+ {
+  "player_id": "1399b39c",
+  "name": "Anmolpreet Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F38832.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 38832,
+  "iplt20_name": "Anmolpreet Singh"
+ },
+ {
+  "player_id": "f752db61",
+  "name": "James Pattinson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1854%2F12610.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 12610,
+  "iplt20_name": "James Pattinson"
+ },
+ {
+  "player_id": "ac5ae4af",
+  "name": "Isuru Udana",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F2138%2F17606.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 17606,
+  "iplt20_name": "Isuru Udana"
+ },
+ {
+  "player_id": "245c97cb",
+  "name": "Tymal Mills",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F11260.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 11260,
+  "iplt20_name": "Tymal Mills"
+ },
+ {
+  "player_id": "60500956",
+  "name": "Ripal Patel",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1396%2F72258.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 72258,
+  "iplt20_name": "Ripal Patel"
+ },
+ {
+  "player_id": "cdc6bdba",
+  "name": "Sandeep Warrier",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1873%2F18585.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 18585,
+  "iplt20_name": "Sandeep Warrier"
+ },
+ {
+  "player_id": "28c78fb3",
+  "name": "Harpreet Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2040%2F17867.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 17867,
+  "iplt20_name": "Harpreet Singh Bhatia"
+ },
+ {
+  "player_id": "663b5e34",
+  "name": "Prerak Mankad",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2880%2F37516.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 37516,
+  "iplt20_name": "Prerak Mankad"
+ },
+ {
+  "player_id": "75224f22",
+  "name": "Keemo Paul",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1396%2F50464.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 50464,
+  "iplt20_name": "Keemo Paul"
+ },
+ {
+  "player_id": "acc1aeda",
+  "name": "Sheldon Jackson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F16779.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 16779,
+  "iplt20_name": "Sheldon Jackson"
+ },
+ {
+  "player_id": "b2a79f17",
+  "name": "Ben Laughlin",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1558%2F12309.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 12309,
+  "iplt20_name": "Ben Laughlin"
+ },
+ {
+  "player_id": "b410bd3d",
+  "name": "Sandeep Lamichhane",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1396%2F40733.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 40733,
+  "iplt20_name": "Sandeep Lamichhane"
+ },
+ {
+  "player_id": "529eb9e0",
+  "name": "Obed McCoy",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1558%2F61917.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 61917,
+  "iplt20_name": "Obed McCoy"
+ },
+ {
+  "player_id": "641ac5ff",
+  "name": "Ish Sodhi",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1558%2F15669.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 15669,
+  "iplt20_name": "Ish Sodhi"
+ },
+ {
+  "player_id": "a457cfb5",
+  "name": "Mayank Dagar",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2138%2F20221.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 20221,
+  "iplt20_name": "Mayank Dagar"
+ },
+ {
+  "player_id": "faa7365d",
+  "name": "Dhruv Shorey",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1622%2F44191.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 44191,
+  "iplt20_name": "Dhruv Shorey"
+ },
+ {
+  "player_id": "e412cb64",
+  "name": "Harry Gurney",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1873%2F21030.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 21030,
+  "iplt20_name": "Harry Gurney"
+ },
+ {
+  "player_id": "b56dc5f7",
+  "name": "Beuran Hendricks",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1854%2F14077.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 14077,
+  "iplt20_name": "Beuran Hendricks"
+ },
+ {
+  "player_id": "dded65e7",
+  "name": "Ishank Jaggi",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1873%2F17415.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 17415,
+  "iplt20_name": "Ishank Jaggi"
+ },
+ {
+  "player_id": "798cc28e",
+  "name": "KM Asif",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F67628.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 67628,
+  "iplt20_name": "KM Asif"
+ },
+ {
+  "player_id": "11614d87",
+  "name": "Dwaine Pretorius",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F21290.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 21290,
+  "iplt20_name": "Dwaine Pretorius"
+ },
+ {
+  "player_id": "6834d1f2",
+  "name": "Billy Stanlake",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1153%2F21308.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 21308,
+  "iplt20_name": "Billy Stanlake"
+ },
+ {
+  "player_id": "23cca426",
+  "name": "Odean Smith",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F2879%2F51430.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 51430,
+  "iplt20_name": "Odean Smith"
+ },
+ {
+  "player_id": "ff1e12a0",
+  "name": "Ashton Turner",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1558%2F22710.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 22710,
+  "iplt20_name": "Ashton Turner"
+ },
+ {
+  "player_id": "92aeac25",
+  "name": "Alex Hales",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1153%2F14063.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 14063,
+  "iplt20_name": "Alex Hales"
+ },
+ {
+  "player_id": "b0f2baf4",
+  "name": "Sanvir Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F1153%2F68814.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 68814,
+  "iplt20_name": "Sanvir Singh"
+ },
+ {
+  "player_id": "cd8d2859",
+  "name": "Darshan Nalkande",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2879%2F66390.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 66390,
+  "iplt20_name": "Darshan Nalkande"
+ },
+ {
+  "player_id": "18e6906e",
+  "name": "Aniket Choudhary",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F2138%2F12933.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 12933,
+  "iplt20_name": "Aniket Choudhary"
+ },
+ {
+  "player_id": "9a0146b3",
+  "name": "Pardeep Sahu",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6185%2F2040%2F21508.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2017",
+  "season": 2017,
+  "transparent": true,
+  "bcci_id": 21508,
+  "iplt20_name": "Pardeep Sahu"
+ },
+ {
+  "player_id": "a03bba42",
+  "name": "Tabraiz Shamsi",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1558%2F14074.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 14074,
+  "iplt20_name": "Tabraiz Shamsi"
+ },
+ {
+  "player_id": "dd7e9b3b",
+  "name": "Yash Dhull",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F1396%2F76207.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 76207,
+  "iplt20_name": "Yash Dhull"
+ },
+ {
+  "player_id": "e38bce7a",
+  "name": "Michael Bracewell",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F2138%2F16042.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 16042,
+  "iplt20_name": "Michael Bracewell"
+ },
+ {
+  "player_id": "be869ccf",
+  "name": "George Garton",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2138%2F32436.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 32436,
+  "iplt20_name": "George Garton"
+ },
+ {
+  "player_id": "b52ffbbd",
+  "name": "Fabian Allen",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F35903.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 35903,
+  "iplt20_name": "Fabian Allen"
+ },
+ {
+  "player_id": "39086549",
+  "name": "Josh Philippe",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F2138%2F67300.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 67300,
+  "iplt20_name": "Josh Philippe"
+ },
+ {
+  "player_id": "1e030637",
+  "name": "Vignesh Puthur",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1558%2F87852.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 87852,
+  "iplt20_name": "Vignesh Puthur"
+ },
+ {
+  "player_id": "8d92a2c3",
+  "name": "Mark Wood",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1622%2F26100.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 26100,
+  "iplt20_name": "Mark Wood"
+ },
+ {
+  "player_id": "b63e358a",
+  "name": "Ricky Bhui",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1153%2F27084.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 27084,
+  "iplt20_name": "Ricky Bhui"
+ },
+ {
+  "player_id": "c6097d68",
+  "name": "Oshane Thomas",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1558%2F22426.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 22426,
+  "iplt20_name": "Oshane Thomas"
+ },
+ {
+  "player_id": "aedc3b7c",
+  "name": "Nikhil Naik",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1873%2F22694.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 22694,
+  "iplt20_name": "Nikhil Naik"
+ },
+ {
+  "player_id": "99ed60f8",
+  "name": "Javon Searles",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1873%2F20863.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 20863,
+  "iplt20_name": "Javon Searles"
+ },
+ {
+  "player_id": "1ee08e9a",
+  "name": "Jhye Richardson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2040%2F38163.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 38163,
+  "iplt20_name": "Jhye Richardson"
+ },
+ {
+  "player_id": "ff1e68fa",
+  "name": "Baba Indrajith",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F27212.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 27212,
+  "iplt20_name": "Baba Indrajith"
+ },
+ {
+  "player_id": "69d03465",
+  "name": "Alex Carey",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1396%2F18552.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 18552,
+  "iplt20_name": "Alex Carey"
+ },
+ {
+  "player_id": "8ac93ca2",
+  "name": "Prashant Chopra",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1558%2F15665.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 15665,
+  "iplt20_name": "Prashant Chopra"
+ },
+ {
+  "player_id": "9948e262",
+  "name": "Rassie van der Dussen",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1558%2F12845.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 12845,
+  "iplt20_name": "Rassie van der Dussen"
+ },
+ {
+  "player_id": "9e7225b0",
+  "name": "Saurav Chauhan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2138%2F75658.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 75658,
+  "iplt20_name": "Saurav Chauhan"
+ },
+ {
+  "player_id": "402f8494",
+  "name": "Richard Gleeson",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8502%2F1854%2F27711.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2025",
+  "season": 2025,
+  "transparent": true,
+  "bcci_id": 27711,
+  "iplt20_name": "Richard Gleeson"
+ },
+ {
+  "player_id": "39ed0d2f",
+  "name": "Karan Sharma",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F2880%2F73912.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 73912,
+  "iplt20_name": "Karan Sharma"
+ },
+ {
+  "player_id": "26d76ad9",
+  "name": "Virat Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1153%2F20219.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 20219,
+  "iplt20_name": "Virat Singh"
+ },
+ {
+  "player_id": "249d60c9",
+  "name": "Adil Rashid",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2040%2F12731.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 12731,
+  "iplt20_name": "Adil Rashid"
+ },
+ {
+  "player_id": "cb9b8664",
+  "name": "Will O’Rourke",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8502%2F2880%2F73001.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2025",
+  "season": 2025,
+  "transparent": true,
+  "bcci_id": 73001,
+  "iplt20_name": "Will O'Rourke"
+ },
+ {
+  "player_id": "1b7b0fa7",
+  "name": "Vivrant Sharma",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1153%2F74044.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 74044,
+  "iplt20_name": "Vivrant Sharma"
+ },
+ {
+  "player_id": "1a2676c5",
+  "name": "Sean Abbott",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1153%2F13491.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/sunrisers-hyderabad?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 13491,
+  "iplt20_name": "Sean Abbott"
+ },
+ {
+  "player_id": "f836b33d",
+  "name": "Tom Kohler-Cadmore",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F1558%2F15650.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 15650,
+  "iplt20_name": "Tom Kohler-Cadmore"
+ },
+ {
+  "player_id": "030f3089",
+  "name": "Kuldip Yadav",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1558%2F72756.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 72756,
+  "iplt20_name": "Kuldip Yadav"
+ },
+ {
+  "player_id": "9d704f6f",
+  "name": "Shams Mulani",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F1854%2F67620.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 67620,
+  "iplt20_name": "Shams Mulani"
+ },
+ {
+  "player_id": "65b6943c",
+  "name": "Luke Wood",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F2879%2F41054.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 41054,
+  "iplt20_name": "Luke Wood"
+ },
+ {
+  "player_id": "f1809c03",
+  "name": "Tanay Thyagarajan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2040%2F67638.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 67638,
+  "iplt20_name": "Tanay Thyagarajan"
+ },
+ {
+  "player_id": "19b9f399",
+  "name": "Chris Green",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1873%2F29331.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 29331,
+  "iplt20_name": "Chris Green"
+ },
+ {
+  "player_id": "8361e524",
+  "name": "Sisanda Magala",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1622%2F20429.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 20429,
+  "iplt20_name": "Sisanda Magala"
+ },
+ {
+  "player_id": "a1d95bd8",
+  "name": "Lizaad Williams",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F1396%2F18751.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 18751,
+  "iplt20_name": "Lizaad Williams"
+ },
+ {
+  "player_id": "25f7b7d6",
+  "name": "Tom Banton",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F2879%2F65546.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 65546,
+  "iplt20_name": "Tom Banton"
+ },
+ {
+  "player_id": "c695b423",
+  "name": "Prashant Solanki",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F1873%2F74067.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 74067,
+  "iplt20_name": "Prashant Solanki"
+ },
+ {
+  "player_id": "c3c92b42",
+  "name": "Rajvardhan Hangargekar",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8502%2F2880%2F70448.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/lucknow-super-giants?tab=squad&season=2025",
+  "season": 2025,
+  "transparent": true,
+  "bcci_id": 70448,
+  "iplt20_name": "Rajvardhan Hangargekar"
+ },
+ {
+  "player_id": "52294a79",
+  "name": "Himanshu Sharma",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2138%2F80523.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 80523,
+  "iplt20_name": "Himanshu Sharma"
+ },
+ {
+  "player_id": "b822e99c",
+  "name": "Nathu Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1396%2F12936.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 12936,
+  "iplt20_name": "Nathu Singh"
+ },
+ {
+  "player_id": "5b16a806",
+  "name": "Akila Dananjaya",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6354%2F1854%2F25104.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2018",
+  "season": 2018,
+  "transparent": true,
+  "bcci_id": 25104,
+  "iplt20_name": "Akila Dananjaya"
+ },
+ {
+  "player_id": "8dc152d1",
+  "name": "Duan Jansen",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1854%2F69961.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 69961,
+  "iplt20_name": "Duan Jansen"
+ },
+ {
+  "player_id": "249abedf",
+  "name": "Jalaj Saxena",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2040%2F18578.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 18578,
+  "iplt20_name": "Jalaj Saxena"
+ },
+ {
+  "player_id": "cc777ffa",
+  "name": "Abdul Basith",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1558%2F75788.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 75788,
+  "iplt20_name": "Abdul Basith"
+ },
+ {
+  "player_id": "266849c1",
+  "name": "Raghav Goyal",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F1854%2F80524.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 80524,
+  "iplt20_name": "Raghav Goyal"
+ },
+ {
+  "player_id": "c2dd89ea",
+  "name": "BR Sharath",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2879%2F67675.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 67675,
+  "iplt20_name": "Belur Sharath"
+ },
+ {
+  "player_id": "c28e9f12",
+  "name": "Tejas Baroka",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1558%2F65904.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 65904,
+  "iplt20_name": "Tejas Baroka"
+ },
+ {
+  "player_id": "bdadf7da",
+  "name": "Joe Denly",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1873%2F12803.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 12803,
+  "iplt20_name": "Joe Denly"
+ },
+ {
+  "player_id": "33ffc3dd",
+  "name": "Sanjay Yadav",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1854%2F65517.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/mumbai-indians?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 65517,
+  "iplt20_name": "Sanjay Yadav"
+ },
+ {
+  "player_id": "d3611425",
+  "name": "Lukman Meriwala",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F1396%2F20460.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/delhi-capitals?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 20460,
+  "iplt20_name": "Lukman Meriwala"
+ },
+ {
+  "player_id": "fb24e76c",
+  "name": "Monu Kumar",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1622%2F18005.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 18005,
+  "iplt20_name": "Monu Kumar"
+ },
+ {
+  "player_id": "ade90de7",
+  "name": "Sudhesan Midhun",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F1558%2F67621.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 67621,
+  "iplt20_name": "Sudhesan Midhun"
+ },
+ {
+  "player_id": "6ab96cc2",
+  "name": "Sonu Yadav",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7784%2F2138%2F69315.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2023",
+  "season": 2023,
+  "transparent": true,
+  "bcci_id": 69315,
+  "iplt20_name": "Sonu Yadav"
+ },
+ {
+  "player_id": "ad9c32a2",
+  "name": "Dawid Malan",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6906%2F2040%2F12296.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2021",
+  "season": 2021,
+  "transparent": true,
+  "bcci_id": 12296,
+  "iplt20_name": "Dawid Malan"
+ },
+ {
+  "player_id": "441c72ae",
+  "name": "Prayas Ray Barman",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6568%2F2138%2F68694.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2019",
+  "season": 2019,
+  "transparent": true,
+  "bcci_id": 68694,
+  "iplt20_name": "Prayas Barman"
+ },
+ {
+  "player_id": "aa5d8c9e",
+  "name": "Abhijeet Tomar",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1873%2F67551.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 67551,
+  "iplt20_name": "Abhijeet Tomar"
+ },
+ {
+  "player_id": "9a5f2863",
+  "name": "Mohit Rathee",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8502%2F2138%2F79513.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/royal-challengers-bengaluru?tab=squad&season=2025",
+  "season": 2025,
+  "transparent": true,
+  "bcci_id": 79513,
+  "iplt20_name": "Mohit Rathee"
+ },
+ {
+  "player_id": "e1d9ae9c",
+  "name": "Shivam Singh",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F2040%2F82987.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 82987,
+  "iplt20_name": "Shivam Singh"
+ },
+ {
+  "player_id": "99258814",
+  "name": "Gurnoor Brar",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8903%2F2879%2F76164.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/gujarat-titans?tab=squad&season=2026",
+  "season": 2026,
+  "transparent": true,
+  "bcci_id": 76164,
+  "iplt20_name": "Gurnoor Brar"
+ },
+ {
+  "player_id": "fdf7491e",
+  "name": "Ishan Porel",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F2040%2F65552.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/punjab-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 65552,
+  "iplt20_name": "Ishan Porel"
+ },
+ {
+  "player_id": "9601c534",
+  "name": "Siddhesh Lad",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F6752%2F1873%2F38718.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/kolkata-knight-riders?tab=squad&season=2020",
+  "season": 2020,
+  "transparent": true,
+  "bcci_id": 38718,
+  "iplt20_name": "Siddhesh Lad"
+ },
+ {
+  "player_id": "0edcb652",
+  "name": "Subhranshu Senapati",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F7156%2F1622%2F44973.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/chennai-super-kings?tab=squad&season=2022",
+  "season": 2022,
+  "transparent": true,
+  "bcci_id": 44973,
+  "iplt20_name": "Subhranshu Senapati"
+ },
+ {
+  "player_id": "5724e517",
+  "name": "Tanush Kotian",
+  "url": "https://www.iplt20.com/api/team-assets?pathname=player%2F8190%2F1558%2F69823.png&brand=ipl",
+  "source_page": "https://www.iplt20.com/api/bff/cms/teams/rajasthan-royals?tab=squad&season=2024",
+  "season": 2024,
+  "transparent": true,
+  "bcci_id": 69823,
+  "iplt20_name": "Tanush Kotian"
+ }
+]
