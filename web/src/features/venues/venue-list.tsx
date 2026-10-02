@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { StatTable, type StatColumn } from "@/components/data/stat-table";
-import { TableSkeleton } from "@/components/loaders/page-skeletons";
+import { TableSkeleton, TilesSkeleton } from "@/components/loaders/page-skeletons";
 import { EmptyState } from "@/components/shell/empty-state";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -14,6 +14,7 @@ import { ErrorState } from "./error-state";
 import { fmtInt, fmtPct, fmtRuns } from "./format";
 import { useVenues } from "./queries";
 import type { VenueSummary } from "./types";
+import { VenueKpis, VenueRail } from "./venue-overview";
 
 /** Below this many 2023+ matches a par score is shown but flagged as a small sample. */
 export const SMALL_SAMPLE = 10;
@@ -29,7 +30,7 @@ function columns(recentFrom: number): StatColumn<VenueSummary>[] {
       sortable: true,
       sticky: true,
       value: (v) => v.name,
-      className: "max-w-[11rem] sm:max-w-[18rem] md:max-w-none",
+      className: "max-w-[11rem] sm:max-w-[18rem] md:max-w-none xl:max-w-[22rem]",
       cell: (v) => (
         <Link
           href={`/venues/${v.id}`}
@@ -109,6 +110,7 @@ export function VenueListSkeleton() {
         <Skeleton className="h-11 w-60 rounded-[10px]" />
         <Skeleton className="h-11 w-56 rounded-[10px]" />
       </div>
+      <TilesSkeleton count={5} className="mb-4 xl:grid-cols-5" />
       <TableSkeleton rows={12} cols={6} />
     </div>
   );
@@ -136,68 +138,74 @@ export function VenueList() {
   const activeCount = venues.filter((v) => v.matches_recent > 0).length;
 
   return (
-    <div className="grid gap-3">
-      <div className="flex flex-wrap items-center gap-2">
-        <div role="group" aria-label="Which grounds" className="inline-flex rounded-[10px] bg-surface-2 p-1">
-          {(
-            [
-              ["active", `Used since ${recentFrom}`, activeCount],
-              ["all", "All grounds", venues.length],
-            ] as const
-          ).map(([key, label, n]) => (
-            <button
-              key={key}
-              type="button"
-              aria-pressed={scope === key}
-              onClick={() => setScope(key)}
-              className={cn(
-                "inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm font-medium text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                scope === key && "bg-card text-foreground shadow-e1",
-              )}
-            >
-              {label}
-              <span className="num text-xs text-muted-foreground">{n}</span>
-            </button>
-          ))}
-        </div>
-        <label className="relative flex h-11 min-w-0 flex-1 items-center sm:max-w-64">
-          <span className="sr-only">Filter venues by name or city</span>
-          <Search aria-hidden className="pointer-events-none absolute left-3 size-4 text-muted-foreground" />
-          <input
-            type="search"
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            placeholder="Filter by ground or city"
-            className="h-11 w-full rounded-[10px] border border-border bg-card pr-3 pl-9 text-sm outline-none placeholder:text-faint focus-visible:ring-2 focus-visible:ring-ring"
-          />
-        </label>
-      </div>
+    <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4 lg:gap-5">
+      <VenueKpis venues={venues} recentFrom={recentFrom} minMatches={SMALL_SAMPLE} />
+      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4 lg:gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(320px,26rem)]">
+        <div className="grid min-w-0 content-start gap-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <div role="group" aria-label="Which grounds" className="inline-flex rounded-[10px] bg-surface-2 p-1">
+              {(
+                [
+                  ["active", `Used since ${recentFrom}`, activeCount],
+                  ["all", "All grounds", venues.length],
+                ] as const
+              ).map(([key, label, n]) => (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={scope === key}
+                  onClick={() => setScope(key)}
+                  className={cn(
+                    "inline-flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm font-medium text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    scope === key && "bg-card text-foreground shadow-e1",
+                  )}
+                >
+                  {label}
+                  <span className="num text-xs text-muted-foreground">{n}</span>
+                </button>
+              ))}
+            </div>
+            <label className="relative flex h-11 min-w-0 flex-1 items-center sm:max-w-64">
+              <span className="sr-only">Filter venues by name or city</span>
+              <Search aria-hidden className="pointer-events-none absolute left-3 size-4 text-muted-foreground" />
+              <input
+                type="search"
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                placeholder="Filter by ground or city"
+                className="h-11 w-full rounded-[10px] border border-border bg-card pr-3 pl-9 text-sm outline-none placeholder:text-faint focus-visible:ring-2 focus-visible:ring-ring"
+              />
+            </label>
+          </div>
 
-      {rows.length === 0 ? (
-        <EmptyState
-          compact
-          icon={MapPin}
-          title="No ground matches that filter"
-          why={filter ? `Nothing in ${scope === "active" ? `grounds used since ${recentFrom}` : "the venue list"} matches “${filter.trim()}”.` : "No venues have hosted an IPL match in this window."}
-          when="Clear the filter or switch to All grounds."
-        />
-      ) : (
-        <StatTable
-          key={scope}
-          caption={`IPL venues, ${rows.length} shown. Par is the average first-innings score; ${recentFrom}+ is the impact-player era.`}
-          columns={columns(recentFrom)}
-          rows={rows}
-          rowKey={(v) => String(v.id)}
-          initialSort={{ key: scope === "active" ? "matches_recent" : "matches", dir: "desc" }}
-          maxHeight="none"
-          footer={
-            <>
-              Par = average first-innings total in completed, non-DLS matches. Scoring has inflated since 2022 (powerplay run rate 7.8 → 10.1), so the{" "}
-              {recentFrom}+ column is the one to plan with. <span className="font-medium text-warning">n=</span> marks fewer than {SMALL_SAMPLE} matches.
-            </>
-          }
-        />
-      )}
+          {rows.length === 0 ? (
+            <EmptyState
+              compact
+              icon={MapPin}
+              title="No ground matches that filter"
+              why={filter ? `Nothing in ${scope === "active" ? `grounds used since ${recentFrom}` : "the venue list"} matches “${filter.trim()}”.` : "No venues have hosted an IPL match in this window."}
+              when="Clear the filter or switch to All grounds."
+            />
+          ) : (
+            <StatTable
+              key={scope}
+              caption={`IPL venues, ${rows.length} shown. Par is the average first-innings score; ${recentFrom}+ is the impact-player era.`}
+              columns={columns(recentFrom)}
+              rows={rows}
+              rowKey={(v) => String(v.id)}
+              initialSort={{ key: scope === "active" ? "matches_recent" : "matches", dir: "desc" }}
+              maxHeight="none"
+              footer={
+                <>
+                  Par = average first-innings total in completed, non-DLS matches. Scoring has inflated since 2022 (powerplay run rate 7.8 → 10.1), so the{" "}
+                  {recentFrom}+ column is the one to plan with. <span className="font-medium text-warning">n=</span> marks fewer than {SMALL_SAMPLE} matches.
+                </>
+              }
+            />
+          )}
+        </div>
+        <VenueRail venues={venues} recentFrom={recentFrom} minMatches={SMALL_SAMPLE} />
+      </div>
     </div>
   );
 }

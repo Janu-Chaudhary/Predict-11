@@ -19,7 +19,7 @@ export function HomeView({ data }: { data: HomeData }) {
           <MatchCard state={data.state} />
         </div>
       )}
-      <Bento tiles={data.tiles} />
+      <Bento tiles={data.tiles} standings={data.standings} />
     </>
   );
 }

@@ -81,10 +81,10 @@ export function TossTrendChart({ data, recentFrom }: { data: TossTrend; recentFr
 
 export function TossTrendSection({ venueId, recentFrom }: { venueId: number; recentFrom: number }) {
   const q = useTossTrend(venueId);
-  if (q.isPending) return <ChartSkeleton className="mt-3 md:mt-4" />;
-  if (q.isError) return <div className="mt-3 md:mt-4"><Failed title="Toss trend" onRetry={() => q.refetch()} /></div>;
+  if (q.isPending) return <ChartSkeleton />;
+  if (q.isError) return <Failed title="Toss trend" onRetry={() => q.refetch()} />;
   return (
-    <div className="mt-3 md:mt-4">
+    <div className="min-w-0">
       <TossTrendChart data={q.data} recentFrom={recentFrom} />
     </div>
   );

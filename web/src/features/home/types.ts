@@ -113,6 +113,20 @@ export type HomeTiles = {
   fantasy?: { season: number; top: PlayerStatLine; matches: number; mean: number } | null;
 };
 
+/** Compact league standings row (subset of GET /seasons/{year}/table). */
+export type StandingRow = {
+  position: number;
+  team: HomeTeam;
+  played: number;
+  won: number;
+  lost: number;
+  points: number;
+  nrr: number | null;
+  finish?: string | null;
+  qualified?: boolean;
+};
+export type Standings = { season: number; rows: StandingRow[] };
+
 /** What the hero area finally renders, after data availability is checked. */
 export type ResolvedHero =
   | { kind: "A"; wagon: Wagon; match: HomeMatch | null; note: string }
@@ -124,6 +138,8 @@ export type HomeData = {
   state: HomeState | null;
   hero: ResolvedHero;
   tiles: HomeTiles | null;
+  /** League table for the bento's points-table tile (null when unavailable). */
+  standings?: Standings | null;
   /** Set when the API could not be reached at all. */
   error: string | null;
 };

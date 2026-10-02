@@ -54,8 +54,8 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM, conditions = fa
         }
       />
 
-      <div className="grid gap-3 md:gap-4">
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+      <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:gap-5">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 xl:grid-cols-6">
           <StatTile
             label={`Par 1st inns ${recentFrom}+`}
             value={isNum(v.recent.avg_first_innings) ? Math.round(v.recent.avg_first_innings) : null}
@@ -65,6 +65,11 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM, conditions = fa
               </>
             }
           />
+          <StatTile
+            label={`Median 1st inns ${recentFrom}+`}
+            value={isNum(v.recent.median_first_innings) ? Math.round(v.recent.median_first_innings) : null}
+            hint={<>all-time {fmtRuns(v.all_time.median_first_innings)}</>}
+          />
           <StatTile label={`Avg 2nd inns ${recentFrom}+`} value={isNum(v.recent.avg_second_innings) ? Math.round(v.recent.avg_second_innings) : null} hint={<>all-time {fmtRuns(v.all_time.avg_second_innings)}</>} />
           <StatTile label={`Chase win ${recentFrom}+`} value={isNum(v.recent.chase_win_pct) ? fmtPct(v.recent.chase_win_pct) : null} hint={<>all-time {fmtPct(v.all_time.chase_win_pct)}</>} />
           <StatTile
@@ -72,6 +77,7 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM, conditions = fa
             value={isNum(v.toss_recent.toss_winner_win_pct) ? fmtPct(v.toss_recent.toss_winner_win_pct) : null}
             hint={<>chose field {fmtPct(v.toss_recent.field_pct)}</>}
           />
+          <StatTile label={`Matches ${recentFrom}+`} value={v.recent.matches} hint={<>{v.matches} all-time</>} />
         </div>
         {smallRecent && (
           <p className="rounded-lg border border-warning/30 bg-warning/8 px-3 py-2 text-xs text-foreground">
@@ -79,27 +85,18 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM, conditions = fa
           </p>
         )}
 
-        <div className="grid gap-3 md:gap-4 lg:grid-cols-12">
-          <Panel id="par" title="Par score" aside={`${recentFrom}+ vs all-time`} className="lg:col-span-7">
-            <ParComparison recent={v.recent} allTime={v.all_time} recentFrom={recentFrom} weighted={v.par_weighted} />
-          </Panel>
+        {/* Main column (scores, trends, records) beside a conditions rail on wide screens. */}
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-4 lg:gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(380px,30rem)]">
+          <div className="grid min-w-0 content-start gap-4 lg:gap-5">
+            <Panel id="par" title="Par score" aside={`${recentFrom}+ vs all-time`}>
+              <ParComparison recent={v.recent} allTime={v.all_time} recentFrom={recentFrom} weighted={v.par_weighted} />
+            </Panel>
 
-          <Panel id="toss" title="Toss" aside="What toss winners chose" className="lg:col-span-5">
-            <div className="grid gap-4">
-              <TossSplitBar label={`${recentFrom}+`} toss={v.toss_recent} />
-              <TossSplitBar label="All-time" toss={v.toss_all_time} />
-              <TossOutcome toss={v.toss_recent} recentFrom={recentFrom} />
-            </div>
-          </Panel>
-        </div>
-
-        <div className="grid gap-3 md:gap-4 lg:grid-cols-12">
-          <div className="min-w-0 lg:col-span-7">
-            <SeasonParBars seasons={v.by_season} venueName={v.name} recentFrom={recentFrom} />
-            {conditions ? (
-              <TossTrendSection venueId={v.id} recentFrom={recentFrom} />
-            ) : hasSeasonToss ? (
-              <div className="mt-3 md:mt-4">
+            <div className="grid min-w-0 gap-4 lg:gap-5 2xl:grid-cols-2">
+              <SeasonParBars seasons={v.by_season} venueName={v.name} recentFrom={recentFrom} />
+              {conditions ? (
+                <TossTrendSection venueId={v.id} recentFrom={recentFrom} />
+              ) : hasSeasonToss ? (
                 <StatBarChart
                   title="Toss decision by season · chose to field %"
                   summary={`Share of toss winners who chose to field each season. ${recentSeasons.map((s) => `${s.season}: ${fmtPct(s.field_pct ?? null)}`).join(", ")}.`}
@@ -107,66 +104,62 @@ export function VenueCardView({ venue, recentFrom = RECENT_FROM, conditions = fa
                   xKey="season"
                   series={[{ key: "field", label: "Chose to field %", color: "var(--chart-3)" }]}
                 />
+              ) : null}
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:gap-5">
+              <Panel id="highest" title="Highest totals" aside="All IPL seasons">
+                <TotalsList totals={v.highest_totals} kind="highest" />
+              </Panel>
+              <Panel id="lowest" title="Lowest totals" aside="Completed innings">
+                <TotalsList totals={v.lowest_totals} kind="lowest" />
+              </Panel>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:gap-5">
+              <Panel id="scorers" title="Top run-scorers here" aside="All IPL seasons">
+                <LeaderList leaders={v.top_run_scorers} kind="runs" />
+              </Panel>
+              <Panel id="wickets" title="Top wicket-takers here" aside="All IPL seasons">
+                <LeaderList leaders={v.top_wicket_takers} kind="wickets" />
+              </Panel>
+            </div>
+          </div>
+
+          <aside aria-label="Conditions" className="grid min-w-0 content-start gap-4 md:grid-cols-2 lg:gap-5 xl:grid-cols-1">
+            <Panel id="toss" title="Toss" aside="What toss winners chose">
+              <div className="grid gap-4">
+                <TossSplitBar label={`${recentFrom}+`} toss={v.toss_recent} />
+                <TossSplitBar label="All-time" toss={v.toss_all_time} />
+                <TossOutcome toss={v.toss_recent} recentFrom={recentFrom} />
               </div>
-            ) : null}
-          </div>
-          <div className="min-w-0 lg:col-span-5">
-            <PhaseBars recent={v.phases_recent} allTime={v.phases_all_time} recentFrom={recentFrom} />
-          </div>
+            </Panel>
+            <div className="min-w-0">
+              <PhaseBars recent={v.phases_recent} allTime={v.phases_all_time} recentFrom={recentFrom} />
+            </div>
+            {conditions ? (
+              <>
+                <PaceSpinSection venueId={v.id} recentFrom={recentFrom} />
+                <DewSection venueId={v.id} recentFrom={recentFrom} />
+              </>
+            ) : (
+              <>
+                <EmptyState compact icon={Wind} title="Pace vs spin wickets" why="Pace and spin shares of overs and wickets load separately from the venue card." />
+                <EmptyState compact icon={Droplets} title="Dew factor" why="Chase win % on high- vs low-dew evenings loads separately from the venue card." />
+              </>
+            )}
+            {notes.length > 0 && (
+              <ul className="grid gap-1 px-1 text-[11px] leading-4 text-muted-foreground md:col-span-2 xl:col-span-1">
+                {notes.map((n) => (
+                  <li key={n} className="flex gap-1.5">
+                    <CloudMoon aria-hidden className="mt-px size-3 shrink-0" />
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </aside>
         </div>
-
-        <div className="grid gap-3 md:grid-cols-2 md:gap-4">
-          <Panel id="highest" title="Highest totals" aside="All IPL seasons">
-            <TotalsList totals={v.highest_totals} kind="highest" />
-          </Panel>
-          <Panel id="lowest" title="Lowest totals" aside="Completed innings">
-            <TotalsList totals={v.lowest_totals} kind="lowest" />
-          </Panel>
-        </div>
-
-        <div className="grid gap-3 md:grid-cols-2 md:gap-4">
-          <Panel id="scorers" title="Top run-scorers here" aside="All IPL seasons">
-            <LeaderList leaders={v.top_run_scorers} kind="runs" />
-          </Panel>
-          <Panel id="wickets" title="Top wicket-takers here" aside="All IPL seasons">
-            <LeaderList leaders={v.top_wicket_takers} kind="wickets" />
-          </Panel>
-        </div>
-
-        <div className="grid gap-3 md:grid-cols-2 md:gap-4">
-          {conditions ? (
-            <>
-              <PaceSpinSection venueId={v.id} recentFrom={recentFrom} />
-              <DewSection venueId={v.id} recentFrom={recentFrom} />
-            </>
-          ) : (
-            <>
-          <EmptyState
-            compact
-            icon={Wind}
-            title="Pace vs spin wickets"
-            why="Pace and spin shares of overs and wickets load separately from the venue card."
-          />
-          <EmptyState
-            compact
-            icon={Droplets}
-            title="Dew factor"
-            why="Chase win % on high- vs low-dew evenings loads separately from the venue card."
-          />
-            </>
-          )}
-        </div>
-
-        {notes.length > 0 && (
-          <ul className="grid gap-1 px-1 text-[11px] leading-4 text-muted-foreground">
-            {notes.map((n) => (
-              <li key={n} className="flex gap-1.5">
-                <CloudMoon aria-hidden className="mt-px size-3 shrink-0" />
-                {n}
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </article>
   );
@@ -181,15 +174,20 @@ export function VenueCardSkeleton() {
         <Skeleton className="h-8 w-64 max-w-[80vw] md:h-9" />
         <Skeleton className="h-4 w-56" />
       </div>
-      <div className="grid gap-3 md:gap-4">
-        <TilesSkeleton count={4} />
-        <div className="grid gap-3 md:gap-4 lg:grid-cols-12">
-          <Skeleton className="h-72 rounded-xl lg:col-span-7" />
-          <Skeleton className="h-72 rounded-xl lg:col-span-5" />
-        </div>
-        <div className="grid gap-3 md:gap-4 lg:grid-cols-12">
-          <ChartSkeleton className="lg:col-span-7" />
-          <ChartSkeleton className="lg:col-span-5" />
+      <div className="grid gap-4 lg:gap-5">
+        <TilesSkeleton count={6} className="md:grid-cols-3 xl:grid-cols-6" />
+        <div className="grid gap-4 lg:gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(380px,30rem)]">
+          <div className="grid content-start gap-4 lg:gap-5">
+            <Skeleton className="h-72 rounded-xl" />
+            <div className="grid gap-4 lg:gap-5 2xl:grid-cols-2">
+              <ChartSkeleton />
+              <ChartSkeleton />
+            </div>
+          </div>
+          <div className="grid content-start gap-4 lg:gap-5">
+            <Skeleton className="h-72 rounded-xl" />
+            <ChartSkeleton />
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { API_URL } from "@/lib/env";
 
 import { planHero, resolveHero, type HeroPreview } from "./lib/rotation";
-import type { HomeData, HomeState, HomeTiles, Wagon, Worm, XI } from "./types";
+import type { HomeData, HomeState, HomeTiles, Standings, Wagon, Worm, XI } from "./types";
 
 type Got<T> = { ok: true; data: T } | { ok: false; status: number };
 
@@ -32,10 +32,12 @@ export async function loadHome(preview: HeroPreview = null): Promise<HomeData> {
   const q = devSpike ? "?dev_spike_wagon=true" : "";
   const [stateRes, tilesRes] = await Promise.all([get<HomeState>(`/home/state${q}`), get<HomeTiles>("/home/tiles")]);
   const tiles = orNull(tilesRes);
+  const standingsP = tiles?.table ? get<Standings>(`/seasons/${tiles.table.season}/table`).then(orNull) : Promise.resolve(null);
   if (!stateRes.ok) {
     return {
       state: null,
       tiles,
+      standings: await standingsP,
       hero: { kind: "none", note: "" },
       error: stateRes.status === 0 ? "The Predict-11 API is not reachable." : `The API answered ${stateRes.status}.`,
     };
@@ -43,11 +45,12 @@ export async function loadHome(preview: HeroPreview = null): Promise<HomeData> {
   const state = stateRes.data;
   const plan = planHero(state, preview);
   const id = plan.heroMatchId;
-  const [wagon, xi, worm] = await Promise.all([
+  const [standings, wagon, xi, worm] = await Promise.all([
+    standingsP,
     plan.requested === "A" && id !== null ? get<Wagon>(`/home/wagon/${id}${q}`).then(orNull) : null,
     plan.requested === "B" && id !== null ? get<XI>(`/home/xi/${id}`).then(orNull) : null,
     plan.wormMatchId !== null ? get<Worm>(`/home/worm/${plan.wormMatchId}`).then(orNull) : null,
   ]);
   const heroMatch = state.last_match && state.last_match.id === id ? state.last_match : (worm?.match ?? null);
-  return { state, tiles, hero: resolveHero(plan, { wagon, xi, worm }, heroMatch), error: null };
+  return { state, tiles, standings, hero: resolveHero(plan, { wagon, xi, worm }, heroMatch), error: null };
 }
