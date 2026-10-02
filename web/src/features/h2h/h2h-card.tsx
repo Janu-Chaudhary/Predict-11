@@ -28,23 +28,28 @@ export function H2HCard({ batter, bowler, pair }: { batter: PlayerRef; bowler: P
   const bowl = displayName(bowler);
   return (
     <article aria-labelledby="h2h-title" className="min-w-0 rounded-xl border border-border bg-card shadow-e1">
-      <header className="flex flex-wrap items-start justify-between gap-2 border-b border-border px-3 py-3 md:px-4">
-        <div className="flex min-w-0 items-center gap-3">
-          <span aria-hidden className="flex shrink-0 -space-x-2">
-            <PlayerAvatar name={bat} src={photoOf(batter)} size="md" className="ring-2 ring-card" />
-            <PlayerAvatar name={bowl} src={photoOf(bowler)} size="md" className="ring-2 ring-card" />
-          </span>
-          <div className="min-w-0">
+      {/* Face-off header: frameless cut-outs at both ends, the pairing in the middle. */}
+      <header className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-end gap-2 overflow-hidden border-b border-border px-2 pt-3 md:gap-4 md:px-4">
+        <figure className="flex flex-col items-center">
+          <PlayerAvatar name={bat} src={photoOf(batter)} size="hero" className="max-md:size-[104px]!" />
+          <figcaption className="text-overline pb-1 text-muted-foreground">Batter</figcaption>
+        </figure>
+        <div className="flex min-w-0 flex-col items-center gap-1.5 self-center pb-3 text-center">
           <p className="text-overline text-muted-foreground">Batter v bowler · IPL</p>
-          <h2 id="h2h-title" className="text-title truncate">
-            {bat} <span className="text-muted-foreground">v</span> {bowl}
+          <h2 id="h2h-title" className="font-display text-xl leading-tight font-bold [font-stretch:80%] md:text-4xl">
+            <span className="block">{bat}</span>{" "}
+            <span className="block text-base font-semibold text-muted-foreground md:text-xl">v</span>{" "}
+            <span className="block">{bowl}</span>
           </h2>
-          <p className="num text-xs text-muted-foreground">
+          <p className="num text-xs text-muted-foreground md:text-sm">
             {pair.matches} matches · {pair.innings} innings
           </p>
-          </div>
+          <ConfidenceBadge n={pair.balls} level={level} thresholds={H2H_THRESHOLDS} />
         </div>
-        <ConfidenceBadge n={pair.balls} level={level} thresholds={H2H_THRESHOLDS} />
+        <figure className="flex flex-col items-center">
+          <PlayerAvatar name={bowl} src={photoOf(bowler)} size="hero" className="max-md:size-[104px]!" />
+          <figcaption className="text-overline pb-1 text-muted-foreground">Bowler</figcaption>
+        </figure>
       </header>
 
       <div className={cn("p-3 md:p-4", low && "opacity-80")}>
