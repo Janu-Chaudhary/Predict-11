@@ -15,6 +15,7 @@ from sqlalchemy import Connection
 
 from ...analytics import matchups, players, players_records, teams_squad, venues
 from ...analytics.players_data import bulk, parse_since, reference
+from ...analytics.players_data import player_names as players_data_names
 from ...analytics.players_models import (
     CompareResponse,
     H2HResponse,
@@ -23,6 +24,7 @@ from ...analytics.players_models import (
     SearchResponse,
     StreaksResponse,
 )
+from ...analytics.players_percentiles import PercentilesResponse, skill_percentiles
 from ...core import db
 
 
@@ -88,6 +90,24 @@ def player_compare(
     if missing:
         raise HTTPException(404, f"unknown player id(s): {sorted(missing)}")
     return res
+
+
+@router.get("/players/percentiles", response_model=PercentilesResponse)
+def player_percentiles(
+    conn: Conn,
+    ids: Annotated[str, Query(description="comma-separated player ids (1-4)")],
+    season: int | None = None,
+    since: Annotated[str | None, Query(description="YYYY or YYYY-MM-DD")] = None,
+) -> PercentilesResponse:
+    """Skill-radar percentiles vs every IPL player with enough sample in the same scope."""
+    id_list = list(dict.fromkeys(i.strip() for i in ids.split(",") if i.strip()))
+    if not 1 <= len(id_list) <= 4:
+        raise HTTPException(422, "ids must list 1-4 player ids")
+    names = players_data_names(conn, id_list)
+    missing = set(id_list) - set(names)
+    if missing:
+        raise HTTPException(404, f"unknown player id(s): {sorted(missing)}")
+    return skill_percentiles(conn, id_list, season, _since(since))
 
 
 @router.get("/players/{player_id}", response_model=PlayerProfile)
